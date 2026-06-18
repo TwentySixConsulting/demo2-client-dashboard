@@ -868,6 +868,9 @@ interface SectionCardProps {
   bullets: string[];
   icon: typeof LineChart;
   accent: string;
+  items: React.ReactNode[];
+  showcaseId: string;
+  showcaseReverse?: boolean;
   ctaLabel: string;
   onClick: () => void;
   disabled?: boolean;
@@ -883,6 +886,9 @@ function SectionCard({
   bullets,
   icon: Icon,
   accent,
+  items,
+  showcaseId,
+  showcaseReverse,
   ctaLabel,
   onClick,
   disabled,
@@ -948,6 +954,16 @@ function SectionCard({
       >
         {scope}
       </p>
+
+      {/* Embedded scrolling preview */}
+      <div className="mb-6 -mx-1 relative">
+        <ScrollingShowcase
+          items={items}
+          durationSeconds={showcaseReverse ? 46 : 40}
+          id={showcaseId}
+          reverse={showcaseReverse}
+        />
+      </div>
 
       {/* Checkmark bullets */}
       <ul className="space-y-2.5 mb-7 relative">
@@ -1304,14 +1320,16 @@ function HotTile({
 }
 
 function HotBar() {
-  // Pay group uses gold; Benefits group uses sage — colour coding so the
-  // user can see at a glance which side of the report each stat belongs to.
+  // Softer, less-clashy hot-bar accents (kept local so the global brand gold
+  // is untouched): a creamy yellow for the Pay group, a pale green for Benefits.
+  const PAY_HOT = "#d8c47a"; // creamy yellow
+  const BEN_HOT = "#a8c499"; // pale green
   const tiles: HotTileProps[] = [
     {
       eyebrow: "Quarter",
       value: REPORT_PERIOD,
       caption: `Refreshed ${LAST_UPDATED}`,
-      accent: C.brass,
+      accent: PAY_HOT,
       live: true,
       delay: 0,
     },
@@ -1320,7 +1338,7 @@ function HotBar() {
       eyebrow: "Roles benchmarked",
       value: PAY_META.rolesAnalysed.toString(),
       caption: "Fully in scope",
-      accent: C.brass,
+      accent: PAY_HOT,
       delay: 60,
     },
     {
@@ -1329,7 +1347,7 @@ function HotBar() {
       value: PAY_META.medianPay,
       trend: { value: PAY_META.medianPayChange, direction: "up" },
       sparkline: [48.0, 48.6, 49.4, 50.2, 50.8, 51.6, 52.4],
-      accent: C.brass,
+      accent: PAY_HOT,
       delay: 120,
     },
     {
@@ -1337,7 +1355,7 @@ function HotBar() {
       eyebrow: "Pay position",
       value: PAY_META.positionLabel,
       band: { from: PAY_META.positionFrom, to: PAY_META.positionTo },
-      accent: C.brass,
+      accent: PAY_HOT,
       delay: 180,
     },
     {
@@ -1345,7 +1363,7 @@ function HotBar() {
       eyebrow: "Benefits recorded",
       value: BENEFITS_META.recorded.toString(),
       caption: `Across ${BENEFITS_META.categories} categories`,
-      accent: C.sage,
+      accent: BEN_HOT,
       delay: 240,
     },
     {
@@ -1353,7 +1371,7 @@ function HotBar() {
       eyebrow: "Benefits position",
       value: BENEFITS_META.positionLabel,
       band: { from: BENEFITS_META.positionFrom, to: BENEFITS_META.positionTo },
-      accent: C.sage,
+      accent: BEN_HOT,
       delay: 300,
     },
   ];
@@ -1493,89 +1511,8 @@ export function Home() {
             <HotBar />
           </div>
 
-          {/* Section cards */}
-          <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-7">
-            <SectionCard
-              eyebrow="01 — Pay"
-              title="Pay"
-              oneLiner="Where you sit on pay, role by role."
-              scope={`Market data and benchmarks across ${PAY_META.employersInDataset} employers — quartile position, trends, and hotspots.`}
-              bullets={[
-                `${PAY_META.rolesAnalysed} roles benchmarked, fully in scope`,
-                "Quartile position, role-by-role analysis",
-                `Last refreshed ${PAY_META.lastRefresh}`,
-              ]}
-              icon={LineChart}
-              accent={C.brass}
-              ctaLabel="Open Pay report"
-              onClick={goToPay}
-              delay={240}
-            />
-            <SectionCard
-              eyebrow="02 — Benefits"
-              title="Benefits"
-              oneLiner="Your benefits offer, through the market's eyes."
-              scope={`Benchmarked across ${BENEFITS_META.employersInDataset} employers and ${BENEFITS_META.categories} categories — where you over- or under-provide.`}
-              bullets={[
-                `${BENEFITS_META.employersInDataset} employers, ${BENEFITS_META.categories} categories`,
-                "Where you over- or under-provide",
-                `Last refreshed ${BENEFITS_META.lastRefresh}`,
-              ]}
-              icon={Gift}
-              accent={C.brass}
-              ctaLabel="Open Benefits report"
-              onClick={goToBenefits}
-              disabled={!clientConfig.benefitsEnabled}
-              disabledNote="Not in this package"
-              delay={360}
-            />
-          </div>
-
-          {/* A look inside — scrolling preview showcase (june-style marquee) */}
-          <div className="mt-16 ts-anim-fade-up" style={{ animationDelay: "440ms" }}>
-            <div className="mb-6">
-              <p
-                className="text-[10.5px] font-semibold uppercase"
-                style={{ color: C.brass, letterSpacing: "0.28em" }}
-              >
-                A look inside
-              </p>
-              <h2
-                className="ts-display text-[28px] lg:text-[34px] mt-1"
-                style={{ color: C.ink }}
-              >
-                Live charts pulled straight from the dashboard.
-              </h2>
-            </div>
-
-            <div className="flex items-center gap-2 mb-3">
-              <LineChart className="w-3.5 h-3.5" style={{ color: C.brassDeep }} />
-              <span
-                className="text-[11px] font-semibold uppercase"
-                style={{ color: C.inkMuted, letterSpacing: "0.16em" }}
-              >
-                Pay
-              </span>
-            </div>
-            <ScrollingShowcase items={payPreviews} durationSeconds={44} id="pay" />
-
-            <div className="flex items-center gap-2 mb-3 mt-8">
-              <Gift className="w-3.5 h-3.5" style={{ color: C.brassDeep }} />
-              <span
-                className="text-[11px] font-semibold uppercase"
-                style={{ color: C.inkMuted, letterSpacing: "0.16em" }}
-              >
-                Benefits
-              </span>
-            </div>
-            <ScrollingShowcase items={benefitsPreviews} durationSeconds={50} id="benefits" reverse />
-          </div>
-
-          {/* Highlights row */}
-          <div
-            className="mt-14 ts-anim-fade-up"
-            style={{ animationDelay: "480ms" }}
-          >
+          {/* Highlights — pulled to the top, directly below the hot bar */}
+          <div className="mt-10 ts-anim-fade-up" style={{ animationDelay: "200ms" }}>
             <div className="flex items-center justify-between mb-5">
               <div
                 className="text-[10.5px] font-semibold uppercase"
@@ -1607,6 +1544,49 @@ export function Home() {
                 accent={C.plum}
               />
             </div>
+          </div>
+
+          {/* Section cards — each with an embedded scrolling preview */}
+          <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-7">
+            <SectionCard
+              eyebrow="01 — Pay"
+              title="Pay"
+              oneLiner="Where you sit on pay, role by role."
+              scope={`Market data and benchmarks across ${PAY_META.employersInDataset} employers — quartile position, trends, and hotspots.`}
+              bullets={[
+                `${PAY_META.rolesAnalysed} roles benchmarked, fully in scope`,
+                "Quartile position, role-by-role analysis",
+                `Last refreshed ${PAY_META.lastRefresh}`,
+              ]}
+              icon={LineChart}
+              accent={C.brass}
+              items={payPreviews}
+              showcaseId="pay"
+              ctaLabel="Open Pay report"
+              onClick={goToPay}
+              delay={240}
+            />
+            <SectionCard
+              eyebrow="02 — Benefits"
+              title="Benefits"
+              oneLiner="Your benefits offer, through the market's eyes."
+              scope={`Benchmarked across ${BENEFITS_META.employersInDataset} employers and ${BENEFITS_META.categories} categories — where you over- or under-provide.`}
+              bullets={[
+                `${BENEFITS_META.employersInDataset} employers, ${BENEFITS_META.categories} categories`,
+                "Where you over- or under-provide",
+                `Last refreshed ${BENEFITS_META.lastRefresh}`,
+              ]}
+              icon={Gift}
+              accent={C.brass}
+              items={benefitsPreviews}
+              showcaseId="benefits"
+              showcaseReverse
+              ctaLabel="Open Benefits report"
+              onClick={goToBenefits}
+              disabled={!clientConfig.benefitsEnabled}
+              disabledNote="Not in this package"
+              delay={360}
+            />
           </div>
         </div>
       </main>
