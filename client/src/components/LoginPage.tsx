@@ -98,22 +98,22 @@ export function LoginPage() {
           }}
         />
 
-        <div className="relative flex items-center">
+        <div className="relative flex flex-col leading-none gap-1.5">
           <span
-            className="text-[10.5px] font-semibold uppercase"
-            style={{ letterSpacing: "0.28em", color: C.brass }}
+            className="text-[30px] font-extrabold"
+            style={{ color: C.ink, letterSpacing: "-0.03em" }}
           >
             Zigbert
+          </span>
+          <span
+            className="text-[10.5px] font-semibold uppercase"
+            style={{ letterSpacing: "0.26em", color: C.brass }}
+          >
+            Pay &amp; Benefits Intelligence
           </span>
         </div>
 
         <div className="relative max-w-md">
-          <div
-            className="text-[10.5px] font-semibold uppercase mb-4"
-            style={{ letterSpacing: "0.26em", color: C.brass }}
-          >
-            Pay &amp; Benefits Intelligence
-          </div>
           <h2
             className="text-4xl xl:text-[3.4rem] font-semibold tracking-tight leading-[1.04] mb-5"
             style={{ color: C.ink, letterSpacing: "-0.018em" }}
@@ -151,8 +151,8 @@ export function LoginPage() {
         {/* Mobile-only brand strip */}
         <div className="lg:hidden absolute top-6 left-6 flex items-center">
           <span
-            className="text-[10px] font-semibold uppercase"
-            style={{ letterSpacing: "0.24em", color: C.brass }}
+            className="text-[20px] font-extrabold"
+            style={{ color: C.ink, letterSpacing: "-0.03em" }}
           >
             Zigbert
           </span>
