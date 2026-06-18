@@ -1,0 +1,35 @@
+Update the current home/landing page to be a “Dashboard Start” page (NOT executive summary).
+
+Requirements:
+- Page title: “Use your dashboard” (not “Use your report”).
+- Add a short subheading line: “How to interpret pay ranges” (this is a link to the pay ranges help section; for now anchor to the Pay Ranges page or an on-page section).
+- Remove “executive summary” language entirely.
+- Remove the “9 roles analysed” style metric block from the landing page (delete or move elsewhere).
+- Keep: organisation name, sector (if still used), location, report date (these are metadata fields shown near the top).
+- Add the Zigberg logo in the top right of the header. If the image is faded due to CSS, fix it:
+  - Ensure opacity is 1
+  - Ensure it sits within the header container with correct padding/margins
+  - It must not look washed out
+- Build a “What do you want to do today?” launcher section:
+  - It displays 9–10 “cards/blobs” (clickable).
+  - Each card has: section title + 1–2 sentence description of what it helps with.
+  - Clicking routes the user to the correct section page and also supports in-page anchor navigation.
+
+Launcher cards (titles can be refined but implement these routes):
+1) Market data results & position (overview)
+2) Strengths / risks / outliers (pay position)
+3) Role-by-role detail (table + filters)
+4) Pay review & new roles prioritisation (if this exists; otherwise create placeholder page)
+5) Market context (CPI, earnings etc. + commentary)
+6) Bonus potential (if placeholder, create page)
+7) Benefits breakdown (market provision by org type/size)
+8) Benefit trends & ideas (commentary / themes / differentiators)
+9) Next steps
+10) Data sources + methodology + who we are (can be combined)
+
+Also:
+- Create a top navigation bar with these same sections.
+- Ensure there are “multiple routes”: nav bar + start cards + in-page links.
+- Keep design clean, modern, not “cheap”: avoid loud colors; use neutral palette, subtle borders, consistent spacing.
+
+Implement: the page UI + routing targets (create placeholder pages where missing) but do not remove existing pages—only adjust.

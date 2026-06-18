@@ -1,0 +1,367 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+  --color-sidebar: hsl(var(--sidebar));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+
+  /* Zigbert — Inter throughout */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* ============================================================
+   ZIGBERT — Premium Design System
+   Navy #0c1829 / Gold #c9a84c / Cream #f7f5f0
+   ============================================================ */
+
+:root {
+  --button-outline: rgba(0,0,0,.10);
+  --badge-outline: rgba(0,0,0,.05);
+  --opaque-button-border-intensity: -8;
+  --elevate-1: rgba(0,0,0,.03);
+  --elevate-2: rgba(0,0,0,.08);
+
+  /* Core palette */
+  --background: 40 27% 95%;          /* cream #f7f5f0 */
+  --foreground: 214 64% 10%;         /* navy */
+  --border: 214 20% 85%;
+  --card: 0 0% 100%;
+  --card-foreground: 214 40% 12%;
+  --card-border: 214 15% 88%;
+
+  /* Sidebar — deep navy */
+  --sidebar: 214 68% 7%;             /* #0c1829 */
+  --sidebar-foreground: 40 30% 92%;
+  --sidebar-border: 214 60% 10%;
+  --sidebar-primary: 42 53% 55%;     /* gold — active state */
+  --sidebar-primary-foreground: 214 64% 8%;
+  --sidebar-accent: 214 55% 14%;
+  --sidebar-accent-foreground: 40 30% 92%;
+  --sidebar-ring: 42 53% 55%;
+
+  --popover: 0 0% 99%;
+  --popover-foreground: 214 40% 12%;
+  --popover-border: 214 15% 88%;
+
+  --primary: 214 64% 10%;            /* navy */
+  --primary-foreground: 40 27% 95%;
+
+  --secondary: 214 15% 92%;
+  --secondary-foreground: 214 40% 15%;
+
+  --muted: 214 12% 95%;
+  --muted-foreground: 214 12% 42%;
+
+  --accent: 42 40% 90%;              /* light gold tint */
+  --accent-foreground: 42 53% 28%;
+
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 98%;
+
+  --input: 214 15% 88%;
+  --ring: 42 53% 55%;                /* gold ring */
+
+  /* Chart colours */
+  --chart-1: 214 64% 10%;   /* navy */
+  --chart-2: 42 53% 55%;    /* gold */
+  --chart-3: 214 20% 55%;   /* slate */
+  --chart-4: 214 55% 22%;   /* mid navy */
+  --chart-5: 42 53% 35%;    /* dark gold */
+
+  --radius: 0.75rem;
+
+  /* Shadows (navy-tinted) */
+  --shadow-sm:  0 1px 3px 0 hsl(214 30% 10% / 0.08);
+  --shadow:     0 1px 3px 0 hsl(214 30% 10% / 0.1), 0 1px 2px -1px hsl(214 30% 10% / 0.1);
+  --shadow-md:  0 4px 6px -1px hsl(214 30% 10% / 0.10), 0 2px 4px -2px hsl(214 30% 10% / 0.06);
+  --shadow-lg:  0 10px 15px -3px hsl(214 30% 10% / 0.10), 0 4px 6px -4px hsl(214 30% 10% / 0.05);
+  --shadow-xl:  0 20px 25px -5px hsl(214 30% 10% / 0.12), 0 8px 10px -6px hsl(214 30% 10% / 0.05);
+
+  --sidebar-primary-border: hsl(var(--sidebar-primary));
+  --sidebar-accent-border: hsl(var(--sidebar-accent));
+  --primary-border: hsl(var(--primary));
+  --secondary-border: hsl(var(--secondary));
+  --muted-border: hsl(var(--muted));
+  --accent-border: hsl(var(--accent));
+  --destructive-border: hsl(var(--destructive));
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    font-weight: 440;
+    line-height: 1.6;
+    letter-spacing: -0.01em;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 650;
+    line-height: 1.3;
+    letter-spacing: -0.025em;
+  }
+  p { line-height: 1.65; }
+}
+
+@layer utilities {
+
+  /* ---- TwentySix · Zigbert home page utilities (used by Home.tsx) ---- */
+  /* Cream canvas with two restrained radial glows — gold at top-left,
+     navy at top-right. Mirrors the june project's hero background. */
+  .ts-canvas {
+    background-color: hsl(40 27% 95%);
+    background-image:
+      radial-gradient(circle at 0% 0%, hsl(42 53% 55% / 0.08) 0%, transparent 40%),
+      radial-gradient(circle at 100% 30%, hsl(214 64% 30% / 0.06) 0%, transparent 35%);
+  }
+  .ts-sans {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  /* Editorial display heading — tight tracking Inter at weight 800 reads
+     like a serif headline without being one. */
+  .ts-display {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.05;
+  }
+
+  @keyframes ts-fade-up {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .ts-anim-fade-up {
+    opacity: 0;
+    animation: ts-fade-up 720ms cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+  }
+
+  /* Premium card — soft border that brightens to gold on hover; restrained
+     navy-tinted shadow that ramps up on hover. Mirrors `.premium-card`
+     and `.modern-card` in the june project. */
+  .ts-premium-card {
+    background: #ffffff;
+    border: 1px solid hsl(214 20% 88%);
+    border-radius: 28px;
+    box-shadow:
+      0 1px 2px hsl(214 25% 15% / 0.04),
+      0 12px 32px hsl(214 25% 15% / 0.06);
+    transition:
+      transform 320ms cubic-bezier(0.2,0.7,0.2,1),
+      box-shadow 320ms ease,
+      border-color 320ms ease;
+  }
+  .ts-premium-card:hover {
+    border-color: hsl(42 53% 55% / 0.3);
+    box-shadow:
+      0 1px 2px hsl(214 25% 15% / 0.04),
+      0 28px 56px -16px hsl(214 25% 15% / 0.14);
+    transform: translateY(-2px);
+  }
+
+  /* Gold gradient CTA — the june project's signature button. */
+  .ts-gold-cta {
+    background: linear-gradient(135deg, hsl(42 53% 50%), hsl(42 53% 60%));
+    color: hsl(214 64% 8%);
+    box-shadow: 0 4px 12px hsl(42 53% 50% / 0.3);
+    transition: transform 200ms ease, box-shadow 200ms ease, opacity 200ms ease;
+  }
+  .ts-gold-cta:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 18px hsl(42 53% 50% / 0.4);
+  }
+
+  /* Subtle radial glow that appears on card hover (top-right) */
+  .ts-glow-host { position: relative; }
+  .ts-glow-host::before {
+    content: "";
+    position: absolute;
+    top: -3rem;
+    right: -3rem;
+    width: 18rem;
+    height: 18rem;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, hsl(42 53% 55% / 0.14) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 500ms ease;
+    pointer-events: none;
+  }
+  .ts-glow-host:hover::before { opacity: 1; }
+
+  /* ---- Premium display heading (Inter, tight tracking) ---- */
+  .font-display-serif {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.035em;
+  }
+
+  /* ---- Zigbert wordmark ---- */
+  .zigbert-wordmark {
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    background: linear-gradient(135deg, hsl(42 53% 55%) 0%, hsl(42 53% 72%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ---- Navy gradient header ---- */
+  .zigbert-header {
+    background: linear-gradient(135deg, hsl(214 68% 7%) 0%, hsl(214 60% 13%) 60%, hsl(214 45% 20%) 100%);
+    border-bottom: 1px solid hsl(42 53% 55% / 0.25);
+    box-shadow: 0 2px 12px hsl(214 50% 5% / 0.3);
+  }
+
+  /* ---- Premium card ---- */
+  .premium-card {
+    background: white;
+    border: 1px solid hsl(214 20% 85%);
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-sm);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .premium-card:hover {
+    border-color: hsl(42 53% 55% / 0.4);
+    box-shadow: 0 4px 20px hsl(42 53% 55% / 0.1), var(--shadow-md);
+  }
+
+  /* ---- Modern card (keeps existing usage) ---- */
+  .modern-card {
+    background: white;
+    border-radius: 1rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid hsl(214 20% 88%);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .modern-card:hover {
+    box-shadow: var(--shadow-xl);
+    border-color: hsl(42 53% 55% / 0.3);
+    transform: translateY(-2px);
+  }
+
+  /* ---- Section header bar ---- */
+  .section-header-bar {
+    background: linear-gradient(135deg, hsl(214 68% 7%) 0%, hsl(214 60% 13%) 100%);
+    border-left: 4px solid hsl(42 53% 55%);
+    color: white;
+    border-radius: 0.75rem;
+    padding: 2rem 2.5rem;
+    margin-bottom: 2rem;
+  }
+
+  /* ---- Gold accent ---- */
+  .gold-accent { color: hsl(42 53% 55%); }
+
+  /* ---- Stat card (dark navy) ---- */
+  .stat-card-gradient {
+    background: linear-gradient(135deg, hsl(214 68% 7%) 0%, hsl(214 55% 18%) 100%);
+  }
+
+  /* ---- Hero/report banner ---- */
+  .hero-gradient {
+    background: linear-gradient(135deg, hsl(214 68% 7%) 0%, hsl(214 60% 13%) 50%, hsl(214 45% 20%) 100%);
+  }
+
+  /* ---- Gradient border using gold ---- */
+  .gradient-border {
+    position: relative;
+    background: white;
+    border-radius: 1rem;
+  }
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, hsl(42 53% 55%), hsl(42 53% 70%));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+
+  /* ---- Accent glow (gold) ---- */
+  .accent-glow {
+    box-shadow: 0 0 40px -10px hsl(42 53% 55% / 0.35);
+  }
+
+  /* ---- Text gradient (gold) ---- */
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(214 64% 10%) 0%, hsl(42 53% 45%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ---- Glass card ---- */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(201, 168, 76, 0.15);
+    box-shadow: 0 8px 32px rgba(12, 24, 41, 0.08);
+  }
+
+  /* ---- Animations (unchanged) ---- */
+  .animate-fade-in  { animation: fadeIn  0.6s cubic-bezier(0.4,0,0.2,1) forwards; }
+  .animate-slide-up { animation: slideUp 0.6s cubic-bezier(0.4,0,0.2,1) forwards; }
+  .animate-scale-in { animation: scaleIn 0.5s cubic-bezier(0.4,0,0.2,1) forwards; }
+
+  @keyframes fadeIn  { from { opacity:0; } to { opacity:1; } }
+  @keyframes slideUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+  @keyframes scaleIn { from { opacity:0; transform:scale(0.95); } to { opacity:1; transform:scale(1); } }
+  @keyframes shimmer { 0% { background-position:-200% 0; } 100% { background-position:200% 0; } }
+
+  .shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  .stagger-1 { animation-delay: 0.05s; }
+  .stagger-2 { animation-delay: 0.1s; }
+  .stagger-3 { animation-delay: 0.15s; }
+  .stagger-4 { animation-delay: 0.2s; }
+  .stagger-5 { animation-delay: 0.25s; }
+  .stagger-6 { animation-delay: 0.3s; }
+}

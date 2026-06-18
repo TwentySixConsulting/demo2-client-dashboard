@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zigbert — Product Review & Premium Improvement Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0c1829;
+    --navy-2:#13243b;
+    --cream:#f7f5f0;
+    --paper:#ffffff;
+    --ink:#0c1829;
+    --ink-muted:#475569;
+    --ink-subtle:#7b8794;
+    --line:#e4e0d6;
+    --line-soft:#eee9dd;
+    --accent:#c9a84c;
+    --accent-deep:#9a7d2e;
+    --accent-soft:#f6efda;
+    --amber:#c98a2b;
+    --rose:#b4533f;
+    --shadow:0 1px 2px hsl(214 25% 15% / .04), 0 18px 40px -22px hsl(214 25% 15% / .25);
+  }
+  *{box-sizing:border-box;}
+  html{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  body{
+    margin:0;
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    font-weight:440;
+    line-height:1.65;
+    letter-spacing:-0.01em;
+    -webkit-font-smoothing:antialiased;
+  }
+  .page{ max-width:880px; margin:0 auto; padding:0 28px 80px; }
+
+  /* ---- Cover ---- */
+  .cover{
+    background:linear-gradient(135deg,var(--navy) 0%, var(--navy-2) 60%, #1c3350 100%);
+    color:var(--cream);
+    border-bottom:3px solid var(--accent);
+    padding:64px 0 56px;
+    margin-bottom:0;
+  }
+  .cover .inner{ max-width:880px; margin:0 auto; padding:0 28px; }
+  .eyebrow{
+    text-transform:uppercase; letter-spacing:.2em; font-size:11px; font-weight:600;
+    color:var(--accent); margin:0 0 18px;
+  }
+  .wordmark{
+    font-weight:800; font-size:30px; letter-spacing:-0.04em; margin:0 0 4px;
+    background:linear-gradient(135deg,#ffffff 0%, var(--accent) 130%);
+    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+  }
+  .cover h1{
+    font-weight:800; font-size:40px; line-height:1.08; letter-spacing:-0.035em;
+    margin:26px 0 14px; color:#fff;
+  }
+  .cover p.lede{ font-size:16px; color:#c9d2dd; max-width:620px; margin:0; }
+  .meta{ margin-top:34px; display:flex; flex-wrap:wrap; gap:10px 28px; font-size:13px; color:#aeb9c6; }
+  .meta b{ color:#fff; font-weight:600; }
+
+  /* ---- Scorecard ---- */
+  .scorecard{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:14px;
+    margin:-32px auto 8px; max-width:880px; padding:0 28px; position:relative;
+  }
+  .score{
+    background:var(--paper); border:1px solid var(--line); border-radius:14px;
+    padding:16px 16px 14px; box-shadow:var(--shadow);
+  }
+  .score .n{ font-size:30px; font-weight:800; letter-spacing:-0.03em; color:var(--navy); }
+  .score .n span{ font-size:15px; color:var(--ink-subtle); font-weight:600; }
+  .score .l{ font-size:11.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-subtle); margin-top:4px; }
+  .score .bar{ height:5px; border-radius:3px; background:var(--line-soft); margin-top:10px; overflow:hidden; }
+  .score .bar i{ display:block; height:100%; background:var(--accent); border-radius:3px; }
+
+  /* ---- Content ---- */
+  h2{
+    font-weight:800; font-size:25px; letter-spacing:-0.03em; line-height:1.2;
+    margin:54px 0 6px; padding-top:22px; border-top:1px solid var(--line);
+  }
+  h2 .num{ color:var(--accent-deep); }
+  h3{ font-weight:700; font-size:17.5px; letter-spacing:-0.02em; margin:30px 0 6px; }
+  h4{ font-weight:700; font-size:14px; letter-spacing:.01em; margin:18px 0 4px; color:var(--ink-muted); }
+  p{ margin:10px 0; }
+  a{ color:var(--accent-deep); }
+  code{
+    font-family:'SF Mono',ui-monospace,Menlo,Consolas,monospace; font-size:12.5px;
+    background:#f0ede5; border:1px solid var(--line-soft); border-radius:5px; padding:1px 5px; color:#334155;
+  }
+  ul{ margin:10px 0; padding-left:22px; }
+  li{ margin:7px 0; }
+  strong{ font-weight:700; }
+  em{ color:var(--ink-muted); }
+
+  .lead{ font-size:16px; }
+  .callout{
+    background:var(--accent-soft); border:1px solid #ecdfb8; border-left:4px solid var(--accent);
+    border-radius:10px; padding:16px 18px; margin:18px 0;
+  }
+  .callout.warn{ background:#fbf3e8; border-color:#efdcc0; border-left-color:var(--amber); }
+  .callout p{ margin:6px 0; }
+  .callout .h{ font-weight:700; font-size:13px; text-transform:uppercase; letter-spacing:.08em; color:var(--accent-deep); margin:0 0 4px; }
+  .callout.warn .h{ color:var(--amber); }
+
+  /* direction swatches */
+  .swatches{ display:flex; gap:10px; flex-wrap:wrap; margin:14px 0 4px; }
+  .sw{ display:flex; align-items:center; gap:9px; border:1px solid var(--line); background:var(--paper); border-radius:10px; padding:8px 12px; font-size:12.5px; }
+  .dot{ width:22px; height:22px; border-radius:6px; border:1px solid rgba(0,0,0,.08); }
+
+  /* tags */
+  .tag{ display:inline-block; font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.06em;
+    padding:2px 8px; border-radius:999px; vertical-align:middle; }
+  .tag.qw{ background:var(--accent-soft); color:var(--accent-deep); border:1px solid #ecdfb8; }
+  .tag.pr{ background:#eef2f8; color:#33507a; border:1px solid #d9e1ee; }
+  .tag.st{ background:#f3edf7; color:#73468f; border:1px solid #e4d6ee; }
+
+  .legend{ font-size:12.5px; color:var(--ink-muted); margin:6px 0 0; }
+
+  ol.top10{ counter-reset:item; padding-left:0; list-style:none; }
+  ol.top10 li{ position:relative; padding:10px 0 10px 44px; border-bottom:1px solid var(--line-soft); }
+  ol.top10 li::before{
+    counter-increment:item; content:counter(item);
+    position:absolute; left:0; top:9px; width:28px; height:28px; border-radius:8px;
+    background:var(--navy); color:#fff; font-weight:800; font-size:13px;
+    display:flex; align-items:center; justify-content:center;
+  }
+
+  footer{ margin-top:50px; padding-top:18px; border-top:1px solid var(--line); font-size:12.5px; color:var(--ink-subtle); }
+
+  @media print{
+    body{ background:#fff; }
+    .cover{ padding:46px 0 38px; }
+    .scorecard{ margin-top:-26px; }
+    h2{ page-break-after:avoid; }
+    h3,h4{ page-break-after:avoid; }
+    .callout, .score{ page-break-inside:avoid; }
+    a{ color:var(--ink); text-decoration:none; }
+  }
+  @media (max-width:680px){
+    .scorecard{ grid-template-columns:repeat(2,1fr); }
+    .cover h1{ font-size:30px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="inner">
+    <p class="eyebrow">TwentySix Consulting · Product Review</p>
+    <div class="wordmark">Zigbert</div>
+    <p style="margin:0;color:#aeb9c6;font-size:13px;letter-spacing:.02em;">Pay &amp; Benefits Intelligence</p>
+    <h1>Product Review &amp; Premium<br>Improvement Report</h1>
+    <p class="lede">An end-to-end critique of the client journey — sign-in, home, Pay report, Benefits report — and an ambitious roadmap to make it a product clients love.</p>
+    <div class="meta">
+      <span><b>Product</b> demo-client-dashboard</span>
+      <span><b>Scope</b> Whole journey + design system</span>
+      <span><b>Lens</b> The client, above all</span>
+      <span><b>Status</b> Analysis &amp; recommendations</span>
+    </div>
+  </div>
+</header>
+
+<div class="scorecard">
+  <div class="score"><div class="n">8<span>/10</span></div><div class="l">First impression</div><div class="bar"><i style="width:80%"></i></div></div>
+  <div class="score"><div class="n">5<span>/10</span></div><div class="l">Depth of experience</div><div class="bar"><i style="width:50%"></i></div></div>
+  <div class="score"><div class="n">4<span>/10</span></div><div class="l">Coherence</div><div class="bar"><i style="width:40%"></i></div></div>
+  <div class="score"><div class="n">5<span>/10</span></div><div class="l">Would a client love it</div><div class="bar"><i style="width:50%"></i></div></div>
+</div>
+
+<main class="page">
+
+  <h2><span class="num">0.</span> Context — why this report exists</h2>
+  <p class="lead">This is a detailed, ambitious critique of the <strong>demo-client-dashboard</strong> (the "Zigbert" product) across the entire journey — sign-in → home → Pay report → Benefits report — from several perspectives but <strong>above all the client's</strong>. The goal is to understand what the product <em>is</em>, who it's <em>for</em>, where it falls short of "premium," and how to make it a product people genuinely love.</p>
+  <p>The brief gave full creative freedom, so this report is deliberately expansive and opinionated. It is a menu, not a contract — we'll pick what's worth building when we make the working copy. It is based on a full read of the codebase (auth/home/shell, the Pay SPA, the Benefits static app, and the design system).</p>
+
+  <h3>0.1 &nbsp;Approved design direction (locked with the client)</h3>
+  <p>Confirmed before finalising this report:</p>
+  <ul>
+    <li><strong>Branding — keep the existing identity, elevate the premium feel.</strong> Retain the current <strong>Zigbert palette</strong>: warm-cream canvas <code>#F7F5F0</code>, white cards, deep navy <code>#0C1829</code>, and <strong>gold <code>#C9A84C</code></strong> as the signature accent. We are <strong>not</strong> changing the colours — the goal is to make the <em>existing</em> identity feel materially more premium (depth, finish, spacing, type discipline, richer micro-interactions, on-brand charts) and to remove the unfinished/template tells below.</li>
+    <li><strong>Charts — on-brand.</strong> Navy + gold primary, slate muted, semantic red/amber for risk. Remove the off-brand Recharts indigo <code>#6366f1</code>.</li>
+    <li><strong>Demo client identity — "Brighton Technologies".</strong> Replace both the generic <code>clientName: "Demo"</code> and the <strong>leftover "Penge Churches"</strong> in the Benefits report with one coherent demo persona, matching the Brighton-based roles already in the Pay data (a content fix, not a colour change).</li>
+  </ul>
+  <div class="swatches">
+    <span class="sw"><span class="dot" style="background:#f7f5f0"></span> Cream canvas <code>#F7F5F0</code></span>
+    <span class="sw"><span class="dot" style="background:#ffffff"></span> White cards</span>
+    <span class="sw"><span class="dot" style="background:#0c1829"></span> Navy <code>#0C1829</code></span>
+    <span class="sw"><span class="dot" style="background:#c9a84c"></span> Gold accent <code>#C9A84C</code></span>
+  </div>
+  <p class="legend" style="margin-top:10px;">An earlier-considered move to an emerald accent / away from navy has been shelved — we are staying with gold + cream + navy and focusing on premium polish + functional improvements.</p>
+
+  <h2><span class="num">1.</span> What the product is (and what it's <em>for</em>)</h2>
+  <p><strong>Zigbert</strong> is a <strong>client-facing reward-intelligence portal</strong> built by TwentySix Consulting. A reward/HR client signs in with a username + password and lands on a calm "What do you want to do today?" home page with two doors:</p>
+  <ul>
+    <li><strong>Pay</strong> → a benchmarking dashboard: where each role sits against the market (lower quartile / median / upper quartile), role-by-role detail, market context (inflation, unemployment, pay-rise forecasts), bonus norms, and recommended next steps.</li>
+    <li><strong>Benefits</strong> → a benchmarking report: how the client's benefits offer compares to the market across categories (core, time off, health &amp; wellbeing, financial, ESG/DEI, L&amp;D), with strengths and areas to watch.</li>
+  </ul>
+  <p>Consultants (logged-in admins) can <strong>edit any text inline</strong> via an "Edit as Admin" CMS mode. The template is cloned per client by editing <code>client/src/config/clientConfig.ts</code>.</p>
+  <p><strong>The real-world job it does:</strong> it turns a consulting engagement's findings into a <em>living, branded, self-serve deliverable</em>. Historically a reward consultancy hands over a PDF or a deck. Zigbert's bet is that an interactive portal is more premium, more sticky, and more upsell-friendly ("upgrade to bespoke analysis"). That's the product's reason to exist — and it's the lens the whole report is judged through.</p>
+
+  <h3>Who the client actually is (personas)</h3>
+  <ul>
+    <li><strong>The HR/Reward lead (primary user).</strong> Mid-senior, time-poor, not a data analyst. Wants: <em>"are we paying fairly, where are my risks, and what do I do Monday morning?"</em> — fast, defensible, board-ready.</li>
+    <li><strong>The CFO / CEO (over-the-shoulder audience).</strong> ~90 seconds of attention. Wants the headline: <em>are we over- or under-paying, what's it costing us, what's the risk?</em></li>
+    <li><strong>The TwentySix consultant (admin/editor).</strong> Needs to stand up a client instance quickly, tailor the narrative, look impeccable, and create a natural path to more paid work.</li>
+  </ul>
+
+  <h3>The jobs-to-be-done</h3>
+  <ul>
+    <li><em>"Tell me where I stand"</em> — positioning, at a glance.</li>
+    <li><em>"Tell me what's wrong / at risk"</em> — the 2–3 things that matter.</li>
+    <li><em>"Tell me what to do and what it costs"</em> — action + budget.</li>
+    <li><em>"Let me prove it to my board"</em> — export, share, defend the methodology.</li>
+    <li><em>"Make me feel I'm in expensive, expert hands"</em> — premium feel, trust.</li>
+  </ul>
+  <div class="callout">
+    <p class="h">The central insight</p>
+    <p>The product today is built around <strong>browsing data</strong>. A premium reward product should be built around <strong>delivering decisions</strong>. Most high-value recommendations push the experience from "here is your data, explore it" toward "here is what it means and what to do."</p>
+  </div>
+
+  <h2><span class="num">2.</span> Overall verdict</h2>
+  <p><strong>The bones are genuinely good.</strong> The visual language, editorial typography, the quartile-band visualisation, the home-page hot bar and carousel, and the micro-interactions already read as a premium product on first glance. The login page in particular is a strong, confident first impression.</p>
+  <p><strong>But it's a beautifully dressed <em>template</em>, not yet a <em>product clients love</em>.</strong> The gap is in four areas:</p>
+  <ul>
+    <li><strong>Coherence</strong> — effectively <em>two different apps</em> stitched together (React shell + Pay SPA in Inter; Benefits app in Plus Jakarta Sans/Space Grotesk), with full-page reloads between them and a leftover <strong>"Penge Churches"</strong> client name still hardcoded in the Benefits report.</li>
+    <li><strong>Meaning over data</strong> — the dashboards show numbers but rarely tell the client <em>what it means</em> or <em>what to do</em>. The "insights" are static demo copy, not derived from the data.</li>
+    <li><strong>Trust &amp; finish</strong> — placeholder data everywhere, no methodology/sample-size signals, off-brand chart colours, no real PDF/board export, and unfinished flows (forgot-password, empty/error states).</li>
+    <li><strong>Interactivity</strong> — tables and charts are read-only; no filtering, search, drill-down, scenario modelling, or comparison-over-time — the things that make a portal worth more than a PDF.</li>
+  </ul>
+
+  <h2><span class="num">3.</span> The experience, surface by surface</h2>
+
+  <h3>3.1 &nbsp;Sign-in <code>LoginPage.tsx</code></h3>
+  <p><strong>Strong.</strong> Dual-panel editorial layout, warm palette, refined type, tagline <em>"The market, decoded — role by role, benefit by benefit."</em> The best-finished screen in the app.</p>
+  <p>Gaps that undercut "premium": hardcoded <strong>"demo"</strong> placeholder in the username field; <strong>no "forgot password"</strong> (only a generic support email); <strong>no show/hide password</strong>, no field-level validation, one generic error for every failure; a <strong>temp-auth fallback with hardcoded credentials</strong> in client code (must never ship to a real build); the left panel is static where it could feel alive.</p>
+
+  <h3>3.2 &nbsp;Home / landing <code>Home.tsx</code></h3>
+  <p><strong>Ambitious and mostly excellent.</strong> Time-of-day greeting, "live" status pill, big editorial headline, a 6-tile Hot Bar of KPIs, two large Pay/Benefits choice cards with auto-playing carousels, and a Highlights row.</p>
+  <p>Gaps: the <strong>Highlights and Hot Bar numbers are static demo copy</strong>, not data-derived (the single biggest "make it real" opportunity); the Benefits card just <strong>greys out with "Not in this package"</strong> where there should be an upsell; thin carousel captions; no clear <strong>"start here / your 3 actions"</strong> entry point.</p>
+
+  <h3>3.3 &nbsp;Navigation &amp; app shell <code>App.tsx · Shell.tsx · Layout.tsx</code></h3>
+  <p>The React app owns <code>/</code>, <code>/account</code>, <code>/report/draft</code>. <strong><code>/pay/*</code> and <code>/benefits/*</code> are entirely separate static builds</strong>, reached by <code>window.location.href</code> — <strong>full page reloads</strong>, not SPA transitions. Two different nav chrome systems (top tabs for home; a 288px navy sidebar for Pay).</p>
+  <p>Gaps: the full-reload jump is the <strong>most jarring premium-breaking moment</strong> in the product; <strong>no breadcrumbs / "you are here"</strong> across the boundary; two nav models for one product; no global search / quick-jump.</p>
+
+  <h3>3.4 &nbsp;Pay report <code>pages/* → /pay/</code></h3>
+  <p>Good coverage: Market Comparison, Role-by-Role detail cards, Risks/distribution, Market Context, Bonus, Benchmarking + a "Quartiles Explained" graphic, a Benefits-market breakdown, and a Next Steps page with the Targeted-vs-Bespoke upsell. The <strong>quartile band + "you are here" marker</strong> is intuitive and well reused; role cards are nicely composed; PNG/CSV export exist per chart.</p>
+  <p>Gaps: <strong>all data is fictional placeholder</strong> (12 roles, all "Brighton") with no "sample" framing; <strong>charts use off-brand indigo <code>#6366f1</code></strong>; <strong>read-only</strong> with no drill-down, filtering, sorting or search (won't scale past ~12 rows); <strong>recommendations are generic</strong> ("Worth a closer look") rather than costed; terminology overload around "position"; <strong>no real PDF/board-pack export</strong>; no empty/error states.</p>
+
+  <h3>3.5 &nbsp;Benefits report <code>public/benefits/index.html</code></h3>
+  <p>A <strong>5,300-line standalone static HTML report</strong> inherited from "pengechurchesv3," with its own fonts, its own navy sidebar, and colour-coded category cards. Handsome as a document.</p>
+  <div class="callout warn">
+    <p class="h">Showstopper</p>
+    <p>It still says <strong>"Penge Churches"</strong> throughout — a previous client's name hardcoded into the demo. This erodes trust instantly if seen, and is the first thing to fix (→ rebrand to <strong>Brighton Technologies</strong>).</p>
+  </div>
+  <p>It's also a <strong>different design system</strong> (typeface, nav, spacing) from the React app, and is <strong>not driven by the same config/data</strong> — editing it means hand-editing raw HTML, outside the CMS.</p>
+
+  <h3>3.6 &nbsp;Design system &amp; brand <code>index.css · theme.ts · components/ui/*</code></h3>
+  <p>A real, documented system: HSL tokens, a 5-level navy-tinted shadow scale, 12px base radius, tasteful animations, 57 shadcn/ui components. Genuinely premium foundations.</p>
+  <p>Loose ends: three fonts loaded but a typographic split across the product (Inter used, Fraunces loaded-but-unused, Plus Jakarta Sans only in shell chrome); a dark-mode variant defined but never activated; CSS duplication; chart colours drifting off-palette; unused brand PNGs in <code>attached_assets/</code>.</p>
+  <div class="callout">
+    <p class="h">Redesign note</p>
+    <p>The new direction re-tokenises this system to <strong>navy (punctuation) + cream/white (field) + emerald accent</strong>, and unifies the Benefits report onto it.</p>
+  </div>
+
+  <h2><span class="num">4.</span> Recommendations</h2>
+  <p class="legend">Tagging:
+    <span class="tag qw">Quick win</span> hours &nbsp;
+    <span class="tag pr">Project</span> days &nbsp;
+    <span class="tag st">Strategic</span> product-defining bets
+  </p>
+
+  <h3>4.1 &nbsp;Coherence — make it feel like <em>one</em> premium product</h3>
+  <ul>
+    <li><span class="tag st">Strategic</span> <strong>Fold Pay &amp; Benefits into the single React app</strong> (or at minimum make the transition seamless). Eliminate <code>window.location</code> full reloads; use client-side routing and a shared shell.</li>
+    <li><span class="tag qw">Quick win</span> <strong>Purge the "Penge Churches" leftover</strong> and rebrand the whole demo as <strong>Brighton Technologies</strong>, driven from <code>clientConfig</code>, matching the Brighton-based roles in the Pay data.</li>
+    <li><span class="tag pr">Project</span> <strong>Unify the design system across Pay, Benefits and Home</strong> — one typeface, one nav model, one token set, all on the existing Zigbert system (navy / gold / cream).</li>
+    <li><span class="tag qw">Quick win</span> <strong>One navigation model</strong> applied everywhere; add breadcrumbs / "you are here".</li>
+  </ul>
+
+  <h3>4.2 &nbsp;Meaning over data — the highest-value theme</h3>
+  <ul>
+    <li><span class="tag st">Strategic</span> <strong>An "Your quarter in 3 things" insights engine.</strong> Replace static Highlights with <strong>data-derived</strong> headlines — the personalised headline of the whole engagement.</li>
+    <li><span class="tag st">Strategic</span> <strong>Prescriptive recommendations with cost.</strong> <em>"X is 8% below median (£Y); moving N people to median costs ~£Z/yr."</em> Turn Risks into an action list with a price tag — what justifies the engagement and seeds the upsell.</li>
+    <li><span class="tag pr">Project</span> <strong>A genuine "Total Reward" view</strong> combining pay position <em>and</em> benefits value — what a consultancy can say that a salary survey can't.</li>
+    <li><span class="tag qw">Quick win</span> <strong>Sharper, client-specific copy</strong> on every page.</li>
+  </ul>
+
+  <h3>4.3 &nbsp;Interactivity — earn the right to be a portal, not a PDF</h3>
+  <ul>
+    <li><span class="tag pr">Project</span> <strong>Filter / sort / search</strong> on role and benefit tables.</li>
+    <li><span class="tag pr">Project</span> <strong>Drill-down</strong> from any chart bar/role to the detail.</li>
+    <li><span class="tag st">Strategic</span> <strong>Scenario modelling ("what-if")</strong> — model "bring all below-median roles to median" and instantly see total cost and the new distribution. A genuine board-meeting "wow."</li>
+    <li><span class="tag st">Strategic</span> <strong>Comparison over time</strong> — quartile-by-quarter trend; "what changed since last report" so the portal compounds in value.</li>
+    <li><span class="tag pr">Project</span> <strong>Real export</strong> — a branded, board-ready PDF/board-pack, plus "email me this report."</li>
+  </ul>
+
+  <h3>4.4 &nbsp;Trust &amp; credibility</h3>
+  <ul>
+    <li><span class="tag qw">Quick win</span> <strong>Data provenance &amp; freshness everywhere</strong> — sources, sample sizes ("n="), "as at" dates, and a clear <strong>"sample data" badge</strong> on the demo.</li>
+    <li><span class="tag qw">Quick win</span> <strong>Built-in methodology &amp; glossary</strong> reachable from any term, so clients can defend the numbers to their board.</li>
+    <li><span class="tag qw">Quick win</span> <strong>Confidence signalling</strong> — flag thin-sample roles.</li>
+  </ul>
+
+  <h3>4.5 &nbsp;Sign-in &amp; account</h3>
+  <ul>
+    <li><span class="tag qw">Quick win</span> <strong>Finish the auth screen</strong> — forgot-password, show/hide, validation, specific errors, remove the demo placeholder, and keep temp-auth creds out of real builds.</li>
+    <li><span class="tag pr">Project</span> <strong>A real Account area</strong> — package/subscription, billing contact, data export, and a clean <strong>upgrade path</strong> where the Benefits card currently dead-ends.</li>
+    <li><span class="tag st">Strategic</span> <strong>White-glove first-run</strong> — a short guided tour and "how to read a quartile."</li>
+  </ul>
+
+  <h3>4.6 &nbsp;Aesthetics &amp; finish</h3>
+  <ul>
+    <li><span class="tag qw">Quick win</span> <strong>Bring charts onto brand</strong> — navy/gold/slate from the existing token set, not indigo.</li>
+    <li><span class="tag qw">Quick win</span> <strong>Elevate the premium feel within the gold/cream/navy identity</strong> — richer depth and layered shadows, tighter spacing rhythm, type discipline, more considered hover/active/focus states, gold used with restraint as a true accent.</li>
+    <li><span class="tag qw">Quick win</span> <strong>Tidy the design system</strong> — one font strategy, remove CSS duplication, ship or remove dark mode.</li>
+    <li><span class="tag pr">Project</span> <strong>Use the brand imagery</strong> (or commission light editorial illustration) for identity beyond micro-interactions.</li>
+    <li><span class="tag pr">Project</span> <strong>Mobile polish</strong> — carousel and rotated chart labels get cramped.</li>
+    <li><span class="tag qw">Quick win</span> <strong>Accessibility pass</strong> — semantic structure, contrast, keyboard nav, ARIA on charts.</li>
+  </ul>
+
+  <h3>4.7 &nbsp;Admin / editor experience (the consultant's product)</h3>
+  <ul>
+    <li><span class="tag pr">Project</span> <strong>Bring the Benefits report under the same CMS</strong> — no more hand-editing 5,000 lines of HTML.</li>
+    <li><span class="tag pr">Project</span> <strong>A proper instance-setup flow</strong> (client name, package, branding, data load) — how TwentySix scales to many clients.</li>
+    <li><span class="tag qw">Quick win</span> <strong>Richer edit affordances</strong> beyond plain-text inline editing.</li>
+  </ul>
+
+  <h3>4.8 &nbsp;Ambitious "make them love it" bets (the north star)</h3>
+  <ul>
+    <li><strong>Decision-first dashboard</strong> — lead with "Your 3 priorities this quarter," each with impact + cost + one-click "add to action plan."</li>
+    <li><strong>Action plan / tracker</strong> the client builds and revisits — a one-off report becomes an ongoing relationship surface.</li>
+    <li><strong>Scenario &amp; budget planner</strong> as the headline interactive feature.</li>
+    <li><strong>Quarterly "what changed" digest</strong> + optional email when new data lands — a reason to return.</li>
+    <li><strong>Board-pack generator</strong> — one click to a beautifully branded PDF the client presents as their own (TwentySix credited). The most shareable, upsell-generating feature.</li>
+    <li><strong>Total-reward storytelling</strong> — pay + benefits woven into one narrative.</li>
+  </ul>
+
+  <h2><span class="num">5.</span> Suggested roadmap</h2>
+  <h4>Phase 0 — Integrity, rebrand &amp; finish (quick wins, do first)</h4>
+  <p>Rebrand everything to <strong>Brighton Technologies</strong> and purge "Penge Churches"; <strong>keep the gold/cream/navy identity and elevate its premium feel</strong>; bring the charts onto the existing brand (navy/gold); finish auth; add "sample data" + freshness/source badges; tidy fonts/CSS/dark-mode; add a glossary/methodology link.</p>
+  <h4>Phase 1 — Coherence</h4>
+  <p>Remove full-reload app switches; one nav model + breadcrumbs; re-skin/rebuild Benefits in the unified system; bring Benefits under config/CMS.</p>
+  <h4>Phase 2 — Meaning</h4>
+  <p>Data-derived Highlights/Hot Bar; prescriptive costed recommendations; sharper per-client copy; real account/upgrade path.</p>
+  <h4>Phase 3 — Interactivity &amp; the "wow"</h4>
+  <p>Filter/sort/search + drill-down; branded PDF/board-pack export; comparison-over-time; scenario/budget modelling; total-reward view; first-run guided tour.</p>
+  <div class="callout">
+    <p class="h">Verification</p>
+    <p>Run locally (<code>npm run dev</code> after <code>rm node_modules &amp;&amp; npm install</code>, since <code>node_modules</code> is currently a symlink to <code>Dashboard-temp</code>), walk the full journey on desktop and mobile widths, confirm no cross-client data leaks, validate exports, and check brand/token consistency across the previously-separate Benefits app.</p>
+  </div>
+
+  <h2><span class="num">6.</span> Top 10, if we only did ten things</h2>
+  <ol class="top10">
+    <li>Rebrand the whole demo to <strong>Brighton Technologies</strong>, remove the "Penge Churches" leftover, drive all names from config. <span class="tag qw">Quick win</span></li>
+    <li>Bring all charts onto the existing brand palette (navy/gold) and tighten design-system consistency. <span class="tag qw">Quick win</span></li>
+    <li>Kill the full-page-reload jump between Home and Pay/Benefits. <span class="tag st">Strategic</span></li>
+    <li>Replace static Highlights with data-derived "Your 3 things this quarter." <span class="tag st">Strategic</span></li>
+    <li>Add prescriptive, costed recommendations to Risks. <span class="tag st">Strategic</span></li>
+    <li>Unify Benefits into the shared design system. <span class="tag pr">Project</span></li>
+    <li>Branded PDF / board-pack export. <span class="tag st">Strategic</span></li>
+    <li>Filter / sort / search + drill-down on tables and charts. <span class="tag pr">Project</span></li>
+    <li>Finish the auth screen + a real Account/upgrade area. <span class="tag pr">Project</span></li>
+    <li>Scenario/budget "what-if" modelling. <span class="tag st">Strategic</span></li>
+  </ol>
+
+  <footer>
+    Zigbert — Pay &amp; Benefits Intelligence · Product Review &amp; Premium Improvement Report · Prepared for TwentySix Consulting.<br>
+    To save as PDF: open this file in a browser → Print → "Save as PDF". A Markdown source version is available at <code>docs/UX-REVIEW.md</code>.
+  </footer>
+
+</main>
+</body>
+</html>

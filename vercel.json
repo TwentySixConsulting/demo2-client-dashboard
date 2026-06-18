@@ -1,0 +1,9 @@
+{
+  "buildCommand": "npx vite build",
+  "outputDirectory": "dist/public",
+  "rewrites": [
+    { "source": "/pay/(.*)", "destination": "/pay/index.html" },
+    { "source": "/benefits/(.*)", "destination": "/benefits/index.html" },
+    { "source": "/((?!benefits/|pay/).*)", "destination": "/index.html" }
+  ]
+}
