@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { clientConfig, clientNameToEmail } from "@/config/clientConfig";
 import { Shell } from "@/components/Shell";
+import { ScrollingShowcase } from "@/components/ScrollingShowcase";
+import { payPreviews, benefitsPreviews } from "@/components/showcasePreviews";
 import {
   C,
   PAY_GEMS,
@@ -865,7 +867,6 @@ interface SectionCardProps {
   scope: string;
   bullets: string[];
   icon: typeof LineChart;
-  slides: Slide[];
   accent: string;
   ctaLabel: string;
   onClick: () => void;
@@ -881,7 +882,6 @@ function SectionCard({
   scope,
   bullets,
   icon: Icon,
-  slides,
   accent,
   ctaLabel,
   onClick,
@@ -948,11 +948,6 @@ function SectionCard({
       >
         {scope}
       </p>
-
-      {/* Carousel */}
-      <div className="mb-6 relative">
-        <Carousel slides={slides} accent={accent} />
-      </div>
 
       {/* Checkmark bullets */}
       <ul className="space-y-2.5 mb-7 relative">
@@ -1511,7 +1506,6 @@ export function Home() {
                 `Last refreshed ${PAY_META.lastRefresh}`,
               ]}
               icon={LineChart}
-              slides={paySlides}
               accent={C.brass}
               ctaLabel="Open Pay report"
               onClick={goToPay}
@@ -1528,7 +1522,6 @@ export function Home() {
                 `Last refreshed ${BENEFITS_META.lastRefresh}`,
               ]}
               icon={Gift}
-              slides={benefitsSlides}
               accent={C.brass}
               ctaLabel="Open Benefits report"
               onClick={goToBenefits}
@@ -1536,6 +1529,46 @@ export function Home() {
               disabledNote="Not in this package"
               delay={360}
             />
+          </div>
+
+          {/* A look inside — scrolling preview showcase (june-style marquee) */}
+          <div className="mt-16 ts-anim-fade-up" style={{ animationDelay: "440ms" }}>
+            <div className="mb-6">
+              <p
+                className="text-[10.5px] font-semibold uppercase"
+                style={{ color: C.brass, letterSpacing: "0.28em" }}
+              >
+                A look inside
+              </p>
+              <h2
+                className="ts-display text-[28px] lg:text-[34px] mt-1"
+                style={{ color: C.ink }}
+              >
+                Live charts pulled straight from the dashboard.
+              </h2>
+            </div>
+
+            <div className="flex items-center gap-2 mb-3">
+              <LineChart className="w-3.5 h-3.5" style={{ color: C.brassDeep }} />
+              <span
+                className="text-[11px] font-semibold uppercase"
+                style={{ color: C.inkMuted, letterSpacing: "0.16em" }}
+              >
+                Pay
+              </span>
+            </div>
+            <ScrollingShowcase items={payPreviews} durationSeconds={44} id="pay" />
+
+            <div className="flex items-center gap-2 mb-3 mt-8">
+              <Gift className="w-3.5 h-3.5" style={{ color: C.brassDeep }} />
+              <span
+                className="text-[11px] font-semibold uppercase"
+                style={{ color: C.inkMuted, letterSpacing: "0.16em" }}
+              >
+                Benefits
+              </span>
+            </div>
+            <ScrollingShowcase items={benefitsPreviews} durationSeconds={50} id="benefits" reverse />
           </div>
 
           {/* Highlights row */}
