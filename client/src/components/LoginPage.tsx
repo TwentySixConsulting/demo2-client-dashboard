@@ -4,7 +4,7 @@ import { clientNameToEmail } from "@/config/clientConfig";
 import { isSupabaseConfigured } from "@/lib/supabase";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Loader2, AlertCircle, ShieldCheck } from "lucide-react";
+import { Loader2, AlertCircle, ShieldCheck, Eye, EyeOff } from "lucide-react";
 import twentysixLogo from "@/assets/twentysix-logo.png";
 
 // Palette (kept in lockstep with Home.tsx + /shell/shell.css)
@@ -27,6 +27,8 @@ export function LoginPage() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showReset, setShowReset] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -211,7 +213,7 @@ export function LoginPage() {
                 autoCapitalize="none"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                placeholder="demo"
+                placeholder="Your username"
                 className="h-11 text-[14px]"
                 style={{
                   background: C.surface,
@@ -222,27 +224,64 @@ export function LoginPage() {
             </div>
 
             <div>
-              <Label
-                htmlFor="login-password"
-                className="text-[11px] font-semibold uppercase mb-2 block"
-                style={{ color: C.inkMuted, letterSpacing: "0.16em" }}
-              >
-                Password
-              </Label>
-              <Input
-                id="login-password"
-                type="password"
-                autoComplete="current-password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Your password"
-                className="h-11 text-[14px]"
-                style={{
-                  background: C.surface,
-                  border: `1px solid ${C.border}`,
-                  color: C.ink,
-                }}
-              />
+              <div className="flex items-center justify-between mb-2">
+                <Label
+                  htmlFor="login-password"
+                  className="text-[11px] font-semibold uppercase block"
+                  style={{ color: C.inkMuted, letterSpacing: "0.16em" }}
+                >
+                  Password
+                </Label>
+                <button
+                  type="button"
+                  onClick={() => setShowReset((v) => !v)}
+                  className="text-[11px] font-medium hover:underline"
+                  style={{ color: C.brass }}
+                >
+                  Forgot password?
+                </button>
+              </div>
+              <div className="relative">
+                <Input
+                  id="login-password"
+                  type={showPassword ? "text" : "password"}
+                  autoComplete="current-password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Your password"
+                  className="h-11 text-[14px] pr-11"
+                  style={{
+                    background: C.surface,
+                    border: `1px solid ${C.border}`,
+                    color: C.ink,
+                  }}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((v) => !v)}
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                  className="absolute right-0 top-0 h-11 w-11 flex items-center justify-center rounded-r-md transition-colors"
+                  style={{ color: C.inkSubtle }}
+                >
+                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                </button>
+              </div>
+              {showReset && (
+                <p
+                  className="text-[11.5px] leading-relaxed mt-2 rounded-lg px-3 py-2"
+                  style={{ background: C.brassSoft, color: C.inkMuted }}
+                >
+                  Your TwentySix consultant manages access. Email{" "}
+                  <a
+                    href="mailto:hello@twentysixconsulting.co.uk?subject=Password%20reset%20request"
+                    className="font-medium hover:underline"
+                    style={{ color: C.ink }}
+                  >
+                    hello@twentysixconsulting.co.uk
+                  </a>{" "}
+                  and we'll reset it for you.
+                </p>
+              )}
             </div>
 
             <button

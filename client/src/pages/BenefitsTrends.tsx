@@ -34,9 +34,9 @@ const themeCards = [
   {
     title: "Flexibility",
     icon: Clock,
-    color: "bg-indigo-500",
-    borderColor: "border-indigo-200",
-    bgColor: "bg-indigo-50",
+    color: "bg-[#1f3553]",
+    borderColor: "border-[#cdd6e2]",
+    bgColor: "bg-[#eef1f6]",
     description: "Flexibility remains the most valued benefit. The focus has shifted from location to genuine autonomy over when and how people work.",
     ideas: [
       "Core hours with flexible start/end times",
@@ -216,7 +216,7 @@ export function BenefitsTrends() {
                 item.prevalence === "Rare" ? "bg-purple-100 text-purple-700" :
                 item.prevalence === "Emerging" ? "bg-amber-100 text-amber-700" :
                 item.prevalence === "Growing" ? "bg-cyan-100 text-cyan-700" :
-                item.prevalence === "Moderate" ? "bg-indigo-100 text-indigo-700" :
+                item.prevalence === "Moderate" ? "bg-slate-100 text-slate-700" :
                 "bg-green-100 text-green-700"
               }`}>
                 {item.prevalence}

@@ -1,8 +1,9 @@
 // Per-client configuration. Edit this file when cloning the template for a new client deployment.
 
 export const clientConfig = {
-  clientName: "Demo",
+  clientName: "Brighton Technologies",
   benefitsEnabled: true, // flip to false to grey out the Benefits card on the home page
+  sampleData: true, // true for demo/sample deployments — shows a "Sample data" badge so it is never mistaken for a client's real figures. Set false for a live client.
   auth: {
     // The login form just asks for a username. The username is lower-cased and combined
     // with this domain to form the Supabase email under the hood — the client never

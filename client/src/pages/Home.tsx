@@ -340,8 +340,8 @@ function PaySlideRoleBar() {
                 width: 14,
                 height: 14,
                 borderRadius: "50%",
-                background: "#6366f1",
-                boxShadow: "0 0 0 2.5px #fff, 0 2px 6px rgba(99,102,241,0.45)",
+                background: "#c9a84c",
+                boxShadow: "0 0 0 2.5px #fff, 0 2px 6px rgba(201,168,76,0.5)",
               }}
               aria-hidden
             />
@@ -350,7 +350,7 @@ function PaySlideRoleBar() {
         <div className="flex items-center justify-between text-[10.5px] mt-1">
           <span style={{ color: "#0f172a" }}>
             Your salary{" "}
-            <span className="font-bold" style={{ color: "#6366f1" }}>
+            <span className="font-bold" style={{ color: "#9a7d2e" }}>
               £61,800
             </span>
           </span>
@@ -1019,7 +1019,7 @@ function StatusPill() {
         className="text-[10.5px] font-semibold uppercase"
         style={{ letterSpacing: "0.2em" }}
       >
-        {REPORT_PERIOD} · Live
+        {REPORT_PERIOD} · {clientConfig.sampleData ? "Sample data" : "Live"}
       </span>
     </span>
   );
