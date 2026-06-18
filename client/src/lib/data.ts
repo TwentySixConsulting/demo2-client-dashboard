@@ -14,7 +14,7 @@ export interface MarketDataRole {
 }
 
 export const companyInfo = {
-  name: "Demo Client",
+  name: "Brighton Technologies",
   industry: "Technology",
   location: "South East England",
   reportDate: "June 2026",

@@ -3,6 +3,7 @@ import { useLocation } from "wouter";
 import { useAuth } from "@/contexts/AuthContext";
 import { clientConfig, clientNameToEmail } from "@/config/clientConfig";
 import { Shell } from "@/components/Shell";
+import { PayRolesSection } from "@/components/PayRolesSection";
 import {
   C,
   REPORT_PERIOD,
@@ -481,6 +482,9 @@ export function Account() {
               Edit profile
             </button>
           </div>
+
+          {/* Your pay roles — view submitted roles & add a role */}
+          <PayRolesSection />
 
           {/* Subscriptions */}
           <section className="mt-12">
