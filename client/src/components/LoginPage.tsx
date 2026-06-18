@@ -5,7 +5,6 @@ import { isSupabaseConfigured } from "@/lib/supabase";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Loader2, AlertCircle, ShieldCheck, Eye, EyeOff } from "lucide-react";
-import twentysixLogo from "@/assets/twentysix-logo.png";
 
 // Palette (kept in lockstep with Home.tsx + /shell/shell.css)
 const C = {
@@ -99,13 +98,7 @@ export function LoginPage() {
           }}
         />
 
-        <div className="relative flex items-center gap-3.5">
-          <img src={twentysixLogo} alt="TwentySix" className="h-7 w-auto" />
-          <div
-            className="h-6 w-px"
-            style={{ background: C.border }}
-            aria-hidden
-          />
+        <div className="relative flex items-center">
           <span
             className="text-[10.5px] font-semibold uppercase"
             style={{ letterSpacing: "0.28em", color: C.brass }}
@@ -156,9 +149,7 @@ export function LoginPage() {
         style={{ background: C.surface }}
       >
         {/* Mobile-only brand strip */}
-        <div className="lg:hidden absolute top-6 left-6 flex items-center gap-2.5">
-          <img src={twentysixLogo} alt="TwentySix" className="h-6 w-auto" />
-          <div className="h-5 w-px" style={{ background: C.border }} />
+        <div className="lg:hidden absolute top-6 left-6 flex items-center">
           <span
             className="text-[10px] font-semibold uppercase"
             style={{ letterSpacing: "0.24em", color: C.brass }}
