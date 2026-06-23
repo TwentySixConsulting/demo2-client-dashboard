@@ -14,7 +14,7 @@ export function AuthGate({ children }: { children: ReactNode }) {
       >
         <Loader2
           className="w-6 h-6 animate-spin"
-          style={{ color: "hsl(42 53% 45%)" }}
+          style={{ color: "hsl(17 47% 47%)" }}
         />
       </div>
     );

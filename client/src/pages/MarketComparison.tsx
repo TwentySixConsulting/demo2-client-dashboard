@@ -152,7 +152,7 @@ export function MarketComparison() {
           <div className="space-y-2">
             <div className="flex justify-between">
               <span className="text-slate-500">Actual Pay:</span>
-              <span className="font-semibold text-[#9a7d2e]">£{data.actual?.toLocaleString()}</span>
+              <span className="font-semibold text-[#B0603F]">£{data.actual?.toLocaleString()}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-slate-500">Market Median:</span>
@@ -232,7 +232,7 @@ export function MarketComparison() {
       <Card className="p-6 bg-white border-0 shadow-md">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-2">
-            <BarChart3 className="w-5 h-5 text-[#b08d2e]" />
+            <BarChart3 className="w-5 h-5 text-[#B0603F]" />
             <h3 className="font-display font-bold text-xl">By Function</h3>
           </div>
           <Button
@@ -251,7 +251,7 @@ export function MarketComparison() {
             <>
               <div className="flex items-center gap-6 mb-4 text-sm">
                 <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded bg-[#c9a84c]" />
+                  <div className="w-3 h-3 rounded bg-[#C9785A]" />
                   <span className="text-slate-600">Actual Pay</span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -267,7 +267,7 @@ export function MarketComparison() {
                   <Tooltip content={<RoleTooltip />} />
                   <Legend wrapperStyle={{ paddingTop: 10 }} />
                   <Bar dataKey="median" name="Market Median" fill="#94a3b8" radius={[4, 4, 0, 0]} barSize={20} />
-                  <Bar dataKey="actual" name="Actual Pay" fill="#c9a84c" radius={[4, 4, 0, 0]} barSize={20} />
+                  <Bar dataKey="actual" name="Actual Pay" fill="#C9785A" radius={[4, 4, 0, 0]} barSize={20} />
                 </BarChart>
               </ResponsiveContainer>
               <div className="flex flex-wrap gap-4 mt-4 pt-4 border-t border-slate-100 text-xs text-slate-500">
@@ -291,7 +291,7 @@ export function MarketComparison() {
                 <Tooltip content={<SummaryTooltip />} />
                 <Legend wrapperStyle={{ paddingTop: 10 }} />
                 <Bar dataKey="avgMedian" name="Market Median" fill="#94a3b8" radius={[4, 4, 0, 0]} barSize={35} />
-                <Bar dataKey="avgActual" name="Actual Pay" fill="#c9a84c" radius={[4, 4, 0, 0]} barSize={35} />
+                <Bar dataKey="avgActual" name="Actual Pay" fill="#C9785A" radius={[4, 4, 0, 0]} barSize={35} />
               </BarChart>
             </ResponsiveContainer>
           )}
@@ -336,7 +336,7 @@ export function MarketComparison() {
                   <Tooltip content={<RoleTooltip />} />
                   <Legend wrapperStyle={{ paddingTop: 10 }} />
                   <Bar dataKey="median" name="Market Median" fill="#94a3b8" radius={[4, 4, 0, 0]} barSize={20} />
-                  <Bar dataKey="actual" name="Actual Pay" fill="#c9a84c" radius={[4, 4, 0, 0]} barSize={20} />
+                  <Bar dataKey="actual" name="Actual Pay" fill="#C9785A" radius={[4, 4, 0, 0]} barSize={20} />
                 </BarChart>
               </ResponsiveContainer>
               <div className="flex flex-wrap gap-4 mt-4 pt-4 border-t border-slate-100 text-xs text-slate-500">
@@ -360,7 +360,7 @@ export function MarketComparison() {
                 <Tooltip content={<SummaryTooltip />} />
                 <Legend wrapperStyle={{ paddingTop: 10 }} />
                 <Bar dataKey="avgMedian" name="Market Median" fill="#94a3b8" radius={[4, 4, 0, 0]} barSize={35} />
-                <Bar dataKey="avgActual" name="Actual Pay" fill="#c9a84c" radius={[4, 4, 0, 0]} barSize={35} />
+                <Bar dataKey="avgActual" name="Actual Pay" fill="#C9785A" radius={[4, 4, 0, 0]} barSize={35} />
               </BarChart>
             </ResponsiveContainer>
           )}

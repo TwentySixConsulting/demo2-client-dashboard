@@ -151,7 +151,7 @@ export function MarketOverview() {
           <EditableText contentKey="stat-cpi-date" defaultValue="November 2025" className="text-xs text-white/60 mt-0.5" as="p" page="market-context" />
         </Card>
 
-        <Card className="p-5 bg-gradient-to-br from-[#0c1829] to-[#1f3553] text-white border-0 shadow-md">
+        <Card className="p-5 bg-gradient-to-br from-[#121C2B] to-[#1f3553] text-white border-0 shadow-md">
           <div className="flex items-center gap-2 mb-3">
             <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center">
               <Users className="w-4 h-4" />

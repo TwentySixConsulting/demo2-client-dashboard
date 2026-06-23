@@ -42,17 +42,17 @@ export function SectionOverview({
             <div
               className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0"
               style={{
-                background: "hsl(42 53% 55% / 0.15)",
-                border: "1px solid hsl(42 53% 55% / 0.3)",
+                background: "hsl(16 51% 57% / 0.15)",
+                border: "1px solid hsl(16 51% 57% / 0.3)",
               }}
             >
-              <Icon className="w-7 h-7" style={{ color: "hsl(42 53% 45%)" }} />
+              <Icon className="w-7 h-7" style={{ color: "hsl(17 47% 47%)" }} />
             </div>
             <div>
               {eyebrow && (
                 <p
                   className="text-xs font-semibold uppercase tracking-[0.14em] mb-1"
-                  style={{ color: "hsl(42 53% 40%)" }}
+                  style={{ color: "hsl(17 47% 42%)" }}
                 >
                   {eyebrow}
                 </p>
@@ -78,7 +78,7 @@ export function SectionOverview({
                 <li key={i} className="flex items-start gap-3">
                   <span
                     className="mt-1.5 w-1.5 h-1.5 rounded-full shrink-0"
-                    style={{ background: "hsl(42 53% 50%)" }}
+                    style={{ background: "hsl(15 50% 54%)" }}
                   />
                   <span>{b}</span>
                 </li>
@@ -90,7 +90,7 @@ export function SectionOverview({
             onClick={onCta}
             className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-base font-semibold transition-opacity hover:opacity-90"
             style={{
-              background: "linear-gradient(135deg, hsl(42 53% 50%), hsl(42 53% 60%))",
+              background: "linear-gradient(135deg, hsl(15 50% 54%), hsl(18 56% 64%))",
               color: "hsl(214 64% 8%)",
             }}
             data-testid="button-section-cta"

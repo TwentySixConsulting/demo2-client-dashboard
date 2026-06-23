@@ -14,8 +14,8 @@ import { C } from "@/lib/theme";
 import { marketData, getPositioning } from "@/lib/data";
 
 // ── palette (within the existing gold / cream / navy identity) ──────────────
-const NAVY = C.ink; // #0a1929
-const GOLD = C.brass; // #c9a84c
+const NAVY = C.ink; // #121C2B
+const GOLD = C.brass; // #C9785A
 const GOLD_DEEP = C.brassDeep; // #a98a3a
 const INK = C.inkMuted; // #475569
 const MUTED = C.inkSubtle; // #94a3b8
@@ -92,7 +92,7 @@ function PayRolePreview() {
             className="relative h-2.5 rounded-full overflow-hidden"
             style={{
               background:
-                "linear-gradient(90deg, hsl(214 15% 80%) 0%, hsl(42 45% 78%) 50%, hsl(42 53% 55%) 100%)",
+                "linear-gradient(90deg, hsl(214 15% 80%) 0%, hsl(20 50% 80%) 50%, hsl(16 51% 57%) 100%)",
             }}
           >
             <div
@@ -211,7 +211,7 @@ function PayDistributionPreview() {
   }
   const data = [
     { name: "Below LQ", value: buckets.below, color: MUTED },
-    { name: "LQ → Median", value: buckets.lower, color: "#cbb876" },
+    { name: "LQ → Median", value: buckets.lower, color: "#DDA288" },
     { name: "Median → UQ", value: buckets.upper, color: GOLD },
     { name: "Above UQ", value: buckets.above, color: NAVY },
   ].filter((d) => d.value > 0);

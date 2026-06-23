@@ -5,19 +5,20 @@ import { isSupabaseConfigured } from "@/lib/supabase";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Loader2, AlertCircle, ShieldCheck, Eye, EyeOff } from "lucide-react";
+import { ZigbertLogo } from "@/components/ZigbertLogo";
 
-// Palette (kept in lockstep with Home.tsx + /shell/shell.css)
+// Zigbert brand palette — clay accent on cream, navy ink.
 const C = {
-  canvas: "#f6f2e8",
-  surface: "#ffffff",
-  surfaceSoft: "#faf6ec",
-  ink: "#1c1814",
-  inkMuted: "#6f675a",
-  inkSubtle: "#988e7d",
-  border: "#e8dfcc",
-  borderSubtle: "#efe6d2",
-  brass: "#8a6b3e",
-  brassSoft: "#f3ead7",
+  canvas: "#F4F1EA",
+  surface: "#FFFFFF",
+  surfaceSoft: "#FBF8F2",
+  ink: "#121C2B",
+  inkMuted: "#4B5563",
+  inkSubtle: "#8A93A2",
+  border: "#E7E0D4",
+  borderSubtle: "#EFE9DD",
+  brass: "#C9785A",       // clay accent
+  brassSoft: "#E8D8CE",   // clay tint
 } as const;
 
 export function LoginPage() {
@@ -60,8 +61,7 @@ export function LoginPage() {
       className="fixed inset-0 flex items-stretch"
       style={{
         background: C.canvas,
-        fontFamily:
-          "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif",
+        fontFamily: "var(--font-sans)",
         color: C.ink,
       }}
     >
@@ -98,19 +98,8 @@ export function LoginPage() {
           }}
         />
 
-        <div className="relative flex flex-col leading-none gap-1.5">
-          <span
-            className="text-[30px] font-extrabold"
-            style={{ color: C.ink, letterSpacing: "-0.03em" }}
-          >
-            Zigbert
-          </span>
-          <span
-            className="text-[10.5px] font-semibold uppercase"
-            style={{ letterSpacing: "0.26em", color: C.brass }}
-          >
-            Pay &amp; Benefits Intelligence
-          </span>
+        <div className="relative">
+          <ZigbertLogo height={38} variant="dark" tagline />
         </div>
 
         <div className="relative max-w-md">
@@ -150,12 +139,7 @@ export function LoginPage() {
       >
         {/* Mobile-only brand strip */}
         <div className="lg:hidden absolute top-6 left-6 flex items-center">
-          <span
-            className="text-[20px] font-extrabold"
-            style={{ color: C.ink, letterSpacing: "-0.03em" }}
-          >
-            Zigbert
-          </span>
+          <ZigbertLogo height={22} variant="dark" />
         </div>
 
         <div className="w-full max-w-sm">

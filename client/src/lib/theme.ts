@@ -1,35 +1,36 @@
-// Unified palette — kept in lockstep with /shell/shell.css.
-// Mirrors the june-pay-and-benefits-dashboard system:
-//   navy hsl(214 64% 10%) · gold hsl(42 53% 55%) · cream hsl(40 27% 95%)
-
+// Zigbert design system — "trusted but fresh".
+//   ink/navy #121C2B · cream #F4F1EA · clay (the only accent) #C9785A · slate #7285A5
+// NB: legacy keys (brass*, sage*, rose*, plum*, amber*) are retained as names but
+// remapped onto the clay/slate brand so existing inline styles rebrand in place.
 export const C = {
   // Canvas + surfaces
-  canvas: "#f7f5f0",       // hsl(40 27% 95%) — warm cream
-  surface: "#ffffff",
-  surfaceSoft: "#faf8f3",  // very light cream off-white
-  // Ink — now navy, not warm-black
-  ink: "#0a1929",          // hsl(214 64% 10%)
-  inkMuted: "#475569",     // hsl(214 25% 35%)
-  inkSubtle: "#94a3b8",    // hsl(214 16% 60%)
-  border: "#d6dbe1",       // hsl(214 20% 88%)
-  borderSubtle: "#e6e9ee", // hsl(214 16% 92%)
-  // Primary brand accent — bright editorial gold
-  brass: "#c9a84c",        // hsl(42 53% 55%)
-  brassDeep: "#a98a3a",
-  brassSoft: "rgba(201,168,76,0.15)",
-  // Multi-hue accent set — for tiny chart variety
-  sage: "#7a8c6b",
-  sageSoft: "rgba(122,140,107,0.13)",
-  slate: "#6b7385",
-  slateSoft: "rgba(107,115,133,0.13)",
-  rose: "#a87575",
-  roseSoft: "rgba(168,117,117,0.13)",
-  plum: "#8a6b8a",
-  plumSoft: "rgba(138,107,138,0.13)",
-  amber: "#c4a05e",
-  amberSoft: "rgba(196,160,94,0.15)",
-  success: "#15803d",
-  warning: "#b45309",
+  canvas: "#F4F1EA",        // warm off-white
+  surface: "#FFFFFF",
+  surfaceSoft: "#FBF8F2",   // very light cream
+  // Ink — navy
+  ink: "#121C2B",
+  inkMuted: "#4B5563",
+  inkSubtle: "#8A93A2",
+  border: "#E7E0D4",        // warm hairline
+  borderSubtle: "#EFE9DD",
+  // Primary brand accent — clay (the single accent)
+  brass: "#C9785A",         // clay
+  brassDeep: "#B0603F",     // clay deep
+  brassSoft: "rgba(201,120,90,0.15)", // clay tint
+  // Supporting tone — slate (calm secondary, never a second shout)
+  sage: "#7285A5",          // remapped → slate
+  sageSoft: "rgba(114,133,165,0.14)",
+  slate: "#7285A5",
+  slateSoft: "rgba(114,133,165,0.13)",
+  // "Watch"/soft-alert — warm clay-deep
+  rose: "#B0603F",
+  roseSoft: "rgba(176,96,63,0.12)",
+  plum: "#7285A5",          // remapped → slate
+  plumSoft: "rgba(114,133,165,0.13)",
+  amber: "#C9785A",         // remapped → clay
+  amberSoft: "rgba(201,120,90,0.15)",
+  success: "#3F7D6A",       // muted teal-green for positive states
+  warning: "#B0603F",       // clay-deep for caution
 } as const;
 
 // Pay-gem palette — mirrors the ExecutiveSummary launcher cards in the actual
@@ -46,15 +47,15 @@ export const PAY_GEMS = {
 
 // Benefits accent washes — quote the actual values from benefits/index.html.
 export const BENEFITS_TINTS = {
-  navy: "#0c1829",
-  gold: "#c9a84c",
-  pink: "#d68a96",
-  pinkWash: "#fcf6f7",
-  sage: "#7a9173",
-  sageWash: "#f5f8f3",
-  slate: "#6b7a99",
-  cream: "#faf8f3",
-  inkDeep: "#2a3349",
+  navy: "#121C2B",
+  gold: "#C9785A",         // remapped → clay
+  pink: "#C9785A",
+  pinkWash: "#fbf3ef",
+  sage: "#7285A5",         // remapped → slate
+  sageWash: "#f3f6fa",
+  slate: "#7285A5",
+  cream: "#FBF8F2",
+  inkDeep: "#1f2c40",
   inkSoft: "#5a6478",
 } as const;
 

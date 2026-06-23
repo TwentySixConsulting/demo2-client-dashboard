@@ -342,8 +342,8 @@ function PaySlideRoleBar() {
                 width: 14,
                 height: 14,
                 borderRadius: "50%",
-                background: "#c9a84c",
-                boxShadow: "0 0 0 2.5px #fff, 0 2px 6px rgba(201,168,76,0.5)",
+                background: "#C9785A",
+                boxShadow: "0 0 0 2.5px #fff, 0 2px 6px rgba(201,120,90,0.5)",
               }}
               aria-hidden
             />
@@ -352,7 +352,7 @@ function PaySlideRoleBar() {
         <div className="flex items-center justify-between text-[10.5px] mt-1">
           <span style={{ color: "#0f172a" }}>
             Your salary{" "}
-            <span className="font-bold" style={{ color: "#9a7d2e" }}>
+            <span className="font-bold" style={{ color: "#B0603F" }}>
               £61,800
             </span>
           </span>
@@ -1011,8 +1011,8 @@ function StatusPill() {
     <span
       className="inline-flex items-center gap-2 rounded-full px-3 py-1"
       style={{
-        background: "rgba(201,168,76,0.12)",
-        border: "1px solid rgba(201,168,76,0.3)",
+        background: "rgba(201,120,90,0.12)",
+        border: "1px solid rgba(201,120,90,0.3)",
         color: C.brassDeep,
       }}
     >
@@ -1322,8 +1322,8 @@ function HotTile({
 function HotBar() {
   // Softer, less-clashy hot-bar accents (kept local so the global brand gold
   // is untouched): a creamy yellow for the Pay group, a pale green for Benefits.
-  const PAY_HOT = "#d8c47a"; // creamy yellow
-  const BEN_HOT = "#a8c499"; // pale green
+  const PAY_HOT = "#C9785A"; // creamy yellow
+  const BEN_HOT = "#7285A5"; // pale green
   const tiles: HotTileProps[] = [
     {
       eyebrow: "Quarter",

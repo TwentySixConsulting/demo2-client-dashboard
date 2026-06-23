@@ -54,7 +54,7 @@ const benefitsData: BenefitData[] = [
   { name: "Enhanced maternity/paternity", shortName: "Enhanced Parental", small_nfp: 62, large_nfp: 78, small_private: 45, large_private: 72, public: 85, large_public: 88 },
 ];
 
-const barColors = ["#0c1829", "#c9a84c", "#7b8ba5", "#a68a48", "#2a3f57", "#d9c179"];
+const barColors = ["#121C2B", "#C9785A", "#7285A5", "#B0603F", "#2a3f57", "#DDA288"];
 
 export function Benefits() {
   const [selectedSegment, setSelectedSegment] = useState<SegmentKey>("large_nfp");
@@ -106,7 +106,7 @@ export function Benefits() {
         <div className="bg-white p-3 rounded-lg shadow-lg border border-slate-200 text-sm">
           <p className="font-semibold text-slate-800 mb-1">{data.fullName}</p>
           <p className="text-slate-600">
-            <span className="font-medium text-[#9a7d2e]">{data.value}%</span> of organisations offer this
+            <span className="font-medium text-[#B0603F]">{data.value}%</span> of organisations offer this
           </p>
         </div>
       );
@@ -166,7 +166,7 @@ export function Benefits() {
       <Card className="p-6 bg-white border-0 shadow-md">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
           <div className="flex items-center gap-2">
-            <BarChart3 className="w-5 h-5 text-[#b08d2e]" />
+            <BarChart3 className="w-5 h-5 text-[#B0603F]" />
             <EditableText
               contentKey="benefits-prevalence"
               defaultValue="Benefits Prevalence"
@@ -233,7 +233,7 @@ export function Benefits() {
                 {segments.map((seg) => (
                   <th
                     key={seg.key}
-                    className={`text-center py-3 font-semibold ${seg.key === selectedSegment ? "text-[#9a7d2e] bg-[#f7efda]" : "text-slate-600"}`}
+                    className={`text-center py-3 font-semibold ${seg.key === selectedSegment ? "text-[#B0603F] bg-[#F2E4DD]" : "text-slate-600"}`}
                   >
                     {seg.label}
                   </th>
@@ -247,7 +247,7 @@ export function Benefits() {
                   {segments.map((seg) => (
                     <td
                       key={seg.key}
-                      className={`text-center py-3 ${seg.key === selectedSegment ? "font-semibold text-[#9a7d2e] bg-[#f7efda]" : "text-slate-600"}`}
+                      className={`text-center py-3 ${seg.key === selectedSegment ? "font-semibold text-[#B0603F] bg-[#F2E4DD]" : "text-slate-600"}`}
                     >
                       {benefit[seg.key]}%
                     </td>

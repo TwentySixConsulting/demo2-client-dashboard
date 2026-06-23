@@ -356,7 +356,7 @@ export function Account() {
         background: C.canvas,
         color: C.ink,
         fontFamily:
-          "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif",
+          "var(--font-sans)",
       }}
     >
       <Shell

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap');
 
 @import "tailwindcss";
 @import "tw-animate-css";
@@ -43,14 +43,14 @@
   --color-sidebar-border: hsl(var(--sidebar-border));
   --color-sidebar-ring: hsl(var(--sidebar-ring));
 
-  /* Zigbert — Inter throughout */
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-display: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  /* Zigbert — Poppins (display) + Inter (body / UI) */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: 'Poppins', ui-sans-serif, system-ui, -apple-system, sans-serif;
 }
 
 /* ============================================================
-   ZIGBERT — Premium Design System
-   Navy #0c1829 / Gold #c9a84c / Cream #f7f5f0
+   ZIGBERT — Design System ("trusted but fresh")
+   Ink/navy #121C2B · Cream #F4F1EA · Clay #C9785A · Slate #7285A5
    ============================================================ */
 
 :root {
@@ -60,30 +60,30 @@
   --elevate-1: rgba(0,0,0,.03);
   --elevate-2: rgba(0,0,0,.08);
 
-  /* Core palette */
-  --background: 40 27% 95%;          /* cream #f7f5f0 */
-  --foreground: 214 64% 10%;         /* navy */
-  --border: 214 20% 85%;
+  /* Core palette — Zigbert */
+  --background: 42 33% 94%;          /* cream #F4F1EA */
+  --foreground: 216 41% 12%;         /* ink/navy #121C2B */
+  --border: 38 28% 87%;              /* warm line #E7E0D4 */
   --card: 0 0% 100%;
-  --card-foreground: 214 40% 12%;
-  --card-border: 214 15% 88%;
+  --card-foreground: 216 41% 14%;
+  --card-border: 38 24% 89%;
 
   /* Sidebar — deep navy */
   --sidebar: 214 68% 7%;             /* #0c1829 */
   --sidebar-foreground: 40 30% 92%;
   --sidebar-border: 214 60% 10%;
-  --sidebar-primary: 42 53% 55%;     /* gold — active state */
+  --sidebar-primary: 16 51% 57%;     /* gold — active state */
   --sidebar-primary-foreground: 214 64% 8%;
   --sidebar-accent: 214 55% 14%;
   --sidebar-accent-foreground: 40 30% 92%;
-  --sidebar-ring: 42 53% 55%;
+  --sidebar-ring: 16 51% 57%;
 
   --popover: 0 0% 99%;
   --popover-foreground: 214 40% 12%;
   --popover-border: 214 15% 88%;
 
-  --primary: 214 64% 10%;            /* navy */
-  --primary-foreground: 40 27% 95%;
+  --primary: 216 41% 12%;            /* navy */
+  --primary-foreground: 42 33% 94%;
 
   --secondary: 214 15% 92%;
   --secondary-foreground: 214 40% 15%;
@@ -91,23 +91,23 @@
   --muted: 214 12% 95%;
   --muted-foreground: 214 12% 42%;
 
-  --accent: 42 40% 90%;              /* light gold tint */
-  --accent-foreground: 42 53% 28%;
+  --accent: 23 36% 88%;              /* light gold tint */
+  --accent-foreground: 17 47% 38%;
 
   --destructive: 0 72% 51%;
   --destructive-foreground: 0 0% 98%;
 
-  --input: 214 15% 88%;
-  --ring: 42 53% 55%;                /* gold ring */
+  --input: 38 22% 86%;
+  --ring: 16 51% 57%;                /* gold ring */
 
   /* Chart colours */
   --chart-1: 214 64% 10%;   /* navy */
-  --chart-2: 42 53% 55%;    /* gold */
+  --chart-2: 16 51% 57%;    /* gold */
   --chart-3: 214 20% 55%;   /* slate */
   --chart-4: 214 55% 22%;   /* mid navy */
-  --chart-5: 42 53% 35%;    /* dark gold */
+  --chart-5: 17 47% 40%;    /* dark gold */
 
-  --radius: 0.75rem;
+  --radius: 0.85rem;
 
   /* Shadows (navy-tinted) */
   --shadow-sm:  0 1px 3px 0 hsl(214 30% 10% / 0.08);
@@ -137,9 +137,9 @@
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
-    font-weight: 650;
-    line-height: 1.3;
-    letter-spacing: -0.025em;
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
   }
   p { line-height: 1.65; }
 }
@@ -150,9 +150,9 @@
   /* Cream canvas with two restrained radial glows — gold at top-left,
      navy at top-right. Mirrors the june project's hero background. */
   .ts-canvas {
-    background-color: hsl(40 27% 95%);
+    background-color: hsl(42 33% 94%);
     background-image:
-      radial-gradient(circle at 0% 0%, hsl(42 53% 55% / 0.08) 0%, transparent 40%),
+      radial-gradient(circle at 0% 0%, hsl(16 51% 57% / 0.08) 0%, transparent 40%),
       radial-gradient(circle at 100% 30%, hsl(214 64% 30% / 0.06) 0%, transparent 35%);
   }
   .ts-sans {
@@ -161,10 +161,10 @@
   /* Editorial display heading — tight tracking Inter at weight 800 reads
      like a serif headline without being one. */
   .ts-display {
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-    font-weight: 800;
-    letter-spacing: -0.035em;
-    line-height: 1.05;
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.06;
   }
 
   @keyframes ts-fade-up {
@@ -192,7 +192,7 @@
       border-color 320ms ease;
   }
   .ts-premium-card:hover {
-    border-color: hsl(42 53% 55% / 0.3);
+    border-color: hsl(16 51% 57% / 0.3);
     box-shadow:
       0 1px 2px hsl(214 25% 15% / 0.04),
       0 28px 56px -16px hsl(214 25% 15% / 0.14);
@@ -200,15 +200,17 @@
   }
 
   /* Gold gradient CTA — the june project's signature button. */
+  /* Clay gradient CTA — Zigbert's signature button (class name kept for reuse). */
   .ts-gold-cta {
-    background: linear-gradient(135deg, hsl(42 53% 50%), hsl(42 53% 60%));
-    color: hsl(214 64% 8%);
-    box-shadow: 0 4px 12px hsl(42 53% 50% / 0.3);
-    transition: transform 200ms ease, box-shadow 200ms ease, opacity 200ms ease;
+    background: linear-gradient(135deg, #D88A6B 0%, #C9785A 52%, #B0603F 100%);
+    color: #ffffff;
+    box-shadow: 0 12px 26px -10px rgba(176,96,63,.6);
+    transition: transform 200ms ease, box-shadow 200ms ease, filter 200ms ease;
   }
   .ts-gold-cta:hover {
-    transform: scale(1.02);
-    box-shadow: 0 6px 18px hsl(42 53% 50% / 0.4);
+    transform: translateY(-1px);
+    filter: brightness(1.04);
+    box-shadow: 0 14px 30px -10px rgba(176,96,63,.66);
   }
 
   /* Subtle radial glow that appears on card hover (top-right) */
@@ -221,7 +223,7 @@
     width: 18rem;
     height: 18rem;
     border-radius: 50%;
-    background: radial-gradient(circle at center, hsl(42 53% 55% / 0.14) 0%, transparent 70%);
+    background: radial-gradient(circle at center, hsl(16 51% 57% / 0.14) 0%, transparent 70%);
     opacity: 0;
     transition: opacity 500ms ease;
     pointer-events: none;
@@ -230,25 +232,23 @@
 
   /* ---- Premium display heading (Inter, tight tracking) ---- */
   .font-display-serif {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    font-weight: 800;
-    letter-spacing: -0.035em;
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.02em;
   }
 
   /* ---- Zigbert wordmark ---- */
   .zigbert-wordmark {
-    font-weight: 800;
-    letter-spacing: -0.04em;
-    background: linear-gradient(135deg, hsl(42 53% 55%) 0%, hsl(42 53% 72%) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #121C2B;
   }
 
   /* ---- Navy gradient header ---- */
   .zigbert-header {
     background: linear-gradient(135deg, hsl(214 68% 7%) 0%, hsl(214 60% 13%) 60%, hsl(214 45% 20%) 100%);
-    border-bottom: 1px solid hsl(42 53% 55% / 0.25);
+    border-bottom: 1px solid hsl(16 51% 57% / 0.25);
     box-shadow: 0 2px 12px hsl(214 50% 5% / 0.3);
   }
 
@@ -261,8 +261,8 @@
     transition: border-color 0.25s ease, box-shadow 0.25s ease;
   }
   .premium-card:hover {
-    border-color: hsl(42 53% 55% / 0.4);
-    box-shadow: 0 4px 20px hsl(42 53% 55% / 0.1), var(--shadow-md);
+    border-color: hsl(16 51% 57% / 0.4);
+    box-shadow: 0 4px 20px hsl(16 51% 57% / 0.1), var(--shadow-md);
   }
 
   /* ---- Modern card (keeps existing usage) ---- */
@@ -275,14 +275,14 @@
   }
   .modern-card:hover {
     box-shadow: var(--shadow-xl);
-    border-color: hsl(42 53% 55% / 0.3);
+    border-color: hsl(16 51% 57% / 0.3);
     transform: translateY(-2px);
   }
 
   /* ---- Section header bar ---- */
   .section-header-bar {
     background: linear-gradient(135deg, hsl(214 68% 7%) 0%, hsl(214 60% 13%) 100%);
-    border-left: 4px solid hsl(42 53% 55%);
+    border-left: 4px solid hsl(16 51% 57%);
     color: white;
     border-radius: 0.75rem;
     padding: 2rem 2.5rem;
@@ -290,7 +290,7 @@
   }
 
   /* ---- Gold accent ---- */
-  .gold-accent { color: hsl(42 53% 55%); }
+  .gold-accent { color: hsl(16 51% 57%); }
 
   /* ---- Stat card (dark navy) ---- */
   .stat-card-gradient {
@@ -314,7 +314,7 @@
     inset: 0;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(135deg, hsl(42 53% 55%), hsl(42 53% 70%));
+    background: linear-gradient(135deg, hsl(16 51% 57%), hsl(21 55% 71%));
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
@@ -323,12 +323,12 @@
 
   /* ---- Accent glow (gold) ---- */
   .accent-glow {
-    box-shadow: 0 0 40px -10px hsl(42 53% 55% / 0.35);
+    box-shadow: 0 0 40px -10px hsl(16 51% 57% / 0.35);
   }
 
   /* ---- Text gradient (gold) ---- */
   .text-gradient {
-    background: linear-gradient(135deg, hsl(214 64% 10%) 0%, hsl(42 53% 45%) 100%);
+    background: linear-gradient(135deg, hsl(214 64% 10%) 0%, hsl(17 47% 47%) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -338,7 +338,7 @@
   .glass-card {
     background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(201, 168, 76, 0.15);
+    border: 1px solid rgba(201, 120, 90, 0.15);
     box-shadow: 0 8px 32px rgba(12, 24, 41, 0.08);
   }
 

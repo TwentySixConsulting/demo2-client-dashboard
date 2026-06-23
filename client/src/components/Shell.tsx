@@ -8,6 +8,7 @@ import {
   Settings,
 } from "lucide-react";
 import { C } from "@/lib/theme";
+import { ZigbertLogo } from "@/components/ZigbertLogo";
 
 interface SectionTab {
   key: "home" | "pay" | "benefits";
@@ -64,11 +65,10 @@ export function Shell({ username, email, active, onSignOut }: ShellProps) {
       style={{
         height: 60,
         background: C.surface,
-        borderBottom: "1px solid #ebe2cc",
+        borderBottom: `1px solid ${C.border}`,
         boxShadow:
-          "inset 0 1px 0 rgba(255,255,255,0.6), 0 1px 24px -8px rgba(28,24,20,0.06)",
-        fontFamily:
-          "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif",
+          "inset 0 1px 0 rgba(255,255,255,0.6), 0 1px 24px -8px rgba(18,28,43,0.07)",
+        fontFamily: "var(--font-sans)",
         color: C.ink,
       }}
     >
@@ -83,19 +83,12 @@ export function Shell({ username, email, active, onSignOut }: ShellProps) {
           className="inline-flex items-center gap-3.5 py-1.5 transition-opacity hover:opacity-70"
           style={{ textDecoration: "none", color: "inherit" }}
         >
-          <span className="inline-flex flex-col leading-none gap-[3px]">
-            <span
-              className="text-[9px] font-semibold uppercase"
-              style={{ letterSpacing: "0.26em", color: C.brass }}
-            >
-              Zigbert
-            </span>
-            <span
-              className="text-[13px] font-semibold hidden sm:inline"
-              style={{ color: C.ink, letterSpacing: "-0.005em" }}
-            >
-              Pay &amp; Benefits Intelligence
-            </span>
+          <ZigbertLogo height={22} variant="dark" />
+          <span
+            className="text-[12.5px] font-medium hidden md:inline pl-3 ml-0.5"
+            style={{ color: C.inkMuted, borderLeft: `1px solid ${C.border}`, paddingLeft: 12 }}
+          >
+            Pay &amp; Benefits Intelligence
           </span>
         </a>
 

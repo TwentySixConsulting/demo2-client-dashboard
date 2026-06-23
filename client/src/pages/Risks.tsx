@@ -26,9 +26,9 @@ interface BandInfo {
 
 const bandConfig: Record<PositionBand, BandInfo> = {
   belowLQ: { band: "belowLQ", label: "Below lower quartile", shortLabel: "Below LQ", color: "#94a3b8" },
-  lqToMedian: { band: "lqToMedian", label: "Lower quartile → Median", shortLabel: "LQ → Median", color: "#7b8ba5" },
-  medianToUQ: { band: "medianToUQ", label: "Median → Upper quartile", shortLabel: "Median → UQ", color: "#c9a84c" },
-  aboveUQ: { band: "aboveUQ", label: "Above upper quartile", shortLabel: "Above UQ", color: "#0c1829" },
+  lqToMedian: { band: "lqToMedian", label: "Lower quartile → Median", shortLabel: "LQ → Median", color: "#7285A5" },
+  medianToUQ: { band: "medianToUQ", label: "Median → Upper quartile", shortLabel: "Median → UQ", color: "#C9785A" },
+  aboveUQ: { band: "aboveUQ", label: "Above upper quartile", shortLabel: "Above UQ", color: "#121C2B" },
 };
 
 function getPositionBand(actual: number, lq: number, median: number, uq: number): PositionBand {
@@ -358,7 +358,7 @@ export function Risks() {
 
       <Card className="p-6 bg-white border-0 shadow-md">
         <div className="flex items-center gap-2 mb-4">
-          <Info className="w-5 h-5 text-[#b08d2e]" />
+          <Info className="w-5 h-5 text-[#B0603F]" />
           <EditableText contentKey="risks-interpreting-title" defaultValue="Interpreting Market Position" className="font-display font-bold text-xl" as="h3" page="risks" />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -366,19 +366,19 @@ export function Risks() {
             <EditableText contentKey="risks-upper-half-title" defaultValue="When positioning in the upper half may be appropriate" className="font-semibold text-slate-800 mb-3" as="h4" page="risks" />
             <ul className="space-y-2 text-sm text-slate-600">
               <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#c9a84c] mt-2 shrink-0" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#C9785A] mt-2 shrink-0" />
                 <EditableText contentKey="risks-upper-1" defaultValue="Scarce or specialist skills that are difficult to recruit" as="span" page="risks" />
               </li>
               <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#c9a84c] mt-2 shrink-0" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#C9785A] mt-2 shrink-0" />
                 <EditableText contentKey="risks-upper-2" defaultValue="High retention risk for critical roles" as="span" page="risks" />
               </li>
               <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#c9a84c] mt-2 shrink-0" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#C9785A] mt-2 shrink-0" />
                 <EditableText contentKey="risks-upper-3" defaultValue="Roles with broader scope than typical market comparators" as="span" page="risks" />
               </li>
               <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#c9a84c] mt-2 shrink-0" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#C9785A] mt-2 shrink-0" />
                 <EditableText contentKey="risks-upper-4" defaultValue="Operating in highly competitive talent markets" as="span" page="risks" />
               </li>
             </ul>
@@ -406,11 +406,11 @@ export function Risks() {
           </div>
         </div>
         
-        <div className="mt-6 p-4 bg-[#f7efda] rounded-lg border border-[#e6d6a3]">
+        <div className="mt-6 p-4 bg-[#F2E4DD] rounded-lg border border-[#E4CDC2]">
           <EditableText 
             contentKey="risks-positioning-note" 
             defaultValue="Appropriate positioning depends on your pay policy. There is no single 'correct' market position—alignment should reflect your organisation's strategic priorities and reward philosophy."
-            className="text-sm text-[#7a6326] font-medium" 
+            className="text-sm text-[#8A4A30] font-medium" 
             as="p" 
             page="risks"
             multiline
