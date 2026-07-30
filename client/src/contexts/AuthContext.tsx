@@ -31,8 +31,15 @@ interface AuthContextType {
   undoAllChanges: () => void;
 }
 
-// Hardcoded temp credentials. Remove this once real Supabase auth is in place.
-const TEMP_CREDENTIALS = { username: 'demo', password: 'Demo26' };
+// Demo sign-in for sample/demo builds only. A live client build should set
+// VITE_ENABLE_DEMO_AUTH="false" (and configure Supabase) so these credentials
+// never apply; the username/password can also be overridden via env so the
+// literal fallback isn't the only path.
+const DEMO_AUTH_ENABLED = import.meta.env.VITE_ENABLE_DEMO_AUTH !== 'false';
+const TEMP_CREDENTIALS = {
+  username: (import.meta.env.VITE_DEMO_USERNAME as string | undefined) ?? 'demo',
+  password: (import.meta.env.VITE_DEMO_PASSWORD as string | undefined) ?? 'Demo26',
+};
 const TEMP_AUTH_STORAGE_KEY = 'demo-client-dashboard:temp-auth';
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -100,6 +107,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   function tempSignIn(username: string, password: string) {
+    if (!DEMO_AUTH_ENABLED) {
+      return { error: 'Sign-in is unavailable. Please contact your TwentySix consultant.' };
+    }
     const normalised = username.trim().toLowerCase();
     if (normalised !== TEMP_CREDENTIALS.username || password !== TEMP_CREDENTIALS.password) {
       return { error: 'Invalid username or password.' };

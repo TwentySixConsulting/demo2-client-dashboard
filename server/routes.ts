@@ -1,6 +1,6 @@
 import type { Express } from "express";
 import type { Server } from "http";
-import { loadDraftReportModel } from "./reporting/loadDraftReport";
+import { loadDraftReportModel } from "../reporting/loadDraftReport";
 
 export async function registerRoutes(
   httpServer: Server,

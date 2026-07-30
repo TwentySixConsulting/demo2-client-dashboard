@@ -60,7 +60,7 @@ export default defineConfig({
       plugins: [],
     },
   },
-  base: process.env.GITHUB_PAGES === "true" ? "/Dashboard/" : "/",
+  base: process.env.GITHUB_PAGES === "true" ? "/demo2-client-dashboard/" : "/",
   root: path.resolve(import.meta.dirname, "client"),
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),

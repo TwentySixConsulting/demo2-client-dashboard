@@ -82,7 +82,7 @@ export function AddNavButton({ onAddNav, className }: AddNavButtonProps) {
       <DialogTrigger asChild>
         <button
           className={cn(
-            'flex items-center gap-2 w-full px-3 py-2 rounded-lg border-2 border-dashed border-sidebar-border/50 text-sidebar-foreground/50 hover:border-indigo-400 hover:text-indigo-400 transition-all duration-200',
+            'flex items-center gap-2 w-full px-3 py-2 rounded-lg border-2 border-dashed border-sidebar-border/50 text-sidebar-foreground/50 hover:border-clay-400 hover:text-clay-400 transition-all duration-200',
             className
           )}
           data-testid="button-add-nav"

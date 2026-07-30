@@ -53,7 +53,7 @@ export function EditModeToolbar({ hasChanges, onSave, onUndo, saving = false }: 
           
           <Button
             size="sm"
-            className="bg-indigo-600 hover:bg-indigo-700"
+            className="bg-clay-600 hover:bg-clay-700"
             onClick={handleSave}
             disabled={!hasChanges || saving}
             data-testid="button-save-changes"

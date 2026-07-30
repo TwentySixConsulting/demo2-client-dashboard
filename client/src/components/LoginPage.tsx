@@ -6,20 +6,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Loader2, AlertCircle, ShieldCheck, Eye, EyeOff } from "lucide-react";
 import { ZigbertLogo } from "@/components/ZigbertLogo";
-
-// Zigbert brand palette — clay accent on cream, navy ink.
-const C = {
-  canvas: "#F4F1EA",
-  surface: "#FFFFFF",
-  surfaceSoft: "#FBF8F2",
-  ink: "#121C2B",
-  inkMuted: "#4B5563",
-  inkSubtle: "#8A93A2",
-  border: "#E7E0D4",
-  borderSubtle: "#EFE9DD",
-  brass: "#C9785A",       // clay accent
-  brassSoft: "#E8D8CE",   // clay tint
-} as const;
+// Palette single source of truth — see client/src/lib/theme.ts.
+import { C } from "@/lib/theme";
 
 export function LoginPage() {
   const { signIn, tempSignIn } = useAuth();
@@ -78,14 +66,14 @@ export function LoginPage() {
           className="absolute -top-32 -right-32 w-[28rem] h-[28rem] rounded-full pointer-events-none"
           style={{
             background:
-              "radial-gradient(circle at center, rgba(138,107,62,0.10) 0%, transparent 65%)",
+              "radial-gradient(circle at center, rgba(201,120,90,0.12) 0%, transparent 65%)",
           }}
         />
         <div
           className="absolute -bottom-28 -left-28 w-[22rem] h-[22rem] rounded-full pointer-events-none"
           style={{
             background:
-              "radial-gradient(circle at center, rgba(138,107,62,0.06) 0%, transparent 65%)",
+              "radial-gradient(circle at center, rgba(201,120,90,0.07) 0%, transparent 65%)",
           }}
         />
         {/* Pinstripe pattern */}

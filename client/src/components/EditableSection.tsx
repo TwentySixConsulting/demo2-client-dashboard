@@ -116,7 +116,7 @@ export function EditableSection({
       <div
         className={cn(
           'rounded-lg transition-all duration-200',
-          showControls && 'ring-2 ring-indigo-300 ring-offset-2'
+          showControls && 'ring-2 ring-clay-300 ring-offset-2'
         )}
       >
         {children}

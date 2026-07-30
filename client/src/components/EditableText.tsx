@@ -97,7 +97,7 @@ export function EditableText({
             onKeyDown={handleKeyDown}
             onBlur={handleSave}
             className={cn(
-              'border-2 border-indigo-500 rounded px-2 py-1 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-300 min-w-[200px]',
+              'border-2 border-clay-500 rounded px-2 py-1 bg-white focus:outline-none focus:ring-2 focus:ring-clay-300 min-w-[200px]',
               className
             )}
             rows={3}
@@ -112,7 +112,7 @@ export function EditableText({
             onKeyDown={handleKeyDown}
             onBlur={handleSave}
             className={cn(
-              'border-2 border-indigo-500 rounded px-2 py-1 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-300',
+              'border-2 border-clay-500 rounded px-2 py-1 bg-white focus:outline-none focus:ring-2 focus:ring-clay-300',
               className
             )}
             style={{ width: `${Math.max(editValue.length * 10, 100)}px` }}
@@ -143,14 +143,14 @@ export function EditableText({
     <Component
       className={cn(
         className,
-        'cursor-pointer hover:bg-indigo-50 hover:outline hover:outline-2 hover:outline-indigo-300 hover:outline-dashed rounded transition-all relative group',
+        'cursor-pointer hover:bg-clay-50 hover:outline hover:outline-2 hover:outline-clay-300 hover:outline-dashed rounded transition-all relative group',
         hasChange && 'bg-amber-50 outline outline-2 outline-amber-300'
       )}
       onClick={handleStartEdit}
       data-testid={`editable-${contentKey}`}
     >
       {currentValue}
-      <Pencil className="w-3 h-3 text-indigo-400 inline ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
+      <Pencil className="w-3 h-3 text-clay-400 inline ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
     </Component>
   );
 }

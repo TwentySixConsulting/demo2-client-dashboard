@@ -7,19 +7,19 @@
   <title>Benefits Intelligence Report | TwentySix</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Fraunces:opsz,wght@9..144,400..800;1,9..144,400..800&family=Space+Grotesk:wght@400..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
   <style>
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --navy:       #0c1829;
-      --navy-mid:   #152238;
-      --navy-light: #1e2f4a;
-      --gold:       #c9a84c;
-      --gold-light: #e2c97e;
-      --cream:      #f7f5f0;
+      --navy:       #121C2B;
+      --navy-mid:   #1f2c40;
+      --navy-light: #24304a;
+      --gold:       #C9785A;
+      --gold-light: #DDA288;
+      --cream:      #F4F1EA;
       --white:      #ffffff;
-      --text:       #0c1829;
+      --text:       #121C2B;
       --text-mid:   #374151;
       --text-soft:  #6b7280;
       --green:      #15803d;
@@ -33,9 +33,9 @@
       --col-s-head: #1a3158;
       --col-l-head: #163828;
       --col-t-head: #3d1828;
-      --shadow-sm:  0 1px 3px rgba(12,24,41,0.07);
-      --shadow-md:  0 4px 20px rgba(12,24,41,0.09), 0 1px 4px rgba(12,24,41,0.05);
-      --shadow-lg:  0 12px 48px rgba(12,24,41,0.13), 0 4px 12px rgba(12,24,41,0.07);
+      --shadow-sm:  0 1px 3px rgba(18,28,43,0.07);
+      --shadow-md:  0 4px 20px rgba(18,28,43,0.09), 0 1px 4px rgba(18,28,43,0.05);
+      --shadow-lg:  0 12px 48px rgba(18,28,43,0.13), 0 4px 12px rgba(18,28,43,0.07);
       --radius:     8px;
       --radius-lg:  14px;
     }
@@ -69,7 +69,7 @@
     .header-title span { color: rgba(255,255,255,0.4); font-size: 11px; }
     .client-chip {
       display: inline-flex; align-items: center; gap: 6px;
-      background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3);
+      background: rgba(201,120,90,0.15); border: 1px solid rgba(201,120,90,0.3);
       color: var(--gold-light); font-size: 11px; font-weight: 600;
       letter-spacing: 0.08em; text-transform: uppercase;
       padding: 4px 13px; border-radius: 100px;
@@ -100,24 +100,24 @@
 
     /* ── HERO ── */
     .hero {
-      background: linear-gradient(160deg, var(--navy) 0%, var(--navy-mid) 55%, #1c3050 100%);
+      background: linear-gradient(160deg, var(--navy) 0%, var(--navy-mid) 55%, #24304a 100%);
       padding: 80px 40px 72px; text-align: center;
       position: relative; overflow: hidden;
     }
     .hero::before {
       content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse 60% 50% at 25% 60%, rgba(201,168,76,0.09) 0%, transparent 100%),
-                  radial-gradient(ellipse 50% 50% at 75% 40%, rgba(201,168,76,0.06) 0%, transparent 100%);
+      background: radial-gradient(ellipse 60% 50% at 25% 60%, rgba(201,120,90,0.09) 0%, transparent 100%),
+                  radial-gradient(ellipse 50% 50% at 75% 40%, rgba(201,120,90,0.06) 0%, transparent 100%);
       pointer-events: none;
     }
     .hero::after {
       content: ''; position: absolute; bottom: 0; left: 0; right: 0;
-      height: 1px; background: linear-gradient(to right, transparent, rgba(201,168,76,0.45), transparent);
+      height: 1px; background: linear-gradient(to right, transparent, rgba(201,120,90,0.45), transparent);
     }
     .hero-content { position: relative; max-width: 800px; margin: 0 auto; }
     .hero-eyebrow {
       display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.25);
+      background: rgba(201,120,90,0.1); border: 1px solid rgba(201,120,90,0.25);
       color: var(--gold-light); font-size: 10px; font-weight: 700;
       letter-spacing: 0.14em; text-transform: uppercase;
       padding: 6px 18px; border-radius: 100px; margin-bottom: 26px;
@@ -137,7 +137,7 @@
     .hs-lbl { color: rgba(255,255,255,0.35); font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 2px; display: block; }
 
     /* ── SECTION CARDS ── */
-    .sec-cards-wrap { background: var(--navy-mid); padding: 44px 40px; border-bottom: 1px solid rgba(201,168,76,0.15); }
+    .sec-cards-wrap { background: var(--navy-mid); padding: 44px 40px; border-bottom: 1px solid rgba(201,120,90,0.15); }
     .sec-cards-inner { max-width: 1380px; margin: 0 auto; }
     .sec-cards-label { text-align: center; color: rgba(255,255,255,0.35); font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 24px; }
     .sec-cards-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
@@ -151,11 +151,11 @@
     .sec-card:hover { transform: translateY(-3px); }
     .sec-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--gold); opacity: 0; transition: opacity 0.2s; }
     .sec-card:hover::before { opacity: 1; }
-    .sc-num { font-size: 10px; font-weight: 800; letter-spacing: 0.1em; color: rgba(201,168,76,0.5); margin-bottom: 12px; display: block; }
+    .sc-num { font-size: 10px; font-weight: 800; letter-spacing: 0.1em; color: rgba(201,120,90,0.5); margin-bottom: 12px; display: block; }
     .sc-icon { width: 36px; height: 36px; border-radius: 9px; background: rgba(255,255,255,0.07); display: flex; align-items: center; justify-content: center; margin-bottom: 14px; flex-shrink: 0; color: var(--gold-light); }
     .sc-icon svg { width: 18px; height: 18px; }
     .sc-title { color: var(--white); font-size: 12px; font-weight: 700; line-height: 1.3; flex: 1; margin-bottom: 14px; }
-    .sc-arrow { display: flex; align-items: center; gap: 5px; color: rgba(201,168,76,0.6); font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+    .sc-arrow { display: flex; align-items: center; gap: 5px; color: rgba(201,120,90,0.6); font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
     .sc-arrow svg { width: 14px; height: 14px; }
     .sc-c1 { --cc: 110, 168, 254; }
     .sc-c2 { --cc: 45,  212, 191; }
@@ -183,7 +183,7 @@
     .intro-card strong { color: var(--text); font-weight: 600; }
 
     /* ── RULE ── */
-    .rule { height: 1px; background: linear-gradient(to right, transparent, rgba(201,168,76,0.2), transparent); margin-top: 48px; }
+    .rule { height: 1px; background: linear-gradient(to right, transparent, rgba(201,120,90,0.2), transparent); margin-top: 48px; }
 
     /* ── BENCH SECTION ── */
     .bench-section { padding: 48px 0 0; }
@@ -203,7 +203,7 @@
       transition: transform 0.2s, box-shadow 0.2s;
     }
     .prov-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
-    .prov-card::after { content: ''; position: absolute; top: 0; right: 0; width: 80px; height: 80px; background: radial-gradient(circle at top right, rgba(201,168,76,0.07), transparent 70%); }
+    .prov-card::after { content: ''; position: absolute; top: 0; right: 0; width: 80px; height: 80px; background: radial-gradient(circle at top right, rgba(201,120,90,0.07), transparent 70%); }
     .pc-icon { width: 38px; height: 38px; border-radius: 10px; background: linear-gradient(135deg, var(--navy), var(--navy-light)); display: flex; align-items: center; justify-content: center; margin-bottom: 14px; color: var(--gold-light); }
     .pc-icon svg { width: 18px; height: 18px; }
     .prov-card h3 { font-size: 13.5px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
@@ -222,7 +222,7 @@
     .ld { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
     .ld-ha { background: #1a1a2e; }
     .ld-sp  { background: #4a7fcb; }
-    .ld-lp   { background: #c9a84c; }
+    .ld-lp   { background: #C9785A; }
 
     table { width: 100%; border-collapse: collapse; font-size: 13px; }
     table colgroup col:first-child  { width: 17%; }
@@ -242,7 +242,7 @@
     tbody tr:nth-child(even) { background: #fafaf8; }
     tbody tr { transition: background 0.1s; border-bottom: 1px solid rgba(0,0,0,0.045); }
     tbody tr:last-child { border-bottom: none; }
-    tbody tr:hover { background: rgba(201,168,76,0.035) !important; }
+    tbody tr:hover { background: rgba(201,120,90,0.035) !important; }
     tbody td { padding: 15px 20px; vertical-align: top; color: var(--text-mid); line-height: 1.65; }
     tbody td:first-child { font-weight: 600; color: var(--navy); font-size: 12.5px; border-right: 1px solid rgba(0,0,0,0.06); }
     .cell-sub { display: block; font-size: 11px; font-weight: 400; color: var(--text-soft); margin-top: 3px; }
@@ -259,7 +259,7 @@
 
     /* ── CALLOUT ── */
     .callout { background: linear-gradient(150deg, var(--navy) 0%, var(--navy-mid) 100%); border-radius: var(--radius-lg); padding: 24px 28px; position: relative; overflow: hidden; }
-    .callout::before { content: ''; position: absolute; top: -20px; right: -20px; width: 120px; height: 120px; background: radial-gradient(circle, rgba(201,168,76,0.12), transparent 70%); }
+    .callout::before { content: ''; position: absolute; top: -20px; right: -20px; width: 120px; height: 120px; background: radial-gradient(circle, rgba(201,120,90,0.12), transparent 70%); }
     .callout-hd { display: flex; align-items: center; gap: 10px; margin-bottom: 13px; }
     .callout-hd svg { width: 18px; height: 18px; color: var(--gold); flex-shrink: 0; }
     .callout-hd h4 { color: var(--gold-light); font-size: 10.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
@@ -271,8 +271,8 @@
     footer { background: var(--navy); padding: 44px 40px; text-align: center; margin-top: 60px; }
     .footer-wordmark { display: inline-block; margin-bottom: 20px; }
     .footer-wordmark .fw-name { color: rgba(255,255,255,0.5); font-size: 18px; font-weight: 800; letter-spacing: -0.02em; }
-    .footer-wordmark .fw-name em { font-style: normal; color: rgba(201,168,76,0.65); }
-    .footer-conf { display: inline-flex; align-items: center; gap: 6px; background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.2); color: rgba(201,168,76,0.6); font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 13px; border-radius: 100px; margin-top: 4px; margin-bottom: 20px; }
+    .footer-wordmark .fw-name em { font-style: normal; color: rgba(201,120,90,0.65); }
+    .footer-conf { display: inline-flex; align-items: center; gap: 6px; background: rgba(201,120,90,0.1); border: 1px solid rgba(201,120,90,0.2); color: rgba(201,120,90,0.6); font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 13px; border-radius: 100px; margin-top: 4px; margin-bottom: 20px; }
     .footer-txt { color: rgba(255,255,255,0.32); font-size: 12px; line-height: 1.85; }
     .footer-txt strong { color: rgba(255,255,255,0.55); font-weight: 500; }
     .footer-txt a { color: var(--gold); text-decoration: none; }
@@ -299,8 +299,8 @@
   
     /* ── V2 OVERRIDES & SPA SHELL ───────────────────────────── */
     :root {
-      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-display: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-display: 'Poppins', 'Inter', sans-serif;
       --sidebar-w: 260px;
     }
     html, body { height: 100%; }
@@ -318,7 +318,7 @@
       color: var(--cream);
       display: flex; flex-direction: column;
       position: sticky; top: 0; height: 100vh;
-      border-right: 1px solid rgba(201,168,76,0.18);
+      border-right: 1px solid rgba(201,120,90,0.18);
       z-index: 50;
     }
     .sidebar-head {
@@ -355,7 +355,7 @@
     }
     .navlink:hover { background: rgba(255,255,255,0.04); color: var(--white); }
     .navlink.active {
-      background: linear-gradient(90deg, rgba(201,168,76,0.18), rgba(201,168,76,0.04));
+      background: linear-gradient(90deg, rgba(201,120,90,0.18), rgba(201,120,90,0.04));
       color: var(--white); font-weight: 600;
     }
     .navlink.active::before {
@@ -377,8 +377,8 @@
     }
     .sidebar-foot .conf-tag {
       display: inline-flex; align-items: center; gap: 6px;
-      background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.2);
-      color: rgba(201,168,76,0.7); font-size: 9.5px; font-weight: 700;
+      background: rgba(201,120,90,0.1); border: 1px solid rgba(201,120,90,0.2);
+      color: rgba(201,120,90,0.7); font-size: 9.5px; font-weight: 700;
       letter-spacing: 0.1em; text-transform: uppercase;
       padding: 3px 10px; border-radius: 100px; margin-top: 8px;
     }
@@ -442,7 +442,7 @@
     }
     .commentary-empty .ce-icon {
       width: 64px; height: 64px; border-radius: 16px;
-      background: linear-gradient(135deg, rgba(201,168,76,0.12), rgba(201,168,76,0.04));
+      background: linear-gradient(135deg, rgba(201,120,90,0.12), rgba(201,120,90,0.04));
       display: inline-flex; align-items: center; justify-content: center;
       color: var(--gold); margin-bottom: 18px;
     }
@@ -476,7 +476,7 @@
     .scrim { display: none; }
     .scrim.show {
       display: block; position: fixed; inset: 0; z-index: 40;
-      background: rgba(12,24,41,0.45);
+      background: rgba(18,28,43,0.45);
     }
   
     
@@ -485,43 +485,43 @@
     /* ── V4 PALETTE & TYPOGRAPHY ──────────────────────────────────── */
     :root {
       /* Primary */
-      --navy:       #0c1829;
-      --navy-mid:   #1f2b44;
-      --gold:       #c9a84c;
-      --gold-deep:  #a58430;
+      --navy:       #121C2B;
+      --navy-mid:   #1f2c40;
+      --gold:       #C9785A;
+      --gold-deep:  #B0603F;
 
       /* Pink accent */
-      --pink:       #d68a96;
-      --pink-deep:  #b86375;
-      --pink-soft:  #f5e1e5;
-      --pink-wash:  #fcf6f7;
+      --pink:       #4B5563;
+      --pink-deep:  #374151;
+      --pink-soft:  #e4e7ec;
+      --pink-wash:  #f3f5f8;
 
       /* Sage (complementary — used for "at market" / positive states) */
-      --sage:       #7a9173;
-      --sage-deep:  #5b7256;
-      --sage-soft:  #e6ede3;
-      --sage-wash:  #f5f8f3;
+      --sage:       #4F8A6B;
+      --sage-deep:  #3F7D6A;
+      --sage-soft:  #dcebe3;
+      --sage-wash:  #eef6f1;
 
       /* Slate blue (info / secondary sector) */
-      --slate:      #6b7a99;
-      --slate-deep: #46557a;
-      --slate-soft: #e3e8f1;
+      --slate:      #7285A5;
+      --slate-deep: #4B5870;
+      --slate-soft: #e4e9f1;
 
       /* Neutrals */
-      --text:       #0c1829;
+      --text:       #121C2B;
       --text-mid:   #2a3349;
       --text-soft:  #5a6478;
-      --cream:      #faf8f3;
-      --bg-app:     #faf8f3;
-      --line:       rgba(12,24,41,0.08);
-      --line-soft:  rgba(12,24,41,0.04);
+      --cream:      #FBF8F2;
+      --bg-app:     #F4F1EA;
+      --line:       rgba(18,28,43,0.08);
+      --line-soft:  rgba(18,28,43,0.04);
 
-      --font-serif: 'Fraunces', Georgia, serif;
-      --font-body:  'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-serif: 'Poppins', 'Inter', sans-serif;
+      --font-body:  'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
-    body { background: var(--bg-app); color: var(--text); font-family: var(--font-body); }
+    body { background: #FAFAF8; color: var(--text); font-family: var(--font-body); }
 
-    /* Serif headings — Fraunces with opsz/wght tuned for clean reading */
+    /* Display headings — Poppins */
     h1, h2, .sec-title, .hero h2, .header-title h1, .sidebar-client, .ovctx-h, .card-title, .prov-card h3, .prov-group-name {
       font-family: var(--font-serif);
       font-variation-settings: 'opsz' 36, 'SOFT' 30, 'WONK' 0;
@@ -541,12 +541,12 @@
     .sidebar-client { color: var(--text); font-size: 22px; line-height: 1.15; margin-top: 14px; }
     .sidebar-client-sub { color: var(--text-soft); font-size: 11px; margin-top: 4px; }
     .sidebar-nav { padding: 14px 12px; }
-    .navlink { color: var(--text-soft); font-size: 13.5px; font-weight: 500; padding: 10px 14px; border-radius: 9px; }
-    .navlink:hover { background: var(--pink-wash); color: var(--pink-deep); }
-    .navlink.active { background: var(--pink-wash); color: var(--pink-deep); font-weight: 700; }
-    .navlink.active::before { content: ''; position: absolute; left: -12px; top: 8px; bottom: 8px; width: 3px; border-radius: 0 3px 3px 0; background: var(--pink); }
-    .navlink-icon { color: var(--text-soft); }
-    .navlink:hover .navlink-icon, .navlink.active .navlink-icon { color: var(--pink-deep); }
+    .navlink { color: var(--text-soft); font-size: 13.5px; font-weight: 500; padding: 10px 14px; border-radius: 9px; transition: background 0.15s, color 0.15s; }
+    .navlink:hover { background: rgba(201,120,90,0.10); color: var(--gold-deep); }
+    .navlink.active { background: rgba(201,120,90,0.12); color: var(--gold-deep); font-weight: 700; }
+    .navlink.active::before { content: ''; position: absolute; left: -12px; top: 8px; bottom: 8px; width: 3px; border-radius: 0 3px 3px 0; background: var(--gold); }
+    .navlink-icon { color: var(--text-soft); transition: color 0.15s; }
+    .navlink:hover .navlink-icon, .navlink.active .navlink-icon { color: var(--gold-deep); }
     .sidebar-foot { border-top: 1px solid var(--line-soft); color: var(--text-soft); padding: 16px 22px; font-size: 10.5px; }
     .sidebar-foot .conf-tag { background: var(--slate-soft); border: 1px solid rgba(107,122,153,0.25); color: var(--slate-deep); }
 
@@ -588,12 +588,13 @@
     /* Section nav cards */
     .overview-cards .sec-cards-wrap { background: #ffffff; border-radius: var(--radius-lg); border: 1px solid var(--line); padding: 36px; }
     .overview-cards .sec-cards-label { color: var(--text-soft); font-weight: 800; }
-    .sec-card { background: #ffffff; border: 1px solid var(--line); transition: all 0.2s; }
+    .sec-card { background: #ffffff; border: 1px solid var(--line); transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease; }
+    .sec-card:hover { transform: translateY(-3px); border-color: rgba(201,120,90,0.35); box-shadow: 0 12px 28px -12px rgba(18,28,43,0.22); }
     .sec-card .sc-num { color: var(--text-soft); }
     .sec-card .sc-icon { background: var(--pink-wash); color: var(--pink-deep); }
     .sec-card:nth-child(2) .sc-icon { background: var(--sage-wash); color: var(--sage-deep); }
     .sec-card:nth-child(3) .sc-icon { background: var(--slate-soft); color: var(--slate-deep); }
-    .sec-card:nth-child(4) .sc-icon { background: rgba(201,168,76,0.16); color: var(--gold-deep); }
+    .sec-card:nth-child(4) .sc-icon { background: rgba(201,120,90,0.16); color: var(--gold-deep); }
     .sec-card:nth-child(5) .sc-icon { background: var(--sage-wash); color: var(--sage-deep); }
     .sec-card:nth-child(6) .sc-icon { background: var(--slate-soft); color: var(--slate-deep); }
     .sec-card .sc-title { color: var(--text); font-family: var(--font-serif); font-weight: 600; font-size: 13.5px; }
@@ -668,13 +669,13 @@
     .prov-card {
       background: #ffffff; border: 1px solid var(--line);
       border-top: 3px solid var(--pink); border-radius: var(--radius-lg);
-      padding: 22px 22px 20px; box-shadow: 0 1px 3px rgba(12,24,41,0.04);
+      padding: 22px 22px 20px; box-shadow: 0 1px 3px rgba(18,28,43,0.04);
       position: relative; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
     }
     .prov-card::after { display: none; }
     .prov-group:nth-of-type(2) .prov-card { border-top-color: var(--sage); }
     .prov-group:nth-of-type(3) .prov-card { border-top-color: var(--slate); }
-    .prov-card:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(12,24,41,0.08); }
+    .prov-card:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(18,28,43,0.08); }
     .pc-icon {
       width: 36px; height: 36px; border-radius: 10px;
       background: var(--pink-wash); color: var(--pink-deep);
@@ -696,7 +697,7 @@
     }
     .badge-green  { background: var(--sage-wash); color: var(--sage-deep); border: 1px solid rgba(122,145,115,0.3); }
     .badge-above  { background: var(--pink-wash); color: var(--pink-deep); border: 1px solid rgba(184,99,117,0.3); }
-    .badge-amber  { background: rgba(201,168,76,0.13); color: var(--gold-deep); border: 1px solid rgba(165,132,48,0.3); }
+    .badge-amber  { background: rgba(201,120,90,0.13); color: var(--gold-deep); border: 1px solid rgba(165,132,48,0.3); }
     .badge-unique { background: var(--slate-soft); color: var(--slate-deep); border: 1px solid rgba(70,85,122,0.3); }
     .p-badge svg { width: 9px; height: 9px; }
 
@@ -727,9 +728,9 @@
     tbody tr:nth-child(even) { background: #fbfaf6; }
     tbody tr { border-bottom: 1px solid var(--line-soft); }
     tbody td:first-child { color: var(--text); font-weight: 700; border-right: 1px solid var(--line-soft); }
-    tbody td:nth-child(2) { border-left: 3px solid rgba(12,24,41,0.1); }
+    tbody td:nth-child(2) { border-left: 3px solid rgba(18,28,43,0.1); }
     tbody td:nth-child(3) { border-left: 3px solid rgba(107,122,153,0.18); }
-    tbody td:nth-child(4) { border-left: 3px solid rgba(201,168,76,0.22); }
+    tbody td:nth-child(4) { border-left: 3px solid rgba(201,120,90,0.22); }
     .cell-head { color: var(--text); font-weight: 700; line-height: 1.5; display: block; font-size: 13px; }
     .cell-head strong { font-weight: 700; }
     .brow .cell-body { display: none; }
@@ -760,7 +761,7 @@
 
     .exp-cell { position: relative; display: flex !important; align-items: flex-start; gap: 10px; padding-top: 14px !important; padding-bottom: 14px !important; }
     .exp-toggle { all: unset; cursor: pointer; flex-shrink: 0; width: 22px; height: 22px; border-radius: 5px; display: inline-flex; align-items: center; justify-content: center; color: var(--text-soft); transition: all 0.2s; margin-top: 1px; }
-    .exp-toggle:hover { background: rgba(12,24,41,0.06); color: var(--text); }
+    .exp-toggle:hover { background: rgba(18,28,43,0.06); color: var(--text); }
     .exp-toggle svg { width: 11px; height: 11px; }
     .brow.expanded .exp-toggle { transform: rotate(90deg); color: var(--pink-deep); }
     .exp-name { flex: 1; display: block; color: var(--text); font-weight: 700; }
@@ -780,7 +781,7 @@
     /* ── OVERVIEW CONTEXT CARDS ───────────────────────────────────── */
     .ovctx-card {
       background: #ffffff; border-radius: var(--radius-lg);
-      box-shadow: 0 1px 3px rgba(12,24,41,0.04); padding: 28px 30px; margin-top: 18px;
+      box-shadow: 0 1px 3px rgba(18,28,43,0.04); padding: 28px 30px; margin-top: 18px;
       border: 1px solid var(--line); border-left: 3px solid var(--sage);
     }
     .ovctx-card:nth-of-type(2) { border-left-color: var(--slate); }
@@ -823,12 +824,12 @@
     /* The 3-segment bar */
     .qbar {
       display: flex; height: 14px; border-radius: 100px; overflow: hidden;
-      box-shadow: inset 0 0 0 1px rgba(12,24,41,0.06);
+      box-shadow: inset 0 0 0 1px rgba(18,28,43,0.06);
       margin-bottom: 14px;
     }
     .qbar-seg { flex: 1; height: 100%; }
     .qbar-lq  { background: linear-gradient(90deg, #e8e7e3 0%, #d4d3cf 100%); border-right: 2px solid #ffffff; }
-    .qbar-med { background: linear-gradient(90deg, #d4b860 0%, #c9a84c 100%); box-shadow: inset 0 0 0 2px rgba(255,255,255,0.18); border-right: 2px solid #ffffff; }
+    .qbar-med { background: linear-gradient(90deg, #d4b860 0%, #C9785A 100%); box-shadow: inset 0 0 0 2px rgba(255,255,255,0.18); border-right: 2px solid #ffffff; }
     .qbar-uq  { background: linear-gradient(90deg, #2c3a8c 0%, #1a1a2e 100%); }
 
     /* 3 quartile cards under the bar */
@@ -843,9 +844,9 @@
       content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
     }
     .qcard-lq::before  { background: linear-gradient(90deg, #d4d3cf, #b8b7b3); }
-    .qcard-med::before { background: linear-gradient(90deg, #d4b860, #c9a84c); }
+    .qcard-med::before { background: linear-gradient(90deg, #d4b860, #C9785A); }
     .qcard-uq::before  { background: linear-gradient(90deg, #2c3a8c, #1a1a2e); }
-    .qcard-med { box-shadow: 0 0 0 1px rgba(201,168,76,0.32), 0 2px 8px rgba(201,168,76,0.08); }
+    .qcard-med { box-shadow: 0 0 0 1px rgba(201,120,90,0.32), 0 2px 8px rgba(201,120,90,0.08); }
     .qcard-label {
       font-size: 10px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
       color: var(--text-soft); margin-bottom: 6px;
@@ -895,10 +896,10 @@
     .qchart-head { font-size: 10.5px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-mid); margin-bottom: 14px; }
     .qchart-axis-wrap { position: relative; height: 36px; margin: 6px 6px; }
     .qchart-axis { position: absolute; left: 0; right: 0; bottom: 11px; height: 2px; background: var(--line); border-radius: 2px; }
-    .qchart-range { position: absolute; bottom: 8px; height: 8px; background: linear-gradient(90deg, #d4d3cf 0%, #c9a84c 50%, #1a1a2e 100%); border-radius: 100px; opacity: 0.45; }
+    .qchart-range { position: absolute; bottom: 8px; height: 8px; background: linear-gradient(90deg, #d4d3cf 0%, #C9785A 50%, #1a1a2e 100%); border-radius: 100px; opacity: 0.45; }
     .qchart-marker { position: absolute; bottom: 4px; width: 14px; height: 14px; margin-left: -7px; border-radius: 50%; border: 2px solid #ffffff; }
     .qchart-m-lq     { background: #b8b7b3; }
-    .qchart-m-median { background: #c9a84c; box-shadow: 0 0 0 2px rgba(201,168,76,0.25); width: 18px; height: 18px; margin-left: -9px; bottom: 2px; }
+    .qchart-m-median { background: #C9785A; box-shadow: 0 0 0 2px rgba(201,120,90,0.25); width: 18px; height: 18px; margin-left: -9px; bottom: 2px; }
     .qchart-m-uq     { background: #1a1a2e; }
     .qchart-m-sp     { background: var(--slate); width: 11px; height: 11px; margin-left: -5.5px; bottom: 5.5px; }
     .qchart-m-lp     { background: var(--gold-deep); width: 11px; height: 11px; margin-left: -5.5px; bottom: 5.5px; }
@@ -912,7 +913,7 @@
     .qchart-legend span { display: inline-flex; align-items: center; gap: 5px; }
     .qchart-l { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
     .qchart-l-lq     { background: #b8b7b3; }
-    .qchart-l-median { background: #c9a84c; }
+    .qchart-l-median { background: #C9785A; }
     .qchart-l-uq     { background: #1a1a2e; }
     .qchart-l-sp     { background: var(--slate); }
     .qchart-l-lp     { background: var(--gold-deep); }
@@ -940,8 +941,8 @@
       position: relative; overflow: hidden;
       transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
     }
-    .prov-stat:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(12,24,41,0.08); }
-    .prov-stat.active { box-shadow: 0 8px 22px rgba(12,24,41,0.12); }
+    .prov-stat:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(18,28,43,0.08); }
+    .prov-stat.active { box-shadow: 0 8px 22px rgba(18,28,43,0.12); }
     .prov-stat-total.active::after,
     .prov-stat-mixed.active::after,
     .prov-stat-at.active::after,
@@ -957,8 +958,8 @@
 
     /* ── PROVISION CARD EXPANDABLE ─────────────────────────────────── */
     .prov-card-expandable { cursor: pointer; transition: all 0.18s; }
-    .prov-card-expandable:hover { box-shadow: 0 10px 26px rgba(12,24,41,0.1); }
-    .prov-card-expanded { box-shadow: 0 10px 30px rgba(12,24,41,0.12); border-color: rgba(184,99,117,0.3); }
+    .prov-card-expandable:hover { box-shadow: 0 10px 26px rgba(18,28,43,0.1); }
+    .prov-card-expanded { box-shadow: 0 10px 30px rgba(18,28,43,0.12); border-color: rgba(184,99,117,0.3); }
     .prov-card .pcard-expand {
       margin-top: 16px; padding-top: 16px;
       border-top: 1px solid var(--line-soft);
@@ -975,7 +976,7 @@
     .pcard-q-lq::before  { background: #b8b7b3; }
     .pcard-q-med::before { background: var(--gold); }
     .pcard-q-uq::before  { background: var(--navy); }
-    .pcard-q-med { box-shadow: 0 0 0 1px rgba(201,168,76,0.28); }
+    .pcard-q-med { box-shadow: 0 0 0 1px rgba(201,120,90,0.28); }
     .pcard-q-lbl { font-size: 8.5px; font-weight: 800; color: var(--text-soft); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
     .pcard-q-med .pcard-q-lbl { color: var(--gold-deep); }
     .pcard-q-uq  .pcard-q-lbl { color: var(--navy); }
@@ -995,7 +996,7 @@
     .qpanel-section-ha {
       background: #ffffff; border: 1px solid var(--line);
       border-radius: var(--radius-lg); padding: 22px 24px 24px;
-      box-shadow: 0 1px 3px rgba(12,24,41,0.04);
+      box-shadow: 0 1px 3px rgba(18,28,43,0.04);
     }
     .qpanel-section-head { margin-bottom: 14px; }
     .qpanel-section-head .qpanel-eyebrow { display: block; font-size: 11px; font-weight: 800; color: var(--navy); letter-spacing: 0.12em; text-transform: uppercase; }
@@ -1032,7 +1033,7 @@
     .qglance-ha::before { background: var(--navy); }
     .qglance-sp::before { background: var(--slate); }
     .qglance-lp::before { background: var(--gold-deep); }
-    .qglance-ha { box-shadow: 0 0 0 1px rgba(184,99,117,0.18), 0 2px 8px rgba(12,24,41,0.04); }
+    .qglance-ha { box-shadow: 0 0 0 1px rgba(184,99,117,0.18), 0 2px 8px rgba(18,28,43,0.04); }
     .qglance-card-head { display: flex; align-items: center; gap: 7px; font-size: 10.5px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-mid); margin-bottom: 8px; }
     .qglance-star { color: var(--gold-deep); margin-left: auto; }
     .qdot { width: 8px; height: 8px; border-radius: 50%; }
@@ -1091,7 +1092,7 @@
       padding: 72px 56px 64px;
       text-align: left;
       background:
-        radial-gradient(circle at 2px 2px, rgba(12,24,41,0.08) 1px, transparent 0),
+        radial-gradient(circle at 2px 2px, rgba(18,28,43,0.08) 1px, transparent 0),
         linear-gradient(135deg, #ffffff 0%, var(--pink-wash) 55%, var(--sage-wash) 100%);
       background-size: 14px 14px, 100% 100%;
     }
@@ -1126,9 +1127,9 @@
     .theme-card {
       background: #ffffff; border: 1px solid var(--line); border-radius: var(--radius-lg);
       padding: 24px 26px; position: relative; overflow: hidden;
-      box-shadow: 0 1px 3px rgba(12,24,41,0.04); transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 1px 3px rgba(18,28,43,0.04); transition: transform 0.15s, box-shadow 0.15s;
     }
-    .theme-card:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(12,24,41,0.07); }
+    .theme-card:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(18,28,43,0.07); }
     .theme-card::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 4px; }
     .theme-card-sage::before  { background: var(--sage); }
     .theme-card-pink::before  { background: var(--pink); }
@@ -1143,7 +1144,7 @@
     .theme-card-sage  .theme-card-icon { background: var(--sage-wash);  color: var(--sage-deep); }
     .theme-card-pink  .theme-card-icon { background: var(--pink-wash);  color: var(--pink-deep); }
     .theme-card-slate .theme-card-icon { background: var(--slate-soft); color: var(--slate-deep); }
-    .theme-card-gold  .theme-card-icon { background: rgba(201,168,76,0.16); color: var(--gold-deep); }
+    .theme-card-gold  .theme-card-icon { background: rgba(201,120,90,0.16); color: var(--gold-deep); }
     .theme-card-title {
       font-family: var(--font-serif); font-size: 17px; font-weight: 600;
       color: var(--text); line-height: 1.3; letter-spacing: -0.015em;
@@ -1169,7 +1170,7 @@
     .prov-rich-panel {
       background: linear-gradient(180deg, #ffffff 0%, #fbfaf6 100%);
       border: 1px solid var(--line); border-radius: var(--radius-lg);
-      padding: 28px 32px; box-shadow: 0 6px 24px rgba(12,24,41,0.06);
+      padding: 28px 32px; box-shadow: 0 6px 24px rgba(18,28,43,0.06);
       position: relative;
     }
     .prp-close {
@@ -1211,8 +1212,8 @@
       position: relative; height: 50px; margin: 18px 6px 8px;
     }
     .prp-pos-track { position: absolute; left: 0; right: 0; top: 22px; height: 8px; border-radius: 100px;
-      background: linear-gradient(90deg, #e8e7e3 0%, #d4d3cf 33%, #d4b860 33%, #c9a84c 66%, #2c3a8c 66%, #1a1a2e 100%);
-      box-shadow: inset 0 0 0 1px rgba(12,24,41,0.06);
+      background: linear-gradient(90deg, #e8e7e3 0%, #d4d3cf 33%, #d4b860 33%, #C9785A 66%, #2c3a8c 66%, #1a1a2e 100%);
+      box-shadow: inset 0 0 0 1px rgba(18,28,43,0.06);
     }
     .prp-pos-tick { position: absolute; top: 8px; width: 2px; height: 12px; background: rgba(255,255,255,0.85); }
     .prp-pos-lbl { position: absolute; top: 36px; font-size: 9.5px; font-weight: 700; color: var(--text-soft); letter-spacing: 0.08em; text-transform: uppercase; transform: translateX(-50%); white-space: nowrap; }
@@ -1220,7 +1221,7 @@
       position: absolute; top: 18px;
       width: 16px; height: 16px; border-radius: 50%;
       background: var(--pink-deep); border: 3px solid #ffffff;
-      box-shadow: 0 0 0 2px rgba(184,99,117,0.35), 0 2px 6px rgba(12,24,41,0.18);
+      box-shadow: 0 0 0 2px rgba(184,99,117,0.35), 0 2px 6px rgba(18,28,43,0.18);
       transform: translateX(-50%);
     }
     .prp-pos-penge-flag {
@@ -1248,7 +1249,7 @@
     }
     .ha-pos-bar-track::after {
       content: ''; position: absolute; left: 0; right: 0; top: 18px; height: 8px;
-      background: linear-gradient(90deg, #e8e7e3 0%, #d4d3cf 33%, #d4b860 33%, #c9a84c 66%, #2c3a8c 66%, #1a1a2e 100%);
+      background: linear-gradient(90deg, #e8e7e3 0%, #d4d3cf 33%, #d4b860 33%, #C9785A 66%, #2c3a8c 66%, #1a1a2e 100%);
       border-radius: 100px;
     }
     .ha-pos-bar-tick { position: absolute; top: 32px; font-size: 9px; font-weight: 700; color: var(--text-soft); letter-spacing: 0.06em; transform: translateX(-50%); white-space: nowrap; }
@@ -1374,7 +1375,7 @@
       border: 1px solid var(--line);
       border-radius: var(--radius-lg);
       padding: 24px 28px 26px;
-      box-shadow: 0 1px 3px rgba(12,24,41,0.04);
+      box-shadow: 0 1px 3px rgba(18,28,43,0.04);
     }
     .rb-header {
       display: flex; align-items: center; gap: 14px; margin-bottom: 16px;
@@ -1407,7 +1408,7 @@
     }
     .rb-badge-green  { background: var(--sage-wash); color: var(--sage-deep); border: 1px solid rgba(122,145,115,0.3); }
     .rb-badge-above  { background: var(--pink-wash); color: var(--pink-deep); border: 1px solid rgba(184,99,117,0.3); }
-    .rb-badge-amber  { background: rgba(201,168,76,0.13); color: var(--gold-deep); border: 1px solid rgba(165,132,48,0.3); }
+    .rb-badge-amber  { background: rgba(201,120,90,0.13); color: var(--gold-deep); border: 1px solid rgba(165,132,48,0.3); }
 
     .rb-penge-pos {
       display: flex; align-items: center; gap: 10px;
@@ -1449,8 +1450,8 @@
     }
     .rb-pos-track {
       position: absolute; left: 0; right: 0; top: 28px; height: 10px; border-radius: 100px;
-      background: linear-gradient(90deg, #e8e7e3 0%, #d4d3cf 33.33%, #d4b860 33.33%, #c9a84c 66.66%, #2c3a8c 66.66%, #1a1a2e 100%);
-      box-shadow: inset 0 0 0 1px rgba(12,24,41,0.06);
+      background: linear-gradient(90deg, #e8e7e3 0%, #d4d3cf 33.33%, #d4b860 33.33%, #C9785A 66.66%, #2c3a8c 66.66%, #1a1a2e 100%);
+      box-shadow: inset 0 0 0 1px rgba(18,28,43,0.06);
     }
     .rb-pos-tick { position: absolute; top: 24px; width: 2px; height: 18px; background: rgba(255,255,255,0.9); }
     .rb-pos-lbl { position: absolute; top: 44px; font-size: 9.5px; font-weight: 700; color: var(--text-soft); letter-spacing: 0.08em; text-transform: uppercase; }
@@ -1461,7 +1462,7 @@
       position: absolute; top: 24px; transform: translateX(-50%);
       width: 18px; height: 18px; border-radius: 50%;
       background: var(--pink-deep); border: 3px solid #ffffff;
-      box-shadow: 0 0 0 2px rgba(184,99,117,0.35), 0 2px 6px rgba(12,24,41,0.2);
+      box-shadow: 0 0 0 2px rgba(184,99,117,0.35), 0 2px 6px rgba(18,28,43,0.2);
       z-index: 2;
     }
     .rb-pos-penge-flag {
@@ -1476,7 +1477,7 @@
     .rb-q-cell-lq::before  { background: #b8b7b3; }
     .rb-q-cell-med::before { background: var(--gold); }
     .rb-q-cell-uq::before  { background: var(--navy); }
-    .rb-q-cell-med { box-shadow: 0 0 0 1px rgba(201,168,76,0.3); }
+    .rb-q-cell-med { box-shadow: 0 0 0 1px rgba(201,120,90,0.3); }
     .rb-q-lbl { font-size: 8.5px; font-weight: 800; color: var(--text-soft); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
     .rb-q-cell-med .rb-q-lbl { color: var(--gold-deep); }
     .rb-q-cell-uq  .rb-q-lbl { color: var(--navy); }
@@ -1507,7 +1508,7 @@
       border-left: 3px solid var(--sage);
       border-radius: var(--radius-lg);
       padding: 26px 30px;
-      box-shadow: 0 1px 3px rgba(12,24,41,0.04);
+      box-shadow: 0 1px 3px rgba(18,28,43,0.04);
     }
     .section-summary-head {
       display: flex; align-items: center; gap: 8px;
@@ -1557,13 +1558,13 @@
     .intro-card p { max-width: none !important; }
 
     /* ── V12: HA QUARTILE TABLE ───────────────────────────────────── */
-    .haq-tbl-wrap { background: #ffffff; border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; margin-top: 14px; box-shadow: 0 1px 3px rgba(12,24,41,0.04); }
+    .haq-tbl-wrap { background: #ffffff; border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; margin-top: 14px; box-shadow: 0 1px 3px rgba(18,28,43,0.04); }
     .haq-legend { display: flex; align-items: center; gap: 14px; padding: 11px 22px; background: #fbfaf6; border-bottom: 1px solid var(--line-soft); flex-wrap: wrap; }
     .haq-legend-eyebrow { font-size: 10.5px; font-weight: 800; color: var(--navy); letter-spacing: 0.12em; text-transform: uppercase; }
     .haq-legend-key { font-size: 11px; color: var(--text-mid); display: inline-flex; align-items: center; gap: 6px; }
     .haq-key-dot { width: 9px; height: 9px; border-radius: 50%; }
     .haq-key-dot-lq { background: #b8b7b3; }
-    .haq-key-dot-med { background: var(--gold); box-shadow: 0 0 0 2px rgba(201,168,76,0.18); }
+    .haq-key-dot-med { background: var(--gold); box-shadow: 0 0 0 2px rgba(201,120,90,0.18); }
     .haq-key-dot-uq { background: var(--navy); }
     .qd-star { color: var(--gold-deep); }
 
@@ -1572,7 +1573,7 @@
     .haq-tbl colgroup col:nth-child(2),
     .haq-tbl colgroup col:nth-child(3),
     .haq-tbl colgroup col:nth-child(4) { width: 24.66%; }
-    .haq-tbl thead th { padding: 14px 18px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 10.5px; font-weight: 800; letter-spacing: 0.1em; text-align: left; }
+    .haq-tbl thead th { padding: 14px 18px; font-family: 'Inter', sans-serif; font-size: 10.5px; font-weight: 800; letter-spacing: 0.1em; text-align: left; }
     .haq-th-name { background: var(--navy); color: var(--cream); }
     .haq-th-lq { background: #6e6c66; color: #ffffff; }
     .haq-th-med { background: var(--gold-deep); color: #fef7e0; }
@@ -1593,7 +1594,7 @@
 
     .haq-cell { border-left: 3px solid transparent; }
     .haq-cell-lq  { border-left-color: #d4d3cf; }
-    .haq-cell-med { border-left-color: var(--gold); background: rgba(201,168,76,0.04); }
+    .haq-cell-med { border-left-color: var(--gold); background: rgba(201,120,90,0.04); }
     .haq-cell-uq  { border-left-color: var(--navy); }
     .haq-val { font-family: var(--font-serif); font-size: 13.5px; font-weight: 600; color: var(--text); line-height: 1.4; font-variation-settings: 'opsz' 24, 'SOFT' 20, 'WONK' 0; display: block; }
 
@@ -1607,7 +1608,7 @@
     .qd-panel-lq::before  { background: #b8b7b3; }
     .qd-panel-med::before { background: var(--gold); }
     .qd-panel-uq::before  { background: var(--navy); }
-    .qd-panel-med { box-shadow: 0 0 0 1px rgba(201,168,76,0.25), 0 2px 8px rgba(201,168,76,0.08); }
+    .qd-panel-med { box-shadow: 0 0 0 1px rgba(201,120,90,0.25), 0 2px 8px rgba(201,120,90,0.08); }
     .qd-panel-head { font-size: 10.5px; font-weight: 800; color: var(--text-soft); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
     .qd-panel-lq .qd-panel-head { color: #6e6c66; }
     .qd-panel-med .qd-panel-head { color: var(--gold-deep); }
@@ -1685,7 +1686,7 @@
     .sector-footer-link:hover { background: var(--pink-wash); border-color: var(--pink); }
 
     /* ── V12: MARKET TRENDS PAGE ─────────────────────────────────── */
-    .mt-cat { background: #ffffff; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 24px 28px; margin-top: 16px; box-shadow: 0 1px 3px rgba(12,24,41,0.04); }
+    .mt-cat { background: #ffffff; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 24px 28px; margin-top: 16px; box-shadow: 0 1px 3px rgba(18,28,43,0.04); }
     .mt-cat-title { font-family: var(--font-serif); font-size: 20px; font-weight: 600; color: var(--text); letter-spacing: -0.018em; margin: 0 0 16px; font-variation-settings: 'opsz' 30, 'SOFT' 20, 'WONK' 0; }
     .mt-cat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; align-items: stretch; }
     @media (max-width: 1000px) { .mt-cat-grid { grid-template-columns: 1fr; } }
@@ -1713,7 +1714,7 @@
       border: 1px solid var(--line);
       border-radius: 14px;
       overflow: hidden;
-      box-shadow: 0 1px 3px rgba(12,24,41,0.04), 0 8px 24px rgba(12,24,41,0.03);
+      box-shadow: 0 1px 3px rgba(18,28,43,0.04), 0 8px 24px rgba(18,28,43,0.03);
     }
     .haq-legend {
       padding: 12px 24px;
@@ -1762,7 +1763,7 @@
     }
     .haq-name .exp-toggle {
       width: 26px; height: 26px;
-      background: rgba(12,24,41,0.04);
+      background: rgba(18,28,43,0.04);
       border-radius: 7px;
       flex-shrink: 0;
       color: var(--text-soft);
@@ -1775,7 +1776,7 @@
       background: #ffffff;
     }
     .haq-cell-lq  { border-left-color: #d4d3cf; background: #fcfcfb; }
-    .haq-cell-med { border-left-color: var(--gold); background: linear-gradient(180deg, rgba(201,168,76,0.06) 0%, rgba(201,168,76,0.03) 100%); }
+    .haq-cell-med { border-left-color: var(--gold); background: linear-gradient(180deg, rgba(201,120,90,0.06) 0%, rgba(201,120,90,0.03) 100%); }
     .haq-cell-uq  { border-left-color: #1a2342; background: linear-gradient(180deg, rgba(26,35,66,0.04) 0%, rgba(26,35,66,0.02) 100%); }
     .haq-row.expanded .haq-cell-lq,
     .haq-row.expanded .haq-cell-med,
@@ -1828,8 +1829,8 @@
     .qd-panel-med::before { background: linear-gradient(90deg, #d4b860, var(--gold)); }
     .qd-panel-uq::before  { background: linear-gradient(90deg, #2c3a8c, #1a1a2e); }
     .qd-panel-med {
-      box-shadow: 0 0 0 1px rgba(201,168,76,0.32),
-                  0 4px 14px rgba(201,168,76,0.1);
+      box-shadow: 0 0 0 1px rgba(201,120,90,0.32),
+                  0 4px 14px rgba(201,120,90,0.1);
     }
     .qd-panel-head {
       font-size: 10.5px;
@@ -1935,7 +1936,7 @@
       border-radius: var(--radius-lg);
       padding: 28px 32px;
       margin: 24px 0 22px;
-      box-shadow: 0 1px 3px rgba(12,24,41,0.04);
+      box-shadow: 0 1px 3px rgba(18,28,43,0.04);
     }
     .yb-overview-head { margin-bottom: 14px; }
     .yb-overview-eyebrow {
@@ -1989,7 +1990,7 @@
       border-radius: var(--radius-lg);
       padding: 22px 30px 24px;
       margin: 0 0 22px;
-      box-shadow: 0 1px 3px rgba(12,24,41,0.04);
+      box-shadow: 0 1px 3px rgba(18,28,43,0.04);
     }
     .page-overview-eyebrow {
       font-size: 10.5px; font-weight: 800; color: var(--gold-deep);
@@ -2019,7 +2020,7 @@
       border-radius: var(--radius-lg);
       padding: 36px 40px;
       margin: 22px 0 24px;
-      box-shadow: 0 1px 3px rgba(12,24,41,0.04);
+      box-shadow: 0 1px 3px rgba(18,28,43,0.04);
     }
     .howto-head { margin-bottom: 28px; max-width: 760px; }
     .howto-eyebrow {
@@ -2056,7 +2057,7 @@
     }
     .howto-step-icon svg { width: 26px; height: 26px; }
     .howto-step-icon-pink { background: linear-gradient(135deg, var(--pink), var(--pink-deep)); color: #ffffff; box-shadow: 0 6px 16px rgba(184,99,117,0.22); }
-    .howto-step-icon-navy { background: linear-gradient(135deg, var(--navy-mid), var(--navy)); color: var(--gold-light); box-shadow: 0 6px 16px rgba(12,24,41,0.22); }
+    .howto-step-icon-navy { background: linear-gradient(135deg, var(--navy-mid), var(--navy)); color: var(--gold-light); box-shadow: 0 6px 16px rgba(18,28,43,0.22); }
     .howto-step-icon-sage { background: linear-gradient(135deg, var(--sage), var(--sage-deep)); color: #ffffff; box-shadow: 0 6px 16px rgba(122,145,115,0.25); }
 
     .howto-step-q {
@@ -2076,7 +2077,7 @@
       text-decoration: none; color: inherit;
       transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
     }
-    .howto-step-card:hover { transform: translateY(-2px); border-color: var(--pink); box-shadow: 0 8px 20px rgba(12,24,41,0.07); }
+    .howto-step-card:hover { transform: translateY(-2px); border-color: var(--pink); box-shadow: 0 8px 20px rgba(18,28,43,0.07); }
     .howto-step-name {
       font-family: var(--font-serif); font-size: 18px; font-weight: 600;
       color: var(--navy); margin-bottom: 6px;
@@ -2107,7 +2108,7 @@
       text-decoration: none; color: inherit;
       transition: border-color 0.15s, background 0.15s;
     }
-    .howto-mini-card:hover { background: rgba(12,24,41,0.03); border-color: var(--navy); }
+    .howto-mini-card:hover { background: rgba(18,28,43,0.03); border-color: var(--navy); }
     .howto-mini-name {
       display: block;
       font-family: var(--font-serif); font-size: 13.5px; font-weight: 600;
@@ -2210,9 +2211,9 @@
     .howto-mc-health .howto-mini-name { color: var(--pink-deep); }
 
     /* Financial — amber */
-    .howto-mc-financial { background: linear-gradient(180deg, rgba(201,168,76,0.09) 0%, #ffffff 100%); border-color: rgba(201,168,76,0.26); }
+    .howto-mc-financial { background: linear-gradient(180deg, rgba(201,120,90,0.09) 0%, #ffffff 100%); border-color: rgba(201,120,90,0.26); }
     .howto-mc-financial::before { background: var(--gold-deep); }
-    .howto-mc-financial:hover { background: linear-gradient(180deg, rgba(201,168,76,0.18) 0%, rgba(201,168,76,0.05) 100%); border-color: var(--gold-deep); box-shadow: 0 6px 18px rgba(165,132,48,0.18); }
+    .howto-mc-financial:hover { background: linear-gradient(180deg, rgba(201,120,90,0.18) 0%, rgba(201,120,90,0.05) 100%); border-color: var(--gold-deep); box-shadow: 0 6px 18px rgba(165,132,48,0.18); }
     .howto-mc-financial .howto-mini-name { color: var(--gold-deep); }
 
     /* ESG — sage green */
@@ -2235,21 +2236,21 @@
   #gate {
     position: fixed; inset: 0;
     background:
-      radial-gradient(circle at 2px 2px, rgba(12,24,41,0.085) 1px, transparent 0),
+      radial-gradient(circle at 2px 2px, rgba(18,28,43,0.085) 1px, transparent 0),
       linear-gradient(180deg, #faf8f3 0%, #f2efe7 100%);
     background-size: 14px 14px, 100% 100%;
     display: flex; align-items: center; justify-content: center;
     padding: 24px;
     z-index: 9999;
-    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-    color: #0c1829;
+    font-family: 'Inter', system-ui, sans-serif;
+    color: #121C2B;
   }
   #gate .gate-frame {
     display: flex; flex-direction: column; align-items: center;
     width: 100%; max-width: 420px;
   }
   #gate .gate-eyebrow {
-    font-size: 10.5px; color: #c9a84c; font-weight: 800;
+    font-size: 10.5px; color: #C9785A; font-weight: 800;
     letter-spacing: 0.22em; text-transform: uppercase;
     margin-bottom: 16px;
     display: flex; align-items: center; gap: 12px;
@@ -2257,7 +2258,7 @@
   #gate .gate-eyebrow::before,
   #gate .gate-eyebrow::after {
     content: ''; display: block; width: 28px; height: 1px;
-    background: rgba(201,168,76,0.45);
+    background: rgba(201,120,90,0.45);
   }
   #gate .gate-card {
     position: relative;
@@ -2265,25 +2266,25 @@
     padding: 40px 40px 32px;
     border-radius: 16px;
     width: 100%;
-    box-shadow: 0 18px 50px rgba(12,24,41,0.10), 0 2px 6px rgba(12,24,41,0.04);
-    border: 1px solid rgba(12,24,41,0.06);
+    box-shadow: 0 18px 50px rgba(18,28,43,0.10), 0 2px 6px rgba(18,28,43,0.04);
+    border: 1px solid rgba(18,28,43,0.06);
   }
   #gate .gate-card::before {
     content: ''; position: absolute; top: 0; left: 28px; right: 28px; height: 3px;
-    background: linear-gradient(90deg, transparent 0%, #c9a84c 50%, transparent 100%);
+    background: linear-gradient(90deg, transparent 0%, #C9785A 50%, transparent 100%);
     border-radius: 0 0 3px 3px;
   }
   #gate .gate-title {
-    font-family: 'Fraunces', Georgia, serif;
+    font-family: 'Poppins', 'Inter', sans-serif;
     font-size: 28px; line-height: 1.15; font-weight: 600;
-    color: #0c1829; letter-spacing: -0.025em;
+    color: #121C2B; letter-spacing: -0.025em;
     margin: 0 0 4px;
     font-variation-settings: 'opsz' 36, 'SOFT' 30, 'WONK' 0;
   }
   #gate .gate-subtitle {
-    font-family: 'Fraunces', Georgia, serif;
+    font-family: 'Poppins', 'Inter', sans-serif;
     font-size: 17px; line-height: 1.3; font-weight: 500;
-    color: #a58430; letter-spacing: -0.015em;
+    color: #B0603F; letter-spacing: -0.015em;
     font-style: italic;
     margin: 0 0 12px;
     font-variation-settings: 'opsz' 24, 'SOFT' 25, 'WONK' 0;
@@ -2293,7 +2294,7 @@
     margin: 0 0 24px;
   }
   #gate .gate-divider {
-    height: 1px; background: rgba(12,24,41,0.10);
+    height: 1px; background: rgba(18,28,43,0.10);
     margin: 0 0 22px;
   }
   #gate label {
@@ -2305,9 +2306,9 @@
   #gate input {
     width: 100%; box-sizing: border-box;
     padding: 12px 14px; border-radius: 10px;
-    border: 1px solid rgba(12,24,41,0.14);
+    border: 1px solid rgba(18,28,43,0.14);
     background: #ffffff;
-    font-size: 14px; color: #0c1829;
+    font-size: 14px; color: #121C2B;
     margin-bottom: 16px;
     font-family: inherit;
     transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
@@ -2315,14 +2316,14 @@
   #gate input::placeholder { color: #9aa3b3; }
   #gate input:focus {
     outline: none;
-    border-color: #c9a84c;
-    box-shadow: 0 0 0 3px rgba(201,168,76,0.18);
+    border-color: #C9785A;
+    box-shadow: 0 0 0 3px rgba(201,120,90,0.18);
     background: #fffdf8;
   }
   #gate button {
     width: 100%;
     padding: 13px 16px; border-radius: 10px; border: none;
-    background: #0c1829; color: #faf8f3;
+    background: #121C2B; color: #faf8f3;
     font-weight: 600; font-size: 14px;
     cursor: pointer; font-family: inherit;
     letter-spacing: 0.02em;
@@ -2331,7 +2332,7 @@
     transition: background 0.15s ease, transform 0.04s ease;
   }
   #gate button svg { width: 16px; height: 16px; }
-  #gate button:hover { background: #152238; }
+  #gate button:hover { background: #1f2c40; }
   #gate button:active { transform: translateY(1px); }
   #gate button:disabled { opacity: 0.6; cursor: wait; }
   #gate .gate-err {
@@ -2344,7 +2345,7 @@
     letter-spacing: 0.14em; text-transform: uppercase;
     text-align: center;
   }
-  #gate .gate-foot span { color: #c9a84c; }
+  #gate .gate-foot span { color: #C9785A; }
   body.locked { overflow: hidden; }
 </style>
 
@@ -2352,6 +2353,11 @@
 <script>
   (function () {
     var KEY = "demo-client-dashboard:temp-auth";
+    // Home = platform root, base-path aware (works at /benefits/ and /<repo>/benefits/).
+    function homePath() {
+      var p = window.location.pathname.replace(/\/(pay|benefits)(\/.*)?$/, "");
+      return (p || "") + "/";
+    }
     function isAuthed() {
       try {
         var raw = localStorage.getItem(KEY);
@@ -2365,7 +2371,7 @@
       } catch (e) {}
       return false;
     }
-    if (!isAuthed()) { window.location.replace("/"); return; }
+    if (!isAuthed()) { window.location.replace(homePath()); return; }
     if (window.location.pathname.match(/\/index\.html$/)) {
       var clean = window.location.pathname.replace(/\/index\.html$/, "/");
       window.history.replaceState(null, "", clean + window.location.search + window.location.hash);
@@ -2373,28 +2379,204 @@
   })();
 </script>
 
-<!-- TwentySix shell — chrome -->
-<link rel="stylesheet" href="/shell/shell.css" />
-<style>body { padding-top: 56px !important; }</style>
+<!-- TwentySix shell — chrome (relative so it survives any mount sub-path) -->
+<link rel="stylesheet" href="../shell/shell.css" />
+<link rel="stylesheet" href="../shell/tour.css" />
+<style>body { padding-top: 60px !important; }
+
+/* ═══ Benefits dashboard — design language matched to the Pay app ═══ */
+:root {
+  --bx-good: #2F7D5B; --bx-good-bg: rgba(47,125,91,0.10); --bx-good-bd: rgba(47,125,91,0.28);
+  --bx-watch: #B7791F; --bx-watch-bg: rgba(183,121,31,0.10); --bx-watch-bd: rgba(183,121,31,0.30);
+  --bx-action: #C0392B; --bx-action-bg: rgba(192,57,43,0.10); --bx-action-bd: rgba(192,57,43,0.28);
+  --bx-clay: #C9785A; --bx-ink: #121C2B; --bx-line: #E7E0D4; --bx-slate: #7285A5;
+}
+.bx-wrap { display: flex; flex-direction: column; gap: 30px; }
+.bx-num { font-variant-numeric: tabular-nums; }
+.bx-h2 { font-family: var(--font-display); font-size: 15px; font-weight: 600; color: #0f1a29; margin: 0 0 2px; }
+.bx-sub { font-size: 12.5px; color: #64748b; margin: 0 0 12px; }
+
+/* hero */
+.bx-badge { font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bx-clay); }
+.bx-chip { display: inline-flex; align-items: center; gap: 6px; border-radius: 999px; padding: 4px 10px; font-size: 11px; font-weight: 600; margin: 10px 0 8px; }
+.bx-verdict { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.02em; font-size: 1.6rem; line-height: 1.2; color: var(--bx-ink); max-width: 46rem; margin: 0; }
+.bx-meta { display: flex; flex-wrap: wrap; gap: 6px 10px; font-size: 12px; color: #64748b; margin-top: 10px; }
+.bx-meta .dot { color: #cbd5e1; }
+
+/* search */
+.bx-search-wrap { position: relative; max-width: 26rem; margin-top: 18px; }
+.bx-search { width: 100%; height: 44px; border: 1px solid var(--bx-line); border-radius: 12px; background: #fff; padding: 0 38px; font-size: 14px; outline: none; }
+.bx-search:focus { border-color: var(--bx-clay); box-shadow: 0 0 0 3px rgba(201,120,90,0.15); }
+.bx-search-ico { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: #94a3b8; }
+.bx-results { position: absolute; z-index: 30; margin-top: 6px; width: 100%; background: #fff; border: 1px solid var(--bx-line); border-radius: 12px; overflow: hidden; box-shadow: 0 12px 32px -12px rgba(18,28,43,0.22); }
+.bx-result { display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; padding: 10px 14px; text-align: left; background: none; border: 0; cursor: pointer; font-size: 13.5px; color: #1e293b; }
+.bx-result:hover { background: rgba(201,120,90,0.08); }
+
+/* cards / grids */
+.bx-card { background: #fff; border: 1px solid var(--bx-line); border-radius: 14px; padding: 18px; transition: transform .15s, box-shadow .15s, border-color .15s; }
+.bx-card--link { cursor: pointer; }
+.bx-card--link:hover { transform: translateY(-2px); border-color: #dcbfae; box-shadow: 0 12px 28px -14px rgba(18,28,43,0.20); }
+.bx-grid-4 { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; }
+.bx-grid-3 { display: grid; grid-template-columns: 1fr; gap: 12px; }
+@media (min-width: 900px) { .bx-grid-4 { grid-template-columns: repeat(4,1fr); } .bx-grid-3 { grid-template-columns: repeat(3,1fr); } }
+
+/* KPI tile */
+.bx-kpi-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.bx-kpi-lbl { font-size: 10.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #64748b; line-height: 1.2; }
+.bx-kpi-ico { display: inline-flex; width: 24px; height: 24px; align-items: center; justify-content: center; border-radius: 7px; }
+.bx-kpi-val { font-family: var(--font-display); font-weight: 700; font-size: 22px; line-height: 1.1; color: var(--bx-ink); white-space: nowrap; }
+.bx-kpi-delta { margin-top: 6px; font-size: 11.5px; font-weight: 500; }
+
+/* quick-start */
+.bx-quick { display: flex; flex-direction: column; height: 100%; }
+.bx-quick-ico { display: inline-flex; width: 40px; height: 40px; align-items: center; justify-content: center; border-radius: 12px; background: rgba(201,120,90,0.10); color: var(--bx-clay); margin-bottom: 12px; }
+.bx-quick-t { font-family: var(--font-display); font-size: 15px; font-weight: 700; color: #0f1a29; line-height: 1.3; }
+.bx-quick-d { font-size: 12.5px; color: #64748b; margin-top: 4px; flex: 1; line-height: 1.5; }
+.bx-quick-go { margin-top: 12px; font-size: 12.5px; font-weight: 600; color: var(--bx-clay); display: inline-flex; align-items: center; gap: 4px; }
+
+/* scorecard + position bar */
+.bx-score-t { display: flex; align-items: center; gap: 8px; }
+.bx-score-ico { display: inline-flex; width: 30px; height: 30px; align-items: center; justify-content: center; border-radius: 9px; background: rgba(114,133,165,0.12); color: var(--bx-slate); }
+.bx-score-name { font-family: var(--font-display); font-size: 13.5px; font-weight: 600; color: #0f1a29; }
+.bx-score-verdict { font-size: 12px; color: #64748b; margin: 8px 0 12px; line-height: 1.45; }
+.bx-posbar { position: relative; height: 30px; }
+.bx-posbar-track { position: absolute; left: 0; right: 0; top: 13px; height: 6px; border-radius: 999px; background: #EAE3D6; }
+.bx-posbar-band { position: absolute; top: 12px; height: 8px; border-radius: 999px; background: linear-gradient(90deg,#E8D8CE 0%, #DDA288 30%, #C9785A 50%, #94A2BC 74%, #7285A5 100%); box-shadow: inset 0 0 0 1px rgba(18,28,43,0.05); }
+.bx-posbar-tick { position: absolute; top: 9px; width: 2px; height: 14px; background: rgba(255,255,255,0.9); border-radius: 1px; transform: translateX(-50%); }
+
+/* colourful quartile value cards (matched to the Your Benefits page) */
+.bx-qcards { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-top: 10px; }
+.bx-qcell { background: #FBF9F4; border: 1px solid var(--bx-line); border-radius: 9px; padding: 9px 11px; position: relative; overflow: hidden; }
+.bx-qcell::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; }
+.bx-qcell-lq::before  { background:#B8B7B3; }
+.bx-qcell-med::before { background:#C9785A; }
+.bx-qcell-uq::before  { background:#4B5870; }
+.bx-qcell-med { box-shadow: 0 0 0 1px rgba(201,120,90,0.28); }
+.bx-qlbl { font-size: 8.5px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: #94a3b8; margin-bottom: 3px; }
+.bx-qcell-med .bx-qlbl { color:#B0603F; } .bx-qcell-uq .bx-qlbl { color:#4B5870; }
+.bx-qval { font-family: var(--font-display); font-size: 12px; font-weight: 600; color: #1e293b; line-height: 1.35; }
+
+/* scorecard: status-coloured top accent */
+.bx-card--accent { position: relative; overflow: hidden; }
+.bx-card--accent::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; }
+.bx-acc-good::before { background: var(--bx-good); } .bx-acc-watch::before { background: var(--bx-watch); } .bx-acc-action::before { background: var(--bx-action); } .bx-acc-slate::before { background: var(--bx-slate); }
+
+/* hero performance distribution bar */
+.bx-dist-lbl { font-size: 10.5px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #64748b; margin-bottom: 10px; }
+.bx-dist { display: flex; gap: 4px; }
+.bx-dist-seg { display: flex; align-items: center; justify-content: center; height: 40px; border-radius: 6px; min-width: 40px; font-size: 13px; font-weight: 700; color: #fff; }
+.bx-dist-key { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 12px; font-size: 11.5px; color: #64748b; }
+.bx-dist-key span { display: inline-flex; align-items: center; gap: 6px; }
+.bx-dist-key b { color: #334155; font-weight: 600; }
+.bx-dist-dot { width: 10px; height: 10px; border-radius: 3px; }
+
+/* hero key-figure stat cells */
+.bx-hero-figs { display: grid; grid-template-columns: repeat(2,1fr); gap: 18px 24px; }
+@media (min-width: 900px) { .bx-hero-figs { grid-template-columns: repeat(4,1fr); } }
+.bx-fig { text-align: left; background: none; border: 0; cursor: pointer; padding: 0; }
+.bx-fig-lbl { display: flex; align-items: center; gap: 6px; font-size: 10.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #64748b; }
+.bx-fig-dot { width: 6px; height: 6px; border-radius: 50%; }
+.bx-fig-val { font-family: var(--font-display); font-weight: 700; font-size: 24px; line-height: 1.1; color: #121C2B; margin-top: 6px; }
+.bx-fig:hover .bx-fig-val { color: var(--bx-clay); }
+.bx-fig-delta { font-size: 11.5px; font-weight: 500; margin-top: 4px; }
+.bx-subline { font-size: 13.5px; line-height: 1.55; color: #64748b; margin-top: 6px; max-width: 42rem; }
+.bx-posbar-med { position: absolute; top: 5px; width: 2px; height: 20px; background: var(--bx-ink); border-radius: 1px; transform: translateX(-50%); }
+.bx-posbar-mk { position: absolute; top: 6px; width: 15px; height: 15px; border-radius: 999px; transform: translateX(-50%); background: var(--bx-clay); border: 2.5px solid #fff; box-shadow: 0 1px 4px rgba(18,28,43,0.28); }
+.bx-posbar-mk--ring { background: #fff; border: 3px solid var(--bx-clay); }
+.bx-posbar-scale { position: relative; height: 14px; margin-top: 2px; font-size: 10px; color: #94a3b8; }
+.bx-posbar-scale span { position: absolute; transform: translateX(-50%); }
+
+/* attention feed */
+.bx-attn { display: flex; align-items: center; gap: 12px; width: 100%; text-align: left; background: #fff; border: 1px solid var(--bx-line); border-radius: 12px; padding: 13px 14px; cursor: pointer; transition: transform .15s, box-shadow .15s; }
+.bx-attn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px -14px rgba(18,28,43,0.20); }
+.bx-attn-ico { flex: none; display: inline-flex; width: 32px; height: 32px; align-items: center; justify-content: center; border-radius: 9px; }
+.bx-attn-t { font-size: 13.5px; font-weight: 600; color: #0f1a29; line-height: 1.25; }
+.bx-attn-d { font-size: 12px; color: #64748b; margin-top: 2px; }
+
+/* navigate-to */
+.bx-navto { display: flex; align-items: flex-start; gap: 14px; height: 100%; }
+.bx-navto-ico { flex: none; display: inline-flex; width: 36px; height: 36px; align-items: center; justify-content: center; border-radius: 10px; background: rgba(201,120,90,0.10); color: var(--bx-clay); }
+.bx-navto-t { font-family: var(--font-display); font-size: 13.5px; font-weight: 600; color: #0f1a29; }
+.bx-navto-d { font-size: 12px; color: #64748b; margin-top: 3px; line-height: 1.5; }
+
+/* status helpers */
+.bx-s-good { color: var(--bx-good); } .bx-bg-good { background: var(--bx-good-bg); color: var(--bx-good); }
+.bx-s-watch { color: var(--bx-watch); } .bx-bg-watch { background: var(--bx-watch-bg); color: var(--bx-watch); }
+.bx-s-action { color: var(--bx-action); } .bx-bg-action { background: var(--bx-action-bg); color: var(--bx-action); }
+
+/* action plan */
+.bx-plan-btn { height: 34px; padding: 0 12px; border: 1px solid var(--bx-line); background: #fff; border-radius: 9px; font-size: 12.5px; font-weight: 600; color: #334155; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+.bx-plan-btn:hover { border-color: #dcbfae; color: var(--bx-clay); }
+.bx-plan-row { display: flex; gap: 14px; align-items: flex-start; background: #fff; border: 1px solid var(--bx-line); border-radius: 12px; padding: 16px; }
+.bx-plan-rank { flex: none; width: 26px; height: 26px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 12px; }
+.bx-plan-b { font-family: var(--font-display); font-size: 14px; font-weight: 600; color: #0f1a29; }
+.bx-plan-meta { font-size: 11.5px; color: #94a3b8; margin-top: 1px; }
+.bx-plan-act { font-size: 12.5px; color: #475569; margin-top: 8px; line-height: 1.5; }
+.bx-plan-summary-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; }
+@media (min-width: 900px) { .bx-plan-summary-grid { grid-template-columns: repeat(4,1fr); } }
+.bx-ptag { font-size: 9.5px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 8px; border-radius: 6px; white-space: nowrap; }
+.bx-eff { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--bx-line); color: #64748b; background: #FBF9F4; }
+.bx-plan-target { font-size: 12px; color: #475569; margin-top: 10px; }
+.bx-plan-target b { color: #1e293b; font-weight: 600; }
+.bx-plan-rec { font-size: 12.5px; color: #334155; margin-top: 8px; line-height: 1.5; }
+.bx-plan-rec b { color: var(--bx-clay); font-weight: 700; }
+.bx-strength { padding: 14px; }
+.bx-strength .bx-mt-h { margin-bottom: 4px; }
+
+/* ═══ Print: isolate the benefits report (Download report → Save as PDF) ═══ */
+@media print {
+  .ts-shell, .sidebar, .topbar, .scrim, .mobile-toggle, .no-print { display: none !important; }
+  body { padding-top: 0 !important; background: #fff !important; }
+  .app-main, .app-shell, main { margin: 0 !important; padding: 0 !important; }
+  .page { display: none !important; }
+  .page.active { display: block !important; }
+  body * { visibility: hidden !important; }
+  .benefits-report-print, .benefits-report-print * { visibility: visible !important; }
+  .benefits-report-print { position: absolute !important; left: 0; top: 0; width: 100% !important; }
+  .print-only { display: block !important; }
+  @page { margin: 15mm; size: A4; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+}
+.print-only { display: none; }
+
+/* market-page: your position + sector compare */
+.bx-market-top { display: grid; grid-template-columns: 1fr; gap: 14px; margin: 2px 0 24px; }
+@media (min-width: 1000px) { .bx-market-top { grid-template-columns: 1fr 1fr; } }
+.bx-mt-h { font-family: var(--font-display); font-size: 13.5px; font-weight: 600; color: #0f1a29; margin: 0 0 2px; display:flex; align-items:center; gap:7px; }
+.bx-mt-sub { font-size: 11.5px; color: #94a3b8; margin: 0 0 14px; }
+.bx-yp { padding: 9px 0; border-top: 1px solid var(--bx-line); }
+.bx-yp:first-of-type { border-top: 0; padding-top: 2px; }
+.bx-yp-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 4px; }
+.bx-yp-name { font-size: 12.5px; font-weight: 600; color: #334155; }
+.bx-seg { display: inline-flex; gap: 3px; background: #F1EDE6; border: 1px solid var(--bx-line); border-radius: 10px; padding: 3px; margin-bottom: 12px; flex-wrap: wrap; }
+.bx-seg button { border: 0; background: none; padding: 6px 11px; border-radius: 7px; font-size: 12px; font-weight: 600; color: #64748b; cursor: pointer; }
+.bx-seg button.on { background: #fff; color: var(--bx-clay); box-shadow: 0 1px 2px rgba(18,28,43,.08); }
+.bx-sec-row { display: grid; grid-template-columns: 150px 1fr; gap: 12px; padding: 9px 0; border-top: 1px solid var(--bx-line); font-size: 12.5px; }
+.bx-sec-row:first-of-type { border-top: 0; }
+.bx-sec-name { font-weight: 600; color: #334155; }
+.bx-sec-val { color: #475569; line-height: 1.45; }
+@media (max-width: 560px) { .bx-sec-row { grid-template-columns: 1fr; gap: 2px; } }
+</style>
 </head>
 <body >
 <!-- TwentySix shell — fixed top bar -->
 <header class="ts-shell" role="banner">
   <div class="ts-shell__inner">
-    <a class="ts-shell__brand" href="/" aria-label="Back to Home">
-      <span class="ts-shell__wordmark">
-        <span class="ts-shell__wordmark-eyebrow">Zigbert</span>
-        <span class="ts-shell__wordmark-name">Pay &amp; Benefits Intelligence</span>
-      </span>
+    <a class="ts-shell__brand" href="../" aria-label="Zigbert — Home">
+      <img class="ts-shell__logo" src="../shell/zigbert-logo.png" alt="Zigbert" />
+      <span class="ts-shell__divider"></span>
+      <span class="ts-shell__brand-sub">Pay &amp; Benefits Intelligence</span>
     </a>
 
     <nav class="ts-shell__tabs" aria-label="Sections">
-      <a class="ts-shell__tab" data-ts-shell-tab="home" href="/">Home</a>
-      <a class="ts-shell__tab" data-ts-shell-tab="pay" href="/pay/">Pay</a>
-      <a class="ts-shell__tab" data-ts-shell-tab="benefits" href="/benefits/">Benefits</a>
+      <a class="ts-shell__tab" data-ts-shell-tab="home" href="../">Home</a>
+      <a class="ts-shell__tab" data-ts-shell-tab="pay" href="../pay/">Pay</a>
+      <a class="ts-shell__tab" data-ts-shell-tab="benefits" href="./">Benefits</a>
+      <a class="ts-shell__tab" data-ts-shell-tab="organisation" href="../organisation">Organisation</a>
     </nav>
 
     <div class="ts-shell__user">
+      <button type="button" class="ts-shell__tour" data-zigbert-tour-start aria-label="Take a tour of the dashboard">? Take a tour</button>
       <button type="button" class="ts-shell__user-button" data-ts-shell-userbtn aria-haspopup="menu" aria-expanded="false">
         <span class="ts-shell__avatar" data-ts-shell-avatar>··</span>
         <span class="ts-shell__user-name" data-ts-shell-username>…</span>
@@ -2414,10 +2596,6 @@
             <div class="ts-shell__menu-info-row">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
               <span data-ts-shell-menu-email>…</span>
-            </div>
-            <div class="ts-shell__menu-info-row">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-              <span>Last sign-in · today</span>
             </div>
           </div>
           <button type="button" class="ts-shell__signout" data-ts-shell-signout>
@@ -2471,6 +2649,10 @@
         <span class="navlink-icon"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg></span>
         <span class="navlink-label">Learning & Development</span>
       </button>
+<button class="navlink" data-page="action-plan">
+        <span class="navlink-icon"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg></span>
+        <span class="navlink-label">Action Plan</span>
+      </button>
 </nav>
     <div class="sidebar-foot">
       May 2026 · Internal report
@@ -2504,95 +2686,79 @@
 
       <!-- ── PAGE: Overview ───────────────────────────────────── -->
       <section class="page active" data-page="overview">
-        <div class="overview-hero"><section class="hero">
-  <div class="hero-content">
-    <div class="hero-eyebrow">
-      <svg width="8" height="8" viewBox="0 0 8 8" fill="currentColor"><rect width="8" height="8" rx="1.5"/></svg>
-      Prepared by TwentySix
-    </div>
-    <h2>Brighton Technologies<br><em>Benefits Benchmark Report</em></h2>
-    <p class="hero-sub">A comprehensive analysis of Brighton Technologies' benefits provision, benchmarked primarily against the <strong>Technology companies</strong>, with reference to the Small Private Sector (UK) and Large Private Sector for broader context.</p>
-    <div class="hero-stats">
-      <div class="hs"><span class="hs-val">3</span><span class="hs-lbl">Markets Analysed</span></div>
-      <div class="hs"><span class="hs-val">6</span><span class="hs-lbl">Benefit Categories</span></div>
-      <div class="hs"><span class="hs-val">30+</span><span class="hs-lbl">Benefits Reviewed</span></div>
-      <div class="hs"><span class="hs-val">May 2026</span><span class="hs-lbl">Report Date</span></div>
-    </div>
-  </div>
-        </section></div>
-        <section class="intro-section">
-    <div class="intro-card">
-      <p>The following pages set out the detail of benefits practice throughout the Technology company Sector.</p>
-      <p>The standard quartile lens can mislead: not every organisation offers every benefit to the level described. Being &lsquo;below&rsquo; in one area doesn&apos;t necessarily mean weak provision. <strong>The most important factor is alignment with the needs of the current and future employee base.</strong></p>
-    </div>
-  </section>
-        
-        <section class="howto-section">
-          <div class="howto-head">
-            <div class="howto-eyebrow">How to use this report</div>
-            <p class="howto-lead">This report combines Brighton Technologies&apos;s own benefits provision with detailed Technology companies market data and side-by-side sector context. Each section below answers a different question; together they tell the full story.</p>
+        <div class="bx-wrap benefits-report-print">
+          <!-- print-only letterhead -->
+          <div class="print-only" style="margin-bottom:12px">
+            <p style="font-family:var(--font-display);font-weight:700;font-size:18px;color:#121C2B;margin:0">Zigbert · Benefits</p>
+            <p style="font-size:12px;color:#4B5563;margin:2px 0 0">Brighton Technologies · May 2026 · benchmarked vs Technology companies</p>
           </div>
 
-          <div class="howto-flow">
-            <div class="howto-step">
-              <div class="howto-step-num">1</div>
-              <div class="howto-step-icon howto-step-icon-pink">
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.32.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.562.562 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.32-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"/></svg>
+          <!-- Hero verdict -->
+          <div>
+            <div class="bx-card" style="padding:22px 24px">
+              <div style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:12px">
+                <div style="min-width:0">
+                  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px">
+                    <div class="bx-badge">Overview · Brighton Technologies</div>
+                    <!-- Sample-data badge — remove for a live client deployment -->
+                    <span title="These figures are illustrative sample data, not your organisation's real benchmarks." style="display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:600;background:rgba(114,133,165,0.13);color:#7285A5">Illustrative sample data</span>
+                  </div>
+                  <h1 id="bx-verdict" class="bx-verdict" style="margin-top:6px;font-size:1.5rem">Your benefits position</h1>
+                  <p id="bx-subline" class="bx-subline"></p>
+                </div>
+                <div id="bx-chip" class="bx-chip" style="margin:0;flex-shrink:0"></div>
               </div>
-              <div class="howto-step-body">
-                <div class="howto-step-q">&ldquo;What does Brighton Technologies actually offer today?&rdquo;</div>
-                <a class="howto-step-card howto-sc-pink" href="#provision" data-goto="provision">
-                  <div class="howto-step-name">Your Benefits</div>
-                  <div class="howto-step-desc">All 14 benefits Brighton Technologies currently provides, each shown side-by-side with where it sits on the Technology companies market quartile range. Filter by market position; download any benefit as a PNG.</div>
-                  <span class="howto-step-link">Open Your Benefits &rarr;</span>
-                </a>
+              <div id="bx-kpis" class="bx-hero-figs" style="margin-top:20px;padding-top:20px;border-top:1px solid #EFE9DD"></div>
+              <div class="bx-meta" style="margin-top:16px;font-size:11.5px;color:#94a3b8">
+                <span>3 markets analysed</span><span class="dot">·</span>
+                <span>14 benefits reviewed</span><span class="dot">·</span>
+                <span>May 2026</span>
               </div>
             </div>
-
-            <div class="howto-step">
-              <div class="howto-step-num">2</div>
-              <div class="howto-step-icon howto-step-icon-navy">
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/></svg>
-              </div>
-              <div class="howto-step-body">
-                <div class="howto-step-q">&ldquo;What does the Technology companies market look like, benefit by benefit?&rdquo;</div>
-                <div class="howto-step-grid">
-                  <a class="howto-mini-card howto-mc-core" href="#core" data-goto="core"><span class="howto-mini-name">Core Benefits</span><span class="howto-mini-desc">Bonus &middot; Leave &middot; Pension &middot; Sick pay &middot; Parental pay &middot; Share schemes &middot; Car allowance &middot; Out-of-hours</span></a>
-                  <a class="howto-mini-card howto-mc-wt" href="#working-time" data-goto="working-time"><span class="howto-mini-name">Working Time</span><span class="howto-mini-desc">Flexible hours &middot; Hybrid/remote &middot; Sabbaticals &middot; Compassionate leave</span></a>
-                  <a class="howto-mini-card howto-mc-health" href="#health" data-goto="health"><span class="howto-mini-name">Health &amp; Wellbeing</span><span class="howto-mini-desc">EAP &middot; PMI &middot; Cash plans &middot; PHI &middot; Digital GP &middot; Gym &middot; Mental health &middot; Eye care &middot; Flu jabs</span></a>
-                  <a class="howto-mini-card howto-mc-financial" href="#financial" data-goto="financial"><span class="howto-mini-name">Financial Support</span><span class="howto-mini-desc">Financial education &middot; Earned-wage access &middot; Retail discounts &middot; Homeworker allowance</span></a>
-                  <a class="howto-mini-card howto-mc-esg" href="#esg" data-goto="esg"><span class="howto-mini-name">ESG &amp; DEI</span><span class="howto-mini-desc">Ethical pension &middot; Pay-gap commitments &middot; Volunteering days</span></a>
-                  <a class="howto-mini-card howto-mc-learning" href="#learning" data-goto="learning"><span class="howto-mini-name">Learning &amp; Development</span><span class="howto-mini-desc">Personal development budget &middot; Learning platforms &middot; Professional subscriptions &middot; Career development</span></a>
-                </div>
-                <div class="howto-step-tips">
-                  <strong>Each comparison page works the same way:</strong> a short overview at the top, then the Technology companies market table showing the Lower Quartile, Median and Upper Quartile of typical practice. <strong>Click any row</strong> to expand the full quartile narrative.
-                </div>
-              </div>
-            </div>
-
-
-          <div class="howto-footer">
-            <div class="howto-footer-eyebrow">A few things worth knowing</div>
-            <div class="howto-footer-grid">
-              <div class="howto-tip">
-                <div class="howto-tip-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></div>
-                <div><strong>Click any benefit row</strong> on the comparison pages to expand the full quartile narrative as bullet points.</div>
-              </div>
-              <div class="howto-tip">
-                <div class="howto-tip-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16"/></svg></div>
-                <div><strong>Download as PNG</strong> from the Trends section and any Your Benefits card &mdash; ready to drop into a deck.</div>
-              </div>
-              <div class="howto-tip">
-                <div class="howto-tip-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg></div>
-                <div><strong>Export tables as Excel or PDF</strong> from the toolbar above any comparison table.</div>
-              </div>
-              <div class="howto-tip">
-                <div class="howto-tip-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6h16.5M3.75 12h16.5M3.75 18h16.5"/></svg></div>
-                <div><strong>Filter on Your Benefits</strong> using the position-summary buttons (Above market, Mixed, Below, etc.) to focus on a specific group.</div>
-              </div>
+            <div class="bx-search-wrap no-print">
+              <span class="bx-search-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></span>
+              <input id="bx-search" class="bx-search" type="text" placeholder="Search a benefit — e.g. pension, sick pay" autocomplete="off" />
+              <div id="bx-results" hidden></div>
             </div>
           </div>
-        </section></div>
+
+          <!-- Quick starts -->
+          <div class="no-print">
+            <h2 class="bx-h2">What do you want to do?</h2>
+            <p class="bx-sub">Pick a task to jump in.</p>
+            <div id="bx-quick" class="bx-grid-4"></div>
+          </div>
+
+          <!-- Category scorecard -->
+          <div>
+            <h2 class="bx-h2">Category scorecard</h2>
+            <p class="bx-sub">Where you sit across the six benefit categories — click to explore.</p>
+            <div id="bx-scorecard" class="bx-grid-3"></div>
+          </div>
+
+          <!-- Attention -->
+          <div>
+            <h2 class="bx-h2">What needs attention</h2>
+            <p class="bx-sub">Ranked from your position data — most pressing first.</p>
+            <div id="bx-attention" style="display:flex;flex-direction:column;gap:8px"></div>
+          </div>
+
+          <!-- Navigate to -->
+          <div class="no-print">
+            <h2 class="bx-h2">Navigate to</h2>
+            <p class="bx-sub">Jump to any part of your benefits report.</p>
+            <div id="bx-navto" class="bx-grid-3"></div>
+          </div>
+
+          <!-- How to read (quiet) -->
+          <details class="bx-card no-print">
+            <summary style="cursor:pointer;list-style:none;font-size:13.5px;font-weight:600;color:#334155">How to read this report</summary>
+            <div style="font-size:13px;color:#64748b;line-height:1.6;margin-top:10px">
+              <p style="margin:0 0 6px">Each benefit is placed on the market range — Lower Quartile (25th percentile), Median (50th) and Upper Quartile (75th). A marker at or above the median means you're competitive; below the lower quartile is usually a gap to review.</p>
+              <p style="margin:0">On any comparison page, click a row to expand the full quartile detail, switch the market you compare against, and export tables as Excel/PDF or a benefit as a PNG.</p>
+            </div>
+          </details>
+        </div>
         
 </section>
 
@@ -4900,6 +5066,55 @@
   </section>
       </section>
 
+      <!-- ── PAGE: Action Plan ────────────────────────────────── -->
+      <section class="page" data-page="action-plan">
+        <div class="bx-wrap benefits-report-print">
+          <div class="print-only" style="margin-bottom:12px">
+            <p style="font-family:var(--font-display);font-weight:700;font-size:18px;color:#121C2B;margin:0">Zigbert · Benefits Action Plan</p>
+            <p style="font-size:12px;color:#4B5563;margin:2px 0 0">Brighton Technologies · May 2026</p>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:12px">
+            <div>
+              <div class="bx-badge">Action Plan · Brighton Technologies</div>
+              <h1 class="bx-verdict" style="font-size:1.5rem">Where to focus your benefits investment</h1>
+              <p class="bx-sub" style="margin-top:6px">A prioritised plan built from your benchmarking — what to improve, in what order, with the market target for each.</p>
+            </div>
+            <div class="no-print" style="display:flex;gap:8px">
+              <button id="bx-plan-print" class="bx-plan-btn">Download report</button>
+              <button id="bx-plan-csv" class="bx-plan-btn">CSV</button>
+            </div>
+          </div>
+
+          <!-- Ambition + focus controls -->
+          <div class="no-print" style="display:flex;flex-wrap:wrap;align-items:center;gap:16px">
+            <div>
+              <div class="bx-dist-lbl" style="margin-bottom:8px">Ambition</div>
+              <div class="bx-seg" id="bx-plan-ambition">
+                <button type="button" data-amb="median" class="on">Match the market</button>
+                <button type="button" data-amb="uq">Lead the market</button>
+              </div>
+            </div>
+            <div>
+              <div class="bx-dist-lbl" style="margin-bottom:8px">Focus</div>
+              <div class="bx-seg" id="bx-plan-focus"><button type="button" data-cat="all" class="on">All categories</button></div>
+            </div>
+          </div>
+          <p id="bx-plan-ambition-note" class="bx-sub" style="margin-top:-8px"></p>
+
+          <div id="bx-plan-summary"></div>
+          <div>
+            <h2 class="bx-h2">Your priorities</h2>
+            <p class="bx-sub">Ranked most urgent first — where you sit, the market target, and a recommended next step.</p>
+            <div id="bx-plan" style="display:flex;flex-direction:column;gap:10px"></div>
+          </div>
+          <div id="bx-plan-strengths-wrap">
+            <h2 class="bx-h2">Strengths to protect</h2>
+            <p class="bx-sub">Already ahead of the market — maintain these and use them in recruitment &amp; retention.</p>
+            <div id="bx-plan-strengths" class="bx-grid-3"></div>
+          </div>
+        </div>
+      </section>
+
 </div>
   </main>
 </div>
@@ -5066,7 +5281,7 @@
       var url = URL.createObjectURL(blob);
       var a = document.createElement('a');
       a.href = url;
-      a.download = 'penge-churches-' + sid + '.csv';
+      a.download = 'brighton-technologies-benefits-' + sid + '.csv';
       document.body.appendChild(a); a.click(); a.remove();
       setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
     });
@@ -5126,6 +5341,8 @@
     'professional-subs':  {val: 'BCS funded for all',          desc: 'Every employee receives individual BCS, The Chartered Institute for IT membership. Strong commitment to training and development.', pos: 'upper quartile', posIdx: 85}
   };
   var HA_Q = {"annual-bonus": {"lq": "0% (no bonus scheme)", "m": "2\u20134% of salary", "uq": "5\u20138% of salary", "sp": "<strong>Rare</strong> &mdash; Yes \u2013 either profit share or performance bonus common, typically between 5\u201320% depending on role and organisation", "lp": "<strong>Profit share or bonus 5\u201320%</strong> &mdash; Yes \u2013 either profit share or performance bonus common, typically between 5\u201320% depending on role and organisation"}, "annual-leave": {"lq": "25 days", "m": "27\u201328 days", "uq": "30\u201333 days", "sp": "<strong>25\u201328 days + service</strong> &mdash; 20\u201325 days (plus bank holidays), increasing with service", "lp": "<strong>25 days; ~50% rise with service</strong> &mdash; 25 days (with around 50% increasing annual leave through service)"}, "wellbeing-days": {"lq": "0 days (no formal wellbeing days policy)", "m": "1 day per year", "uq": "2\u20133 days per year", "sp": "<strong>Mixed; uncommon as formal benefit</strong> &mdash; <span class=\"mixed-cell\">Relatively uncommon", "lp": "<strong>Relatively uncommon</strong> &mdash; <span class=\"mixed-cell\">Relatively uncommon"}, "holiday-buy-sell": {"lq": "No scheme or buy only up to 3 days", "m": "Buy up to 5 days, sell up to 3 days", "uq": "Buy up to 10 days, sell up to 5 days", "sp": "<strong>Buy more common than sell</strong> &mdash; <span class=\"mixed-cell\">Relatively uncommon", "lp": "<strong>Up to 5 days buy/sell</strong> &mdash; Ability to buy/sell up to 5 days"}, "pension-employer": {"lq": "5\u20136% employer contribution", "m": "8\u201310% employer contribution", "uq": "12\u201315%+ employer contribution", "sp": "<strong>Auto-enrolment typical</strong> &mdash; Auto-enrolment levels are typical market practice", "lp": "<strong>5\u20137% employer, match to 8%</strong> &mdash; 5\u20137% employer contribution is typical, although ability to match contributions up to a typical level of 8%"}, "sick-pay": {"lq": "4 weeks (20 days) full pay, then 4 weeks half pay in any rolling 12-month period", "m": "8 weeks full pay, then 8 weeks half pay in any rolling 12-month period", "uq": "6 months (26 weeks) full pay, then 6 months half pay, with service-linked enhancement", "sp": "<strong>10 days full + discretionary</strong> &mdash; 10 days' full, followed by discretionary element", "lp": "<strong>3 months full + 3 half + PHI</strong> &mdash; 3 months' full; 3 months' half pay (followed by Permanent Health Insurance)"}, "maternity-pay": {"lq": "SMP only (statutory minimum: 6 weeks at 90% pay, then \u00a3184.03/week for 33 weeks)", "m": "Full pay for 8\u201312 weeks, then SMP for remainder of qualifying period", "uq": "Full pay for 16\u201326 weeks, then half pay for a further 8\u201313 weeks, then SMP", "sp": "<strong>Enhanced; 12 weeks full typical</strong> &mdash; Statutory", "lp": "<strong>6 months full pay</strong> &mdash; 6 months' full pay"}, "paternity-pay": {"lq": "Statutory Paternity Pay (SPP) only \u2014 2 weeks at \u00a3187.18/week (2025/26 rate)", "m": "2 weeks full pay, followed by SPP for remainder of statutory entitlement", "uq": "4\u20136 weeks full pay, some extending to 8 weeks or offering shared parental leave matching maternity pay", "sp": "<strong>2 weeks full pay</strong> &mdash; Statutory", "lp": "<strong>2 weeks full; trend toward parity</strong> &mdash; 2 weeks' full pay is the typical benefit, but around 50% of organisations are considering extending this to match maternity benefit"}, "share-schemes": {"lq": "Not offered \u2014 share schemes are effectively absent at lower quartile", "m": "Not applicable \u2014 share schemes are not a standard benefit in this sector", "uq": "Rare/experimental \u2014 a small minority of larger or hybrid organisations explore profit-related or employee ownership models", "sp": "<strong>Rare; founder-led only</strong> &mdash; Formal equity is relatively rare and is more commonly used as a tool in founder-led progressive organisations", "lp": "<strong>SIP and SAYE are the norm</strong> &mdash; Share options and Save as You Earn share schemes are the norm"}, "car-allowance": {"lq": "\u00a33,000\u2013\u00a34,000 per annum", "m": "\u00a34,500\u2013\u00a35,500 per annum", "uq": "\u00a36,000\u2013\u00a37,500 per annum", "sp": "<strong>Job need, not status</strong> &mdash; Typically for job need rather than status", "lp": "<strong>Operational manager+ status perk</strong> &mdash; Car allowance is given both for job need and typically at operational manager level upwards as a status perk"}, "out-of-hours-callout": {"lq": "\u00a315\u2013\u00a325 per call-out + basic hourly rate", "m": "\u00a330\u2013\u00a350 per call-out + enhanced hourly rate (1.25x\u20131.5x)", "uq": "\u00a350\u2013\u00a3100+ per call-out + double time or consolidated OOH allowance of \u00a31,500\u2013\u00a33,500 p.a.", "sp": "<span class=\"na-cell\">N/A", "lp": "<span class=\"na-cell\">N/A"}, "flexible-hours": {"lq": "Core hours flexibility only (e.g. 7am\u20137pm window with fixed core 10am\u20133pm)", "m": "Formal flexitime scheme with compressed hours option; hybrid working for eligible roles", "uq": "Full agile/flexible working from day one, annualised hours, output-based arrangements, compressed 4-day week trialled", "sp": "<strong>Statutory only</strong> &mdash; Statutory only", "lp": "<strong>Variable; larger orgs offer more</strong> &mdash; More variable practice, but larger professional services organisations would typically offer part-time, job-share and compressed hours"}, "hybrid-remote": {"lq": "Predominantly office-based with limited ad hoc flexibility", "m": "Structured hybrid: 2\u20133 days office per week, role-dependent", "uq": "Flexible hybrid with employee-led arrangements, minimal mandated office days", "sp": "<strong>Mixed \u2014 office-leaning</strong> &mdash; Mixed practice, but with the emphasis on being office-based", "lp": "<strong>Mixed, role-dependent</strong> &mdash; Mixed practice: some but not all roles offered with the possibility of hybrid, with a minimum of 1\u20132 days per week in the office"}, "sabbaticals": {"lq": "No formal sabbatical policy; ad hoc unpaid leave only", "m": "Limited sabbatical provision; typically unpaid extended leave after qualifying service (3\u20135 years), discretionary approval", "uq": "Formal sabbatical policy with paid or part-paid provision, structured eligibility criteria, typically 1\u20133 months after 5 years' service", "sp": "<strong>Rare</strong> &mdash; <span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "<strong>3\u201312 months after 3\u20135 yrs</strong> &mdash; <span class=\"yes-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2.5\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.5 12.75l6 6 9-13.5\"/></svg>Yes"}, "compassionate-leave": {"lq": "1\u20132 days", "m": "3\u20135 days", "uq": "7\u201310 days (or open/discretionary)", "sp": "Discretionary", "lp": "Up to 5 days"}, "life-assurance": {"lq": "2x salary", "m": "3x salary", "uq": "4x salary", "sp": "<span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "<span class=\"yes-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2.5\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.5 12.75l6 6 9-13.5\"/></svg>Yes"}, "eap": {"lq": "Basic EAP: telephone counselling only, limited sessions (typically 3\u20136)", "m": "Structured EAP with telephone and online counselling, up to 6\u20138 sessions, manager support line included", "uq": "Comprehensive EAP with multi-channel access, face-to-face counselling, financial/legal advice, wellbeing portal and proactive usage reporting", "sp": "<span class=\"yes-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2.5\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.5 12.75l6 6 9-13.5\"/></svg>Yes", "lp": "<span class=\"yes-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2.5\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.5 12.75l6 6 9-13.5\"/></svg>Yes"}, "private-medical": {"lq": "No PMI offered; reliance on NHS only", "m": "PMI available to senior/managerial grades only (typically Band 5+ equivalent or management grades), often employer-funded at basic level", "uq": "PMI available to all permanent employees or broad staff population, with dependant cover options and enhanced benefits such as mental health, dental and optical riders", "sp": "<strong>Rare</strong> &mdash; <span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "<strong>Standard, ~84% offer</strong> &mdash; This is a standard benefit in larger organisations, with 84% of respondents to a large benefits survey offering this. \u2013 Coverage is typically for individuals with the ability to top up to family membership."}, "health-cash-plan": {"lq": "No health cash plan offered; reliance on NHS and EAP only", "m": "Basic health cash plan provided (Level 1\u20132 equivalent); employer-funded, core optical/dental/physio cashback", "uq": "Enhanced employer-funded health cash plan (Level 3\u20134 equivalent) with family cover option and supplementary wellbeing benefits", "sp": "<strong>Increasingly common</strong> &mdash; <span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "<strong>Less common; PMI dominates</strong> &mdash; Less common due to the prevalence of PMI"}, "phi": {"lq": "No PHI provision; reliance on statutory sick pay only", "m": "PHI/Income Protection provided, typically covering 50% of salary after a 13\u201326 week deferred period, to age 65", "uq": "PHI covering 66.7% of salary with a shorter deferred period (13 weeks or less), employer-funded, with rehabilitation and early-intervention support services", "sp": "<span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "<span class=\"mixed-cell\">Mixed practice"}, "digital-gp": {"lq": "No provision or basic EAP telephone advice only", "m": "Digital GP access via EAP or standalone app (e.g. BUPA, Babylon, Push Doctor)", "uq": "Fully integrated digital GP with specialist referrals, prescriptions, mental health triage and family cover", "sp": "<span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "Typically offered as part of PMI or Health Cash Plan &mdash; a more standard benefit than in the not-for-profit sector"}, "health-screening": {"lq": "No formal health screening provision", "m": "Basic employee health screening via EAP or occupational health referral", "uq": "Structured annual health screening with biometric testing and personalised health reports", "sp": "<span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "<strong>Bundled with PMI / cash plan</strong> &mdash; Typically offered as part of PMI or Health Cash Plan"}, "gym-membership": {"lq": "No provision or ad hoc discount only", "m": "Corporate discount scheme (10\u201330% off selected gyms)", "uq": "Subsidised membership or full gym membership allowance via flexible benefits", "sp": "<span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "Contribution towards gym membership is a common benefit &mdash; often as part of a flexible benefits scheme"}, "flu-jabs": {"lq": "No provision or ad hoc arrangement", "m": "Employer-funded on-site or voucher-based flu jab scheme", "uq": "Fully funded flu jab plus broader occupational health integration and employee communication campaign", "sp": "<span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "<span class=\"yes-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2.5\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.5 12.75l6 6 9-13.5\"/></svg>Yes"}, "eye-care": {"lq": "DSE eye test reimbursement only (statutory minimum)", "m": "Eye care voucher scheme (Specsavers/Vision Express) covering DSE test and basic frames/lenses", "uq": "Comprehensive eye care voucher scheme with enhanced lens/frame allowance plus extended to non-DSE users and family members", "sp": "<span class=\"yes-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2.5\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.5 12.75l6 6 9-13.5\"/></svg>Yes", "lp": "<span class=\"yes-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2.5\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.5 12.75l6 6 9-13.5\"/></svg>Yes"}, "mental-health": {"lq": "EAP only, reactive signposting", "m": "EAP plus Mental Health First Aiders and manager training", "uq": "Comprehensive proactive programme with clinical support, therapy access and dedicated wellbeing strategy", "sp": "<span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "<span class=\"yes-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2.5\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.5 12.75l6 6 9-13.5\"/></svg>Yes"}, "financial-education": {"lq": "No provision or signposting only", "m": "Basic financial wellbeing resources (EAP-linked guidance, online tools)", "uq": "Structured financial education programme with personalised guidance and debt/savings support", "sp": "<span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "<strong>Common via EAP</strong> &mdash; This has become increasingly common and is often offered through the EAP provider"}, "earned-pay-access": {"lq": "No provision \u2014 access to wages only on standard payroll cycle", "m": "Pilot or recently implemented EWA scheme via third-party provider, typically employer-subsidised", "uq": "Fully embedded, employer-funded EWA with integrated financial wellbeing support and multi-provider choice", "sp": "<span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "Low cost loans typically given for specific items, such as Season Tickets. &mdash; Save As You Earn / Share Save schemes are common."}, "retail-discounts": {"lq": "No platform or ad hoc local discounts only", "m": "Third-party retail discount platform with 100\u2013500+ retailer offers", "uq": "Fully integrated, promoted discount platform with cashback, salary sacrifice top-up and active engagement strategy", "sp": "<span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "<strong>Online discount provider standard</strong> &mdash; Online retail discount provider is typical"}, "homeworker-allowance": {"lq": "\u00a30 (no allowance) or statutory tax relief signposting only", "m": "\u00a310\u2013\u00a315/month (\u00a3120\u2013\u00a3180/year) or one-off equipment contribution", "uq": "\u00a320\u2013\u00a326/month (\u00a3240\u2013\u00a3312/year) plus equipment provision", "sp": "<span class=\"mixed-cell\">Relatively uncommon", "lp": "<span class=\"mixed-cell\">Relatively uncommon"}, "ethical-pension": {"lq": "Default fund only, no ethical screening", "m": "ESG/ethical fund option available as alternative", "uq": "ESG default or full ethical fund range with active member engagement", "sp": "<span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "<span class=\"mixed-cell\">Mixed practice"}, "volunteering-days": {"lq": "0 days (no formal scheme)", "m": "1 day per year", "uq": "2\u20133 days per year", "sp": "<span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "<strong>~50% offer, ~1.5 days</strong> &mdash; Around 50% of organisations offer this, with an average provision of 1.5 days"}, "personal-dev-budget": {"lq": "\u00a30\u2013\u00a3150 per employee per year", "m": "\u00a3200\u2013\u00a3350 per employee per year", "uq": "\u00a3500\u2013\u00a31,000+ per employee per year", "sp": "<span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "<span class=\"mixed-cell\">Mixed practice"}, "learning-platforms": {"lq": "No structured platform; ad hoc e-learning links or mandatory compliance modules only", "m": "One primary LMS or curated digital learning platform (e.g. LinkedIn Learning, Cornerstone, or sector-specific CPD portal)", "uq": "Multi-platform ecosystem with LinkedIn Learning, dedicated LMS, sector CPD portals and self-directed learning budgets integrated", "sp": "<span class=\"mixed-cell\">Mixed practice", "lp": "<span class=\"yes-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2.5\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.5 12.75l6 6 9-13.5\"/></svg>Yes"}, "professional-subs": {"lq": "No employer-paid subscriptions; employee self-funds or receives occasional ad-hoc support", "m": "Employer pays one core professional subscription relevant to role (e.g. BCS, AWS or PMI membership)", "uq": "Full payment of all relevant professional subscriptions plus study support and CPD budget", "sp": "<span class=\"yes-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2.5\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.5 12.75l6 6 9-13.5\"/></svg>Yes", "lp": "<span class=\"yes-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2.5\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.5 12.75l6 6 9-13.5\"/></svg>Yes"}, "career-development": {"lq": "Basic mandatory training and statutory CPD compliance only", "m": "Structured internal development pathways with some professional qualification support and funded CPD", "uq": "Comprehensive career frameworks with funded professional qualifications, mentoring, coaching, succession planning and sector leadership programmes", "sp": "<span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "<span class=\"yes-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2.5\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.5 12.75l6 6 9-13.5\"/></svg>Yes"}};
+
+  try { window.__HAQ = HA_Q; window.__PENGE = PENGE; } catch (e) {}
 
   function openRichPanel(card) {
     closeRichPanel();
@@ -5242,7 +5459,7 @@
         .then(function(dataUrl){
           var a = document.createElement('a');
           a.href = dataUrl;
-          a.download = 'penge-churches-' + targetId + '.png';
+          a.download = 'brighton-technologies-benefits-' + targetId + '.png';
           document.body.appendChild(a); a.click(); a.remove();
         })
         .catch(function(err){ console.error('PNG export failed', err); })
@@ -5271,7 +5488,7 @@
         .then(function(dataUrl){
           var a = document.createElement('a');
           a.href = dataUrl;
-          a.download = 'penge-' + targetId + '.png';
+          a.download = 'brighton-technologies-' + targetId + '.png';
           document.body.appendChild(a); a.click(); a.remove();
         })
         .catch(function(err){ console.error('PNG export failed', err); })
@@ -5298,7 +5515,421 @@
 })();
 </script>
 
+<!-- ═══ Benefits dashboard — guided Overview (data-derived), matched to Pay ═══ -->
+<script>
+(function () {
+  // ── Data catalog: the 14 benefits Brighton provides (source of truth for the
+  //    overview). posIdx = the live position shown on the provision page; badge
+  //    from the provision panels (above/at market/watch/gap). Not invented.
+  var BENEFITS = [
+    { slug:'annual-leave',        label:'Annual Leave',                 category:'core',         badge:'at',    posIdx:55, current:'25 days + 2 Christmas (~27)', effort:'strategic' },
+    { slug:'holiday-buy-sell',    label:'Holiday Buy / Sell',           category:'core',         badge:'at',    posIdx:50, current:'Buy/sell up to 5 days', effort:'quick' },
+    { slug:'pension-employer',    label:'Employer Pension',             category:'core',         badge:'above', posIdx:67, current:'10% employer DC', effort:'strategic' },
+    { slug:'salary-sacrifice',    label:'Salary Sacrifice',             category:'financial',    badge:'at',    posIdx:50, noMarket:true, current:'Available', effort:'quick' },
+    { slug:'sick-pay',            label:'Sick Pay',                     category:'core',         badge:'watch', posIdx:70, current:'3m full + 3m half (after 2 yr)', effort:'strategic' },
+    { slug:'maternity-pay',       label:'Maternity Pay',                category:'core',         badge:'at',    posIdx:67, current:'Enhanced', effort:'strategic' },
+    { slug:'paternity-pay',       label:'Paternity Pay',                category:'core',         badge:'at',    posIdx:58, current:'2 weeks full pay', effort:'strategic' },
+    { slug:'compassionate-leave', label:'Compassionate Leave',          category:'working-time', badge:'above', posIdx:90, current:'Discretionary, generous', effort:'quick' },
+    { slug:'life-assurance',      label:'Life Assurance',               category:'health',       badge:'at',    posIdx:50, current:'3× salary', effort:'strategic' },
+    { slug:'eap',                 label:'Employee Assistance Programme', category:'health',       badge:'at',    posIdx:50, current:'Available to all', effort:'quick' },
+    { slug:'health-cash-plan',    label:'Health Cash Plan',             category:'health',       badge:'above', posIdx:75, current:'HSF + Perkbox bundle', effort:'quick' },
+    { slug:'personal-dev-budget', label:'Personal Development Budget',   category:'learning',     badge:'below', posIdx:25, current:'£150 per year', effort:'quick' },
+    { slug:'professional-subs',   label:'Professional Subscriptions',   category:'learning',     badge:'above', posIdx:75, current:'BCS funded for all', effort:'quick' },
+    { slug:'casual-user-mileage', label:'Casual User Mileage',          category:'core',         badge:'at',    posIdx:50, noMarket:true, current:'Paid per HMRC rates', effort:'quick' }
+  ];
+  var CATEGORIES = [
+    { slug:'core',         label:'Core Benefits',          icon:'shield' },
+    { slug:'working-time', label:'Working Time',           icon:'clock'  },
+    { slug:'health',       label:'Health & Wellbeing',     icon:'heart'  },
+    { slug:'financial',    label:'Financial Support',      icon:'wallet' },
+    { slug:'esg',          label:'ESG & DEI',              icon:'leaf'   },
+    { slug:'learning',     label:'Learning & Development', icon:'grad'   }
+  ];
+  // Category for every market benefit (for search + later markers).
+  var MARKET_CAT = { 'annual-bonus':'core','annual-leave':'core','wellbeing-days':'core','holiday-buy-sell':'core','pension-employer':'core','sick-pay':'core','maternity-pay':'core','paternity-pay':'core','share-schemes':'core','car-allowance':'core','out-of-hours-callout':'core','flexible-hours':'working-time','hybrid-remote':'working-time','sabbaticals':'working-time','compassionate-leave':'working-time','life-assurance':'health','eap':'health','private-medical':'health','health-cash-plan':'health','phi':'health','digital-gp':'health','health-screening':'health','gym-membership':'health','flu-jabs':'health','eye-care':'health','mental-health':'health','financial-education':'financial','earned-pay-access':'financial','retail-discounts':'financial','homeworker-allowance':'financial','ethical-pension':'esg','volunteering-days':'esg','personal-dev-budget':'learning','learning-platforms':'learning','professional-subs':'learning','career-development':'learning' };
+
+  var CLAY = '#C9785A';
+  function statusOf(b){ return (b === 'above' || b === 'at') ? 'good' : (b === 'watch' ? 'watch' : 'action'); }
+  function titleize(s){ return s.replace(/-/g,' ').replace(/\b\w/g, function(c){ return c.toUpperCase(); }); }
+
+  // Minimal inline-SVG icon set (stroke, 20px) — lucide-style.
+  var P = {
+    shield:'M12 3l7 3v6c0 4-3 6.5-7 9-4-2.5-7-5-7-9V6z',
+    clock:'M12 7v5l3 2 M12 21a9 9 0 100-18 9 9 0 000 18z',
+    heart:'M12 20s-7-4.3-7-9a4 4 0 017-2 4 4 0 017 2c0 4.7-7 9-7 9z',
+    wallet:'M3 7h16a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V7z M3 7l0-1a2 2 0 012-2h11 M17 13h.01',
+    leaf:'M5 21c0-9 5-14 14-14 0 9-5 14-14 14z M5 21c3-6 7-9 11-10',
+    grad:'M22 10L12 5 2 10l10 5 10-5z M6 12v4c0 1 3 3 6 3s6-2 6-3v-4',
+    star:'M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9 6.8 19.2l1-5.8L3.5 9.2l5.9-.9z',
+    alert:'M12 9v4 M12 17h.01 M10.3 3.9l-8 13.9A2 2 0 004 21h16a2 2 0 001.7-3.2l-8-13.9a2 2 0 00-3.4 0z',
+    layers:'M12 3l9 5-9 5-9-5 9-5z M3 13l9 5 9-5 M3 17l9 5 9-5',
+    list:'M8 6h13 M8 12h13 M8 18h13 M3 6h.01 M3 12h.01 M3 18h.01',
+    gauge:'M12 14l4-4 M12 21a9 9 0 110-18 9 9 0 019 9',
+    check:'M20 6L9 17l-5-5',
+    briefcase:'M3 7h18v12H3z M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2',
+    target:'M12 21a9 9 0 100-18 9 9 0 000 18z M12 15a3 3 0 100-6 3 3 0 000 6z',
+    arrow:'M5 12h14 M13 6l6 6-6 6'
+  };
+  function svg(name, size){ size = size || 18; return '<svg width="'+size+'" height="'+size+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">' + (P[name]||'').split(' M').map(function(seg,i){ return '<path d="'+(i?'M'+seg:seg)+'"/>'; }).join('') + '</svg>'; }
+  var SICON = { good:'check', watch:'alert', action:'alert' };
+
+  // Route by clicking the matching sidebar navlink (reuses the existing router).
+  function bxGoTo(slug){ var nl = document.querySelector('.navlink[data-page="'+slug+'"]'); if (nl) nl.click(); }
+
+  // Mini position bar (LQ–UQ track, median tick, clay marker at posIdx).
+  function posBar(posIdx){
+    return '<div class="bx-posbar">'
+      + '<div class="bx-posbar-track"></div>'
+      + '<div class="bx-posbar-band" style="left:0%;width:100%"></div>'
+      + '<div class="bx-posbar-tick" style="left:0%"></div>'
+      + '<div class="bx-posbar-tick" style="left:100%"></div>'
+      + '<div class="bx-posbar-med" style="left:50%"></div>'
+      + '<div class="bx-posbar-mk" style="left:'+posIdx+'%"></div>'
+      + '</div>'
+      + '<div class="bx-posbar-scale"><span style="left:0%">LQ</span><span style="left:50%">Median</span><span style="left:100%">UQ</span></div>';
+  }
+  // Colourful LQ / Median / UQ market value cards (matched to Your Benefits).
+  function qCards(slug){
+    var HA = window.__HAQ || {}; var d = HA[slug];
+    if (!d) return '';
+    function cell(cls, lbl, val){ return '<div class="bx-qcell bx-qcell-'+cls+'"><div class="bx-qlbl">'+lbl+'</div><div class="bx-qval">'+val+'</div></div>'; }
+    return '<div class="bx-qcards">' + cell('lq','Lower Quartile', d.lq) + cell('med','Median', d.m) + cell('uq','Upper Quartile', d.uq) + '</div>';
+  }
+
+  // ── Aggregations ──────────────────────────────────────────
+  var total = BENEFITS.length;
+  var aboveN = BENEFITS.filter(function(b){ return b.badge==='above'; }).length;
+  var atN    = BENEFITS.filter(function(b){ return b.badge==='at'; }).length;
+  var watchN = BENEFITS.filter(function(b){ return b.badge==='watch'; }).length;
+  var belowN = BENEFITS.filter(function(b){ return b.badge==='below'; }).length;
+  var atOrAbove = aboveN + atN;
+  var tone = belowN > 0 ? 'action' : (watchN > 0 ? 'watch' : 'good');
+
+  function categoryScore(cat){
+    var items = BENEFITS.filter(function(b){ return b.category === cat; });
+    if (!items.length) return { n:0 };
+    var avg = Math.round(items.reduce(function(s,b){ return s + b.posIdx; }, 0) / items.length);
+    var good = items.filter(function(b){ return b.badge==='above'||b.badge==='at'; }).length;
+    var gaps = items.filter(function(b){ return b.badge==='below'||b.badge==='watch'; }).length;
+    var st = gaps === 0 ? 'good' : (items.some(function(b){return b.badge==='below';}) ? 'action' : 'watch');
+    var verdict = good + ' of ' + items.length + ' at or above market' + (gaps ? ' · ' + gaps + ' to watch' : '');
+    return { n:items.length, avg:avg, good:good, gaps:gaps, st:st, verdict:verdict };
+  }
+
+  // ── Renderers ─────────────────────────────────────────────
+  function fill(id, html){ var el = document.getElementById(id); if (el) el.innerHTML = html; }
+
+  function renderChip(){
+    var el = document.getElementById('bx-chip'); if (!el) return;
+    el.className = 'bx-chip bx-bg-' + tone;
+    el.innerHTML = svg(SICON[tone], 14) + '<span>' + (tone==='action'?'Action needed':tone==='watch'?'Worth a look':'On track') + '</span>';
+  }
+  function renderVerdict(){
+    fill('bx-verdict', atOrAbove + ' of ' + total + ' benefits are at or above market');
+    var tail = [aboveN + ' clearly above'];
+    if (watchN) tail.push(watchN + ' to watch');
+    tail.push(belowN ? (belowN + ' gap' + (belowN>1?'s':'')) : 'no gaps');
+    var el = document.getElementById('bx-subline'); if (el) el.textContent = tail.join(' · ') + '.';
+  }
+  function renderQuick(){
+    var items = [
+      { t:'See your strongest benefits', d:'The areas where you beat the market.', icon:'star', go:'provision' },
+      { t:"Where you're behind market",  d:'Gaps and areas to watch, worst first.', icon:'alert', go:'action-plan' },
+      { t:'Explore the market by category', d:'Typical practice across six benefit areas.', icon:'layers', go:'core' },
+      { t:'Build an action plan', d:'Turn the gaps into a prioritised plan.', icon:'list', go:'action-plan' }
+    ];
+    fill('bx-quick', items.map(function(q){
+      return '<div class="bx-card bx-card--link bx-quick" data-bxgo="'+q.go+'">'
+        + '<span class="bx-quick-ico">'+svg(q.icon)+'</span>'
+        + '<div class="bx-quick-t">'+q.t+'</div>'
+        + '<div class="bx-quick-d">'+q.d+'</div>'
+        + '<span class="bx-quick-go">Start '+svg('arrow',14)+'</span>'
+        + '</div>';
+    }).join(''));
+  }
+  function figCell(lbl, val, delta, st, go){
+    return '<button class="bx-fig" data-bxgo="'+go+'">'
+      + '<div class="bx-fig-lbl"><span class="bx-fig-dot" style="background:var(--bx-'+st+')"></span>'+lbl+'</div>'
+      + '<div class="bx-fig-val bx-num">'+val+'</div>'
+      + (delta ? '<div class="bx-fig-delta bx-s-'+st+'">'+delta+'</div>' : '')
+      + '</button>';
+  }
+  function renderKpis(){
+    fill('bx-kpis',
+      figCell('Benefits reviewed', total, 'across 6 categories', 'good', 'provision')
+      + figCell('At / above market', atOrAbove + ' of ' + total, aboveN + ' clearly above', 'good', 'provision')
+      + figCell('To watch', String(watchN), watchN ? 'mixed vs market' : 'all clear', watchN ? 'watch' : 'good', 'action-plan')
+      + figCell('Gaps', String(belowN), belowN ? 'below market' : 'none', belowN ? 'action' : 'good', 'action-plan')
+    );
+  }
+  function renderDist(){
+    var segs = [
+      { n:belowN, c:'#C06E57', label:'Below market' },
+      { n:watchN, c:'#D6A85C', label:'To watch' },
+      { n:atN,    c:'#5E9A7C', label:'At market' },
+      { n:aboveN, c:'#6E80A8', label:'Above market' }
+    ];
+    var bar = segs.filter(function(s){return s.n>0;}).map(function(s){
+      return '<div class="bx-dist-seg" style="flex:'+s.n+';background:'+s.c+'" title="'+s.label+': '+s.n+'">'+s.n+'</div>';
+    }).join('');
+    var key = segs.map(function(s){ return '<span><span class="bx-dist-dot" style="background:'+s.c+'"></span>'+s.label+' <b>'+s.n+'</b></span>'; }).join('');
+    fill('bx-dist', '<div class="bx-dist-lbl">How your 14 benefits sit against the market</div><div class="bx-dist">'+bar+'</div><div class="bx-dist-key">'+key+'</div>');
+  }
+  function renderScorecard(){
+    fill('bx-scorecard', CATEGORIES.map(function(c){
+      var s = categoryScore(c.slug);
+      var acc = s.n ? s.st : 'slate';
+      var body = s.n
+        ? '<div class="bx-score-verdict">'+s.verdict+'</div>' + posBar(s.avg)
+        : '<div class="bx-score-verdict">Market reference only — not currently provided.</div>' + posBar(50);
+      return '<div class="bx-card bx-card--link bx-card--accent bx-acc-'+acc+'" data-bxgo="'+c.slug+'">'
+        + '<div class="bx-score-t"><span class="bx-score-ico">'+svg(c.icon)+'</span><span class="bx-score-name">'+c.label+'</span></div>'
+        + body + '</div>';
+    }).join(''));
+  }
+  function renderAttention(){
+    var order = { below:0, watch:1 };
+    var items = BENEFITS.filter(function(b){ return b.badge==='below' || b.badge==='watch'; })
+      .sort(function(a,b){ return (order[a.badge]-order[b.badge]) || (a.posIdx-b.posIdx); });
+    if (!items.length){ fill('bx-attention', '<div class="bx-card" style="color:#64748b;font-size:13px">Nothing needs attention — every benefit sits at or above the market median.</div>'); return; }
+    fill('bx-attention', items.map(function(b){
+      var st = statusOf(b.badge);
+      var msg = b.badge==='below' ? 'Below market — a priority to review.' : 'Mixed vs market — worth a closer look.';
+      return '<button class="bx-attn" data-bxgo="provision">'
+        + '<span class="bx-attn-ico bx-bg-'+st+'">'+svg(SICON[st],16)+'</span>'
+        + '<span style="flex:1"><span class="bx-attn-t">'+b.label+'</span><span class="bx-attn-d">'+titleize(b.category.replace('-',' '))+' · '+msg+'</span></span>'
+        + '<span style="color:#cbd5e1">'+svg('arrow',16)+'</span></button>';
+    }).join(''));
+  }
+  function renderNavto(){
+    var secs = [{slug:'provision',label:'Your Benefits',d:'All 14 benefits you provide, with your market position.'}]
+      .concat(CATEGORIES.map(function(c){ var s=categoryScore(c.slug); return {slug:c.slug,label:c.label,d: (s.n? 'How you compare on '+c.label.toLowerCase() : 'Market reference for '+c.label.toLowerCase())+'.', icon:c.icon}; }))
+      .concat([{slug:'action-plan',label:'Action Plan',d:'Turn gaps into a prioritised improvement plan.',icon:'list'}]);
+    fill('bx-navto', secs.map(function(s){
+      return '<div class="bx-card bx-card--link bx-navto" data-bxgo="'+s.slug+'">'
+        + '<span class="bx-navto-ico">'+svg(s.icon||'target')+'</span>'
+        + '<div><div class="bx-navto-t">'+s.label+'</div><div class="bx-navto-d">'+s.d+'</div></div>'
+        + '</div>';
+    }).join(''));
+  }
+
+  // ── Search ────────────────────────────────────────────────
+  function renderSearch(){
+    var input = document.getElementById('bx-search'); var box = document.getElementById('bx-results');
+    if (!input || !box) return;
+    var index = BENEFITS.map(function(b){ return { slug:b.slug, label:b.label, provided:true, go:'provision' }; })
+      .concat(Object.keys(MARKET_CAT).filter(function(sl){ return !BENEFITS.some(function(b){return b.slug===sl;}); })
+        .map(function(sl){ return { slug:sl, label:titleize(sl), provided:false, go:MARKET_CAT[sl] }; }));
+    function close(){ box.hidden = true; box.innerHTML=''; }
+    input.addEventListener('input', function(){
+      var q = input.value.trim().toLowerCase();
+      if (!q){ close(); return; }
+      var hits = index.filter(function(x){ return x.label.toLowerCase().indexOf(q) !== -1; }).slice(0,7);
+      if (!hits.length){ box.hidden=false; box.innerHTML='<div class="bx-result" style="cursor:default;color:#94a3b8">No benefit found.</div>'; return; }
+      box.hidden = false;
+      box.innerHTML = hits.map(function(x){
+        return '<button class="bx-result" data-bxgo="'+x.go+'"><span>'+x.label+'</span><span style="font-size:11px;color:'+(x.provided?CLAY:'#94a3b8')+'">'+(x.provided?'You provide':'Market')+'</span></button>';
+      }).join('');
+    });
+    document.addEventListener('click', function(e){ if (!input.parentNode.contains(e.target)) close(); });
+  }
+
+  // Delegated routing for all dynamically-created [data-bxgo] elements.
+  document.addEventListener('click', function(e){
+    var el = e.target.closest ? e.target.closest('[data-bxgo]') : null;
+    if (el){ e.preventDefault(); bxGoTo(el.getAttribute('data-bxgo')); }
+  });
+
+  function renderAll(){ renderChip(); renderVerdict(); renderQuick(); renderKpis(); renderScorecard(); renderAttention(); renderNavto(); renderSearch(); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', renderAll); else renderAll();
+
+  // expose for later phases (market markers / action plan)
+  window.BX = { BENEFITS:BENEFITS, CATEGORIES:CATEGORIES, MARKET_CAT:MARKET_CAT, posBar:posBar, qCards:qCards, svg:svg, statusOf:statusOf, categoryScore:categoryScore, bxGoTo:bxGoTo, titleize:titleize };
+})();
+</script>
+
+<!-- ═══ Benefits — Action Plan (priorities builder) ═══ -->
+<script>
+(function () {
+  var PTAG = {
+    High:    { c:'#C0392B', bg:'rgba(192,57,43,0.10)' },
+    Medium:  { c:'#B7791F', bg:'rgba(183,121,31,0.10)' },
+    Stretch: { c:'#5C6D8A', bg:'rgba(92,109,138,0.12)' },
+  };
+  var amb = 'median';   // 'median' | 'uq'
+  var focus = 'all';
+
+  function run(){
+    if (!window.BX) return;
+    var BX = window.BX, B = BX.BENEFITS, HA = window.__HAQ || {};
+    var CAT = {}; BX.CATEGORIES.forEach(function(c){ CAT[c.slug] = c.label; });
+
+    // Focus buttons — categories that have provided benefits.
+    var focusEl = document.getElementById('bx-plan-focus');
+    if (focusEl && focusEl.querySelectorAll('button').length <= 1) {
+      var cats = []; B.forEach(function(b){ if (cats.indexOf(b.category) === -1) cats.push(b.category); });
+      focusEl.innerHTML = '<button type="button" data-cat="all" class="on">All categories</button>'
+        + cats.map(function(c){ return '<button type="button" data-cat="'+c+'">'+(CAT[c]||c)+'</button>'; }).join('');
+      focusEl.querySelectorAll('button').forEach(function(btn){ btn.addEventListener('click', function(){ focus = btn.getAttribute('data-cat'); focusEl.querySelectorAll('button').forEach(function(x){x.classList.remove('on');}); btn.classList.add('on'); render(); }); });
+    }
+    var ambEl = document.getElementById('bx-plan-ambition');
+    if (ambEl) ambEl.querySelectorAll('button').forEach(function(btn){ if (!btn.dataset.wired){ btn.dataset.wired='1'; btn.addEventListener('click', function(){ amb = btn.getAttribute('data-amb'); ambEl.querySelectorAll('button').forEach(function(x){x.classList.remove('on');}); btn.classList.add('on'); render(); }); } });
+
+    var pb = document.getElementById('bx-plan-print'); if (pb && !pb.dataset.wired){ pb.dataset.wired='1'; pb.addEventListener('click', function(){ window.print(); }); }
+    var cb = document.getElementById('bx-plan-csv'); if (cb && !cb.dataset.wired){ cb.dataset.wired='1'; cb.addEventListener('click', downloadCsv); }
+    render();
+
+    function inFocus(b){ return focus === 'all' || b.category === focus; }
+    function priorityOf(b){
+      if (b.badge === 'below') return 'High';
+      if (b.badge === 'watch') return 'Medium';
+      if (b.badge === 'at' && amb === 'uq') return 'Stretch';
+      return null;
+    }
+    function target(b){ var d = HA[b.slug]; if (!d) return null; return amb === 'uq' ? d.uq : d.m; }
+    function recommend(b){
+      var t = target(b);
+      if (b.badge === 'below') return t ? 'Uplift toward the market median — <b>'+t+'</b>.' : 'A gap vs market — prioritise closing it.';
+      if (b.badge === 'watch') return t ? 'Align with typical market practice — <b>'+t+'</b>.' : 'Mixed vs market — review and align.';
+      if (b.badge === 'at') return t ? 'Aim for the upper quartile — <b>'+t+'</b> — to lead the market.' : 'Stretch beyond the median to lead.';
+      return '';
+    }
+    function effortChip(b){
+      var quick = b.effort === 'quick';
+      return '<span class="bx-eff">'+BX.svg(quick ? 'star' : 'target', 12)+(quick ? 'Quick win · low cost' : 'Strategic · higher cost')+'</span>';
+    }
+
+    function currentPlan(){
+      var rankP = { High:0, Medium:1, Stretch:2 };
+      return B.filter(function(b){ return !b.noMarket && inFocus(b) && priorityOf(b); })
+        .sort(function(a,b){ return (rankP[priorityOf(a)] - rankP[priorityOf(b)]) || (a.posIdx - b.posIdx); });
+    }
+    function strengths(){ return B.filter(function(b){ return b.badge === 'above' && inFocus(b); }); }
+
+    function render(){
+      var plan = currentPlan(), str = strengths();
+      var quickWins = plan.filter(function(b){ return b.effort === 'quick'; }).length;
+      var focusCats = {}; plan.forEach(function(b){ focusCats[b.category] = 1; });
+
+      var note = document.getElementById('bx-plan-ambition-note');
+      if (note) note.textContent = amb === 'uq'
+        ? 'Targets are the upper quartile — the level of a market-leading offer. Includes at-market benefits as stretch opportunities.'
+        : 'Targets are the market median. Switch to “Lead the market” to aim for the upper quartile.';
+
+      var sm = document.getElementById('bx-plan-summary');
+      if (sm) sm.innerHTML = '<div class="bx-plan-summary-grid">'
+        + tile('Priorities', plan.length, plan.length ? 'to act on' : 'none in scope', plan.length ? 'watch' : 'good')
+        + tile('Quick wins', quickWins, 'low-cost gains', quickWins ? 'good' : 'good')
+        + tile('Strengths to protect', str.length, 'ahead of market', 'good')
+        + tile('Focus categories', Object.keys(focusCats).length || 0, 'with priorities', 'good')
+        + '</div>';
+
+      var list = document.getElementById('bx-plan');
+      if (list) list.innerHTML = plan.length ? plan.map(function(b, i){
+        var tag = priorityOf(b), pt = PTAG[tag], t = target(b);
+        return '<div class="bx-plan-row">'
+          + '<span class="bx-plan-rank" style="background:'+pt.bg+';color:'+pt.c+'">'+(i+1)+'</span>'
+          + '<div style="flex:1;min-width:0">'
+            + '<div style="display:flex;justify-content:space-between;gap:10px;align-items:flex-start;flex-wrap:wrap">'
+              + '<div><div class="bx-plan-b">'+b.label+'</div><div class="bx-plan-meta">'+(CAT[b.category]||b.category)+'</div></div>'
+              + '<div style="display:flex;align-items:center;gap:8px">'+effortChip(b)+'<span class="bx-ptag" style="background:'+pt.bg+';color:'+pt.c+'">'+tag+' priority</span></div>'
+            + '</div>'
+            + '<div style="max-width:560px;margin-top:10px">'+BX.posBar(b.posIdx)+'</div>'
+            + '<div class="bx-plan-target">You: <b>'+(b.current||'—')+'</b>'+(t ? ' · '+(amb==='uq'?'Upper quartile':'Market median')+': <b>'+t+'</b>' : '')+'</div>'
+            + '<div class="bx-plan-rec">'+recommend(b)+'</div>'
+          + '</div></div>';
+      }).join('') : '<div class="bx-card" style="color:#64748b;font-size:13px">Nothing to act on in scope — you\'re at or above the market. Switch to <b>Lead the market</b> to surface stretch opportunities.</div>';
+
+      var sw = document.getElementById('bx-plan-strengths-wrap');
+      var sEl = document.getElementById('bx-plan-strengths');
+      if (sw) sw.style.display = str.length ? '' : 'none';
+      if (sEl) sEl.innerHTML = str.map(function(b){
+        return '<div class="bx-card bx-strength"><div class="bx-mt-h">'+BX.svg('check',15)+' '+b.label+'</div>'
+          + '<div class="bx-mt-sub" style="margin:0">'+(CAT[b.category]||b.category)+' · '+(b.current||'')+'</div>'
+          + '<div style="font-size:12px;color:#475569;margin-top:8px;line-height:1.5">Maintain &amp; promote — a genuine advantage; feature it in recruitment and retention.</div></div>';
+      }).join('');
+    }
+
+    function tile(label, value, note, tone){
+      return '<div class="bx-card"><div class="bx-kpi-lbl">'+label+'</div><div class="bx-kpi-val bx-num" style="margin-top:6px">'+value+'</div><div class="bx-kpi-delta bx-s-'+tone+'">'+note+'</div></div>';
+    }
+    function downloadCsv(){
+      var plan = currentPlan();
+      var rows = [['Priority rank','Level','Benefit','Category','Current','Target ('+(amb==='uq'?'upper quartile':'median')+')','Effort','Recommendation']]
+        .concat(plan.map(function(b,i){
+          var t = target(b) || '';
+          var rec = b.badge==='below' ? ('Uplift toward '+t) : b.badge==='watch' ? ('Align with '+t) : ('Aim for '+t);
+          return [i+1, priorityOf(b), b.label, CAT[b.category]||b.category, b.current||'', t, b.effort==='quick'?'Quick win':'Strategic', rec];
+        }));
+      var csv = rows.map(function(r){ return r.map(function(c){ return '"'+String(c).replace(/"/g,'""')+'"'; }).join(','); }).join('\n');
+      var url = URL.createObjectURL(new Blob([csv], {type:'text/csv'}));
+      var a = document.createElement('a'); a.href = url; a.download = 'brighton-technologies-benefits-action-plan.csv'; a.click(); URL.revokeObjectURL(url);
+    }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
+})();
+</script>
+
+<!-- ═══ Benefits — market-page: your position + compare-sectors ═══ -->
+<script>
+(function () {
+  function run(){
+    if (!window.BX) return;
+    var BX = window.BX, HA = window.__HAQ || {};
+    var CATLABEL = {}; BX.CATEGORIES.forEach(function(c){ CATLABEL[c.slug] = c.label; });
+    var SECTORS = [['m','Technology'],['sp','Small Private'],['lp','Large Private']];
+
+    BX.CATEGORIES.forEach(function(c){
+      var page = document.querySelector('.page[data-page="'+c.slug+'"]');
+      if (!page || page.querySelector('.bx-market-top')) return;
+
+      var provided = BX.BENEFITS.filter(function(b){ return b.category === c.slug; });
+      var marketSlugs = Object.keys(BX.MARKET_CAT).filter(function(s){ return BX.MARKET_CAT[s] === c.slug && HA[s]; });
+
+      var ypHtml = provided.length ? provided.map(function(b){
+        var st = BX.statusOf(b.badge);
+        var tag = b.badge==='below'?'Gap':b.badge==='watch'?'Watch':b.badge==='above'?'Strength':'At market';
+        return '<div class="bx-yp"><div class="bx-yp-top"><span class="bx-yp-name">'+b.label+'</span>'
+          + '<span class="bx-chip bx-bg-'+st+'" style="margin:0">'+BX.svg(st==='good'?'check':'alert',12)+tag+'</span></div>'
+          + BX.posBar(b.posIdx) + BX.qCards(b.slug) + '</div>';
+      }).join('') : '<p class="bx-mt-sub" style="margin:0">You don’t currently provide benefits in this category — the market reference is below.</p>';
+
+      var segId = 'bxseg-'+c.slug, rowsId = 'bxsec-'+c.slug;
+      function sectorRows(key){
+        return marketSlugs.map(function(s){
+          return '<div class="bx-sec-row"><div class="bx-sec-name">'+BX.titleize(s)+'</div><div class="bx-sec-val">'+(HA[s][key]||'—')+'</div></div>';
+        }).join('');
+      }
+
+      var block = document.createElement('div');
+      block.className = 'bx-market-top';
+      block.innerHTML =
+        '<div class="bx-card"><div class="bx-mt-h">'+BX.svg('target',16)+' Where you sit in '+CATLABEL[c.slug]+'</div>'
+        + '<div class="bx-mt-sub">Your provision vs the Technology market range.</div>'+ypHtml+'</div>'
+      + '<div class="bx-card"><div class="bx-mt-h">'+BX.svg('layers',16)+' Compare the market</div>'
+        + '<div class="bx-mt-sub">Typical practice by sector — switch to compare.</div>'
+        + '<div class="bx-seg" id="'+segId+'">'+SECTORS.map(function(sc,i){ return '<button type="button" data-k="'+sc[0]+'"'+(i===0?' class="on"':'')+'>'+sc[1]+'</button>'; }).join('')+'</div>'
+        + '<div id="'+rowsId+'">'+sectorRows('m')+'</div></div>';
+
+      var po = page.querySelector('.page-overview');
+      if (po && po.parentNode) po.parentNode.insertBefore(block, po.nextSibling);
+      else page.insertBefore(block, page.firstChild);
+
+      var rowsEl = block.querySelector('#'+rowsId);
+      block.querySelectorAll('#'+segId+' button').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          block.querySelectorAll('#'+segId+' button').forEach(function(x){ x.classList.remove('on'); });
+          btn.classList.add('on');
+          rowsEl.innerHTML = sectorRows(btn.getAttribute('data-k'));
+        });
+      });
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
+})();
+</script>
+
 </div>
-<script defer src="/shell/shell.js"></script>
+<script defer src="../shell/shell.js"></script>
 </body>
 </html>

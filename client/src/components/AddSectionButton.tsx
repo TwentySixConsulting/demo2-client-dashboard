@@ -59,7 +59,7 @@ export function AddSectionButton({
     >
       <div 
         className={cn(
-          'absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-300 to-transparent transition-opacity duration-200',
+          'absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-clay-300 to-transparent transition-opacity duration-200',
           isHovered ? 'opacity-100' : 'opacity-30'
         )} 
       />
@@ -70,8 +70,8 @@ export function AddSectionButton({
             className={cn(
               'relative z-10 flex items-center gap-2 px-4 py-2 rounded-full border-2 border-dashed transition-all duration-200',
               isHovered 
-                ? 'bg-indigo-50 border-indigo-400 text-indigo-600 shadow-md' 
-                : 'bg-white border-slate-300 text-slate-500 hover:border-indigo-300 hover:text-indigo-500'
+                ? 'bg-clay-50 border-clay-400 text-clay-600 shadow-md' 
+                : 'bg-white border-slate-300 text-slate-500 hover:border-clay-300 hover:text-clay-500'
             )}
             data-testid="button-add-section"
           >
@@ -88,7 +88,7 @@ export function AddSectionButton({
               onClick={() => onAddSection(option.type)}
               className="flex items-start gap-3 py-3 cursor-pointer"
             >
-              <option.icon className="w-5 h-5 text-indigo-500 mt-0.5" />
+              <option.icon className="w-5 h-5 text-clay-500 mt-0.5" />
               <div>
                 <div className="font-medium">{option.label}</div>
                 <div className="text-xs text-muted-foreground">{option.description}</div>

@@ -1,13 +1,17 @@
-// Zigbert logo — the benchmark/"divide" mark (slate dot, two offset navy bars,
-// clay dot) + Poppins wordmark. Rendered inline as SVG so it's crisp, transparent
-// and recolourable. Swap for the official PNG/SVG asset if/when one is dropped in.
+// Zigbert logo — the official brand asset (navy notched-bar mark + heavy
+// wordmark). Rendered from the real PNG so it matches zigbert.co.uk exactly.
+// Dark variant = navy logo for light backgrounds; light variant = cream logo
+// for dark backgrounds.
+import logoDark from "@/assets/zigbert-logo.png";
+import logoLight from "@/assets/zigbert-logo-light.png";
+import markDark from "@/assets/zigbert-mark.png";
+import markLight from "@/assets/zigbert-mark-light.png";
 
-const NAVY = "#121C2B";
-const CREAM = "#F4F1EA";
-const SLATE = "#7285A5";
-const CLAY = "#C9785A";
 const CLAY_DEEP = "#B0603F";
 const CLAY_BRIGHT = "#DDA288";
+
+// Aspect ratios of the source art (px).
+const MARK_RATIO = 113 / 152;
 
 export function ZigbertMark({
   size = 28,
@@ -16,29 +20,21 @@ export function ZigbertMark({
   size?: number;
   variant?: "dark" | "light";
 }) {
-  const bar = variant === "light" ? CREAM : NAVY;
   return (
-    <svg
-      width={(size * 44) / 58}
+    <img
+      src={variant === "light" ? markLight : markDark}
+      alt="Zigbert"
+      width={Math.round(size * MARK_RATIO)}
       height={size}
-      viewBox="0 0 44 58"
-      fill="none"
-      role="img"
-      aria-label="Zigbert"
-      style={{ display: "block", flexShrink: 0 }}
-    >
-      <circle cx="15" cy="9" r="6.5" fill={SLATE} />
-      <rect x="4" y="20" width="28" height="8" rx="4" fill={bar} />
-      <rect x="12" y="32" width="28" height="8" rx="4" fill={bar} />
-      <circle cx="29" cy="49" r="6.5" fill={CLAY} />
-    </svg>
+      style={{ display: "block", flexShrink: 0, width: "auto", height: size }}
+    />
   );
 }
 
 interface ZigbertLogoProps {
-  /** Height of the mark in px (wordmark scales to it). */
+  /** Height of the logo in px (width scales to the art's aspect ratio). */
   height?: number;
-  /** dark = navy wordmark for light backgrounds; light = cream for dark backgrounds. */
+  /** dark = navy logo for light backgrounds; light = cream logo for dark backgrounds. */
   variant?: "dark" | "light";
   /** Show the "Pay & Benefits Intelligence" descriptor under the wordmark. */
   tagline?: boolean;
@@ -51,43 +47,34 @@ export function ZigbertLogo({
   tagline = false,
   className,
 }: ZigbertLogoProps) {
-  const ink = variant === "light" ? CREAM : NAVY;
   const eyebrow = variant === "light" ? CLAY_BRIGHT : CLAY_DEEP;
   return (
     <span
-      className={`inline-flex items-center gap-2.5 ${className ?? ""}`}
-      style={{ lineHeight: 1 }}
+      className={`inline-flex flex-col ${className ?? ""}`}
+      style={{ lineHeight: 1, gap: tagline ? 6 : 0 }}
     >
-      <ZigbertMark size={height} variant={variant} />
-      <span className="inline-flex flex-col" style={{ gap: tagline ? 4 : 0 }}>
+      <img
+        src={variant === "light" ? logoLight : logoDark}
+        alt="Zigbert"
+        height={height}
+        style={{ display: "block", width: "auto", height }}
+      />
+      {tagline && (
         <span
           style={{
             fontFamily: "var(--font-display)",
-            fontWeight: 700,
-            letterSpacing: "-0.03em",
-            color: ink,
-            fontSize: height * 0.82,
+            fontWeight: 600,
+            textTransform: "uppercase",
+            letterSpacing: "0.2em",
+            color: eyebrow,
+            fontSize: Math.max(8, height * 0.19),
             lineHeight: 1,
+            paddingLeft: 2,
           }}
         >
-          Zigbert
+          Pay &amp; Benefits Intelligence
         </span>
-        {tagline && (
-          <span
-            style={{
-              fontFamily: "var(--font-display)",
-              fontWeight: 600,
-              textTransform: "uppercase",
-              letterSpacing: "0.18em",
-              color: eyebrow,
-              fontSize: Math.max(8, height * 0.2),
-              lineHeight: 1,
-            }}
-          >
-            Pay &amp; Benefits Intelligence
-          </span>
-        )}
-      </span>
+      )}
     </span>
   );
 }

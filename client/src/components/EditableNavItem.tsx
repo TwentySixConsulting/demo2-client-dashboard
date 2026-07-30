@@ -74,7 +74,7 @@ export function EditableNavItem({
   if (isEditing) {
     return (
       <div className={cn(
-        'flex items-center gap-2 px-3 py-2 rounded-lg bg-indigo-50',
+        'flex items-center gap-2 px-3 py-2 rounded-lg bg-clay-50',
         className
       )}>
         {isEditMode && dragHandleProps && (
@@ -89,7 +89,7 @@ export function EditableNavItem({
           onChange={(e) => setEditValue(e.target.value)}
           onKeyDown={handleKeyDown}
           onBlur={handleSave}
-          className="flex-1 text-sm font-medium bg-white border border-indigo-300 rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-indigo-300"
+          className="flex-1 text-sm font-medium bg-white border border-clay-300 rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-clay-300"
         />
         <button
           onClick={handleSave}

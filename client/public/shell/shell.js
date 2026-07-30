@@ -17,6 +17,13 @@
 
   var TEMP_AUTH_KEY = "demo-client-dashboard:temp-auth";
 
+  // Platform home, base-path aware — works at "/" and under a Pages sub-path
+  // ("/<repo>/pay/…" → "/<repo>/"). Strips the trailing pay|benefits section.
+  function homePath() {
+    var p = window.location.pathname.replace(/\/(pay|benefits)(\/.*)?$/, "");
+    return (p || "") + "/";
+  }
+
   // ── Auth gate ───────────────────────────────────────────────
   // Runs immediately on script execution (we use defer so DOM is ready).
   function readAuth() {
@@ -61,7 +68,7 @@
   var auth = readAuth();
   if (!auth) {
     // Bounce to login. replace() avoids back-button bouncing here.
-    window.location.replace("/");
+    window.location.replace(homePath());
     return;
   }
 
@@ -96,11 +103,11 @@
     var menuEmail = root.querySelector("[data-ts-shell-menu-email]");
     if (menuEmail) menuEmail.textContent = email;
 
-    // Tab highlight from current pathname
+    // Tab highlight from current pathname (base-path aware)
     var path = window.location.pathname || "/";
     var section = "home";
-    if (path.indexOf("/pay") === 0) section = "pay";
-    else if (path.indexOf("/benefits") === 0) section = "benefits";
+    if (/\/pay(\/|$)/.test(path)) section = "pay";
+    else if (/\/benefits(\/|$)/.test(path)) section = "benefits";
 
     var tabs = root.querySelectorAll("[data-ts-shell-tab]");
     for (var t = 0; t < tabs.length; t++) {
@@ -151,7 +158,7 @@
               window.localStorage.removeItem(killKeys[j]);
             }
           } catch (e) {}
-          window.location.replace("/");
+          window.location.replace(homePath());
         });
       }
     }

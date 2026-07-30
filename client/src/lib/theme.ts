@@ -4,9 +4,9 @@
 // remapped onto the clay/slate brand so existing inline styles rebrand in place.
 export const C = {
   // Canvas + surfaces
-  canvas: "#F4F1EA",        // warm off-white
+  canvas: "#FAFAF8",        // near-white page background
   surface: "#FFFFFF",
-  surfaceSoft: "#FBF8F2",   // very light cream
+  surfaceSoft: "#FBF8F2",   // very light cream (card tint)
   // Ink — navy
   ink: "#121C2B",
   inkMuted: "#4B5563",
@@ -62,6 +62,17 @@ export const BENEFITS_TINTS = {
 // Demo data — replace with real values once data wiring is in place.
 export const REPORT_PERIOD = "Q2 2026";
 export const LAST_UPDATED = "16 Jun 2026";
+// Benefits refresh on a separate cycle to pay — kept as a token so surfaces agree.
+export const BENEFITS_LAST_UPDATED = "May 2026";
+
+// Average pay-rise (%) — the organisation vs the market, by year. Demo data.
+export const PAY_TREND = [
+  { year: "2022", you: 3.8, market: 4.5 },
+  { year: "2023", you: 5.0, market: 5.5 },
+  { year: "2024", you: 4.2, market: 4.0 },
+  { year: "2025", you: 3.5, market: 3.8 },
+  { year: "2026", you: 3.6, market: 3.4 },
+] as const;
 
 export const PAY_META = {
   rolesAnalysed: 40,
@@ -98,6 +109,6 @@ export const SUBSCRIPTION = {
   lastInvoice: "01 Apr 2026",
   invoiceAmount: "£4,800",
   nextRenewal: "01 Jul 2026",
-  billingContact: "finance@demo.co.uk",
+  billingContact: "finance@brightontechnologies.co.uk",
   billingCadence: "Quarterly",
 };

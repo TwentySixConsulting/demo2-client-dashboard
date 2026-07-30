@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "wouter";
 import { useAuth } from "@/contexts/AuthContext";
 import { clientConfig, clientNameToEmail } from "@/config/clientConfig";
 import { Shell } from "@/components/Shell";
-import { PayRolesSection } from "@/components/PayRolesSection";
+import { BASE_ROSTER } from "@/lib/roster";
+import { useOrgRoles } from "@/lib/orgStore";
+import { useToast } from "@/hooks/use-toast";
 import {
   C,
   REPORT_PERIOD,
@@ -31,7 +33,6 @@ import {
   ChevronRight,
   Download,
   Pencil,
-  ShieldCheck,
 } from "lucide-react";
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -89,6 +90,12 @@ function SubscriptionCard({
   accent,
   accentSoft,
 }: SubscriptionCardProps) {
+  const { toast } = useToast();
+  const consultantAction = (what: string) =>
+    toast({
+      title: `${what} requested`,
+      description: "Your TwentySix consultant will email this over shortly — or reach them at hello@twentysixconsulting.co.uk.",
+    });
   return (
     <div
       className="rounded-3xl p-6 relative overflow-hidden"
@@ -207,6 +214,7 @@ function SubscriptionCard({
       <div className="flex flex-wrap gap-2">
         <button
           type="button"
+          onClick={() => consultantAction("Latest invoice")}
           className="inline-flex items-center gap-1.5 rounded-full px-3 h-8 text-[11.5px] font-medium"
           style={{ background: C.surface, color: C.ink, border: `1px solid ${C.border}` }}
         >
@@ -215,6 +223,7 @@ function SubscriptionCard({
         </button>
         <button
           type="button"
+          onClick={() => consultantAction(`${title} report`)}
           className="inline-flex items-center gap-1.5 rounded-full px-3 h-8 text-[11.5px] font-medium"
           style={{ background: C.surface, color: C.ink, border: `1px solid ${C.border}` }}
         >
@@ -229,18 +238,41 @@ function SubscriptionCard({
 // ─────────────────────────────────────────────────────────────────────────────
 // Preference toggle row
 
+// Preferences persist to localStorage so a client's choices survive a reload.
+function usePersistentPref(storageKey: string, defaultOn: boolean) {
+  const [on, setOn] = useState<boolean>(() => {
+    if (typeof window === "undefined") return defaultOn;
+    try {
+      const v = window.localStorage.getItem(storageKey);
+      return v === null ? defaultOn : v === "1";
+    } catch {
+      return defaultOn;
+    }
+  });
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(storageKey, on ? "1" : "0");
+    } catch {
+      /* ignore */
+    }
+  }, [storageKey, on]);
+  return [on, setOn] as const;
+}
+
 function PreferenceRow({
   icon: Icon,
   label,
   description,
   defaultOn,
+  storageKey,
 }: {
   icon: typeof Bell;
   label: string;
   description: string;
   defaultOn: boolean;
+  storageKey: string;
 }) {
-  const [on, setOn] = useState(defaultOn);
+  const [on, setOn] = usePersistentPref(`demo-client-dashboard:pref:${storageKey}`, defaultOn);
   return (
     <div
       className="flex items-center justify-between gap-3 px-5 py-3.5"
@@ -307,7 +339,7 @@ function BillingRow({
   const stateColor = state === "paid" ? C.success : C.slate;
   return (
     <div
-      className="grid grid-cols-[110px_1fr_90px_90px_24px] gap-3 items-center px-5 py-3"
+      className="grid grid-cols-[110px_1fr_90px_90px] gap-3 items-center px-5 py-3"
       style={{ borderTop: `1px solid ${C.borderSubtle}` }}
     >
       <span className="text-[11.5px] tabular-nums" style={{ color: C.inkMuted }}>
@@ -330,7 +362,6 @@ function BillingRow({
       >
         {state === "paid" ? "PAID" : "SCHEDULED"}
       </span>
-      <ChevronRight className="w-3.5 h-3.5" style={{ color: C.inkSubtle }} />
     </div>
   );
 }
@@ -341,6 +372,8 @@ function BillingRow({
 export function Account() {
   const { signOut, user, tempUser } = useAuth();
   const [, setLocation] = useLocation();
+  const orgRoles = useOrgRoles();
+  const { toast } = useToast();
 
   const username =
     (user?.email && user.email.split("@")[0]) ??
@@ -442,7 +475,7 @@ export function Account() {
               {[
                 { label: "Email", value: email, icon: Mail },
                 { label: "Organisation", value: clientConfig.clientName, icon: Building2 },
-                { label: "Phone", value: "+44 20 7946 0000", icon: Phone },
+                { label: "Phone", value: "+44 1273 496 000", icon: Phone },
                 { label: "Reporting cadence", value: SUBSCRIPTION.billingCadence, icon: Calendar },
               ].map((row) => {
                 const Icon = row.icon;
@@ -469,6 +502,12 @@ export function Account() {
 
             <button
               type="button"
+              onClick={() =>
+                toast({
+                  title: "Account managed by your consultant",
+                  description: "To update your organisation's details, email hello@twentysixconsulting.co.uk and we'll take care of it.",
+                })
+              }
               className="inline-flex items-center gap-1.5 rounded-full px-4 h-9 text-[12px] font-medium"
               style={{ background: C.surface, color: C.ink, border: `1px solid ${C.border}` }}
               onMouseEnter={(e) =>
@@ -479,15 +518,38 @@ export function Account() {
               }
             >
               <Pencil className="w-3 h-3" />
-              Edit profile
+              Request a change
             </button>
           </div>
 
-          {/* Your pay roles — view submitted roles & add a role */}
-          <PayRolesSection />
+          {/* Your organisation — summary + link (full management lives on /organisation) */}
+          <section className="mt-12">
+            <button
+              type="button"
+              onClick={() => setLocation("/organisation")}
+              className="w-full text-left rounded-2xl px-6 py-5 flex flex-wrap items-center justify-between gap-4 transition-all hover:-translate-y-0.5"
+              style={{ background: C.surface, border: `1px solid ${C.border}` }}
+            >
+              <div className="flex items-center gap-4">
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl shrink-0" style={{ background: C.brassSoft, color: C.brassDeep }}>
+                  <Building2 className="w-5 h-5" />
+                </span>
+                <div>
+                  <div className="text-[10px] font-semibold uppercase" style={{ letterSpacing: "0.22em", color: C.brass }}>Your Organisation</div>
+                  <div className="font-display text-[16px] font-semibold mt-0.5" style={{ color: C.ink }}>
+                    {BASE_ROSTER.length} roles · {orgRoles.length} awaiting benchmark
+                  </div>
+                  <div className="text-[12.5px] mt-0.5" style={{ color: C.inkMuted }}>Manage your roster and benefits, and add items for benchmarking.</div>
+                </div>
+              </div>
+              <span className="inline-flex items-center gap-1.5 text-[13px] font-semibold shrink-0" style={{ color: C.brass }}>
+                Manage <ChevronRight className="w-4 h-4" />
+              </span>
+            </button>
+          </section>
 
           {/* Subscriptions */}
-          <section className="mt-12">
+          <section className="mt-12" data-tour="subscriptions">
             <SectionHeading
               eyebrow="Subscriptions"
               title="Your active products"
@@ -514,11 +576,11 @@ export function Account() {
           </section>
 
           {/* Billing */}
-          <section className="mt-12">
+          <section className="mt-12" data-tour="billing">
             <SectionHeading
               eyebrow="Billing"
               title="Invoices &amp; renewals"
-              description="Quarterly billing, invoices delivered to finance@."
+              description={`Quarterly billing — invoices are sent to ${SUBSCRIPTION.billingContact}.`}
             />
             <div
               className="rounded-3xl overflow-hidden"
@@ -526,7 +588,7 @@ export function Account() {
             >
               {/* Header row */}
               <div
-                className="grid grid-cols-[110px_1fr_90px_90px_24px] gap-3 items-center px-5 py-3"
+                className="grid grid-cols-[110px_1fr_90px_90px] gap-3 items-center px-5 py-3"
                 style={{ background: C.surfaceSoft }}
               >
                 <span
@@ -553,7 +615,6 @@ export function Account() {
                 >
                   Status
                 </span>
-                <span aria-hidden />
               </div>
               <BillingRow
                 date="01 Jul 2026"
@@ -583,7 +644,7 @@ export function Account() {
           </section>
 
           {/* Preferences */}
-          <section className="mt-12">
+          <section className="mt-12" data-tour="preferences">
             <SectionHeading
               eyebrow="Preferences"
               title="Notifications &amp; sharing"
@@ -595,33 +656,30 @@ export function Account() {
             >
               <PreferenceRow
                 icon={Bell}
+                storageKey="report-alerts"
                 label="Quarterly report email alerts"
                 description="Get notified the moment a new report is published."
                 defaultOn={true}
               />
               <PreferenceRow
                 icon={FileText}
+                storageKey="mid-quarter-updates"
                 label="Mid-quarter market updates"
                 description="Light-touch updates between formal reports."
                 defaultOn={true}
               />
               <PreferenceRow
                 icon={Building2}
-                label="Share invoices with finance@"
+                storageKey="copy-finance"
+                label="Copy finance on invoices"
                 description={`Copy ${SUBSCRIPTION.billingContact} on every invoice.`}
-                defaultOn={false}
-              />
-              <PreferenceRow
-                icon={ShieldCheck}
-                label="Two-factor sign-in"
-                description="Add a second step at sign-in for extra security."
                 defaultOn={false}
               />
             </div>
           </section>
 
           {/* Support + sign out */}
-          <section className="mt-12 flex flex-wrap items-center justify-between gap-3">
+          <section className="mt-12 flex flex-wrap items-center justify-between gap-3" data-tour="support">
             <div
               className="rounded-2xl px-5 py-4 flex items-center gap-3 flex-1 min-w-[240px]"
               style={{ background: C.surface, border: `1px solid ${C.border}` }}

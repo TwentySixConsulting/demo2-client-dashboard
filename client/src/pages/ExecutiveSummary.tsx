@@ -67,7 +67,7 @@ const colorMap: Record<string, string> = {
   'market-data': 'bg-blue-600',
   'role-details': 'bg-purple-600',
   'risks': 'bg-amber-500',
-  'market-comparison': 'bg-indigo-600',
+  'market-comparison': 'bg-clay-600',
   'bonus': 'bg-pink-600',
   'benefits': 'bg-teal-600',
   'benefits-trends': 'bg-orange-500',
@@ -124,7 +124,7 @@ function EditableCard({ section, isEditMode, onUpdate }: EditableCardProps) {
   if (isEditMode && isEditing) {
     return (
       <div ref={setNodeRef} style={style}>
-        <Card className="p-5 bg-white border-2 border-indigo-500 shadow-lg">
+        <Card className="p-5 bg-white border-2 border-clay-500 shadow-lg">
           <div className="space-y-3">
             <Input
               value={editTitle}
@@ -166,7 +166,7 @@ function EditableCard({ section, isEditMode, onUpdate }: EditableCardProps) {
     <Card
       className={`p-5 bg-white border-0 transition-all duration-300 ${
         isEditMode
-          ? 'ring-2 ring-dashed ring-indigo-300 hover:ring-indigo-500 cursor-move shadow-md'
+          ? 'ring-2 ring-dashed ring-clay-300 hover:ring-clay-500 cursor-move shadow-md'
           : 'shadow-[0_1px_3px_rgba(0,0,0,0.05),0_20px_40px_-20px_rgba(0,0,0,0.1)] hover:shadow-[0_1px_3px_rgba(0,0,0,0.05),0_30px_60px_-20px_rgba(0,0,0,0.15)] hover:-translate-y-1 cursor-pointer group'
       }`}
       data-testid={`launcher-${section.slug}`}
@@ -199,7 +199,7 @@ function EditableCard({ section, isEditMode, onUpdate }: EditableCardProps) {
                 className="p-1.5 hover:bg-slate-100 rounded-lg transition-colors"
                 data-testid={`edit-btn-${section.slug}`}
               >
-                <Pencil className="w-4 h-4 text-indigo-500" />
+                <Pencil className="w-4 h-4 text-clay-500" />
               </button>
             ) : (
               <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center group-hover:bg-accent group-hover:text-white transition-all">
@@ -342,7 +342,7 @@ export function ExecutiveSummary() {
                 onChange={(e) => setHeadlineValue(e.target.value)}
                 onBlur={handleHeadlineSave}
                 onKeyDown={(e) => e.key === 'Enter' && handleHeadlineSave()}
-                className="text-4xl lg:text-5xl font-display font-bold border-2 border-indigo-500 rounded px-2 py-1 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-300"
+                className="text-4xl lg:text-5xl font-display font-bold border-2 border-clay-500 rounded px-2 py-1 bg-white focus:outline-none focus:ring-2 focus:ring-clay-300"
                 autoFocus
                 data-testid="input-edit-headline"
               />
@@ -352,12 +352,12 @@ export function ExecutiveSummary() {
             </div>
           ) : (
             <h1
-              className={`text-4xl lg:text-5xl font-display font-bold text-primary mb-3 ${isEditMode ? 'cursor-pointer hover:bg-indigo-50 hover:outline hover:outline-2 hover:outline-dashed hover:outline-indigo-300 rounded px-2 -mx-2 transition-all' : ''}`}
+              className={`text-4xl lg:text-5xl font-display font-bold text-primary mb-3 ${isEditMode ? 'cursor-pointer hover:bg-clay-50 hover:outline hover:outline-2 hover:outline-dashed hover:outline-clay-300 rounded px-2 -mx-2 transition-all' : ''}`}
               onClick={() => isEditMode && setEditingHeadline(true)}
               data-testid="dashboard-headline"
             >
               {headlineValue}
-              {isEditMode && <Pencil className="inline w-5 h-5 ml-2 text-indigo-400 opacity-50" />}
+              {isEditMode && <Pencil className="inline w-5 h-5 ml-2 text-clay-400 opacity-50" />}
             </h1>
           )}
           {isEditMode && editingSubheadline ? (
@@ -367,7 +367,7 @@ export function ExecutiveSummary() {
                 onChange={(e) => setSubheadlineValue(e.target.value)}
                 onBlur={handleSubheadlineSave}
                 onKeyDown={(e) => e.key === 'Enter' && handleSubheadlineSave()}
-                className="border-2 border-indigo-500 rounded px-2 py-1 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-300"
+                className="border-2 border-clay-500 rounded px-2 py-1 bg-white focus:outline-none focus:ring-2 focus:ring-clay-300"
                 autoFocus
                 data-testid="input-edit-subheadline"
               />
@@ -378,7 +378,7 @@ export function ExecutiveSummary() {
           ) : (
             <Link href="#pay-ranges">
               <span
-                className={`inline-flex items-center gap-2 text-accent hover:text-accent/80 transition-colors cursor-pointer ${isEditMode ? 'hover:bg-indigo-50 hover:outline hover:outline-2 hover:outline-dashed hover:outline-indigo-300 rounded px-1' : ''}`}
+                className={`inline-flex items-center gap-2 text-accent hover:text-accent/80 transition-colors cursor-pointer ${isEditMode ? 'hover:bg-clay-50 hover:outline hover:outline-2 hover:outline-dashed hover:outline-clay-300 rounded px-1' : ''}`}
                 onClick={(e) => {
                   if (isEditMode) {
                     e.preventDefault();
@@ -389,7 +389,7 @@ export function ExecutiveSummary() {
               >
                 <HelpCircle className="w-4 h-4" />
                 <span className="text-sm font-medium">{subheadlineValue}</span>
-                {isEditMode && <Pencil className="w-3 h-3 text-indigo-400 opacity-50" />}
+                {isEditMode && <Pencil className="w-3 h-3 text-clay-400 opacity-50" />}
               </span>
             </Link>
           )}

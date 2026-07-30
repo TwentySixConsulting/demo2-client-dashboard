@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [zigbert-brighton-demo]
+    branches: [main]
 
 permissions:
   contents: write

@@ -4,22 +4,27 @@ import {
   ChevronDown,
   LogOut,
   Mail,
-  Clock,
   Settings,
+  HelpCircle,
 } from "lucide-react";
 import { C } from "@/lib/theme";
 import { ZigbertLogo } from "@/components/ZigbertLogo";
 
 interface SectionTab {
-  key: "home" | "pay" | "benefits";
+  key: "home" | "pay" | "benefits" | "organisation";
   label: string;
   href: string;
+  spa?: boolean; // in-shell wouter route (no full-page nav)
 }
 
+// Base-path aware so links resolve under a GitHub Pages sub-path too
+// (BASE_URL is "/" in dev, "/Dashboard/" in the Pages build).
+const BASE = import.meta.env.BASE_URL;
 const TABS: SectionTab[] = [
-  { key: "home", label: "Home", href: "/" },
-  { key: "pay", label: "Pay", href: "/pay/" },
-  { key: "benefits", label: "Benefits", href: "/benefits/" },
+  { key: "home", label: "Home", href: BASE, spa: true },
+  { key: "pay", label: "Pay", href: `${BASE}pay/` },
+  { key: "benefits", label: "Benefits", href: `${BASE}benefits/` },
+  { key: "organisation", label: "Organisation", href: `${BASE}organisation`, spa: true },
 ];
 
 interface ShellProps {
@@ -77,7 +82,7 @@ export function Shell({ username, email, active, onSignOut }: ShellProps) {
         style={{ maxWidth: 1440 }}
       >
         <a
-          href="/"
+          href={BASE}
           aria-label="Back to Home"
           onClick={handleHome}
           className="inline-flex items-center gap-3.5 py-1.5 transition-opacity hover:opacity-70"
@@ -94,6 +99,7 @@ export function Shell({ username, email, active, onSignOut }: ShellProps) {
 
         <nav
           aria-label="Sections"
+          data-tour="nav"
           className="inline-flex items-center gap-[2px] rounded-full"
           style={{
             padding: 4,
@@ -104,23 +110,23 @@ export function Shell({ username, email, active, onSignOut }: ShellProps) {
           {TABS.map((tab) => {
             const isActive = tab.key === active;
             const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-              if (tab.key === "home") {
+              if (tab.spa) {
                 e.preventDefault();
-                setLocation("/");
+                setLocation(tab.key === "home" ? "/" : `/${tab.key}`);
               }
             };
             return (
               <a
                 key={tab.key}
                 href={tab.href}
-                onClick={tab.key === "home" ? handleClick : undefined}
+                onClick={tab.spa ? handleClick : undefined}
                 className="relative inline-flex items-center h-[30px] rounded-full text-[12.5px] font-medium transition-colors"
                 style={{
                   paddingLeft: isActive ? 24 : 14,
                   paddingRight: 14,
-                  color: isActive ? C.ink : "#76695a",
+                  color: isActive ? C.ink : C.inkMuted,
                   background: isActive ? C.surface : "transparent",
-                  border: isActive ? "1px solid #ebe2cc" : "1px solid transparent",
+                  border: isActive ? `1px solid ${C.border}` : "1px solid transparent",
                   textDecoration: "none",
                   letterSpacing: "0.01em",
                   boxShadow: isActive
@@ -130,7 +136,7 @@ export function Shell({ username, email, active, onSignOut }: ShellProps) {
                 onMouseEnter={(e) => {
                   if (!isActive) {
                     (e.currentTarget as HTMLAnchorElement).style.background =
-                      "rgba(138,107,62,0.06)";
+                      "rgba(201,120,90,0.07)";
                     (e.currentTarget as HTMLAnchorElement).style.color = C.ink;
                   }
                 }}
@@ -138,7 +144,7 @@ export function Shell({ username, email, active, onSignOut }: ShellProps) {
                   if (!isActive) {
                     (e.currentTarget as HTMLAnchorElement).style.background =
                       "transparent";
-                    (e.currentTarget as HTMLAnchorElement).style.color = "#76695a";
+                    (e.currentTarget as HTMLAnchorElement).style.color = C.inkMuted;
                   }
                 }}
               >
@@ -155,6 +161,19 @@ export function Shell({ username, email, active, onSignOut }: ShellProps) {
           })}
         </nav>
 
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            data-zigbert-tour-start
+            aria-label="Take a tour of the dashboard"
+            className="hidden sm:inline-flex items-center gap-1.5 h-9 px-3 rounded-full text-[12px] font-medium transition-colors"
+            style={{ background: C.surface, color: C.inkMuted, border: `1px solid ${C.border}` }}
+            onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = C.surfaceSoft; }}
+            onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = C.surface; }}
+          >
+            <HelpCircle className="w-3.5 h-3.5" /> Take a tour
+          </button>
+
         {/* User pill */}
         <div ref={ref} className="relative">
           <button
@@ -165,7 +184,7 @@ export function Shell({ username, email, active, onSignOut }: ShellProps) {
             className="inline-flex items-center gap-2.5 pl-1 pr-3 h-9 rounded-full transition-colors"
             style={{
               background: open ? C.surfaceSoft : C.surface,
-              border: `1px solid ${open ? "#cdbf95" : "#ebe2cc"}`,
+              border: `1px solid ${open ? C.brass : C.border}`,
               color: C.ink,
               fontSize: 12.5,
               fontWeight: 500,
@@ -181,7 +200,7 @@ export function Shell({ username, email, active, onSignOut }: ShellProps) {
                 fontSize: 11,
                 fontWeight: 700,
                 letterSpacing: "0.04em",
-                border: "1px solid #e8dcbb",
+                border: "1px solid rgba(201,120,90,0.30)",
               }}
             >
               {initials}
@@ -218,7 +237,7 @@ export function Shell({ username, email, active, onSignOut }: ShellProps) {
           >
             <div
               className="h-[2px]"
-              style={{ background: "linear-gradient(90deg, #8a6b3e, #c0a173)" }}
+              style={{ background: `linear-gradient(90deg, ${C.brass}, ${C.brassDeep})` }}
             />
             <div className="px-[18px] pt-4 pb-[18px]">
               <div className="flex items-center gap-3 mb-3.5">
@@ -231,7 +250,7 @@ export function Shell({ username, email, active, onSignOut }: ShellProps) {
                     color: C.brass,
                     fontSize: 13,
                     fontWeight: 700,
-                    border: "1px solid #e8dcbb",
+                    border: "1px solid rgba(201,120,90,0.30)",
                   }}
                 >
                   {initials}
@@ -255,10 +274,6 @@ export function Shell({ username, email, active, onSignOut }: ShellProps) {
                 <div className="flex items-center gap-2 text-[11.5px] leading-tight break-all">
                   <Mail className="w-3 h-3 flex-none" style={{ opacity: 0.55 }} />
                   <span style={{ color: C.ink }}>{email}</span>
-                </div>
-                <div className="flex items-center gap-2 text-[11.5px] leading-tight">
-                  <Clock className="w-3 h-3 flex-none" style={{ opacity: 0.55 }} />
-                  <span style={{ color: C.ink }}>Last sign-in · today</span>
                 </div>
               </div>
               <button
@@ -305,6 +320,7 @@ export function Shell({ username, email, active, onSignOut }: ShellProps) {
               </button>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </header>

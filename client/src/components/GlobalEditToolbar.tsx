@@ -70,7 +70,7 @@ export function GlobalEditToolbar() {
           
           <Button
             size="sm"
-            className="bg-indigo-600 hover:bg-indigo-700"
+            className="bg-clay-600 hover:bg-clay-700"
             onClick={handleSave}
             disabled={!hasUnsavedChanges || saving}
             data-testid="button-save-all"
