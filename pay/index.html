@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+
+    <meta property="og:title" content="Zigbert Pay Intelligence" />
+    <meta property="og:description" content="Personalised salary benchmarking and market insights — a Zigbert demo dashboard." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="./opengraph.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Zigbert Pay Intelligence" />
+    <meta name="twitter:description" content="Personalised salary benchmarking and market insights — a Zigbert demo dashboard." />
+    <meta name="twitter:image" content="./opengraph.jpg" />
+
+    <link rel="icon" type="image/png" href="./favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <title>Zigbert · Pay</title>
+
+    <!-- TwentySix · Zigbert shell — auth gate + URL normalisation (runs before the Vite bundle) -->
+    <script>
+      (function () {
+        var KEY = "demo-client-dashboard:temp-auth";
+        // Home = the platform root, base-path aware (works at /pay/ and /<repo>/pay/).
+        function homePath() {
+          var p = window.location.pathname.replace(/\/(pay|benefits)(\/.*)?$/, "");
+          return (p || "") + "/";
+        }
+        function isAuthed() {
+          try {
+            var raw = localStorage.getItem(KEY);
+            if (raw) { var pj = JSON.parse(raw); if (pj && pj.username) return true; }
+          } catch (e) {}
+          try {
+            for (var i = 0; i < localStorage.length; i++) {
+              var k = localStorage.key(i);
+              if (k && k.indexOf("sb-") === 0 && k.indexOf("-auth-token") !== -1) return true;
+            }
+          } catch (e) {}
+          return false;
+        }
+        if (!isAuthed()) { window.location.replace(homePath()); return; }
+        // Normalise /pay/index.html → /pay/ so wouter's base path matches.
+        if (window.location.pathname.match(/\/index\.html$/)) {
+          var clean = window.location.pathname.replace(/\/index\.html$/, "/");
+          window.history.replaceState(null, "", clean + window.location.search + window.location.hash);
+        }
+      })();
+    </script>
+
+    <!-- TwentySix · Zigbert shell — chrome (relative so it survives any mount sub-path) -->
+    <link rel="stylesheet" href="../shell/shell.css" />
+    <link rel="stylesheet" href="../shell/tour.css" />
+    <style>body { padding-top: 60px; }</style>
+
+    <script type="module" crossorigin src="./assets/index-BK0BjcAJ.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-Bi6RnF3G.css">
+  </head>
+  <body>
+    <!-- TwentySix · Zigbert shell — fixed top bar -->
+    <header class="ts-shell" role="banner">
+      <div class="ts-shell__inner">
+        <a class="ts-shell__brand" href="../" aria-label="Zigbert — Home">
+          <img class="ts-shell__logo" src="../shell/zigbert-logo.png" alt="Zigbert" />
+          <span class="ts-shell__divider"></span>
+          <span class="ts-shell__brand-sub">Pay &amp; Benefits Intelligence</span>
+        </a>
+
+        <nav class="ts-shell__tabs" aria-label="Sections">
+          <a class="ts-shell__tab" data-ts-shell-tab="home" href="../">Home</a>
+          <a class="ts-shell__tab" data-ts-shell-tab="pay" href="./">Pay</a>
+          <a class="ts-shell__tab" data-ts-shell-tab="benefits" href="../benefits/">Benefits</a>
+          <a class="ts-shell__tab" data-ts-shell-tab="organisation" href="../organisation">Organisation</a>
+        </nav>
+
+        <div class="ts-shell__user">
+          <button type="button" class="ts-shell__tour" data-zigbert-tour-start aria-label="Take a tour of the dashboard">? Take a tour</button>
+          <button
+            type="button"
+            class="ts-shell__user-button"
+            data-ts-shell-userbtn
+            aria-haspopup="menu"
+            aria-expanded="false"
+          >
+            <span class="ts-shell__avatar" data-ts-shell-avatar>··</span>
+            <span class="ts-shell__user-name" data-ts-shell-username>…</span>
+            <svg class="ts-shell__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="ts-shell__menu" data-ts-shell-menu role="menu" data-open="false">
+            <div class="ts-shell__menu-accent" aria-hidden="true"></div>
+            <div class="ts-shell__menu-body">
+              <div class="ts-shell__menu-header">
+                <span class="ts-shell__menu-avatar" data-ts-shell-menu-avatar>··</span>
+                <div>
+                  <div class="ts-shell__menu-name" data-ts-shell-menu-name>…</div>
+                  <div class="ts-shell__menu-status">Signed in</div>
+                </div>
+              </div>
+              <div class="ts-shell__menu-info">
+                <div class="ts-shell__menu-info-row">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                  <span data-ts-shell-menu-email>…</span>
+                </div>
+              </div>
+              <button type="button" class="ts-shell__signout" data-ts-shell-signout>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                Sign out
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div id="root"></div>
+
+    <script defer src="../shell/shell.js"></script>
+    <script defer src="../shell/tour.js"></script>
+  </body>
+</html>
