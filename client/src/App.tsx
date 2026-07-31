@@ -1,4 +1,4 @@
-import { Switch, Route } from "wouter";
+import { Switch, Route, Router as WouterRouter } from "wouter";
 import { QueryClientProvider } from "@tanstack/react-query";
 
 import { queryClient } from "./lib/queryClient";
@@ -46,6 +46,10 @@ function GatedRouter() {
   );
 }
 
+// Route base for the SPA — "" in dev (served at /), "/demo2-client-dashboard"
+// on GitHub Pages (import.meta.env.BASE_URL = "/demo2-client-dashboard/").
+const ROUTER_BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 function App() {
   return (
     <ErrorBoundary>
@@ -54,8 +58,10 @@ function App() {
           <PageEditorProvider>
             <TooltipProvider>
               <Toaster />
-              <ScrollToTop />
-              <GatedRouter />
+              <WouterRouter base={ROUTER_BASE}>
+                <ScrollToTop />
+                <GatedRouter />
+              </WouterRouter>
             </TooltipProvider>
           </PageEditorProvider>
         </AuthProvider>
