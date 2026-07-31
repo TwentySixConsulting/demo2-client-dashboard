@@ -279,8 +279,21 @@
     if (!s.active) { teardown(); return; }
     var i = Math.max(0, Math.min(s.step, STEPS.length - 1));
     var step = STEPS[i];
-    if (matchesHere(step)) { navigating = false; showStep(i); }
-    else if (!navigating) { navigating = true; window.location.href = urlFor(step); }
+    if (matchesHere(step)) {
+      navigating = false;
+      try { sessionStorage.removeItem("ztour-nav"); } catch (e) {}
+      showStep(i);
+    } else if (!navigating) {
+      // Loop guard: if we just navigated here for this same step and got
+      // bounced back (e.g. the target page's engine didn't load), end the
+      // tour gracefully instead of ping-ponging forever.
+      var g = null;
+      try { g = JSON.parse(sessionStorage.getItem("ztour-nav") || "null"); } catch (e) {}
+      if (g && g.step === i && (Date.now() - g.t) < 5000) { stop(); return; }
+      try { sessionStorage.setItem("ztour-nav", JSON.stringify({ step: i, t: Date.now() })); } catch (e) {}
+      navigating = true;
+      window.location.href = urlFor(step);
+    }
   }
 
   function go(delta) {
