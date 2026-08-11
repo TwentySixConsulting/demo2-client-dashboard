@@ -129,6 +129,9 @@ export function Home() {
             </div>
           </div>
 
+          {/* "Getting started" tour checklist — populated by shell/tour.js, empty until then */}
+          <div data-zigbert-tour-checklist />
+
           {/* Working area */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Left: attention + explore */}

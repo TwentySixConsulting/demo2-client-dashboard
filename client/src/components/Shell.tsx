@@ -165,13 +165,13 @@ export function Shell({ username, email, active, onSignOut }: ShellProps) {
           <button
             type="button"
             data-zigbert-tour-start
-            aria-label="Take a tour of the dashboard"
+            aria-label="Tour this page"
             className="hidden sm:inline-flex items-center gap-1.5 h-9 px-3 rounded-full text-[12px] font-medium transition-colors"
             style={{ background: C.surface, color: C.inkMuted, border: `1px solid ${C.border}` }}
             onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = C.surfaceSoft; }}
             onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = C.surface; }}
           >
-            <HelpCircle className="w-3.5 h-3.5" /> Take a tour
+            <HelpCircle className="w-3.5 h-3.5" /> Tour this page
           </button>
 
         {/* User pill */}
