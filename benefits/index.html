@@ -2490,8 +2490,10 @@
 .bx-attn { display: flex; align-items: center; gap: 12px; width: 100%; text-align: left; background: #fff; border: 1px solid var(--bx-line); border-radius: 12px; padding: 13px 14px; cursor: pointer; transition: transform .15s, box-shadow .15s; }
 .bx-attn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px -14px rgba(18,28,43,0.20); }
 .bx-attn-ico { flex: none; display: inline-flex; width: 32px; height: 32px; align-items: center; justify-content: center; border-radius: 9px; }
-.bx-attn-t { font-size: 13.5px; font-weight: 600; color: #0f1a29; line-height: 1.25; }
-.bx-attn-d { font-size: 12px; color: #64748b; margin-top: 2px; }
+/* both are spans inside a flex child, so they must be block or the benefit name and
+   its category run together ("Personal Development BudgetLearning · Below market") */
+.bx-attn-t { display: block; font-size: 13.5px; font-weight: 600; color: #0f1a29; line-height: 1.25; }
+.bx-attn-d { display: block; font-size: 12px; color: #64748b; margin-top: 2px; }
 
 /* navigate-to */
 .bx-navto { display: flex; align-items: flex-start; gap: 14px; height: 100%; }
@@ -2562,7 +2564,7 @@
 <!-- TwentySix shell — fixed top bar -->
 <header class="ts-shell" role="banner">
   <div class="ts-shell__inner">
-    <a class="ts-shell__brand" href="../" aria-label="Zigbert — Home">
+    <a class="ts-shell__brand" href="../" aria-label="Zigbert, Home">
       <img class="ts-shell__logo" src="../shell/zigbert-logo.png" alt="Zigbert" />
       <span class="ts-shell__divider"></span>
       <span class="ts-shell__brand-sub">Pay &amp; Benefits Intelligence</span>
@@ -2655,7 +2657,7 @@
       </button>
 </nav>
     <div class="sidebar-foot">
-      May 2026 · Internal report
+      Q2 2026 · Data as at May 2026
       <br><span class="conf-tag">Confidential</span>
       <button class="sidebar-logout" id="sidebar-logout" type="button">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12H3m0 0l4-4m-4 4l4 4m6-9V5a2 2 0 012-2h4a2 2 0 012 2v14a2 2 0 01-2 2h-4a2 2 0 01-2-2v-2"/></svg>
@@ -2690,7 +2692,7 @@
           <!-- print-only letterhead -->
           <div class="print-only" style="margin-bottom:12px">
             <p style="font-family:var(--font-display);font-weight:700;font-size:18px;color:#121C2B;margin:0">Zigbert · Benefits</p>
-            <p style="font-size:12px;color:#4B5563;margin:2px 0 0">Brighton Technologies · May 2026 · benchmarked vs Technology companies</p>
+            <p style="font-size:12px;color:#4B5563;margin:2px 0 0">Brighton Technologies · Q2 2026 · benchmarked vs Technology companies</p>
           </div>
 
           <!-- Hero verdict -->
@@ -2712,12 +2714,12 @@
               <div class="bx-meta" style="margin-top:16px;font-size:11.5px;color:#94a3b8">
                 <span>3 markets analysed</span><span class="dot">·</span>
                 <span>14 benefits reviewed</span><span class="dot">·</span>
-                <span>May 2026</span>
+                <span>Q2 2026</span>
               </div>
             </div>
             <div class="bx-search-wrap no-print">
               <span class="bx-search-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></span>
-              <input id="bx-search" class="bx-search" type="text" placeholder="Search a benefit — e.g. pension, sick pay" autocomplete="off" />
+              <input id="bx-search" class="bx-search" type="text" placeholder="Search a benefit, e.g. pension, sick pay" autocomplete="off" />
               <div id="bx-results" hidden></div>
             </div>
           </div>
@@ -2732,14 +2734,14 @@
           <!-- Category scorecard -->
           <div>
             <h2 class="bx-h2">Category scorecard</h2>
-            <p class="bx-sub">Where you sit across the six benefit categories — click to explore.</p>
+            <p class="bx-sub">Where you sit across the six benefit categories, click to explore.</p>
             <div id="bx-scorecard" class="bx-grid-3"></div>
           </div>
 
           <!-- Attention -->
           <div>
             <h2 class="bx-h2">What needs attention</h2>
-            <p class="bx-sub">Ranked from your position data — most pressing first.</p>
+            <p class="bx-sub">Ranked from your position data, most pressing first.</p>
             <div id="bx-attention" style="display:flex;flex-direction:column;gap:8px"></div>
           </div>
 
@@ -2754,7 +2756,7 @@
           <details class="bx-card no-print">
             <summary style="cursor:pointer;list-style:none;font-size:13.5px;font-weight:600;color:#334155">How to read this report</summary>
             <div style="font-size:13px;color:#64748b;line-height:1.6;margin-top:10px">
-              <p style="margin:0 0 6px">Each benefit is placed on the market range — Lower Quartile (25th percentile), Median (50th) and Upper Quartile (75th). A marker at or above the median means you're competitive; below the lower quartile is usually a gap to review.</p>
+              <p style="margin:0 0 6px">Each benefit is placed on the market range: Lower Quartile (25th percentile), Median (50th) and Upper Quartile (75th). A marker at or above the median means you're competitive; below the lower quartile is usually a gap to review.</p>
               <p style="margin:0">On any comparison page, click a row to expand the full quartile detail, switch the market you compare against, and export tables as Excel/PDF or a benefit as a PNG.</p>
             </div>
           </details>
@@ -2767,7 +2769,7 @@
         <section class="bench-section" id="provision">
     <div class="sec-hd">
       <div class="sec-label-row">
-        <span class="sec-eyebrow">Current provision &mdash; benchmarked vs Technology companies</span>
+        <span class="sec-eyebrow">Current provision, benchmarked vs Technology companies</span>
       </div>
       <h2 class="sec-title">Brighton Technologies&apos;s Benefits</h2>
       <p class="sec-desc">Every benefit currently provided, shown side-by-side with the Technology companies market quartiles and sector comparison.</p>
@@ -2783,18 +2785,18 @@
         <div class="yb-overview-card yb-overview-card-strength">
           <div class="yb-overview-card-head">Headline strengths</div>
           <ul>
-            <li><strong>Pension</strong> &mdash; 10% employer DC sits at the HA upper quartile.</li>
-            <li><strong>BCS membership for every employee</strong> + up to &pound;500/yr professional fees &mdash; upper quartile.</li>
-            <li><strong>HSF Health Plan + Perkbox</strong> bundle &mdash; combines a cash plan with retail rewards.</li>
-            <li><strong>Compassionate &amp; bereavement leave</strong> &mdash; tiered paid structure beyond statutory.</li>
+            <li><strong>Pension</strong>, 10% employer DC sits at the HA upper quartile.</li>
+            <li><strong>BCS membership for every employee</strong> + up to &pound;500/yr professional fees, upper quartile.</li>
+            <li><strong>HSF Health Plan + Perkbox</strong> bundle, combines a cash plan with retail rewards.</li>
+            <li><strong>Compassionate &amp; bereavement leave</strong>, tiered paid structure beyond statutory.</li>
           </ul>
         </div>
         <div class="yb-overview-card yb-overview-card-watch">
           <div class="yb-overview-card-head">Areas to watch</div>
           <ul>
-            <li><strong>Sick pay</strong> &mdash; entry-year SSP-only window sits below market; provision is generous post 2 years.</li>
-            <li><strong>Personal development</strong> &mdash; general provision but no structured per-employee budget (sector median &pound;200&ndash;&pound;350/yr).</li>
-            <li><strong>Salary sacrifice</strong> &mdash; live for pension only and not currently used; could be widened (EV, tech, cycle).</li>
+            <li><strong>Sick pay</strong>, entry-year SSP-only window sits below market; provision is generous post 2 years.</li>
+            <li><strong>Personal development</strong>, general provision but no structured per-employee budget (sector median &pound;200&ndash;&pound;350/yr).</li>
+            <li><strong>Salary sacrifice</strong>, live for pension only and not currently used; could be widened (EV, tech, cycle).</li>
           </ul>
         </div>
       </div>
@@ -2831,13 +2833,13 @@
             <div class="rb-eyebrow">Brighton Technologies&apos;s provision</div>
             <h3 class="rb-title">Annual Leave</h3>
           </div>
-          <div class="rb-badge rb-badge-green">At market — 25 days + 2 Christmas</div>
+          <div class="rb-badge rb-badge-green">At market · 25 days + 2 Christmas</div>
           <button class="rb-png-btn" type="button" data-png-target="rb-panel-annual-leave" aria-label="Download as PNG">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16"/></svg>
             <span>PNG</span>
           </button>
         </div>
-        <div class="rb-penge-pos"><span class="rb-penge-pos-dot"></span><span>Brighton Technologies provides <strong>25 days + 2 Christmas (27 base · 29 after 5 yr)</strong> &mdash; sits at the market median (and just below the upper quartile after 5 years)</span></div>
+        <div class="rb-penge-pos"><span class="rb-penge-pos-dot"></span><span>Brighton Technologies provides <strong>25 days + 2 Christmas (27 base · 29 after 5 yr)</strong>, sits at the market median (and just below the upper quartile after 5 years)</span></div>
         <div class="rb-grid">
           <div class="rb-col rb-col-penge">
             <div class="rb-col-head"><span class="rb-dot rb-dot-penge"></span>Brighton Technologies</div>
@@ -2874,13 +2876,13 @@
             <div class="rb-eyebrow">Brighton Technologies&apos;s provision</div>
             <h3 class="rb-title">Buy &amp; Sell Leave</h3>
           </div>
-          <div class="rb-badge rb-badge-green">At market — up to 5 days</div>
+          <div class="rb-badge rb-badge-green">At market · up to 5 days</div>
           <button class="rb-png-btn" type="button" data-png-target="rb-panel-holiday-buy-sell" aria-label="Download as PNG">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16"/></svg>
             <span>PNG</span>
           </button>
         </div>
-        <div class="rb-penge-pos"><span class="rb-penge-pos-dot"></span><span>Brighton Technologies provides <strong>Up to 5 days (CE approval)</strong> &mdash; sits at the market median</span></div>
+        <div class="rb-penge-pos"><span class="rb-penge-pos-dot"></span><span>Brighton Technologies provides <strong>Up to 5 days (CE approval)</strong>, sits at the market median</span></div>
         <div class="rb-grid">
           <div class="rb-col rb-col-penge">
             <div class="rb-col-head"><span class="rb-dot rb-dot-penge"></span>Brighton Technologies</div>
@@ -2917,13 +2919,13 @@
             <div class="rb-eyebrow">Brighton Technologies&apos;s provision</div>
             <h3 class="rb-title">Pension</h3>
           </div>
-          <div class="rb-badge rb-badge-above">Above market — 10% employer</div>
+          <div class="rb-badge rb-badge-above">Above market · 10% employer</div>
           <button class="rb-png-btn" type="button" data-png-target="rb-panel-pension-employer" aria-label="Download as PNG">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16"/></svg>
             <span>PNG</span>
           </button>
         </div>
-        <div class="rb-penge-pos"><span class="rb-penge-pos-dot"></span><span>Brighton Technologies provides <strong>10% employer DC</strong> &mdash; sits at the upper quartile</span></div>
+        <div class="rb-penge-pos"><span class="rb-penge-pos-dot"></span><span>Brighton Technologies provides <strong>10% employer DC</strong>, sits at the upper quartile</span></div>
         <div class="rb-grid">
           <div class="rb-col rb-col-penge">
             <div class="rb-col-head"><span class="rb-dot rb-dot-penge"></span>Brighton Technologies</div>
@@ -2970,12 +2972,12 @@
         <div class="rb-grid">
           <div class="rb-col rb-col-penge">
             <div class="rb-col-head"><span class="rb-dot rb-dot-penge"></span>Brighton Technologies</div>
-            <div class="rb-penge-val">Pension only — re-rolling out</div>
+            <div class="rb-penge-val">Pension only · re-rolling out</div>
             <div class="rb-penge-body">Salary sacrifice available for pension contributions. Take-up is currently nil and the scheme is being re-promoted to the team. Could be widened to cover EV, tech and cycle schemes.</div>
           </div>
           <div class="rb-col rb-col-ha">
             <div class="rb-col-head"><span class="rb-dot rb-dot-ha"></span>Technology companies <span class="rb-col-star">&#9733;</span> Primary Comparator</div>
-            <div class="rb-no-bench">Not benchmarked at quartile level &mdash; see comparison tables for sector context.</div>
+            <div class="rb-no-bench">Not benchmarked at quartile level, see comparison tables for sector context.</div>
           </div>
           
         </div>
@@ -2988,13 +2990,13 @@
             <div class="rb-eyebrow">Brighton Technologies&apos;s provision</div>
             <h3 class="rb-title">Sick Pay</h3>
           </div>
-          <div class="rb-badge rb-badge-amber">Mixed — service-tiered</div>
+          <div class="rb-badge rb-badge-amber">Mixed · service-tiered</div>
           <button class="rb-png-btn" type="button" data-png-target="rb-panel-sick-pay" aria-label="Download as PNG">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16"/></svg>
             <span>PNG</span>
           </button>
         </div>
-        <div class="rb-penge-pos"><span class="rb-penge-pos-dot"></span><span>Brighton Technologies provides <strong>3m full + 3m half (after 2yr)</strong> &mdash; sits at the upper quartile after 2 years’ service (entry-year cover sits below market)</span></div>
+        <div class="rb-penge-pos"><span class="rb-penge-pos-dot"></span><span>Brighton Technologies provides <strong>3m full + 3m half (after 2yr)</strong>, sits at the upper quartile after 2 years’ service (entry-year cover sits below market)</span></div>
         <div class="rb-grid">
           <div class="rb-col rb-col-penge">
             <div class="rb-col-head"><span class="rb-dot rb-dot-penge"></span>Brighton Technologies</div>
@@ -3031,13 +3033,13 @@
             <div class="rb-eyebrow">Brighton Technologies&apos;s provision</div>
             <h3 class="rb-title">Maternity Pay</h3>
           </div>
-          <div class="rb-badge rb-badge-green">At market — ~12 weeks full pay</div>
+          <div class="rb-badge rb-badge-green">At market · ~12 weeks full pay</div>
           <button class="rb-png-btn" type="button" data-png-target="rb-panel-maternity-pay" aria-label="Download as PNG">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16"/></svg>
             <span>PNG</span>
           </button>
         </div>
-        <div class="rb-penge-pos"><span class="rb-penge-pos-dot"></span><span>Brighton Technologies provides <strong>12 weeks full pay (after 1yr) + 39 weeks SMP</strong> &mdash; sits at the market median</span></div>
+        <div class="rb-penge-pos"><span class="rb-penge-pos-dot"></span><span>Brighton Technologies provides <strong>12 weeks full pay (after 1yr) + 39 weeks SMP</strong>, sits at the market median</span></div>
         <div class="rb-grid">
           <div class="rb-col rb-col-penge">
             <div class="rb-col-head"><span class="rb-dot rb-dot-penge"></span>Brighton Technologies</div>
@@ -3074,13 +3076,13 @@
             <div class="rb-eyebrow">Brighton Technologies&apos;s provision</div>
             <h3 class="rb-title">Paternity &amp; Shared Parental Leave</h3>
           </div>
-          <div class="rb-badge rb-badge-green">At market — 2 weeks full pay</div>
+          <div class="rb-badge rb-badge-green">At market · 2 weeks full pay</div>
           <button class="rb-png-btn" type="button" data-png-target="rb-panel-paternity-pay" aria-label="Download as PNG">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16"/></svg>
             <span>PNG</span>
           </button>
         </div>
-        <div class="rb-penge-pos"><span class="rb-penge-pos-dot"></span><span>Brighton Technologies provides <strong>2 weeks full pay + Shared Parental Leave</strong> &mdash; sits at the market median</span></div>
+        <div class="rb-penge-pos"><span class="rb-penge-pos-dot"></span><span>Brighton Technologies provides <strong>2 weeks full pay + Shared Parental Leave</strong>, sits at the market median</span></div>
         <div class="rb-grid">
           <div class="rb-col rb-col-penge">
             <div class="rb-col-head"><span class="rb-dot rb-dot-penge"></span>Brighton Technologies</div>
@@ -3101,7 +3103,7 @@
                 <div class="rb-pos-penge" style="left:58%"><span class="rb-pos-penge-flag">Brighton</span></div>
               </div>
               <div class="rb-q-cards">
-                <div class="rb-q-cell rb-q-cell-lq"><div class="rb-q-lbl">Lower Quartile</div><div class="rb-q-val">Statutory Paternity Pay (SPP) only — 2 weeks at £187.18/week (2025/26 rate)</div></div>
+                <div class="rb-q-cell rb-q-cell-lq"><div class="rb-q-lbl">Lower Quartile</div><div class="rb-q-val">Statutory Paternity Pay (SPP) only · 2 weeks at £187.18/week (2025/26 rate)</div></div>
                 <div class="rb-q-cell rb-q-cell-med"><div class="rb-q-lbl">Median <span class="qcard-star">&#9733;</span></div><div class="rb-q-val">2 weeks full pay, followed by SPP for remainder of statutory entitlement</div></div>
                 <div class="rb-q-cell rb-q-cell-uq"><div class="rb-q-lbl">Upper Quartile</div><div class="rb-q-val">4–6 weeks full pay, some extending to 8 weeks or offering shared parental leave matching maternity pay</div></div>
               </div>
@@ -3117,17 +3119,17 @@
             <div class="rb-eyebrow">Brighton Technologies&apos;s provision</div>
             <h3 class="rb-title">Compassionate &amp; Bereavement Leave</h3>
           </div>
-          <div class="rb-badge rb-badge-above">Above market — generous tiered structure</div>
+          <div class="rb-badge rb-badge-above">Above market · generous tiered structure</div>
           <button class="rb-png-btn" type="button" data-png-target="rb-panel-compassionate-leave" aria-label="Download as PNG">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16"/></svg>
             <span>PNG</span>
           </button>
         </div>
-        <div class="rb-penge-pos"><span class="rb-penge-pos-dot"></span><span>Brighton Technologies provides <strong>Tiered — up to 2 weeks paid + 5 days emergency leave</strong> &mdash; sits at the upper quartile — tiered, paid structure is well above the sector norm</span></div>
+        <div class="rb-penge-pos"><span class="rb-penge-pos-dot"></span><span>Brighton Technologies provides <strong>Tiered, up to 2 weeks paid + 5 days emergency leave</strong>, sits at the upper quartile, tiered, paid structure is well above the sector norm</span></div>
         <div class="rb-grid">
           <div class="rb-col rb-col-penge">
             <div class="rb-col-head"><span class="rb-dot rb-dot-penge"></span>Brighton Technologies</div>
-            <div class="rb-penge-val">Tiered — up to 2 weeks paid + 5 days emergency leave</div>
+            <div class="rb-penge-val">Tiered · up to 2 weeks paid + 5 days emergency leave</div>
             <div class="rb-penge-body">2 weeks paid for death of immediate relative (spouse, civil partner, parent, step-parent, sibling) and 2 weeks paid parental bereavement (Jack’s Law). 3 days paid for grandparent or other close family member/friend. Up to 5 days paid compassionate leave for serious illness or similar (CE discretion); plus up to 10 days unpaid. Up to 5 days paid emergency leave per rolling 12 months for dependent care.</div>
           </div>
           <div class="rb-col rb-col-ha">
@@ -3160,13 +3162,13 @@
             <div class="rb-eyebrow">Brighton Technologies&apos;s provision</div>
             <h3 class="rb-title">Life Assurance</h3>
           </div>
-          <div class="rb-badge rb-badge-green">At market — 3× salary</div>
+          <div class="rb-badge rb-badge-green">At market · 3× salary</div>
           <button class="rb-png-btn" type="button" data-png-target="rb-panel-life-assurance" aria-label="Download as PNG">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16"/></svg>
             <span>PNG</span>
           </button>
         </div>
-        <div class="rb-penge-pos"><span class="rb-penge-pos-dot"></span><span>Brighton Technologies provides <strong>3× annual salary</strong> &mdash; sits at the market median</span></div>
+        <div class="rb-penge-pos"><span class="rb-penge-pos-dot"></span><span>Brighton Technologies provides <strong>3× annual salary</strong>, sits at the market median</span></div>
         <div class="rb-grid">
           <div class="rb-col rb-col-penge">
             <div class="rb-col-head"><span class="rb-dot rb-dot-penge"></span>Brighton Technologies</div>
@@ -3209,7 +3211,7 @@
             <span>PNG</span>
           </button>
         </div>
-        <div class="rb-penge-pos"><span class="rb-penge-pos-dot"></span><span>Brighton Technologies provides <strong>Available to all staff</strong> &mdash; sits at the market median</span></div>
+        <div class="rb-penge-pos"><span class="rb-penge-pos-dot"></span><span>Brighton Technologies provides <strong>Available to all staff</strong>, sits at the market median</span></div>
         <div class="rb-grid">
           <div class="rb-col rb-col-penge">
             <div class="rb-col-head"><span class="rb-dot rb-dot-penge"></span>Brighton Technologies</div>
@@ -3246,13 +3248,13 @@
             <div class="rb-eyebrow">Brighton Technologies&apos;s provision</div>
             <h3 class="rb-title">HSF Health Plan + Perkbox</h3>
           </div>
-          <div class="rb-badge rb-badge-above">Above market — health + retail bundle</div>
+          <div class="rb-badge rb-badge-above">Above market · health + retail bundle</div>
           <button class="rb-png-btn" type="button" data-png-target="rb-panel-health-cash-plan" aria-label="Download as PNG">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16"/></svg>
             <span>PNG</span>
           </button>
         </div>
-        <div class="rb-penge-pos"><span class="rb-penge-pos-dot"></span><span>Brighton Technologies provides <strong>HSF + Perkbox bundle</strong> &mdash; sits at the upper quartile (bundled with retail rewards)</span></div>
+        <div class="rb-penge-pos"><span class="rb-penge-pos-dot"></span><span>Brighton Technologies provides <strong>HSF + Perkbox bundle</strong>, sits at the upper quartile (bundled with retail rewards)</span></div>
         <div class="rb-grid">
           <div class="rb-col rb-col-penge">
             <div class="rb-col-head"><span class="rb-dot rb-dot-penge"></span>Brighton Technologies</div>
@@ -3289,13 +3291,13 @@
             <div class="rb-eyebrow">Brighton Technologies&apos;s provision</div>
             <h3 class="rb-title">Personal Development</h3>
           </div>
-          <div class="rb-badge rb-badge-below">Mixed — informal provision</div>
+          <div class="rb-badge rb-badge-below">Mixed · informal provision</div>
           <button class="rb-png-btn" type="button" data-png-target="rb-panel-personal-dev-budget" aria-label="Download as PNG">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16"/></svg>
             <span>PNG</span>
           </button>
         </div>
-        <div class="rb-penge-pos"><span class="rb-penge-pos-dot"></span><span>Brighton Technologies provides <strong>General provision (no fixed budget)</strong> &mdash; sits below the sector median of £200–£350 per employee per year — informal vs structured</span></div>
+        <div class="rb-penge-pos"><span class="rb-penge-pos-dot"></span><span>Brighton Technologies provides <strong>General provision (no fixed budget)</strong>, sits below the sector median of £200–£350 per employee per year, informal vs structured</span></div>
         <div class="rb-grid">
           <div class="rb-col rb-col-penge">
             <div class="rb-col-head"><span class="rb-dot rb-dot-penge"></span>Brighton Technologies</div>
@@ -3332,13 +3334,13 @@
             <div class="rb-eyebrow">Brighton Technologies&apos;s provision</div>
             <h3 class="rb-title">BCS Membership &amp; Professional Fees</h3>
           </div>
-          <div class="rb-badge rb-badge-above">Above market — BCS + £500/yr fees</div>
+          <div class="rb-badge rb-badge-above">Above market · BCS + £500/yr fees</div>
           <button class="rb-png-btn" type="button" data-png-target="rb-panel-professional-subs" aria-label="Download as PNG">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16"/></svg>
             <span>PNG</span>
           </button>
         </div>
-        <div class="rb-penge-pos"><span class="rb-penge-pos-dot"></span><span>Brighton Technologies provides <strong>BCS for all + up to £500/yr</strong> &mdash; sits at the upper quartile</span></div>
+        <div class="rb-penge-pos"><span class="rb-penge-pos-dot"></span><span>Brighton Technologies provides <strong>BCS for all + up to £500/yr</strong>, sits at the upper quartile</span></div>
         <div class="rb-grid">
           <div class="rb-col rb-col-penge">
             <div class="rb-col-head"><span class="rb-dot rb-dot-penge"></span>Brighton Technologies</div>
@@ -3375,7 +3377,7 @@
             <div class="rb-eyebrow">Brighton Technologies&apos;s provision</div>
             <h3 class="rb-title">Casual-User Mileage</h3>
           </div>
-          <div class="rb-badge rb-badge-green">At market — role-dependent</div>
+          <div class="rb-badge rb-badge-green">At market · role-dependent</div>
           <button class="rb-png-btn" type="button" data-png-target="rb-panel-casual-user-mileage" aria-label="Download as PNG">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16"/></svg>
             <span>PNG</span>
@@ -3390,7 +3392,7 @@
           </div>
           <div class="rb-col rb-col-ha">
             <div class="rb-col-head"><span class="rb-dot rb-dot-ha"></span>Technology companies <span class="rb-col-star">&#9733;</span> Primary Comparator</div>
-            <div class="rb-no-bench">Not benchmarked at quartile level &mdash; see comparison tables for sector context.</div>
+            <div class="rb-no-bench">Not benchmarked at quartile level, see comparison tables for sector context.</div>
           </div>
           
         </div>
@@ -3409,7 +3411,7 @@
             <div class="page-overview">
               <div class="page-overview-eyebrow">On this page</div>
               <h3 class="page-overview-title">Building Strong Foundations</h3>
-              <p class="page-overview-body">This page covers the foundational reward package across the technology sector: <strong>bonus, annual leave, additional days, buy &amp; sell leave, employer pension, sick pay, maternity and paternity pay, car allowance and out-of-hours call-out</strong>. Each row shows the lower quartile, median and upper quartile of typical market practice &mdash; click any row to open the full per-quartile narrative and our market commentary.</p>
+              <p class="page-overview-body">This page covers the foundational reward package across the technology sector: <strong>bonus, annual leave, additional days, buy &amp; sell leave, employer pension, sick pay, maternity and paternity pay, car allowance and out-of-hours call-out</strong>. Each row shows the lower quartile, median and upper quartile of typical market practice, click any row to open the full per-quartile narrative and our market commentary.</p>
             </div>
 
 <div class="exp-toolbar">
@@ -3432,7 +3434,7 @@
       </div>
 <div class="tbl-wrap haq-tbl-wrap">
       <div class="tbl-legend haq-legend">
-        <span class="haq-legend-eyebrow">Technology companies &mdash; market quartiles</span>
+        <span class="haq-legend-eyebrow">Technology companies, market quartiles</span>
         <span class="haq-legend-key"><span class="haq-key-dot haq-key-dot-lq"></span>Lower</span>
         <span class="haq-legend-key"><span class="haq-key-dot haq-key-dot-med"></span>Median <span class="qd-star">&#9733;</span></span>
         <span class="haq-legend-key"><span class="haq-key-dot haq-key-dot-uq"></span>Upper</span>
@@ -3466,7 +3468,7 @@
                   <div class="qd-panel qd-panel-lq">
                     <div class="qd-panel-head">Lower Quartile</div>
                     <div class="qd-panel-value">0% (no bonus scheme)</div>
-                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Lower quartile technology companies typically offer no annual bonus whatsoever.</li><li>These organisations — often smaller, community-based or operating in highly cost-constrained environments — rely on incremental pay progression, cost-of-living awards and sector-wide pay frameworks (such as those aligned to NJC or local agreements) rather than performance-related pay.</li><li>Where a bonus does exist at the lower quartile, it may be a flat-rate, non-consolidated 'thank you' payment of £250–£500 rather than a percentage of salary, often discretionary and non-contractual.</li></ul></div>
+                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Lower quartile technology companies typically offer no annual bonus whatsoever.</li><li>These organisations, often smaller, community-based or operating in highly cost-constrained environments, rely on incremental pay progression, cost-of-living awards and sector-wide pay frameworks (such as those aligned to NJC or local agreements) rather than performance-related pay.</li><li>Where a bonus does exist at the lower quartile, it may be a flat-rate, non-consolidated 'thank you' payment of £250–£500 rather than a percentage of salary, often discretionary and non-contractual.</li></ul></div>
                   </div>
                   <div class="qd-panel qd-panel-med">
                     <div class="qd-panel-head">Median <span class="qd-star">&#9733;</span></div>
@@ -3476,7 +3478,7 @@
                   <div class="qd-panel qd-panel-uq">
                     <div class="qd-panel-head">Upper Quartile</div>
                     <div class="qd-panel-value">5–8% of salary</div>
-                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Upper quartile technology companies — typically larger, more commercially oriented or group-structure organisations (e.g. those with significant development arms, market-sale or shared ownership activity) — operate more structured annual incentive plans with awards of 5–8% of salary for management, and occasionally 10–15% for director and executive levels.</li><li>Best-in-class employers extend eligibility to a broader employee population, adopt transparent scorecard frameworks, and link bonus targets to a balanced mix of social value KPIs (e.g. user satisfaction, energy performance) alongside financial metrics.</li><li>A small number of leading employers now offer all-employee bonus or profit-sharing arrangements funded from surpluses.</li></ul></div>
+                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Upper quartile technology companies, typically larger, more commercially oriented or group-structure organisations (e.g. those with significant development arms, market-sale or shared ownership activity), operate more structured annual incentive plans with awards of 5–8% of salary for management, and occasionally 10–15% for director and executive levels.</li><li>Best-in-class employers extend eligibility to a broader employee population, adopt transparent scorecard frameworks, and link bonus targets to a balanced mix of social value KPIs (e.g. user satisfaction, energy performance) alongside financial metrics.</li><li>A small number of leading employers now offer all-employee bonus or profit-sharing arrangements funded from surpluses.</li></ul></div>
                   </div>
                 </div>
               </div>
@@ -3676,7 +3678,7 @@
                   <div class="qd-panel qd-panel-lq">
                     <div class="qd-panel-head">Lower Quartile</div>
                     <div class="qd-panel-value">SMP only (statutory minimum: 6 weeks at 90% pay, then &pound;184.03/week for 33 weeks)</div>
-                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Lower quartile technology companies typically offer statutory maternity pay only — 6 weeks at 90% of average weekly earnings followed by 39 weeks at the SMP flat rate (£184.03/week from April 2024, rising to £187.18/week from April 2025).</li><li>These tend to be smaller or financially constrained established technology firms with limited HR resource.</li><li>No occupational enhancement is provided beyond the legal minimum, and eligibility mirrors HMRC statutory criteria (26 weeks' service by the 15th week before the expected week of childbirth).</li></ul></div>
+                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Lower quartile technology companies typically offer statutory maternity pay only, 6 weeks at 90% of average weekly earnings followed by 39 weeks at the SMP flat rate (£184.03/week from April 2024, rising to £187.18/week from April 2025).</li><li>These tend to be smaller or financially constrained established technology firms with limited HR resource.</li><li>No occupational enhancement is provided beyond the legal minimum, and eligibility mirrors HMRC statutory criteria (26 weeks' service by the 15th week before the expected week of childbirth).</li></ul></div>
                   </div>
                   <div class="qd-panel qd-panel-med">
                     <div class="qd-panel-head">Median <span class="qd-star">&#9733;</span></div>
@@ -3686,7 +3688,7 @@
                   <div class="qd-panel qd-panel-uq">
                     <div class="qd-panel-head">Upper Quartile</div>
                     <div class="qd-panel-value">Full pay for 16–26 weeks, then half pay for a further 8–13 weeks, then SMP</div>
-                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Upper quartile and best-in-class technology companies — typically larger enterprise or national-scale firms and those with strong EDI commitments — offer full pay for 16 to 26 weeks followed by half pay for a further 8 to 13 weeks, then SMP to complete the 39-week statutory period.</li><li>Some leading employers are moving toward 26 weeks' full pay with no service requirement or reduced service thresholds of 6 months, aligning with progressive private sector practice.</li><li>A small number of sector leaders have also introduced equal parental pay policies that bring paternity and shared parental pay in line with maternity, reflecting a whole-family approach.</li></ul></div>
+                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Upper quartile and best-in-class technology companies, typically larger enterprise or national-scale firms and those with strong EDI commitments, offer full pay for 16 to 26 weeks followed by half pay for a further 8 to 13 weeks, then SMP to complete the 39-week statutory period.</li><li>Some leading employers are moving toward 26 weeks' full pay with no service requirement or reduced service thresholds of 6 months, aligning with progressive private sector practice.</li><li>A small number of sector leaders have also introduced equal parental pay policies that bring paternity and shared parental pay in line with maternity, reflecting a whole-family approach.</li></ul></div>
                   </div>
                 </div>
               </div>
@@ -3700,7 +3702,7 @@
               </button>
               <span class="haq-name-text">Paternity Pay</span>
             </td>
-            <td class="haq-cell haq-cell-lq"><span class="haq-val">Statutory Paternity Pay (SPP) only — 2 weeks at &pound;187.18/week (2025/26 rate)</span></td>
+            <td class="haq-cell haq-cell-lq"><span class="haq-val">Statutory Paternity Pay (SPP) only · 2 weeks at &pound;187.18/week (2025/26 rate)</span></td>
             <td class="haq-cell haq-cell-med"><span class="haq-val">2 weeks full pay, followed by SPP for remainder of statutory entitlement</span></td>
             <td class="haq-cell haq-cell-uq"><span class="haq-val">4–6 weeks full pay, some extending to 8 weeks or offering shared parental leave matching maternity pay</span></td>
           </tr>
@@ -3710,8 +3712,8 @@
                 <div class="qd-panels">
                   <div class="qd-panel qd-panel-lq">
                     <div class="qd-panel-head">Lower Quartile</div>
-                    <div class="qd-panel-value">Statutory Paternity Pay (SPP) only — 2 weeks at &pound;187.18/week (2025/26 rate)</div>
-                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Lower quartile technology companies offer only the statutory minimum: up to 2 weeks of Statutory Paternity Pay at the government-set flat rate (£187.18/week from April 2025, subject to earnings threshold).</li><li>There is no contractual enhancement, meaning employees earning above the SPP rate receive a significant pay drop.</li><li>Eligibility conditions mirror statutory requirements — 26 weeks service by the 15th week before the expected week of childbirth — with no discretionary flexibility.</li></ul></div>
+                    <div class="qd-panel-value">Statutory Paternity Pay (SPP) only · 2 weeks at &pound;187.18/week (2025/26 rate)</div>
+                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Lower quartile technology companies offer only the statutory minimum: up to 2 weeks of Statutory Paternity Pay at the government-set flat rate (£187.18/week from April 2025, subject to earnings threshold).</li><li>There is no contractual enhancement, meaning employees earning above the SPP rate receive a significant pay drop.</li><li>Eligibility conditions mirror statutory requirements, 26 weeks service by the 15th week before the expected week of childbirth, with no discretionary flexibility.</li></ul></div>
                   </div>
                   <div class="qd-panel qd-panel-med">
                     <div class="qd-panel-head">Median <span class="qd-star">&#9733;</span></div>
@@ -3721,7 +3723,7 @@
                   <div class="qd-panel qd-panel-uq">
                     <div class="qd-panel-head">Upper Quartile</div>
                     <div class="qd-panel-value">4–6 weeks full pay, some extending to 8 weeks or offering shared parental leave matching maternity pay</div>
-                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Upper quartile employers in the technology sector offer 4–6 weeks at full pay, with some leading organisations extending to 8 weeks or more.</li><li>Best-in-class practice includes pay-matching arrangements where paternity/partner pay mirrors the first phase of enhanced maternity pay, explicit inclusion of adoption and surrogacy, and full alignment with Shared Parental Leave policies — allowing partners to receive the same enhanced rate when taking SPL.</li><li>A small number of progressive technology companies have introduced gender-neutral parental leave policies removing the distinction between primary and secondary carer pay entirely.</li></ul></div>
+                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Upper quartile employers in the technology sector offer 4–6 weeks at full pay, with some leading organisations extending to 8 weeks or more.</li><li>Best-in-class practice includes pay-matching arrangements where paternity/partner pay mirrors the first phase of enhanced maternity pay, explicit inclusion of adoption and surrogacy, and full alignment with Shared Parental Leave policies, allowing partners to receive the same enhanced rate when taking SPL.</li><li>A small number of progressive technology companies have introduced gender-neutral parental leave policies removing the distinction between primary and secondary carer pay entirely.</li></ul></div>
                   </div>
                 </div>
               </div>
@@ -3746,12 +3748,12 @@
                   <div class="qd-panel qd-panel-lq">
                     <div class="qd-panel-head">Lower Quartile</div>
                     <div class="qd-panel-value">&pound;3,000–&pound;4,000 per annum</div>
-                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Lower quartile technology companies typically offer car allowances only to roles with an explicit operational travel requirement — primarily senior managers, infrastructure management, and surveying staff.</li><li>Allowances at this level tend to sit between £3,000 and £4,000 per annum, with no fuel card and limited policy flexibility.</li><li>Many organisations at this level are moving away from car allowances altogether for mid-grade roles, replacing them with mileage-only arrangements under HMRC Advisory Fuel Rates.</li></ul></div>
+                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Lower quartile technology companies typically offer car allowances only to roles with an explicit operational travel requirement, primarily senior managers, infrastructure management, and surveying staff.</li><li>Allowances at this level tend to sit between £3,000 and £4,000 per annum, with no fuel card and limited policy flexibility.</li><li>Many organisations at this level are moving away from car allowances altogether for mid-grade roles, replacing them with mileage-only arrangements under HMRC Advisory Fuel Rates.</li></ul></div>
                   </div>
                   <div class="qd-panel qd-panel-med">
                     <div class="qd-panel-head">Median <span class="qd-star">&#9733;</span></div>
                     <div class="qd-panel-value">&pound;4,500–&pound;5,500 per annum</div>
-                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>The typical technology company offers car allowances in the range of £4,500–£5,500 per annum, generally attached to roles at middle management level and above — including engineering managers, QA engineers, development managers, and operations leads — where regular travel between sites or properties is required.</li><li>Allowances are usually set contractually and paid monthly through payroll as a taxable cash benefit, with the expectation that the employee funds and maintains their own vehicle.</li><li>Business mileage is reimbursed separately at HMRC Advisory Rates (currently 45p/mile for first 10,000 miles).</li></ul></div>
+                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>The typical technology company offers car allowances in the range of £4,500–£5,500 per annum, generally attached to roles at middle management level and above, including engineering managers, QA engineers, development managers, and operations leads, where regular travel between sites or properties is required.</li><li>Allowances are usually set contractually and paid monthly through payroll as a taxable cash benefit, with the expectation that the employee funds and maintains their own vehicle.</li><li>Business mileage is reimbursed separately at HMRC Advisory Rates (currently 45p/mile for first 10,000 miles).</li></ul></div>
                   </div>
                   <div class="qd-panel qd-panel-uq">
                     <div class="qd-panel-head">Upper Quartile</div>
@@ -3802,11 +3804,11 @@
 
     <div class="sector-footer">
               <div class="sector-footer-card sector-footer-sp">
-                <div class="sector-footer-head"><span class="sector-footer-dot"></span>Small Private Sector &mdash; typical practice</div>
+                <div class="sector-footer-head"><span class="sector-footer-dot"></span>Small Private Sector, typical practice</div>
                 <p>Small-private organisations tend to run lean core provision. Bonus is uncommon (typically founder-led discretionary rather than scheme-based); pension matches auto-enrolment minimums (3–5%); leave clusters at 25 days with the occasional 28-day outlier. Enhanced parental pay is less common than in the not-for-profit sector.</p>
               </div>
               <div class="sector-footer-card sector-footer-lp">
-                <div class="sector-footer-head"><span class="sector-footer-dot"></span>Large Private Sector &mdash; typical practice</div>
+                <div class="sector-footer-head"><span class="sector-footer-dot"></span>Large Private Sector, typical practice</div>
                 <p>Large-private benchmarks run richer core: pension typically 5–7% employer with the ability to match up to 8%; bonus schemes (profit-share or performance) routine at 5–20% of salary; 6 months full maternity pay common; share schemes (SIP, SAYE, options) are the norm; car allowances structured for senior and operational-manager bands.</p>
               </div>
             </div>
@@ -3816,7 +3818,7 @@
       <div class="callout-hd"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"/></svg><h4>Less Common Benefits &amp; Ideas Worth Noting</h4></div>
       <ul>
         <li>Additional days (up to 3) as Well-Being / Mental Health Days that can be taken in addition to annual leave at short notice</li>
-        <li>We couldn't find much evidence of 'Duvet Days', so these may have fallen out of favour — effectively replaced by Well-Being Days</li>
+        <li>We couldn't find much evidence of 'Duvet Days', so these may have fallen out of favour, effectively replaced by Well-Being Days</li>
       </ul>
     </div>
 
@@ -3833,7 +3835,7 @@
             <div class="page-overview">
               <div class="page-overview-eyebrow">On this page</div>
               <h3 class="page-overview-title">Working-time flexibility</h3>
-              <p class="page-overview-body">This page covers the working-time flexibility provision typical of technology companies: <strong>flexible-hours arrangements, hybrid / remote working, sabbaticals and compassionate leave</strong>. Each row shows the lower quartile, median and upper quartile of typical market practice &mdash; click any row to open the full per-quartile narrative and our market commentary.</p>
+              <p class="page-overview-body">This page covers the working-time flexibility provision typical of technology companies: <strong>flexible-hours arrangements, hybrid / remote working, sabbaticals and compassionate leave</strong>. Each row shows the lower quartile, median and upper quartile of typical market practice, click any row to open the full per-quartile narrative and our market commentary.</p>
             </div>
 
 <div class="exp-toolbar">
@@ -3856,7 +3858,7 @@
       </div>
 <div class="tbl-wrap haq-tbl-wrap">
       <div class="tbl-legend haq-legend">
-        <span class="haq-legend-eyebrow">Technology companies &mdash; market quartiles</span>
+        <span class="haq-legend-eyebrow">Technology companies, market quartiles</span>
         <span class="haq-legend-key"><span class="haq-key-dot haq-key-dot-lq"></span>Lower</span>
         <span class="haq-legend-key"><span class="haq-key-dot haq-key-dot-med"></span>Median <span class="qd-star">&#9733;</span></span>
         <span class="haq-legend-key"><span class="haq-key-dot haq-key-dot-uq"></span>Upper</span>
@@ -3890,7 +3892,7 @@
                   <div class="qd-panel qd-panel-lq">
                     <div class="qd-panel-head">Lower Quartile</div>
                     <div class="qd-panel-value">Core hours flexibility only (e.g. 7am–7pm window with fixed core 10am–3pm)</div>
-                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Lower quartile technology companies typically offer a narrow flexitime window — employees may shift start/finish times within a defined band (e.g. start between 7:30am–9:30am) but are expected to work standard 35–37 hours across five days.</li><li>Flexibility is often role-dependent and excluded for frontline support engineers, on-call coordinators and scheme-based staff.</li><li>Formal compressed hours or annualised hours arrangements are uncommon and typically require management sign-off on a case-by-case basis with no guaranteed right.</li></ul></div>
+                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Lower quartile technology companies typically offer a narrow flexitime window, employees may shift start/finish times within a defined band (e.g. start between 7:30am–9:30am) but are expected to work standard 35–37 hours across five days.</li><li>Flexibility is often role-dependent and excluded for frontline support engineers, on-call coordinators and scheme-based staff.</li><li>Formal compressed hours or annualised hours arrangements are uncommon and typically require management sign-off on a case-by-case basis with no guaranteed right.</li></ul></div>
                   </div>
                   <div class="qd-panel qd-panel-med">
                     <div class="qd-panel-head">Median <span class="qd-star">&#9733;</span></div>
@@ -3958,7 +3960,7 @@
                   <div class="qd-panel qd-panel-lq">
                     <div class="qd-panel-head">Lower Quartile</div>
                     <div class="qd-panel-value">No formal sabbatical policy; ad hoc unpaid leave only</div>
-                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Lower quartile technology companies offer no formal sabbatical policy whatsoever.</li><li>Employees seeking extended leave would need to apply for unpaid career breaks under general leave policies, with no guaranteed right to return to the same role and highly discretionary management approval.</li><li>These organisations — typically smaller technology companies with tighter staffing margins — cannot absorb the operational impact of extended absences and have no structured framework to manage or fund sabbaticals.</li></ul></div>
+                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Lower quartile technology companies offer no formal sabbatical policy whatsoever.</li><li>Employees seeking extended leave would need to apply for unpaid career breaks under general leave policies, with no guaranteed right to return to the same role and highly discretionary management approval.</li><li>These organisations, typically smaller technology companies with tighter staffing margins, cannot absorb the operational impact of extended absences and have no structured framework to manage or fund sabbaticals.</li></ul></div>
                   </div>
                   <div class="qd-panel qd-panel-med">
                     <div class="qd-panel-head">Median <span class="qd-star">&#9733;</span></div>
@@ -3968,7 +3970,7 @@
                   <div class="qd-panel qd-panel-uq">
                     <div class="qd-panel-head">Upper Quartile</div>
                     <div class="qd-panel-value">Formal sabbatical policy with paid or part-paid provision, structured eligibility criteria, typically 1–3 months after 5 years&#x27; service</div>
-                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Upper quartile technology companies operate a formal, documented sabbatical or career break policy, often included within the employee handbook and accessible via an HR portal.</li><li>Some larger or more progressive technology companies — particularly those with Investors in People Platinum or Great Place to Work accreditation — offer partially paid sabbaticals (e.g. 25–50% of salary for up to 4 weeks, followed by unpaid extension) after 5 years' continuous service.</li><li>Return-to-work guarantees for the same or equivalent role are standard, and policies may include volunteer or community sabbaticals aligned to the technology company's social purpose mission.</li></ul></div>
+                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Upper quartile technology companies operate a formal, documented sabbatical or career break policy, often included within the employee handbook and accessible via an HR portal.</li><li>Some larger or more progressive technology companies, particularly those with Investors in People Platinum or Great Place to Work accreditation, offer partially paid sabbaticals (e.g. 25–50% of salary for up to 4 weeks, followed by unpaid extension) after 5 years' continuous service.</li><li>Return-to-work guarantees for the same or equivalent role are standard, and policies may include volunteer or community sabbaticals aligned to the technology company's social purpose mission.</li></ul></div>
                   </div>
                 </div>
               </div>
@@ -4017,11 +4019,11 @@
 
     <div class="sector-footer">
               <div class="sector-footer-card sector-footer-sp">
-                <div class="sector-footer-head"><span class="sector-footer-dot"></span>Small Private Sector &mdash; typical practice</div>
+                <div class="sector-footer-head"><span class="sector-footer-dot"></span>Small Private Sector, typical practice</div>
                 <p>Working-time flexibility in small private firms is mixed. Smaller employers skew office-based, with flexible hours offered case-by-case rather than as a formal framework. Sabbaticals are rare; the carers' / compassionate offer typically tracks statutory minimums.</p>
               </div>
               <div class="sector-footer-card sector-footer-lp">
-                <div class="sector-footer-head"><span class="sector-footer-dot"></span>Large Private Sector &mdash; typical practice</div>
+                <div class="sector-footer-head"><span class="sector-footer-dot"></span>Large Private Sector, typical practice</div>
                 <p>Large private employers have largely formalised hybrid (typically 2–3 days office). Sabbaticals after 3–5 years' service are well-established; flexible-hours frameworks are common; compassionate and carers' leave often goes beyond statutory.</p>
               </div>
             </div>
@@ -4048,7 +4050,7 @@
             <div class="page-overview">
               <div class="page-overview-eyebrow">On this page</div>
               <h3 class="page-overview-title">Health and wellbeing provision</h3>
-              <p class="page-overview-body">This page covers the health and wellbeing benefits offered across the technology sector: <strong>life assurance, employee assistance programmes, private medical insurance, health cash plans, permanent health insurance, digital GP, health screening, gym membership, flu jabs, eye-care vouchers and mental-health app access</strong>. Each row shows the lower quartile, median and upper quartile of typical market practice &mdash; click any row to open the full per-quartile narrative and our market commentary.</p>
+              <p class="page-overview-body">This page covers the health and wellbeing benefits offered across the technology sector: <strong>life assurance, employee assistance programmes, private medical insurance, health cash plans, permanent health insurance, digital GP, health screening, gym membership, flu jabs, eye-care vouchers and mental-health app access</strong>. Each row shows the lower quartile, median and upper quartile of typical market practice, click any row to open the full per-quartile narrative and our market commentary.</p>
             </div>
 
 <div class="exp-toolbar">
@@ -4071,7 +4073,7 @@
       </div>
 <div class="tbl-wrap haq-tbl-wrap">
       <div class="tbl-legend haq-legend">
-        <span class="haq-legend-eyebrow">Technology companies &mdash; market quartiles</span>
+        <span class="haq-legend-eyebrow">Technology companies, market quartiles</span>
         <span class="haq-legend-key"><span class="haq-key-dot haq-key-dot-lq"></span>Lower</span>
         <span class="haq-legend-key"><span class="haq-key-dot haq-key-dot-med"></span>Median <span class="qd-star">&#9733;</span></span>
         <span class="haq-legend-key"><span class="haq-key-dot haq-key-dot-uq"></span>Upper</span>
@@ -4216,7 +4218,7 @@
                   <div class="qd-panel qd-panel-med">
                     <div class="qd-panel-head">Median <span class="qd-star">&#9733;</span></div>
                     <div class="qd-panel-value">Basic health cash plan provided (Level 1–2 equivalent); employer-funded, core optical/dental/physio cashback</div>
-                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>The typical technology company offers a basic employer-funded health cash plan — broadly equivalent to a Level 1 or Level 2 Westfield Health, Simplyhealth or HSF plan — covering optical, dental and physiotherapy cashback claims up to modest annual limits (e.g. £50–£100 optical, £80–£100 dental per year).</li><li>Cover is usually for employees only (not dependants), available from day one or after a short qualifying period such as three months.</li><li>This is typically a group scheme purchased centrally and provided as a standard contractual benefit across all employee grades.</li></ul></div>
+                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>The typical technology company offers a basic employer-funded health cash plan, broadly equivalent to a Level 1 or Level 2 Westfield Health, Simplyhealth or HSF plan, covering optical, dental and physiotherapy cashback claims up to modest annual limits (e.g. £50–£100 optical, £80–£100 dental per year).</li><li>Cover is usually for employees only (not dependants), available from day one or after a short qualifying period such as three months.</li><li>This is typically a group scheme purchased centrally and provided as a standard contractual benefit across all employee grades.</li></ul></div>
                   </div>
                   <div class="qd-panel qd-panel-uq">
                     <div class="qd-panel-head">Upper Quartile</div>
@@ -4290,7 +4292,7 @@
                   <div class="qd-panel qd-panel-uq">
                     <div class="qd-panel-head">Upper Quartile</div>
                     <div class="qd-panel-value">Fully integrated digital GP with specialist referrals, prescriptions, mental health triage and family cover</div>
-                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Upper quartile and best-in-class technology companies offer fully featured digital GP platforms — such as BUPA HealthLine, AXA Health Online Doctor, Aviva DigiCare+ or Kry — which include video consultations with GMC-registered GPs, private prescription capability, onward specialist referral pathways, mental health triage, and second medical opinion services.</li><li>Family member or household coverage is a key differentiator at this level.</li><li>Leading employers in this quartile embed digital GP within a wider health and wellbeing ecosystem that may include physiotherapy, nutrition coaching and mental health support, often delivered through a single-platform solution.</li></ul></div>
+                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Upper quartile and best-in-class technology companies offer fully featured digital GP platforms, such as BUPA HealthLine, AXA Health Online Doctor, Aviva DigiCare+ or Kry, which include video consultations with GMC-registered GPs, private prescription capability, onward specialist referral pathways, mental health triage, and second medical opinion services.</li><li>Family member or household coverage is a key differentiator at this level.</li><li>Leading employers in this quartile embed digital GP within a wider health and wellbeing ecosystem that may include physiotherapy, nutrition coaching and mental health support, often delivered through a single-platform solution.</li></ul></div>
                   </div>
                 </div>
               </div>
@@ -4416,7 +4418,7 @@
                   <div class="qd-panel qd-panel-lq">
                     <div class="qd-panel-head">Lower Quartile</div>
                     <div class="qd-panel-value">DSE eye test reimbursement only (statutory minimum)</div>
-                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Lower quartile technology employers typically provide only the statutory minimum under the Health and Safety (Display Screen Equipment) Regulations 1992 — covering the cost of an eye test for DSE users on request, usually via expense reimbursement rather than a formal voucher scheme.</li><li>There is often no contribution towards corrective lenses or frames, and eligibility is restricted to employees who specifically request an assessment under DSE regulations.</li><li>Administration tends to be informal, with no dedicated provider arrangement, and the benefit is rarely communicated proactively.</li></ul></div>
+                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Lower quartile technology employers typically provide only the statutory minimum under the Health and Safety (Display Screen Equipment) Regulations 1992, covering the cost of an eye test for DSE users on request, usually via expense reimbursement rather than a formal voucher scheme.</li><li>There is often no contribution towards corrective lenses or frames, and eligibility is restricted to employees who specifically request an assessment under DSE regulations.</li><li>Administration tends to be informal, with no dedicated provider arrangement, and the benefit is rarely communicated proactively.</li></ul></div>
                   </div>
                   <div class="qd-panel qd-panel-med">
                     <div class="qd-panel-head">Median <span class="qd-star">&#9733;</span></div>
@@ -4450,7 +4452,7 @@
                   <div class="qd-panel qd-panel-lq">
                     <div class="qd-panel-head">Lower Quartile</div>
                     <div class="qd-panel-value">EAP only, reactive signposting</div>
-                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Lower quartile technology employers typically provide access to a basic Employee Assistance Programme (EAP) offering telephone counselling (usually 6 sessions), with limited promotion or integration into broader people practices.</li><li>Mental health is rarely addressed proactively — provision is reactive, signposting employees to external services only when issues arise.</li><li>There is typically no dedicated mental health first aider network, no manager training specific to mental health, and no formal wellbeing strategy underpinning provision.</li></ul></div>
+                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Lower quartile technology employers typically provide access to a basic Employee Assistance Programme (EAP) offering telephone counselling (usually 6 sessions), with limited promotion or integration into broader people practices.</li><li>Mental health is rarely addressed proactively, provision is reactive, signposting employees to external services only when issues arise.</li><li>There is typically no dedicated mental health first aider network, no manager training specific to mental health, and no formal wellbeing strategy underpinning provision.</li></ul></div>
                   </div>
                   <div class="qd-panel qd-panel-med">
                     <div class="qd-panel-head">Median <span class="qd-star">&#9733;</span></div>
@@ -4472,12 +4474,12 @@
 
     <div class="sector-footer">
               <div class="sector-footer-card sector-footer-sp">
-                <div class="sector-footer-head"><span class="sector-footer-dot"></span>Small Private Sector &mdash; typical practice</div>
+                <div class="sector-footer-head"><span class="sector-footer-dot"></span>Small Private Sector, typical practice</div>
                 <p>Health provision in small-private organisations is lean: EAP is near-universal but PMI is rare. Health cash plans (Simplyhealth, BHSF, HSF) feature as a low-cost alternative. Mental-health support tends to come bundled with EAP rather than standalone.</p>
               </div>
               <div class="sector-footer-card sector-footer-lp">
-                <div class="sector-footer-head"><span class="sector-footer-dot"></span>Large Private Sector &mdash; typical practice</div>
-                <p>PMI is the dominant health benefit in large private — around 84% offer it, typically with family-cover options and dental, optical and mental-health riders. PHI / Group Income Protection is standard alongside, plus digital GP, annual health screening and structured gym subsidies.</p>
+                <div class="sector-footer-head"><span class="sector-footer-dot"></span>Large Private Sector, typical practice</div>
+                <p>PMI is the dominant health benefit in large private, around 84% offer it, typically with family-cover options and dental, optical and mental-health riders. PHI / Group Income Protection is standard alongside, plus digital GP, annual health screening and structured gym subsidies.</p>
               </div>
             </div>
 
@@ -4504,7 +4506,7 @@
             <div class="page-overview">
               <div class="page-overview-eyebrow">On this page</div>
               <h3 class="page-overview-title">Financial-support benefits</h3>
-              <p class="page-overview-body">This page covers the financial-support benefits typical of the technology sector: <strong>financial education, low-cost loans and savings plans, retail discounts and homeworker financial allowances</strong>. Each row shows the lower quartile, median and upper quartile of typical market practice &mdash; click any row to open the full per-quartile narrative and our market commentary.</p>
+              <p class="page-overview-body">This page covers the financial-support benefits typical of the technology sector: <strong>financial education, low-cost loans and savings plans, retail discounts and homeworker financial allowances</strong>. Each row shows the lower quartile, median and upper quartile of typical market practice, click any row to open the full per-quartile narrative and our market commentary.</p>
             </div>
 
 <div class="exp-toolbar">
@@ -4527,7 +4529,7 @@
       </div>
 <div class="tbl-wrap haq-tbl-wrap">
       <div class="tbl-legend haq-legend">
-        <span class="haq-legend-eyebrow">Technology companies &mdash; market quartiles</span>
+        <span class="haq-legend-eyebrow">Technology companies, market quartiles</span>
         <span class="haq-legend-key"><span class="haq-key-dot haq-key-dot-lq"></span>Lower</span>
         <span class="haq-legend-key"><span class="haq-key-dot haq-key-dot-med"></span>Median <span class="qd-star">&#9733;</span></span>
         <span class="haq-legend-key"><span class="haq-key-dot haq-key-dot-uq"></span>Upper</span>
@@ -4566,12 +4568,12 @@
                   <div class="qd-panel qd-panel-med">
                     <div class="qd-panel-head">Median <span class="qd-star">&#9733;</span></div>
                     <div class="qd-panel-value">Basic financial wellbeing resources (EAP-linked guidance, online tools)</div>
-                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Typical technology employers provide financial wellbeing support primarily through their Employee Assistance Programme (EAP), which includes access to financial guidance helplines and online tools covering budgeting, debt management and savings basics.</li><li>Some employers supplement this with periodic webinars or lunch-and-learn sessions — often delivered by pension providers or external partners — particularly around auto-enrolment, pay reviews or cost-of-living pressures.</li><li>Provision is largely reactive rather than strategically embedded.</li></ul></div>
+                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Typical technology employers provide financial wellbeing support primarily through their Employee Assistance Programme (EAP), which includes access to financial guidance helplines and online tools covering budgeting, debt management and savings basics.</li><li>Some employers supplement this with periodic webinars or lunch-and-learn sessions, often delivered by pension providers or external partners, particularly around auto-enrolment, pay reviews or cost-of-living pressures.</li><li>Provision is largely reactive rather than strategically embedded.</li></ul></div>
                   </div>
                   <div class="qd-panel qd-panel-uq">
                     <div class="qd-panel-head">Upper Quartile</div>
                     <div class="qd-panel-value">Structured financial education programme with personalised guidance and debt/savings support</div>
-                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Upper quartile technology companies offer a proactive, structured financial education programme combining digital platforms (e.g. Salary Finance, nudge, or Wagestream integration), one-to-one financial coaching or regulated guidance sessions, and a year-round calendar of financial wellbeing content.</li><li>These employers address the full financial wellbeing spectrum — budgeting, debt, savings, pension adequacy and retirement planning — and often partner with credit unions or provide salary advance/flexible pay access as a complementary tool.</li><li>Financial education is formally embedded in the employee value proposition and linked to broader wellbeing strategy.</li></ul></div>
+                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Upper quartile technology companies offer a proactive, structured financial education programme combining digital platforms (e.g. Salary Finance, nudge, or Wagestream integration), one-to-one financial coaching or regulated guidance sessions, and a year-round calendar of financial wellbeing content.</li><li>These employers address the full financial wellbeing spectrum: budgeting, debt, savings, pension adequacy and retirement planning, and often partner with credit unions or provide salary advance/flexible pay access as a complementary tool.</li><li>Financial education is formally embedded in the employee value proposition and linked to broader wellbeing strategy.</li></ul></div>
                   </div>
                 </div>
               </div>
@@ -4584,7 +4586,7 @@
               </button>
               <span class="haq-name-text">Low Cost Loans &amp; Savings Plans</span>
             </td>
-            <td class="haq-cell haq-cell-lq"><span class="haq-val">No provision — access to wages only on standard payroll cycle</span></td>
+            <td class="haq-cell haq-cell-lq"><span class="haq-val">No provision · access to wages only on standard payroll cycle</span></td>
             <td class="haq-cell haq-cell-med"><span class="haq-val">Pilot or recently implemented EWA scheme via third-party provider, typically employer-subsidised</span></td>
             <td class="haq-cell haq-cell-uq"><span class="haq-val">Fully embedded, employer-funded EWA with integrated financial wellbeing support and multi-provider choice</span></td>
           </tr>
@@ -4594,18 +4596,18 @@
                 <div class="qd-panels">
                   <div class="qd-panel qd-panel-lq">
                     <div class="qd-panel-head">Lower Quartile</div>
-                    <div class="qd-panel-value">No provision — access to wages only on standard payroll cycle</div>
+                    <div class="qd-panel-value">No provision · access to wages only on standard payroll cycle</div>
                     <div class="qd-panel-body"><ul class="qd-panel-points"><li>Lower quartile technology companies offer no earned wage access and rely entirely on standard monthly payroll cycles.</li><li>Some may offer emergency salary advances on an ad hoc, discretionary basis administered through HR or payroll, but these are informal, inconsistently applied and often carry stigma.</li><li>Financial hardship support, if any, is limited to signposting to credit unions or external debt advice services such as StepChange.</li></ul></div>
                   </div>
                   <div class="qd-panel qd-panel-med">
                     <div class="qd-panel-head">Median <span class="qd-star">&#9733;</span></div>
                     <div class="qd-panel-value">Pilot or recently implemented EWA scheme via third-party provider, typically employer-subsidised</div>
-                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Median-market technology companies have implemented or are actively piloting a third-party earned wage access platform — commonly Wagestream, which has significant penetration in the technology sector.</li><li>Access is typically capped at 50% of earned wages per pay period, with a small per-transaction fee (usually £1.75–£2.50) borne partly or fully by the employee.</li><li>Eligibility typically covers all permanent and fixed-term employees after a short qualifying period (often 3 months), with frontline operational roles the primary target population.</li></ul></div>
+                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Median-market technology companies have implemented or are actively piloting a third-party earned wage access platform, commonly Wagestream, which has significant penetration in the technology sector.</li><li>Access is typically capped at 50% of earned wages per pay period, with a small per-transaction fee (usually £1.75–£2.50) borne partly or fully by the employee.</li><li>Eligibility typically covers all permanent and fixed-term employees after a short qualifying period (often 3 months), with frontline operational roles the primary target population.</li></ul></div>
                   </div>
                   <div class="qd-panel qd-panel-uq">
                     <div class="qd-panel-head">Upper Quartile</div>
                     <div class="qd-panel-value">Fully embedded, employer-funded EWA with integrated financial wellbeing support and multi-provider choice</div>
-                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Upper quartile and best-in-class technology companies fully fund the transaction cost so employees access wages at no charge, removing financial barriers for lower-paid workers.</li><li>These employers integrate EWA within a broader financial wellbeing strategy that includes savings pots, budgeting tools, financial coaching and signposting to regulated advice — features offered by platforms such as Wagestream's full suite or Hastee.</li><li>Some leading employers have achieved 30–50% active employee uptake and report measurable improvements in retention and absence reduction among frontline operations and care staff.</li></ul></div>
+                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Upper quartile and best-in-class technology companies fully fund the transaction cost so employees access wages at no charge, removing financial barriers for lower-paid workers.</li><li>These employers integrate EWA within a broader financial wellbeing strategy that includes savings pots, budgeting tools, financial coaching and signposting to regulated advice, features offered by platforms such as Wagestream's full suite or Hastee.</li><li>Some leading employers have achieved 30–50% active employee uptake and report measurable improvements in retention and absence reduction among frontline operations and care staff.</li></ul></div>
                   </div>
                 </div>
               </div>
@@ -4634,7 +4636,7 @@
                   <div class="qd-panel qd-panel-med">
                     <div class="qd-panel-head">Median <span class="qd-star">&#9733;</span></div>
                     <div class="qd-panel-value">Third-party retail discount platform with 100–500+ retailer offers</div>
-                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>The typical technology company subscribes to a third-party employee discount platform — commonly Perkbox, Reward Gateway, Sodexo Engage or similar — offering discounted gift cards, cashback portals and reloadable cards covering major UK retailers (supermarkets, clothing, fuel, leisure).</li><li>Access is usually via a web portal and/or app, available to all permanent employees from day one of employment.</li><li>The platform is contractually provided but engagement campaigns are inconsistent, and the benefit is rarely integrated into the broader reward narrative.</li></ul></div>
+                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>The typical technology company subscribes to a third-party employee discount platform, commonly Perkbox, Reward Gateway, Sodexo Engage or similar, offering discounted gift cards, cashback portals and reloadable cards covering major UK retailers (supermarkets, clothing, fuel, leisure).</li><li>Access is usually via a web portal and/or app, available to all permanent employees from day one of employment.</li><li>The platform is contractually provided but engagement campaigns are inconsistent, and the benefit is rarely integrated into the broader reward narrative.</li></ul></div>
                   </div>
                   <div class="qd-panel qd-panel-uq">
                     <div class="qd-panel-head">Upper Quartile</div>
@@ -4673,7 +4675,7 @@
                   <div class="qd-panel qd-panel-uq">
                     <div class="qd-panel-head">Upper Quartile</div>
                     <div class="qd-panel-value">&pound;20–&pound;26/month (&pound;240–&pound;312/year) plus equipment provision</div>
-                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Upper quartile and leading technology employers pay £20–£26/month (up to £312/year, at or near the full HMRC tax-free threshold of £6/week) and combine this with a comprehensive home office setup budget of £300–£500 for equipment at commencement of homeworking.</li><li>Some best-in-class employers — particularly larger enterprise-scale and national-scale organisations — offer an annual refresh contribution for consumables and a formal DSE assessment with funded remediation, making the total support package materially more generous.</li></ul></div>
+                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Upper quartile and leading technology employers pay £20–£26/month (up to £312/year, at or near the full HMRC tax-free threshold of £6/week) and combine this with a comprehensive home office setup budget of £300–£500 for equipment at commencement of homeworking.</li><li>Some best-in-class employers, particularly larger enterprise-scale and national-scale organisations, offer an annual refresh contribution for consumables and a formal DSE assessment with funded remediation, making the total support package materially more generous.</li></ul></div>
                   </div>
                 </div>
               </div>
@@ -4685,11 +4687,11 @@
 
     <div class="sector-footer">
               <div class="sector-footer-card sector-footer-sp">
-                <div class="sector-footer-head"><span class="sector-footer-dot"></span>Small Private Sector &mdash; typical practice</div>
+                <div class="sector-footer-head"><span class="sector-footer-dot"></span>Small Private Sector, typical practice</div>
                 <p>Financial benefits in small-private firms centre on retail discount platforms, Cycle to Work and season-ticket loans. Earned-wage access is emerging (~11% of CIPD respondents now offer it). Financial education and homeworker allowances are more informal.</p>
               </div>
               <div class="sector-footer-card sector-footer-lp">
-                <div class="sector-footer-head"><span class="sector-footer-dot"></span>Large Private Sector &mdash; typical practice</div>
+                <div class="sector-footer-head"><span class="sector-footer-dot"></span>Large Private Sector, typical practice</div>
                 <p>Large private adds flex-benefits pots (typically 3–5% of salary), broader salary-sacrifice (EV, tech), structured financial coaching, and formal homeworker allowances or stipends. Earned-wage access is more widely available as part of a financial-wellbeing strategy.</p>
               </div>
             </div>
@@ -4721,7 +4723,7 @@
             <div class="page-overview">
               <div class="page-overview-eyebrow">On this page</div>
               <h3 class="page-overview-title">ESG and ethical-employer benefits</h3>
-              <p class="page-overview-body">This page covers the ESG and ethical-employer benefits common across technology companies: <strong>ethically-invested pension defaults and paid volunteering days</strong>. Each row shows the lower quartile, median and upper quartile of typical market practice &mdash; click any row to open the full per-quartile narrative and our market commentary.</p>
+              <p class="page-overview-body">This page covers the ESG and ethical-employer benefits common across technology companies: <strong>ethically-invested pension defaults and paid volunteering days</strong>. Each row shows the lower quartile, median and upper quartile of typical market practice, click any row to open the full per-quartile narrative and our market commentary.</p>
             </div>
 
 <div class="exp-toolbar">
@@ -4744,7 +4746,7 @@
       </div>
 <div class="tbl-wrap haq-tbl-wrap">
       <div class="tbl-legend haq-legend">
-        <span class="haq-legend-eyebrow">Technology companies &mdash; market quartiles</span>
+        <span class="haq-legend-eyebrow">Technology companies, market quartiles</span>
         <span class="haq-legend-key"><span class="haq-key-dot haq-key-dot-lq"></span>Lower</span>
         <span class="haq-legend-key"><span class="haq-key-dot haq-key-dot-med"></span>Median <span class="qd-star">&#9733;</span></span>
         <span class="haq-legend-key"><span class="haq-key-dot haq-key-dot-uq"></span>Upper</span>
@@ -4783,12 +4785,12 @@
                   <div class="qd-panel qd-panel-med">
                     <div class="qd-panel-head">Median <span class="qd-star">&#9733;</span></div>
                     <div class="qd-panel-value">ESG/ethical fund option available as alternative</div>
-                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Typical technology companies operating at the median offer at least one ESG or ethically screened fund within their pension platform — most commonly via NEST's Ethical Fund, People's Pension, or a master trust with a Responsible Investment option alongside the default.</li><li>This is available as an opt-in alternative rather than the default, meaning take-up is relatively low without active promotion.</li><li>Employers at this level acknowledge ethical investment in their benefits literature but do not actively champion it.</li></ul></div>
+                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Typical technology companies operating at the median offer at least one ESG or ethically screened fund within their pension platform, most commonly via NEST's Ethical Fund, People's Pension, or a master trust with a Responsible Investment option alongside the default.</li><li>This is available as an opt-in alternative rather than the default, meaning take-up is relatively low without active promotion.</li><li>Employers at this level acknowledge ethical investment in their benefits literature but do not actively champion it.</li></ul></div>
                   </div>
                   <div class="qd-panel qd-panel-uq">
                     <div class="qd-panel-head">Upper Quartile</div>
                     <div class="qd-panel-value">ESG default or full ethical fund range with active member engagement</div>
-                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Upper quartile and best-in-class technology companies have either adopted an ESG-aligned or responsible investment fund as the default — meaning all employees are invested ethically unless they actively opt out — or offer a curated range of ethical investment tiers (e.g. ethical, sustainable, fossil-fuel-free).</li><li>These employers actively integrate ethical pension communication into values-led EVP messaging, run pension education sessions referencing social purpose, and some publish annual stewardship or ESG reporting on their pension arrangements.</li><li>A small but growing number are engaged with the Make My Money Matter or ShareAction campaigns.</li></ul></div>
+                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Upper quartile and best-in-class technology companies have either adopted an ESG-aligned or responsible investment fund as the default, meaning all employees are invested ethically unless they actively opt out, or offer a curated range of ethical investment tiers (e.g. ethical, sustainable, fossil-fuel-free).</li><li>These employers actively integrate ethical pension communication into values-led EVP messaging, run pension education sessions referencing social purpose, and some publish annual stewardship or ESG reporting on their pension arrangements.</li><li>A small but growing number are engaged with the Make My Money Matter or ShareAction campaigns.</li></ul></div>
                   </div>
                 </div>
               </div>
@@ -4834,12 +4836,12 @@
 
     <div class="sector-footer">
               <div class="sector-footer-card sector-footer-sp">
-                <div class="sector-footer-head"><span class="sector-footer-dot"></span>Small Private Sector &mdash; typical practice</div>
-                <p>DEI and ESG in small-private firms is often a values-led statement rather than a structured programme. Ethical pension funds are offered where the scheme provider supports them. Paid volunteering days are mixed — typically 1 day per year where present.</p>
+                <div class="sector-footer-head"><span class="sector-footer-dot"></span>Small Private Sector, typical practice</div>
+                <p>DEI and ESG in small-private firms is often a values-led statement rather than a structured programme. Ethical pension funds are offered where the scheme provider supports them. Paid volunteering days are mixed, typically 1 day per year where present.</p>
               </div>
               <div class="sector-footer-card sector-footer-lp">
-                <div class="sector-footer-head"><span class="sector-footer-dot"></span>Large Private Sector &mdash; typical practice</div>
-                <p>Large private organisations have formalised DEI commitments — gender + ethnicity pay-gap reporting, structured volunteering days (often 1–2 days), and explicit sustainability programmes. Ethical pension defaults are increasingly common.</p>
+                <div class="sector-footer-head"><span class="sector-footer-dot"></span>Large Private Sector, typical practice</div>
+                <p>Large private organisations have formalised DEI commitments: gender + ethnicity pay-gap reporting, structured volunteering days (often 1–2 days), and explicit sustainability programmes. Ethical pension defaults are increasingly common.</p>
               </div>
             </div>
 
@@ -4867,7 +4869,7 @@
             <div class="page-overview">
               <div class="page-overview-eyebrow">On this page</div>
               <h3 class="page-overview-title">Learning and development</h3>
-              <p class="page-overview-body">This page covers the learning and development provision typical of technology companies: <strong>personal development budgets, free access to learning courses and videos, paid professional subscriptions and structured career development</strong>. Each row shows the lower quartile, median and upper quartile of typical market practice &mdash; click any row to open the full per-quartile narrative and our market commentary.</p>
+              <p class="page-overview-body">This page covers the learning and development provision typical of technology companies: <strong>personal development budgets, free access to learning courses and videos, paid professional subscriptions and structured career development</strong>. Each row shows the lower quartile, median and upper quartile of typical market practice, click any row to open the full per-quartile narrative and our market commentary.</p>
             </div>
 
 <div class="exp-toolbar">
@@ -4890,7 +4892,7 @@
       </div>
 <div class="tbl-wrap haq-tbl-wrap">
       <div class="tbl-legend haq-legend">
-        <span class="haq-legend-eyebrow">Technology companies &mdash; market quartiles</span>
+        <span class="haq-legend-eyebrow">Technology companies, market quartiles</span>
         <span class="haq-legend-key"><span class="haq-key-dot haq-key-dot-lq"></span>Lower</span>
         <span class="haq-legend-key"><span class="haq-key-dot haq-key-dot-med"></span>Median <span class="qd-star">&#9733;</span></span>
         <span class="haq-legend-key"><span class="haq-key-dot haq-key-dot-uq"></span>Upper</span>
@@ -4966,7 +4968,7 @@
                   <div class="qd-panel qd-panel-med">
                     <div class="qd-panel-head">Median <span class="qd-star">&#9733;</span></div>
                     <div class="qd-panel-value">One primary LMS or curated digital learning platform (e.g. LinkedIn Learning, Cornerstone, or sector-specific CPD portal)</div>
-                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Median market employers in the technology sector provide access to at least one structured digital learning platform — most commonly LinkedIn Learning (accessed via Microsoft 365 licensing agreements) or a sector-relevant CPD library such as the BCS (BCS, The Chartered Institute for IT) online learning portal.</li><li>Access is typically available to all permanent staff, though line manager sign-off may still be required for some content.</li><li>Platforms tend to be supplementary to, rather than integrated with, formal training pathways.</li></ul></div>
+                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Median market employers in the technology sector provide access to at least one structured digital learning platform, most commonly LinkedIn Learning (accessed via Microsoft 365 licensing agreements) or a sector-relevant CPD library such as the BCS (BCS, The Chartered Institute for IT) online learning portal.</li><li>Access is typically available to all permanent staff, though line manager sign-off may still be required for some content.</li><li>Platforms tend to be supplementary to, rather than integrated with, formal training pathways.</li></ul></div>
                   </div>
                   <div class="qd-panel qd-panel-uq">
                     <div class="qd-panel-head">Upper Quartile</div>
@@ -5000,12 +5002,12 @@
                   <div class="qd-panel qd-panel-med">
                     <div class="qd-panel-head">Median <span class="qd-star">&#9733;</span></div>
                     <div class="qd-panel-value">Employer pays one core professional subscription relevant to role (e.g. BCS, AWS or PMI membership)</div>
-                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>The typical technology company will pay one primary professional subscription per employee where the membership is directly relevant to the role — most commonly BCS, The Chartered Institute for IT membership for engineering management staff, AWS for asset and surveying teams, or CIPD for HR professionals.</li><li>This is usually a contractual or clearly stated policy entitlement, processed via expenses or direct employer payment, but is typically limited to a single recognised body and does not extend to secondary or aspirational memberships.</li></ul></div>
+                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>The typical technology company will pay one primary professional subscription per employee where the membership is directly relevant to the role, most commonly BCS, The Chartered Institute for IT membership for engineering management staff, AWS for asset and surveying teams, or CIPD for HR professionals.</li><li>This is usually a contractual or clearly stated policy entitlement, processed via expenses or direct employer payment, but is typically limited to a single recognised body and does not extend to secondary or aspirational memberships.</li></ul></div>
                   </div>
                   <div class="qd-panel qd-panel-uq">
                     <div class="qd-panel-head">Upper Quartile</div>
                     <div class="qd-panel-value">Full payment of all relevant professional subscriptions plus study support and CPD budget</div>
-                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Upper quartile and best-in-class technology employers pay all relevant professional subscriptions across multiple bodies without a cap — covering BCS, AWS, CIPD, ICE, CIMA, and others as applicable to role — and combine this with a dedicated CPD budget (typically £500–£1,500 per employee per year) and active support for chartership pathways.</li><li>Some leading organisations, particularly larger enterprise-scale or regionally dominant employers, fund corporate membership schemes that reduce per-employee cost while increasing access, and formally track professional development as part of performance frameworks.</li></ul></div>
+                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Upper quartile and best-in-class technology employers pay all relevant professional subscriptions across multiple bodies without a cap, covering BCS, AWS, CIPD, ICE, CIMA, and others as applicable to role, and combine this with a dedicated CPD budget (typically £500–£1,500 per employee per year) and active support for chartership pathways.</li><li>Some leading organisations, particularly larger enterprise-scale or regionally dominant employers, fund corporate membership schemes that reduce per-employee cost while increasing access, and formally track professional development as part of performance frameworks.</li></ul></div>
                   </div>
                 </div>
               </div>
@@ -5035,12 +5037,12 @@
                   <div class="qd-panel qd-panel-med">
                     <div class="qd-panel-head">Median <span class="qd-star">&#9733;</span></div>
                     <div class="qd-panel-value">Structured internal development pathways with some professional qualification support and funded CPD</div>
-                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Typical technology companies offer a structured internal learning and development function with defined role families and some career pathway documentation, particularly for frontline engineering and infrastructure management roles.</li><li>Professional qualification support — most commonly funding or part-funding of BCS, The Chartered Institute for IT qualifications — is available for operational staff, usually with a clawback clause of 12–24 months.</li><li>Annual appraisal cycles include development planning conversations, though quality and consistency of follow-through varies significantly by line manager.</li></ul></div>
+                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Typical technology companies offer a structured internal learning and development function with defined role families and some career pathway documentation, particularly for frontline engineering and infrastructure management roles.</li><li>Professional qualification support, most commonly funding or part-funding of BCS, The Chartered Institute for IT qualifications, is available for operational staff, usually with a clawback clause of 12–24 months.</li><li>Annual appraisal cycles include development planning conversations, though quality and consistency of follow-through varies significantly by line manager.</li></ul></div>
                   </div>
                   <div class="qd-panel qd-panel-uq">
                     <div class="qd-panel-head">Upper Quartile</div>
                     <div class="qd-panel-value">Comprehensive career frameworks with funded professional qualifications, mentoring, coaching, succession planning and sector leadership programmes</div>
-                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Leading technology companies operate comprehensive career development ecosystems that include clearly mapped competency frameworks tied to progression, fully funded professional qualifications (BCS, AWS, CIPD, AAT, ICT), formal mentoring schemes and access to external coaching for management grades.</li><li>Best-in-class providers — including several enterprise-scale and large regional technology companies — have developed sector leadership programmes in partnership with bodies such as the Tech Talent Charter and Diversity in Tech (NHF) and BCS, The Chartered Institute for IT, and run structured talent pools with accelerated development tracks for high-potential staff.</li></ul></div>
+                    <div class="qd-panel-body"><ul class="qd-panel-points"><li>Leading technology companies operate comprehensive career development ecosystems that include clearly mapped competency frameworks tied to progression, fully funded professional qualifications (BCS, AWS, CIPD, AAT, ICT), formal mentoring schemes and access to external coaching for management grades.</li><li>Best-in-class providers, including several enterprise-scale and large regional technology companies, have developed sector leadership programmes in partnership with bodies such as the Tech Talent Charter and Diversity in Tech (NHF) and BCS, The Chartered Institute for IT, and run structured talent pools with accelerated development tracks for high-potential staff.</li></ul></div>
                   </div>
                 </div>
               </div>
@@ -5052,11 +5054,11 @@
 
     <div class="sector-footer">
               <div class="sector-footer-card sector-footer-sp">
-                <div class="sector-footer-head"><span class="sector-footer-dot"></span>Small Private Sector &mdash; typical practice</div>
-                <p>Learning & development budgets in small-private firms are often informal — training pre-approved on a request basis rather than as a per-employee budget. Online learning platforms (LinkedIn Learning, Coursera) are increasingly expected. Career progression is typically less structured.</p>
+                <div class="sector-footer-head"><span class="sector-footer-dot"></span>Small Private Sector, typical practice</div>
+                <p>Learning & development budgets in small-private firms are often informal, training pre-approved on a request basis rather than as a per-employee budget. Online learning platforms (LinkedIn Learning, Coursera) are increasingly expected. Career progression is typically less structured.</p>
               </div>
               <div class="sector-footer-card sector-footer-lp">
-                <div class="sector-footer-head"><span class="sector-footer-dot"></span>Large Private Sector &mdash; typical practice</div>
+                <div class="sector-footer-head"><span class="sector-footer-dot"></span>Large Private Sector, typical practice</div>
                 <p>Large private organisations run structured personal-development budgets (typically £500–£1,500), pay relevant professional subscriptions, and operate formal career-progression frameworks with mentoring and internal mobility programmes.</p>
               </div>
             </div>
@@ -5071,13 +5073,13 @@
         <div class="bx-wrap benefits-report-print">
           <div class="print-only" style="margin-bottom:12px">
             <p style="font-family:var(--font-display);font-weight:700;font-size:18px;color:#121C2B;margin:0">Zigbert · Benefits Action Plan</p>
-            <p style="font-size:12px;color:#4B5563;margin:2px 0 0">Brighton Technologies · May 2026</p>
+            <p style="font-size:12px;color:#4B5563;margin:2px 0 0">Brighton Technologies · Q2 2026</p>
           </div>
           <div style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:12px">
             <div>
               <div class="bx-badge">Action Plan · Brighton Technologies</div>
               <h1 class="bx-verdict" style="font-size:1.5rem">Where to focus your benefits investment</h1>
-              <p class="bx-sub" style="margin-top:6px">A prioritised plan built from your benchmarking — what to improve, in what order, with the market target for each.</p>
+              <p class="bx-sub" style="margin-top:6px">A prioritised plan built from your benchmarking: what to improve, in what order, with the market target for each.</p>
             </div>
             <div class="no-print" style="display:flex;gap:8px">
               <button id="bx-plan-print" class="bx-plan-btn">Download report</button>
@@ -5104,12 +5106,12 @@
           <div id="bx-plan-summary"></div>
           <div>
             <h2 class="bx-h2">Your priorities</h2>
-            <p class="bx-sub">Ranked most urgent first — where you sit, the market target, and a recommended next step.</p>
+            <p class="bx-sub">Ranked most urgent first: where you sit, the market target, and a recommended next step.</p>
             <div id="bx-plan" style="display:flex;flex-direction:column;gap:10px"></div>
           </div>
           <div id="bx-plan-strengths-wrap">
             <h2 class="bx-h2">Strengths to protect</h2>
-            <p class="bx-sub">Already ahead of the market — maintain these and use them in recruitment &amp; retention.</p>
+            <p class="bx-sub">Already ahead of the market, maintain these and use them in recruitment &amp; retention.</p>
             <div id="bx-plan-strengths" class="bx-grid-3"></div>
           </div>
         </div>
@@ -5340,7 +5342,7 @@
     'health-cash-plan':   {val: 'HSF + Perkbox bundle',        desc: 'HSF Health Plan bundled with Perkbox rewards. Employer pays \u00a310.62 per month per employee for base cover; employees can upgrade tiers.', pos: 'upper quartile (bundled with retail rewards)', posIdx: 80},
     'professional-subs':  {val: 'BCS funded for all',          desc: 'Every employee receives individual BCS, The Chartered Institute for IT membership. Strong commitment to training and development.', pos: 'upper quartile', posIdx: 85}
   };
-  var HA_Q = {"annual-bonus": {"lq": "0% (no bonus scheme)", "m": "2\u20134% of salary", "uq": "5\u20138% of salary", "sp": "<strong>Rare</strong> &mdash; Yes \u2013 either profit share or performance bonus common, typically between 5\u201320% depending on role and organisation", "lp": "<strong>Profit share or bonus 5\u201320%</strong> &mdash; Yes \u2013 either profit share or performance bonus common, typically between 5\u201320% depending on role and organisation"}, "annual-leave": {"lq": "25 days", "m": "27\u201328 days", "uq": "30\u201333 days", "sp": "<strong>25\u201328 days + service</strong> &mdash; 20\u201325 days (plus bank holidays), increasing with service", "lp": "<strong>25 days; ~50% rise with service</strong> &mdash; 25 days (with around 50% increasing annual leave through service)"}, "wellbeing-days": {"lq": "0 days (no formal wellbeing days policy)", "m": "1 day per year", "uq": "2\u20133 days per year", "sp": "<strong>Mixed; uncommon as formal benefit</strong> &mdash; <span class=\"mixed-cell\">Relatively uncommon", "lp": "<strong>Relatively uncommon</strong> &mdash; <span class=\"mixed-cell\">Relatively uncommon"}, "holiday-buy-sell": {"lq": "No scheme or buy only up to 3 days", "m": "Buy up to 5 days, sell up to 3 days", "uq": "Buy up to 10 days, sell up to 5 days", "sp": "<strong>Buy more common than sell</strong> &mdash; <span class=\"mixed-cell\">Relatively uncommon", "lp": "<strong>Up to 5 days buy/sell</strong> &mdash; Ability to buy/sell up to 5 days"}, "pension-employer": {"lq": "5\u20136% employer contribution", "m": "8\u201310% employer contribution", "uq": "12\u201315%+ employer contribution", "sp": "<strong>Auto-enrolment typical</strong> &mdash; Auto-enrolment levels are typical market practice", "lp": "<strong>5\u20137% employer, match to 8%</strong> &mdash; 5\u20137% employer contribution is typical, although ability to match contributions up to a typical level of 8%"}, "sick-pay": {"lq": "4 weeks (20 days) full pay, then 4 weeks half pay in any rolling 12-month period", "m": "8 weeks full pay, then 8 weeks half pay in any rolling 12-month period", "uq": "6 months (26 weeks) full pay, then 6 months half pay, with service-linked enhancement", "sp": "<strong>10 days full + discretionary</strong> &mdash; 10 days' full, followed by discretionary element", "lp": "<strong>3 months full + 3 half + PHI</strong> &mdash; 3 months' full; 3 months' half pay (followed by Permanent Health Insurance)"}, "maternity-pay": {"lq": "SMP only (statutory minimum: 6 weeks at 90% pay, then \u00a3184.03/week for 33 weeks)", "m": "Full pay for 8\u201312 weeks, then SMP for remainder of qualifying period", "uq": "Full pay for 16\u201326 weeks, then half pay for a further 8\u201313 weeks, then SMP", "sp": "<strong>Enhanced; 12 weeks full typical</strong> &mdash; Statutory", "lp": "<strong>6 months full pay</strong> &mdash; 6 months' full pay"}, "paternity-pay": {"lq": "Statutory Paternity Pay (SPP) only \u2014 2 weeks at \u00a3187.18/week (2025/26 rate)", "m": "2 weeks full pay, followed by SPP for remainder of statutory entitlement", "uq": "4\u20136 weeks full pay, some extending to 8 weeks or offering shared parental leave matching maternity pay", "sp": "<strong>2 weeks full pay</strong> &mdash; Statutory", "lp": "<strong>2 weeks full; trend toward parity</strong> &mdash; 2 weeks' full pay is the typical benefit, but around 50% of organisations are considering extending this to match maternity benefit"}, "share-schemes": {"lq": "Not offered \u2014 share schemes are effectively absent at lower quartile", "m": "Not applicable \u2014 share schemes are not a standard benefit in this sector", "uq": "Rare/experimental \u2014 a small minority of larger or hybrid organisations explore profit-related or employee ownership models", "sp": "<strong>Rare; founder-led only</strong> &mdash; Formal equity is relatively rare and is more commonly used as a tool in founder-led progressive organisations", "lp": "<strong>SIP and SAYE are the norm</strong> &mdash; Share options and Save as You Earn share schemes are the norm"}, "car-allowance": {"lq": "\u00a33,000\u2013\u00a34,000 per annum", "m": "\u00a34,500\u2013\u00a35,500 per annum", "uq": "\u00a36,000\u2013\u00a37,500 per annum", "sp": "<strong>Job need, not status</strong> &mdash; Typically for job need rather than status", "lp": "<strong>Operational manager+ status perk</strong> &mdash; Car allowance is given both for job need and typically at operational manager level upwards as a status perk"}, "out-of-hours-callout": {"lq": "\u00a315\u2013\u00a325 per call-out + basic hourly rate", "m": "\u00a330\u2013\u00a350 per call-out + enhanced hourly rate (1.25x\u20131.5x)", "uq": "\u00a350\u2013\u00a3100+ per call-out + double time or consolidated OOH allowance of \u00a31,500\u2013\u00a33,500 p.a.", "sp": "<span class=\"na-cell\">N/A", "lp": "<span class=\"na-cell\">N/A"}, "flexible-hours": {"lq": "Core hours flexibility only (e.g. 7am\u20137pm window with fixed core 10am\u20133pm)", "m": "Formal flexitime scheme with compressed hours option; hybrid working for eligible roles", "uq": "Full agile/flexible working from day one, annualised hours, output-based arrangements, compressed 4-day week trialled", "sp": "<strong>Statutory only</strong> &mdash; Statutory only", "lp": "<strong>Variable; larger orgs offer more</strong> &mdash; More variable practice, but larger professional services organisations would typically offer part-time, job-share and compressed hours"}, "hybrid-remote": {"lq": "Predominantly office-based with limited ad hoc flexibility", "m": "Structured hybrid: 2\u20133 days office per week, role-dependent", "uq": "Flexible hybrid with employee-led arrangements, minimal mandated office days", "sp": "<strong>Mixed \u2014 office-leaning</strong> &mdash; Mixed practice, but with the emphasis on being office-based", "lp": "<strong>Mixed, role-dependent</strong> &mdash; Mixed practice: some but not all roles offered with the possibility of hybrid, with a minimum of 1\u20132 days per week in the office"}, "sabbaticals": {"lq": "No formal sabbatical policy; ad hoc unpaid leave only", "m": "Limited sabbatical provision; typically unpaid extended leave after qualifying service (3\u20135 years), discretionary approval", "uq": "Formal sabbatical policy with paid or part-paid provision, structured eligibility criteria, typically 1\u20133 months after 5 years' service", "sp": "<strong>Rare</strong> &mdash; <span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "<strong>3\u201312 months after 3\u20135 yrs</strong> &mdash; <span class=\"yes-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2.5\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.5 12.75l6 6 9-13.5\"/></svg>Yes"}, "compassionate-leave": {"lq": "1\u20132 days", "m": "3\u20135 days", "uq": "7\u201310 days (or open/discretionary)", "sp": "Discretionary", "lp": "Up to 5 days"}, "life-assurance": {"lq": "2x salary", "m": "3x salary", "uq": "4x salary", "sp": "<span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "<span class=\"yes-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2.5\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.5 12.75l6 6 9-13.5\"/></svg>Yes"}, "eap": {"lq": "Basic EAP: telephone counselling only, limited sessions (typically 3\u20136)", "m": "Structured EAP with telephone and online counselling, up to 6\u20138 sessions, manager support line included", "uq": "Comprehensive EAP with multi-channel access, face-to-face counselling, financial/legal advice, wellbeing portal and proactive usage reporting", "sp": "<span class=\"yes-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2.5\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.5 12.75l6 6 9-13.5\"/></svg>Yes", "lp": "<span class=\"yes-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2.5\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.5 12.75l6 6 9-13.5\"/></svg>Yes"}, "private-medical": {"lq": "No PMI offered; reliance on NHS only", "m": "PMI available to senior/managerial grades only (typically Band 5+ equivalent or management grades), often employer-funded at basic level", "uq": "PMI available to all permanent employees or broad staff population, with dependant cover options and enhanced benefits such as mental health, dental and optical riders", "sp": "<strong>Rare</strong> &mdash; <span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "<strong>Standard, ~84% offer</strong> &mdash; This is a standard benefit in larger organisations, with 84% of respondents to a large benefits survey offering this. \u2013 Coverage is typically for individuals with the ability to top up to family membership."}, "health-cash-plan": {"lq": "No health cash plan offered; reliance on NHS and EAP only", "m": "Basic health cash plan provided (Level 1\u20132 equivalent); employer-funded, core optical/dental/physio cashback", "uq": "Enhanced employer-funded health cash plan (Level 3\u20134 equivalent) with family cover option and supplementary wellbeing benefits", "sp": "<strong>Increasingly common</strong> &mdash; <span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "<strong>Less common; PMI dominates</strong> &mdash; Less common due to the prevalence of PMI"}, "phi": {"lq": "No PHI provision; reliance on statutory sick pay only", "m": "PHI/Income Protection provided, typically covering 50% of salary after a 13\u201326 week deferred period, to age 65", "uq": "PHI covering 66.7% of salary with a shorter deferred period (13 weeks or less), employer-funded, with rehabilitation and early-intervention support services", "sp": "<span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "<span class=\"mixed-cell\">Mixed practice"}, "digital-gp": {"lq": "No provision or basic EAP telephone advice only", "m": "Digital GP access via EAP or standalone app (e.g. BUPA, Babylon, Push Doctor)", "uq": "Fully integrated digital GP with specialist referrals, prescriptions, mental health triage and family cover", "sp": "<span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "Typically offered as part of PMI or Health Cash Plan &mdash; a more standard benefit than in the not-for-profit sector"}, "health-screening": {"lq": "No formal health screening provision", "m": "Basic employee health screening via EAP or occupational health referral", "uq": "Structured annual health screening with biometric testing and personalised health reports", "sp": "<span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "<strong>Bundled with PMI / cash plan</strong> &mdash; Typically offered as part of PMI or Health Cash Plan"}, "gym-membership": {"lq": "No provision or ad hoc discount only", "m": "Corporate discount scheme (10\u201330% off selected gyms)", "uq": "Subsidised membership or full gym membership allowance via flexible benefits", "sp": "<span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "Contribution towards gym membership is a common benefit &mdash; often as part of a flexible benefits scheme"}, "flu-jabs": {"lq": "No provision or ad hoc arrangement", "m": "Employer-funded on-site or voucher-based flu jab scheme", "uq": "Fully funded flu jab plus broader occupational health integration and employee communication campaign", "sp": "<span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "<span class=\"yes-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2.5\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.5 12.75l6 6 9-13.5\"/></svg>Yes"}, "eye-care": {"lq": "DSE eye test reimbursement only (statutory minimum)", "m": "Eye care voucher scheme (Specsavers/Vision Express) covering DSE test and basic frames/lenses", "uq": "Comprehensive eye care voucher scheme with enhanced lens/frame allowance plus extended to non-DSE users and family members", "sp": "<span class=\"yes-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2.5\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.5 12.75l6 6 9-13.5\"/></svg>Yes", "lp": "<span class=\"yes-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2.5\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.5 12.75l6 6 9-13.5\"/></svg>Yes"}, "mental-health": {"lq": "EAP only, reactive signposting", "m": "EAP plus Mental Health First Aiders and manager training", "uq": "Comprehensive proactive programme with clinical support, therapy access and dedicated wellbeing strategy", "sp": "<span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "<span class=\"yes-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2.5\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.5 12.75l6 6 9-13.5\"/></svg>Yes"}, "financial-education": {"lq": "No provision or signposting only", "m": "Basic financial wellbeing resources (EAP-linked guidance, online tools)", "uq": "Structured financial education programme with personalised guidance and debt/savings support", "sp": "<span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "<strong>Common via EAP</strong> &mdash; This has become increasingly common and is often offered through the EAP provider"}, "earned-pay-access": {"lq": "No provision \u2014 access to wages only on standard payroll cycle", "m": "Pilot or recently implemented EWA scheme via third-party provider, typically employer-subsidised", "uq": "Fully embedded, employer-funded EWA with integrated financial wellbeing support and multi-provider choice", "sp": "<span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "Low cost loans typically given for specific items, such as Season Tickets. &mdash; Save As You Earn / Share Save schemes are common."}, "retail-discounts": {"lq": "No platform or ad hoc local discounts only", "m": "Third-party retail discount platform with 100\u2013500+ retailer offers", "uq": "Fully integrated, promoted discount platform with cashback, salary sacrifice top-up and active engagement strategy", "sp": "<span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "<strong>Online discount provider standard</strong> &mdash; Online retail discount provider is typical"}, "homeworker-allowance": {"lq": "\u00a30 (no allowance) or statutory tax relief signposting only", "m": "\u00a310\u2013\u00a315/month (\u00a3120\u2013\u00a3180/year) or one-off equipment contribution", "uq": "\u00a320\u2013\u00a326/month (\u00a3240\u2013\u00a3312/year) plus equipment provision", "sp": "<span class=\"mixed-cell\">Relatively uncommon", "lp": "<span class=\"mixed-cell\">Relatively uncommon"}, "ethical-pension": {"lq": "Default fund only, no ethical screening", "m": "ESG/ethical fund option available as alternative", "uq": "ESG default or full ethical fund range with active member engagement", "sp": "<span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "<span class=\"mixed-cell\">Mixed practice"}, "volunteering-days": {"lq": "0 days (no formal scheme)", "m": "1 day per year", "uq": "2\u20133 days per year", "sp": "<span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "<strong>~50% offer, ~1.5 days</strong> &mdash; Around 50% of organisations offer this, with an average provision of 1.5 days"}, "personal-dev-budget": {"lq": "\u00a30\u2013\u00a3150 per employee per year", "m": "\u00a3200\u2013\u00a3350 per employee per year", "uq": "\u00a3500\u2013\u00a31,000+ per employee per year", "sp": "<span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "<span class=\"mixed-cell\">Mixed practice"}, "learning-platforms": {"lq": "No structured platform; ad hoc e-learning links or mandatory compliance modules only", "m": "One primary LMS or curated digital learning platform (e.g. LinkedIn Learning, Cornerstone, or sector-specific CPD portal)", "uq": "Multi-platform ecosystem with LinkedIn Learning, dedicated LMS, sector CPD portals and self-directed learning budgets integrated", "sp": "<span class=\"mixed-cell\">Mixed practice", "lp": "<span class=\"yes-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2.5\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.5 12.75l6 6 9-13.5\"/></svg>Yes"}, "professional-subs": {"lq": "No employer-paid subscriptions; employee self-funds or receives occasional ad-hoc support", "m": "Employer pays one core professional subscription relevant to role (e.g. BCS, AWS or PMI membership)", "uq": "Full payment of all relevant professional subscriptions plus study support and CPD budget", "sp": "<span class=\"yes-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2.5\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.5 12.75l6 6 9-13.5\"/></svg>Yes", "lp": "<span class=\"yes-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2.5\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.5 12.75l6 6 9-13.5\"/></svg>Yes"}, "career-development": {"lq": "Basic mandatory training and statutory CPD compliance only", "m": "Structured internal development pathways with some professional qualification support and funded CPD", "uq": "Comprehensive career frameworks with funded professional qualifications, mentoring, coaching, succession planning and sector leadership programmes", "sp": "<span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "<span class=\"yes-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2.5\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.5 12.75l6 6 9-13.5\"/></svg>Yes"}};
+  var HA_Q = {"annual-bonus": {"lq": "0% (no bonus scheme)", "m": "2\u20134% of salary", "uq": "5\u20138% of salary", "sp": "<strong>Rare</strong>, Yes \u2013 either profit share or performance bonus common, typically between 5\u201320% depending on role and organisation", "lp": "<strong>Profit share or bonus 5\u201320%</strong>, Yes \u2013 either profit share or performance bonus common, typically between 5\u201320% depending on role and organisation"}, "annual-leave": {"lq": "25 days", "m": "27\u201328 days", "uq": "30\u201333 days", "sp": "<strong>25\u201328 days + service</strong>, 20\u201325 days (plus bank holidays), increasing with service", "lp": "<strong>25 days; ~50% rise with service</strong>, 25 days (with around 50% increasing annual leave through service)"}, "wellbeing-days": {"lq": "0 days (no formal wellbeing days policy)", "m": "1 day per year", "uq": "2\u20133 days per year", "sp": "<strong>Mixed; uncommon as formal benefit</strong>, <span class=\"mixed-cell\">Relatively uncommon", "lp": "<strong>Relatively uncommon</strong>, <span class=\"mixed-cell\">Relatively uncommon"}, "holiday-buy-sell": {"lq": "No scheme or buy only up to 3 days", "m": "Buy up to 5 days, sell up to 3 days", "uq": "Buy up to 10 days, sell up to 5 days", "sp": "<strong>Buy more common than sell</strong>, <span class=\"mixed-cell\">Relatively uncommon", "lp": "<strong>Up to 5 days buy/sell</strong>, Ability to buy/sell up to 5 days"}, "pension-employer": {"lq": "5\u20136% employer contribution", "m": "8\u201310% employer contribution", "uq": "12\u201315%+ employer contribution", "sp": "<strong>Auto-enrolment typical</strong>, Auto-enrolment levels are typical market practice", "lp": "<strong>5\u20137% employer, match to 8%</strong>, 5\u20137% employer contribution is typical, although ability to match contributions up to a typical level of 8%"}, "sick-pay": {"lq": "4 weeks (20 days) full pay, then 4 weeks half pay in any rolling 12-month period", "m": "8 weeks full pay, then 8 weeks half pay in any rolling 12-month period", "uq": "6 months (26 weeks) full pay, then 6 months half pay, with service-linked enhancement", "sp": "<strong>10 days full + discretionary</strong>, 10 days' full, followed by discretionary element", "lp": "<strong>3 months full + 3 half + PHI</strong>, 3 months' full; 3 months' half pay (followed by Permanent Health Insurance)"}, "maternity-pay": {"lq": "SMP only (statutory minimum: 6 weeks at 90% pay, then \u00a3184.03/week for 33 weeks)", "m": "Full pay for 8\u201312 weeks, then SMP for remainder of qualifying period", "uq": "Full pay for 16\u201326 weeks, then half pay for a further 8\u201313 weeks, then SMP", "sp": "<strong>Enhanced; 12 weeks full typical</strong>, Statutory", "lp": "<strong>6 months full pay</strong>, 6 months' full pay"}, "paternity-pay": {"lq": "Statutory Paternity Pay (SPP) only \u2014 2 weeks at \u00a3187.18/week (2025/26 rate)", "m": "2 weeks full pay, followed by SPP for remainder of statutory entitlement", "uq": "4\u20136 weeks full pay, some extending to 8 weeks or offering shared parental leave matching maternity pay", "sp": "<strong>2 weeks full pay</strong>, Statutory", "lp": "<strong>2 weeks full; trend toward parity</strong>, 2 weeks' full pay is the typical benefit, but around 50% of organisations are considering extending this to match maternity benefit"}, "share-schemes": {"lq": "Not offered \u2014 share schemes are effectively absent at lower quartile", "m": "Not applicable \u2014 share schemes are not a standard benefit in this sector", "uq": "Rare/experimental \u2014 a small minority of larger or hybrid organisations explore profit-related or employee ownership models", "sp": "<strong>Rare; founder-led only</strong>, Formal equity is relatively rare and is more commonly used as a tool in founder-led progressive organisations", "lp": "<strong>SIP and SAYE are the norm</strong>, Share options and Save as You Earn share schemes are the norm"}, "car-allowance": {"lq": "\u00a33,000\u2013\u00a34,000 per annum", "m": "\u00a34,500\u2013\u00a35,500 per annum", "uq": "\u00a36,000\u2013\u00a37,500 per annum", "sp": "<strong>Job need, not status</strong>, Typically for job need rather than status", "lp": "<strong>Operational manager+ status perk</strong>, Car allowance is given both for job need and typically at operational manager level upwards as a status perk"}, "out-of-hours-callout": {"lq": "\u00a315\u2013\u00a325 per call-out + basic hourly rate", "m": "\u00a330\u2013\u00a350 per call-out + enhanced hourly rate (1.25x\u20131.5x)", "uq": "\u00a350\u2013\u00a3100+ per call-out + double time or consolidated OOH allowance of \u00a31,500\u2013\u00a33,500 p.a.", "sp": "<span class=\"na-cell\">N/A", "lp": "<span class=\"na-cell\">N/A"}, "flexible-hours": {"lq": "Core hours flexibility only (e.g. 7am\u20137pm window with fixed core 10am\u20133pm)", "m": "Formal flexitime scheme with compressed hours option; hybrid working for eligible roles", "uq": "Full agile/flexible working from day one, annualised hours, output-based arrangements, compressed 4-day week trialled", "sp": "<strong>Statutory only</strong>, Statutory only", "lp": "<strong>Variable; larger orgs offer more</strong>, More variable practice, but larger professional services organisations would typically offer part-time, job-share and compressed hours"}, "hybrid-remote": {"lq": "Predominantly office-based with limited ad hoc flexibility", "m": "Structured hybrid: 2\u20133 days office per week, role-dependent", "uq": "Flexible hybrid with employee-led arrangements, minimal mandated office days", "sp": "<strong>Mixed \u2014 office-leaning</strong>, Mixed practice, but with the emphasis on being office-based", "lp": "<strong>Mixed, role-dependent</strong>, Mixed practice: some but not all roles offered with the possibility of hybrid, with a minimum of 1\u20132 days per week in the office"}, "sabbaticals": {"lq": "No formal sabbatical policy; ad hoc unpaid leave only", "m": "Limited sabbatical provision; typically unpaid extended leave after qualifying service (3\u20135 years), discretionary approval", "uq": "Formal sabbatical policy with paid or part-paid provision, structured eligibility criteria, typically 1\u20133 months after 5 years' service", "sp": "<strong>Rare</strong>, <span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "<strong>3\u201312 months after 3\u20135 yrs</strong>, <span class=\"yes-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2.5\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.5 12.75l6 6 9-13.5\"/></svg>Yes"}, "compassionate-leave": {"lq": "1\u20132 days", "m": "3\u20135 days", "uq": "7\u201310 days (or open/discretionary)", "sp": "Discretionary", "lp": "Up to 5 days"}, "life-assurance": {"lq": "2x salary", "m": "3x salary", "uq": "4x salary", "sp": "<span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "<span class=\"yes-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2.5\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.5 12.75l6 6 9-13.5\"/></svg>Yes"}, "eap": {"lq": "Basic EAP: telephone counselling only, limited sessions (typically 3\u20136)", "m": "Structured EAP with telephone and online counselling, up to 6\u20138 sessions, manager support line included", "uq": "Comprehensive EAP with multi-channel access, face-to-face counselling, financial/legal advice, wellbeing portal and proactive usage reporting", "sp": "<span class=\"yes-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2.5\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.5 12.75l6 6 9-13.5\"/></svg>Yes", "lp": "<span class=\"yes-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2.5\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.5 12.75l6 6 9-13.5\"/></svg>Yes"}, "private-medical": {"lq": "No PMI offered; reliance on NHS only", "m": "PMI available to senior/managerial grades only (typically Band 5+ equivalent or management grades), often employer-funded at basic level", "uq": "PMI available to all permanent employees or broad staff population, with dependant cover options and enhanced benefits such as mental health, dental and optical riders", "sp": "<strong>Rare</strong>, <span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "<strong>Standard, ~84% offer</strong>, This is a standard benefit in larger organisations, with 84% of respondents to a large benefits survey offering this. \u2013 Coverage is typically for individuals with the ability to top up to family membership."}, "health-cash-plan": {"lq": "No health cash plan offered; reliance on NHS and EAP only", "m": "Basic health cash plan provided (Level 1\u20132 equivalent); employer-funded, core optical/dental/physio cashback", "uq": "Enhanced employer-funded health cash plan (Level 3\u20134 equivalent) with family cover option and supplementary wellbeing benefits", "sp": "<strong>Increasingly common</strong>, <span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "<strong>Less common; PMI dominates</strong>, Less common due to the prevalence of PMI"}, "phi": {"lq": "No PHI provision; reliance on statutory sick pay only", "m": "PHI/Income Protection provided, typically covering 50% of salary after a 13\u201326 week deferred period, to age 65", "uq": "PHI covering 66.7% of salary with a shorter deferred period (13 weeks or less), employer-funded, with rehabilitation and early-intervention support services", "sp": "<span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "<span class=\"mixed-cell\">Mixed practice"}, "digital-gp": {"lq": "No provision or basic EAP telephone advice only", "m": "Digital GP access via EAP or standalone app (e.g. BUPA, Babylon, Push Doctor)", "uq": "Fully integrated digital GP with specialist referrals, prescriptions, mental health triage and family cover", "sp": "<span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "Typically offered as part of PMI or Health Cash Plan, a more standard benefit than in the not-for-profit sector"}, "health-screening": {"lq": "No formal health screening provision", "m": "Basic employee health screening via EAP or occupational health referral", "uq": "Structured annual health screening with biometric testing and personalised health reports", "sp": "<span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "<strong>Bundled with PMI / cash plan</strong>, Typically offered as part of PMI or Health Cash Plan"}, "gym-membership": {"lq": "No provision or ad hoc discount only", "m": "Corporate discount scheme (10\u201330% off selected gyms)", "uq": "Subsidised membership or full gym membership allowance via flexible benefits", "sp": "<span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "Contribution towards gym membership is a common benefit, often as part of a flexible benefits scheme"}, "flu-jabs": {"lq": "No provision or ad hoc arrangement", "m": "Employer-funded on-site or voucher-based flu jab scheme", "uq": "Fully funded flu jab plus broader occupational health integration and employee communication campaign", "sp": "<span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "<span class=\"yes-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2.5\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.5 12.75l6 6 9-13.5\"/></svg>Yes"}, "eye-care": {"lq": "DSE eye test reimbursement only (statutory minimum)", "m": "Eye care voucher scheme (Specsavers/Vision Express) covering DSE test and basic frames/lenses", "uq": "Comprehensive eye care voucher scheme with enhanced lens/frame allowance plus extended to non-DSE users and family members", "sp": "<span class=\"yes-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2.5\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.5 12.75l6 6 9-13.5\"/></svg>Yes", "lp": "<span class=\"yes-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2.5\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.5 12.75l6 6 9-13.5\"/></svg>Yes"}, "mental-health": {"lq": "EAP only, reactive signposting", "m": "EAP plus Mental Health First Aiders and manager training", "uq": "Comprehensive proactive programme with clinical support, therapy access and dedicated wellbeing strategy", "sp": "<span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "<span class=\"yes-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2.5\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.5 12.75l6 6 9-13.5\"/></svg>Yes"}, "financial-education": {"lq": "No provision or signposting only", "m": "Basic financial wellbeing resources (EAP-linked guidance, online tools)", "uq": "Structured financial education programme with personalised guidance and debt/savings support", "sp": "<span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "<strong>Common via EAP</strong>, This has become increasingly common and is often offered through the EAP provider"}, "earned-pay-access": {"lq": "No provision \u2014 access to wages only on standard payroll cycle", "m": "Pilot or recently implemented EWA scheme via third-party provider, typically employer-subsidised", "uq": "Fully embedded, employer-funded EWA with integrated financial wellbeing support and multi-provider choice", "sp": "<span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "Low cost loans typically given for specific items, such as Season Tickets., Save As You Earn / Share Save schemes are common."}, "retail-discounts": {"lq": "No platform or ad hoc local discounts only", "m": "Third-party retail discount platform with 100\u2013500+ retailer offers", "uq": "Fully integrated, promoted discount platform with cashback, salary sacrifice top-up and active engagement strategy", "sp": "<span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "<strong>Online discount provider standard</strong>, Online retail discount provider is typical"}, "homeworker-allowance": {"lq": "\u00a30 (no allowance) or statutory tax relief signposting only", "m": "\u00a310\u2013\u00a315/month (\u00a3120\u2013\u00a3180/year) or one-off equipment contribution", "uq": "\u00a320\u2013\u00a326/month (\u00a3240\u2013\u00a3312/year) plus equipment provision", "sp": "<span class=\"mixed-cell\">Relatively uncommon", "lp": "<span class=\"mixed-cell\">Relatively uncommon"}, "ethical-pension": {"lq": "Default fund only, no ethical screening", "m": "ESG/ethical fund option available as alternative", "uq": "ESG default or full ethical fund range with active member engagement", "sp": "<span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "<span class=\"mixed-cell\">Mixed practice"}, "volunteering-days": {"lq": "0 days (no formal scheme)", "m": "1 day per year", "uq": "2\u20133 days per year", "sp": "<span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "<strong>~50% offer, ~1.5 days</strong>, Around 50% of organisations offer this, with an average provision of 1.5 days"}, "personal-dev-budget": {"lq": "\u00a30\u2013\u00a3150 per employee per year", "m": "\u00a3200\u2013\u00a3350 per employee per year", "uq": "\u00a3500\u2013\u00a31,000+ per employee per year", "sp": "<span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "<span class=\"mixed-cell\">Mixed practice"}, "learning-platforms": {"lq": "No structured platform; ad hoc e-learning links or mandatory compliance modules only", "m": "One primary LMS or curated digital learning platform (e.g. LinkedIn Learning, Cornerstone, or sector-specific CPD portal)", "uq": "Multi-platform ecosystem with LinkedIn Learning, dedicated LMS, sector CPD portals and self-directed learning budgets integrated", "sp": "<span class=\"mixed-cell\">Mixed practice", "lp": "<span class=\"yes-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2.5\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.5 12.75l6 6 9-13.5\"/></svg>Yes"}, "professional-subs": {"lq": "No employer-paid subscriptions; employee self-funds or receives occasional ad-hoc support", "m": "Employer pays one core professional subscription relevant to role (e.g. BCS, AWS or PMI membership)", "uq": "Full payment of all relevant professional subscriptions plus study support and CPD budget", "sp": "<span class=\"yes-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2.5\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.5 12.75l6 6 9-13.5\"/></svg>Yes", "lp": "<span class=\"yes-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2.5\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.5 12.75l6 6 9-13.5\"/></svg>Yes"}, "career-development": {"lq": "Basic mandatory training and statutory CPD compliance only", "m": "Structured internal development pathways with some professional qualification support and funded CPD", "uq": "Comprehensive career frameworks with funded professional qualifications, mentoring, coaching, succession planning and sector leadership programmes", "sp": "<span class=\"no-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"/></svg>No", "lp": "<span class=\"yes-cell\"><svg fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2.5\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.5 12.75l6 6 9-13.5\"/></svg>Yes"}};
 
   try { window.__HAQ = HA_Q; window.__PENGE = PENGE; } catch (e) {}
 
@@ -5681,7 +5683,7 @@
       var acc = s.n ? s.st : 'slate';
       var body = s.n
         ? '<div class="bx-score-verdict">'+s.verdict+'</div>' + posBar(s.avg)
-        : '<div class="bx-score-verdict">Market reference only — not currently provided.</div>' + posBar(50);
+        : '<div class="bx-score-verdict">Market reference only · not currently provided.</div>' + posBar(50);
       return '<div class="bx-card bx-card--link bx-card--accent bx-acc-'+acc+'" data-bxgo="'+c.slug+'">'
         + '<div class="bx-score-t"><span class="bx-score-ico">'+svg(c.icon)+'</span><span class="bx-score-name">'+c.label+'</span></div>'
         + body + '</div>';
@@ -5691,10 +5693,10 @@
     var order = { below:0, watch:1 };
     var items = BENEFITS.filter(function(b){ return b.badge==='below' || b.badge==='watch'; })
       .sort(function(a,b){ return (order[a.badge]-order[b.badge]) || (a.posIdx-b.posIdx); });
-    if (!items.length){ fill('bx-attention', '<div class="bx-card" style="color:#64748b;font-size:13px">Nothing needs attention — every benefit sits at or above the market median.</div>'); return; }
+    if (!items.length){ fill('bx-attention', '<div class="bx-card" style="color:#64748b;font-size:13px">Nothing needs attention. Every benefit sits at or above the market median.</div>'); return; }
     fill('bx-attention', items.map(function(b){
       var st = statusOf(b.badge);
-      var msg = b.badge==='below' ? 'Below market — a priority to review.' : 'Mixed vs market — worth a closer look.';
+      var msg = b.badge==='below' ? 'Below market. A priority to review.' : 'Mixed vs market. Worth a closer look.';
       return '<button class="bx-attn" data-bxgo="provision">'
         + '<span class="bx-attn-ico bx-bg-'+st+'">'+svg(SICON[st],16)+'</span>'
         + '<span style="flex:1"><span class="bx-attn-t">'+b.label+'</span><span class="bx-attn-d">'+titleize(b.category.replace('-',' '))+' · '+msg+'</span></span>'
@@ -5789,9 +5791,9 @@
     function target(b){ var d = HA[b.slug]; if (!d) return null; return amb === 'uq' ? d.uq : d.m; }
     function recommend(b){
       var t = target(b);
-      if (b.badge === 'below') return t ? 'Uplift toward the market median — <b>'+t+'</b>.' : 'A gap vs market — prioritise closing it.';
-      if (b.badge === 'watch') return t ? 'Align with typical market practice — <b>'+t+'</b>.' : 'Mixed vs market — review and align.';
-      if (b.badge === 'at') return t ? 'Aim for the upper quartile — <b>'+t+'</b> — to lead the market.' : 'Stretch beyond the median to lead.';
+      if (b.badge === 'below') return t ? 'Uplift toward the market median, <b>'+t+'</b>.' : 'A gap vs market. Prioritise closing it.';
+      if (b.badge === 'watch') return t ? 'Align with typical market practice, <b>'+t+'</b>.' : 'Mixed vs market. Review and align.';
+      if (b.badge === 'at') return t ? 'Aim for the upper quartile, <b>'+t+'</b>, to lead the market.' : 'Stretch beyond the median to lead.';
       return '';
     }
     function effortChip(b){
@@ -5813,7 +5815,7 @@
 
       var note = document.getElementById('bx-plan-ambition-note');
       if (note) note.textContent = amb === 'uq'
-        ? 'Targets are the upper quartile — the level of a market-leading offer. Includes at-market benefits as stretch opportunities.'
+        ? 'Targets are the upper quartile, the level of a market-leading offer. Includes at-market benefits as stretch opportunities.'
         : 'Targets are the market median. Switch to “Lead the market” to aim for the upper quartile.';
 
       var sm = document.getElementById('bx-plan-summary');
@@ -5838,7 +5840,7 @@
             + '<div class="bx-plan-target">You: <b>'+(b.current||'—')+'</b>'+(t ? ' · '+(amb==='uq'?'Upper quartile':'Market median')+': <b>'+t+'</b>' : '')+'</div>'
             + '<div class="bx-plan-rec">'+recommend(b)+'</div>'
           + '</div></div>';
-      }).join('') : '<div class="bx-card" style="color:#64748b;font-size:13px">Nothing to act on in scope — you\'re at or above the market. Switch to <b>Lead the market</b> to surface stretch opportunities.</div>';
+      }).join('') : '<div class="bx-card" style="color:#64748b;font-size:13px">Nothing to act on in scope. You\'re at or above the market. Switch to <b>Lead the market</b> to surface stretch opportunities.</div>';
 
       var sw = document.getElementById('bx-plan-strengths-wrap');
       var sEl = document.getElementById('bx-plan-strengths');
@@ -5846,7 +5848,7 @@
       if (sEl) sEl.innerHTML = str.map(function(b){
         return '<div class="bx-card bx-strength"><div class="bx-mt-h">'+BX.svg('check',15)+' '+b.label+'</div>'
           + '<div class="bx-mt-sub" style="margin:0">'+(CAT[b.category]||b.category)+' · '+(b.current||'')+'</div>'
-          + '<div style="font-size:12px;color:#475569;margin-top:8px;line-height:1.5">Maintain &amp; promote — a genuine advantage; feature it in recruitment and retention.</div></div>';
+          + '<div style="font-size:12px;color:#475569;margin-top:8px;line-height:1.5">Maintain &amp; promote. A genuine advantage; feature it in recruitment and retention.</div></div>';
       }).join('');
     }
 
@@ -5892,7 +5894,7 @@
         return '<div class="bx-yp"><div class="bx-yp-top"><span class="bx-yp-name">'+b.label+'</span>'
           + '<span class="bx-chip bx-bg-'+st+'" style="margin:0">'+BX.svg(st==='good'?'check':'alert',12)+tag+'</span></div>'
           + BX.posBar(b.posIdx) + BX.qCards(b.slug) + '</div>';
-      }).join('') : '<p class="bx-mt-sub" style="margin:0">You don’t currently provide benefits in this category — the market reference is below.</p>';
+      }).join('') : '<p class="bx-mt-sub" style="margin:0">You don’t currently provide benefits in this category, the market reference is below.</p>';
 
       var segId = 'bxseg-'+c.slug, rowsId = 'bxsec-'+c.slug;
       function sectorRows(key){
@@ -5907,7 +5909,7 @@
         '<div class="bx-card"><div class="bx-mt-h">'+BX.svg('target',16)+' Where you sit in '+CATLABEL[c.slug]+'</div>'
         + '<div class="bx-mt-sub">Your provision vs the Technology market range.</div>'+ypHtml+'</div>'
       + '<div class="bx-card"><div class="bx-mt-h">'+BX.svg('layers',16)+' Compare the market</div>'
-        + '<div class="bx-mt-sub">Typical practice by sector — switch to compare.</div>'
+        + '<div class="bx-mt-sub">Typical practice by sector, switch to compare.</div>'
         + '<div class="bx-seg" id="'+segId+'">'+SECTORS.map(function(sc,i){ return '<button type="button" data-k="'+sc[0]+'"'+(i===0?' class="on"':'')+'>'+sc[1]+'</button>'; }).join('')+'</div>'
         + '<div id="'+rowsId+'">'+sectorRows('m')+'</div></div>';
 
