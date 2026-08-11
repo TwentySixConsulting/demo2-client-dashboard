@@ -32,11 +32,6 @@ const SEV: Record<Sev, { fg: string; bg: string; Icon: LucideIcon }> = {
 };
 const gbpK = (n: number) => (Math.abs(n) >= 1000 ? `£${(n / 1000).toFixed(1)}k` : `£${Math.round(n)}`);
 
-function greeting() {
-  const h = new Date().getHours();
-  return h < 12 ? "Good morning" : h < 18 ? "Good afternoon" : "Good evening";
-}
-
 export function Home() {
   const { signOut, user, tempUser } = useAuth();
   const [, setLocation] = useLocation();
@@ -103,6 +98,10 @@ export function Home() {
       <main className="flex-1 w-full px-6 lg:px-10 pb-16" style={{ paddingTop: 60 }}>
         <div className="max-w-[1180px] mx-auto pt-9 lg:pt-11 space-y-7 ts-anim-fade-up">
 
+          {/* "Getting started" tour checklist — populated by shell/tour.js, empty until then.
+              Sits above the masthead so a new client meets it first. */}
+          <div data-zigbert-tour-checklist />
+
           {/* Masthead — hero panel */}
           <div data-tour="hero" className="ts-hero rounded-[28px] px-6 py-6 lg:px-8 lg:py-7">
             <div className="flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-10">
@@ -116,7 +115,7 @@ export function Home() {
                   <SampleDataBadge />
                 </div>
                 <h1 className="ts-display mt-2.5" style={{ fontSize: 32, fontWeight: 700, letterSpacing: "-0.02em", color: C.ink }}>
-                  <span style={{ color: C.inkMuted, fontWeight: 600 }}>{greeting()},</span> {companyInfo.name}
+                  {companyInfo.name}
                 </h1>
                 <p className="mt-2 text-[14px] leading-relaxed max-w-2xl" style={{ color: C.inkMuted }}>{verdict}</p>
               </div>
@@ -128,9 +127,6 @@ export function Home() {
               </div>
             </div>
           </div>
-
-          {/* "Getting started" tour checklist — populated by shell/tour.js, empty until then */}
-          <div data-zigbert-tour-checklist />
 
           {/* Working area */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
