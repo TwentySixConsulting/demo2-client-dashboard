@@ -6,10 +6,11 @@
  * once, on first arrival at that area, so the explanation lands where the feature
  * is rather than minutes before the user gets there.
  *
- * The only navigation happens at a tour boundary: the closing card of a tour can
- * hand off to the next one ("Next: Benefits ▸"), and the Home checklist can start
- * any tour. Progress persists in localStorage so a hand-off survives the full-page
- * load between the three apps.
+ * Tours are never chained. Each one ends where it started, and the user is nudged
+ * about the next area only when they navigate there themselves. The sole exception
+ * is the Home checklist, where picking an area is an explicit request to go and
+ * tour it; progress persists in localStorage so that survives the full-page load
+ * between the three apps.
  *
  * Exposes window.ZigbertTour = {start, startTour, stop, resume}.
  */
@@ -196,12 +197,6 @@
     return null;
   }
   function isHere(key) { return tourHere() === key; }
-  // the next area worth handing off to, or null
-  function nextTour(key) {
-    var i = ORDER.indexOf(key);
-    for (var j = i + 1; j < ORDER.length; j++) if (!isDone(ORDER[j])) return ORDER[j];
-    return null;
-  }
 
   // ── DOM ──────────────────────────────────────────────────────
   var root = null, hole = null, card = null, catcher = null;
@@ -333,23 +328,13 @@
     root.querySelector(".ztour-bar").style.width = Math.round(((i + 1) / steps.length) * 100) + "%";
     root.querySelector(".ztour-back").style.visibility = i === 0 ? "hidden" : "visible";
 
+    // Every tour ends where it started. The next area is never chained on; the
+    // user gets nudged when they navigate there themselves (see maybeOffer).
     var skipBtn = root.querySelector(".ztour-skip");
     var nextBtn = root.querySelector(".ztour-next");
-    var hand = last ? nextTour(key) : null;
-    if (!last) {
-      skipBtn.textContent = "Skip";
-      skipBtn.style.display = "";
-      nextBtn.textContent = "Next";
-    } else if (hand) {
-      // hand off to the next area — the only navigation the tour ever does
-      skipBtn.textContent = "Close";
-      skipBtn.style.display = "";
-      nextBtn.textContent = "Next: " + TOURS[hand].label + " ▸";
-    } else {
-      skipBtn.style.display = "none";
-      nextBtn.textContent = "Done";
-    }
-    nextBtn.setAttribute("data-handoff", hand || "");
+    skipBtn.style.display = last ? "none" : "";
+    if (!last) skipBtn.textContent = "Skip";
+    nextBtn.textContent = last ? "Done" : "Next";
     nextBtn.setAttribute("data-last", last ? "1" : "");
 
     findTarget(step.selector, function (el) {
@@ -396,11 +381,7 @@
 
   function onNext() {
     var btn = root && root.querySelector(".ztour-next");
-    if (btn && btn.getAttribute("data-last")) {
-      var hand = btn.getAttribute("data-handoff");
-      if (hand) { startTour(hand); return; }
-      stop(); return;
-    }
+    if (btn && btn.getAttribute("data-last")) { stop(); return; }
     go(1);
   }
 
