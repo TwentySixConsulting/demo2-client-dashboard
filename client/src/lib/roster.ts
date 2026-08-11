@@ -21,7 +21,7 @@ export interface RosterRole {
 
 export const BASE_ROSTER: RosterRole[] = [
   { id: "1", role: "Data Analyst", currentSalary: 35000, lowerQuartile: 30000, median: 34000, upperQuartile: 38000, function: "Data", jobLevel: 3, location: "London/South East" },
-  { id: "2", role: "Data Researcher", currentSalary: 24000, lowerQuartile: 22500, median: 23500, upperQuartile: 24000, function: "Data", jobLevel: 4, location: "London/South East" },
+  { id: "2", role: "Data Researcher", currentSalary: 24000, lowerQuartile: 21000, median: 23000, upperQuartile: 26000, function: "Data", jobLevel: 4, location: "London/South East" },
   { id: "3", role: "Data Systems Engineer", currentSalary: 47500, lowerQuartile: 45000, median: 50000, upperQuartile: 55000, function: "Data", jobLevel: 3, location: "London/South East" },
   { id: "4", role: "Data Manager", currentSalary: 54600, lowerQuartile: 50000, median: 56000, upperQuartile: 62000, function: "Data", jobLevel: 2, location: "London/South East" },
   { id: "5", role: "Data Coordinator", currentSalary: 27000, lowerQuartile: 25000, median: 27500, upperQuartile: 30000, function: "Data", jobLevel: 4, location: "London/South East" },

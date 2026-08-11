@@ -75,7 +75,9 @@ export const PAY_TREND = [
 ] as const;
 
 export const PAY_META = {
-  rolesAnalysed: 40,
+  // NB: no rolesAnalysed here. The roster IS the benchmarked set, so anything that
+  // needs a role count reads BASE_ROSTER.length rather than a constant that can
+  // drift out of step with the data (it used to say 40 while the roster held 25).
   employersInDataset: 47,
   medianPay: "£52,400",
   medianPayChange: "+3.1%",
@@ -85,21 +87,22 @@ export const PAY_META = {
   positionLabel: "Median → UQ",
   positionFrom: 50, // 0–100 along the LQ→UQ scale
   positionTo: 100,
-  reportDate: "Apr — Jun 2026",
+  reportDate: "April to June 2026",
   lastRefresh: LAST_UPDATED,
 };
 
 export const BENEFITS_META = {
-  recorded: 16,
+  // NB: no benefit or category counts here, for the same reason as PAY_META above.
+  // Counts come from ESTABLISHED_BENEFITS / BENEFIT_CATEGORIES in lib/orgData, which
+  // mirror the Benefits report. The old `categories: 5` and `topBenefits: 12` said
+  // 12 benefits across 5 categories while the report showed 14 across 6.
   employersInDataset: 287,
-  categories: 5,
   coverage: 76,
-  topBenefits: 12,
   // Where the client's overall benefits offer sits in the quartile range.
   positionLabel: "LQ → Median",
   positionFrom: 0,
   positionTo: 50,
-  reportDate: "Apr — Jun 2026",
+  reportDate: "April to June 2026",
   lastRefresh: LAST_UPDATED,
 };
 
@@ -107,7 +110,8 @@ export const SUBSCRIPTION = {
   status: "Active",
   tier: "Pay & Benefits · Pro",
   lastInvoice: "01 Apr 2026",
-  invoiceAmount: "£4,800",
+  // No invoice amounts anywhere in the demo: showing a figure to a prospect reads
+  // as a quote. Dates, cadence and status only.
   nextRenewal: "01 Jul 2026",
   billingContact: "finance@brightontechnologies.co.uk",
   billingCadence: "Quarterly",

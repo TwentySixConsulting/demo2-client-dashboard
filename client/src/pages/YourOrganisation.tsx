@@ -333,10 +333,10 @@ export function YourOrganisation() {
                       reviewCount ? `${reviewCount} benefit${reviewCount > 1 ? "s" : ""} under review` : "",
                     ].filter(Boolean).join(" · ")}
                   </p>
-                  <p className="text-[12px] mt-0.5" style={{ color: "#8a6414" }}>With your TwentySix consultant — typical turnaround is 3–5 working days.</p>
+                  <p className="text-[12px] mt-0.5" style={{ color: "#8a6414" }}>With your TwentySix consultant. Typical turnaround is 3 to 5 working days.</p>
                 </div>
               </div>
-              <Button type="button" variant="outline" className="gap-1.5 shrink-0" style={{ borderColor: `${WATCH}55`, color: "#7c5410" }} onClick={() => toast({ title: "Update requested", description: "Your TwentySix consultant has been notified — we'll be in touch shortly." })}>
+              <Button type="button" variant="outline" className="gap-1.5 shrink-0" style={{ borderColor: `${WATCH}55`, color: "#7c5410" }} onClick={() => toast({ title: "Update requested", description: "Your TwentySix consultant has been notified. We'll be in touch shortly." })}>
                 <Send className="w-3.5 h-3.5" /> Request an update
               </Button>
             </div>
@@ -348,7 +348,7 @@ export function YourOrganisation() {
               <div>
                 <h2 className="font-display text-[17px] font-semibold" style={{ color: C.ink }}>{isPerson ? "People" : "Roles"}</h2>
                 <p className="text-[12.5px] mt-0.5" style={{ color: C.inkMuted }}>{isPerson
-                  ? "Each individual’s actual pay and FTE. Their full-time-equivalent salary is what’s compared to the market — and this flows into your Pay dashboards."
+                  ? "Each individual’s actual pay and FTE. Their full-time-equivalent salary is what’s compared to the market, and this flows into your Pay dashboards."
                   : "Edit a role or its salary and it updates across your Pay dashboards. Add a role to send it for benchmarking."}</p>
               </div>
               <div className="flex items-center gap-2.5">
@@ -400,7 +400,7 @@ export function YourOrganisation() {
                 <DialogContent className="sm:max-w-[560px]">
                   <DialogHeader>
                     <DialogTitle style={{ color: C.ink }}>Add a role for benchmarking</DialogTitle>
-                    <DialogDescription style={{ color: C.inkMuted }}>Tell us about the role — we'll return the market range. You only need what you already know.</DialogDescription>
+                    <DialogDescription style={{ color: C.inkMuted }}>Tell us about the role and we'll return the market range. You only need what you already know.</DialogDescription>
                   </DialogHeader>
                   <form onSubmit={submitRole} className="space-y-4">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
@@ -546,7 +546,7 @@ export function YourOrganisation() {
                 <DialogContent className="sm:max-w-[560px]">
                   <DialogHeader>
                     <DialogTitle style={{ color: C.ink }}>Add a benefit for a market update</DialogTitle>
-                    <DialogDescription style={{ color: C.inkMuted }}>Tell us what you offer — we'll benchmark it against the market.</DialogDescription>
+                    <DialogDescription style={{ color: C.inkMuted }}>Tell us what you offer and we'll benchmark it against the market.</DialogDescription>
                   </DialogHeader>
                   <form onSubmit={submitBenefit} className="space-y-4">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
@@ -617,7 +617,7 @@ export function YourOrganisation() {
         <DialogContent className="sm:max-w-[560px]">
           <DialogHeader>
             <DialogTitle style={{ color: C.ink }}>Edit role</DialogTitle>
-            <DialogDescription style={{ color: C.inkMuted }}>Changes here update this role — including the current salary — across your Pay dashboards.</DialogDescription>
+            <DialogDescription style={{ color: C.inkMuted }}>Changes here update this role, including the current salary, across your Pay dashboards.</DialogDescription>
           </DialogHeader>
           {edit && (
             <form onSubmit={submitEdit} className="space-y-4">

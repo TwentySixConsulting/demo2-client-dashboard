@@ -9,7 +9,6 @@ import { useToast } from "@/hooks/use-toast";
 import {
   C,
   REPORT_PERIOD,
-  PAY_META,
   BENEFITS_META,
   SUBSCRIPTION,
   LAST_UPDATED,
@@ -94,7 +93,7 @@ function SubscriptionCard({
   const consultantAction = (what: string) =>
     toast({
       title: `${what} requested`,
-      description: "Your TwentySix consultant will email this over shortly — or reach them at hello@twentysixconsulting.co.uk.",
+      description: "Your TwentySix consultant will email this over shortly, or reach them at hello@twentysixconsulting.co.uk.",
     });
   return (
     <div
@@ -160,9 +159,6 @@ function SubscriptionCard({
             </div>
             <div className="font-semibold" style={{ color: C.ink }}>
               {SUBSCRIPTION.lastInvoice}
-            </div>
-            <div className="text-[11px] mt-0.5" style={{ color: C.inkSubtle }}>
-              {SUBSCRIPTION.invoiceAmount}
             </div>
           </div>
           <div>
@@ -328,18 +324,16 @@ function PreferenceRow({
 function BillingRow({
   date,
   description,
-  amount,
   state,
 }: {
   date: string;
   description: string;
-  amount: string;
   state: "paid" | "scheduled";
 }) {
   const stateColor = state === "paid" ? C.success : C.slate;
   return (
     <div
-      className="grid grid-cols-[110px_1fr_90px_90px] gap-3 items-center px-5 py-3"
+      className="grid grid-cols-[110px_1fr_90px] gap-3 items-center px-5 py-3"
       style={{ borderTop: `1px solid ${C.borderSubtle}` }}
     >
       <span className="text-[11.5px] tabular-nums" style={{ color: C.inkMuted }}>
@@ -347,9 +341,6 @@ function BillingRow({
       </span>
       <span className="text-[12.5px]" style={{ color: C.ink }}>
         {description}
-      </span>
-      <span className="text-[11.5px] tabular-nums font-semibold" style={{ color: C.ink }}>
-        {amount}
       </span>
       <span
         className="inline-flex items-center gap-1 text-[10px] font-bold rounded-full px-2 py-0.5 w-fit"
@@ -560,7 +551,7 @@ export function Account() {
                 icon={LineChart}
                 title="Pay"
                 scopeLabel="Roles benchmarked"
-                scopeValue={`${PAY_META.rolesAnalysed} of ${PAY_META.rolesAnalysed}`}
+                scopeValue={`${BASE_ROSTER.length} of ${BASE_ROSTER.length}`}
                 accent={C.brass}
                 accentSoft={C.brassSoft}
               />
@@ -580,7 +571,7 @@ export function Account() {
             <SectionHeading
               eyebrow="Billing"
               title="Invoices &amp; renewals"
-              description={`Quarterly billing — invoices are sent to ${SUBSCRIPTION.billingContact}.`}
+              description={`Quarterly billing. Invoices are sent to ${SUBSCRIPTION.billingContact}.`}
             />
             <div
               className="rounded-3xl overflow-hidden"
@@ -588,7 +579,7 @@ export function Account() {
             >
               {/* Header row */}
               <div
-                className="grid grid-cols-[110px_1fr_90px_90px] gap-3 items-center px-5 py-3"
+                className="grid grid-cols-[110px_1fr_90px] gap-3 items-center px-5 py-3"
                 style={{ background: C.surfaceSoft }}
               >
                 <span
@@ -607,37 +598,27 @@ export function Account() {
                   className="text-[9.5px] font-semibold uppercase"
                   style={{ color: C.inkMuted, letterSpacing: "0.18em" }}
                 >
-                  Amount
-                </span>
-                <span
-                  className="text-[9.5px] font-semibold uppercase"
-                  style={{ color: C.inkMuted, letterSpacing: "0.18em" }}
-                >
                   Status
                 </span>
               </div>
               <BillingRow
                 date="01 Jul 2026"
                 description="Pay & Benefits · Q3 2026"
-                amount="£4,800"
                 state="scheduled"
               />
               <BillingRow
                 date="01 Apr 2026"
                 description="Pay & Benefits · Q2 2026"
-                amount="£4,800"
                 state="paid"
               />
               <BillingRow
                 date="02 Jan 2026"
                 description="Pay & Benefits · Q1 2026"
-                amount="£4,800"
                 state="paid"
               />
               <BillingRow
                 date="01 Oct 2025"
                 description="Pay & Benefits · Q4 2025"
-                amount="£4,600"
                 state="paid"
               />
             </div>

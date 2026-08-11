@@ -30,18 +30,23 @@ export const BENEFIT_CATEGORIES = [
   "Learning & Development",
 ];
 
-// The established (already-benchmarked) benefits — demo2 has no benefits dataset,
-// so seed a concise roster mirroring the Benefits report's provision + market
-// position (badge). above/at = at-or-above market, watch = mixed, below = gap.
+// The established (already-benchmarked) benefits. This list MUST stay in step with
+// the Benefits report's own BENEFITS array in client/public/benefits/index.html:
+// same 14 benefits, same categories, same badges. They are two separate apps with
+// no shared data layer, so if you add a benefit in one, add it in the other, or
+// Home and Your Organisation start quoting different totals to the client.
+// above/at = at-or-above market, watch = mixed, below = gap.
 export type BenefitBadge = "above" | "at" | "watch" | "below";
 export interface SeedBenefit { name: string; category: string; provision: string; badge: BenefitBadge; }
 export const ESTABLISHED_BENEFITS: SeedBenefit[] = [
   { name: "Annual Leave", category: "Core Benefits", provision: "25 days + 2 Christmas (~27)", badge: "at" },
-  { name: "Holiday Buy / Sell", category: "Working Time", provision: "Up to 5 days", badge: "at" },
-  { name: "Employer Pension", category: "Financial Support", provision: "10% employer DC", badge: "above" },
+  { name: "Holiday Buy / Sell", category: "Core Benefits", provision: "Up to 5 days", badge: "at" },
+  { name: "Employer Pension", category: "Core Benefits", provision: "10% employer DC", badge: "above" },
+  { name: "Salary Sacrifice", category: "Financial Support", provision: "Pension, cycle to work, EV", badge: "at" },
   { name: "Sick Pay", category: "Core Benefits", provision: "3m full + 3m half (after 2 yr)", badge: "watch" },
   { name: "Maternity Pay", category: "Core Benefits", provision: "Enhanced", badge: "at" },
   { name: "Paternity Pay", category: "Core Benefits", provision: "2 weeks full pay", badge: "at" },
+  { name: "Casual User Mileage", category: "Core Benefits", provision: "45p per mile (HMRC rate)", badge: "at" },
   { name: "Compassionate Leave", category: "Working Time", provision: "Discretionary", badge: "above" },
   { name: "Life Assurance", category: "Health & Wellbeing", provision: "3× salary", badge: "at" },
   { name: "Employee Assistance Programme", category: "Health & Wellbeing", provision: "Available to all", badge: "at" },

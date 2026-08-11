@@ -33,7 +33,7 @@ export class ErrorBoundary extends Component<Props, State> {
             Something went wrong
           </h1>
           <p className="mt-2 text-[13.5px] leading-relaxed" style={{ color: C.inkMuted }}>
-            Sorry — that page hit an unexpected error. Reloading usually fixes it. If it
+            Sorry, that page hit an unexpected error. Reloading usually fixes it. If it
             keeps happening, email your TwentySix consultant and we'll sort it.
           </p>
           <div className="mt-6 flex items-center justify-center gap-2.5">

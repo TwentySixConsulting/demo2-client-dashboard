@@ -7,13 +7,13 @@ import { useLocation } from "wouter";
 import { useAuth } from "@/contexts/AuthContext";
 import { clientConfig, clientNameToEmail } from "@/config/clientConfig";
 import { Shell } from "@/components/Shell";
-import { C, REPORT_PERIOD, LAST_UPDATED, BENEFITS_LAST_UPDATED, BENEFITS_META, SUBSCRIPTION } from "@/lib/theme";
+import { C, REPORT_PERIOD, LAST_UPDATED, BENEFITS_LAST_UPDATED, SUBSCRIPTION } from "@/lib/theme";
 import { SampleDataBadge } from "@/components/SampleDataBadge";
 import { RoleDistribution, PayTrend, BenefitsDonut } from "@/components/HomeCharts";
 import { companyInfo } from "@/lib/data";
 import { useRoster } from "@/lib/roster";
 import { useOrgRoles, useOrgBenefits, useBenefitOverrides } from "@/lib/orgStore";
-import { ESTABLISHED_BENEFITS, benefitsSummary } from "@/lib/orgData";
+import { BENEFIT_CATEGORIES, ESTABLISHED_BENEFITS, benefitsSummary } from "@/lib/orgData";
 import {
   LineChart, Gift, Building2, ArrowRight, ArrowUpRight, Check, AlertTriangle, AlertCircle,
   ClipboardCheck, UserPlus, Search, Layers, Clock, RefreshCw, CalendarDays,
@@ -94,7 +94,7 @@ export function Home() {
   const payTone: Sev = m.avgDiffPct >= 0 ? "good" : m.belowLQ.length ? "action" : "watch";
   const verdict = `Pay sits ${Math.abs(m.avgDiffPct).toFixed(1)}% ${m.avgDiffPct >= 0 ? "above" : "below"} the market median` +
     (m.belowMed.length ? `, with ${m.belowMed.length} of ${roster.length} role${m.belowMed.length > 1 ? "s" : ""} to review` : "") +
-    `. Benefits are ${m.bs.atOrAbove >= m.bs.total * 0.7 ? "strong" : "mixed"} — ${m.bs.atOrAbove} of ${m.bs.total} at or above market.`;
+    `. Benefits are ${m.bs.atOrAbove >= m.bs.total * 0.7 ? "strong" : "mixed"}, with ${m.bs.atOrAbove} of ${m.bs.total} at or above market.`;
 
   return (
     <div className="min-h-screen w-full flex flex-col ts-canvas ts-sans" style={{ color: C.ink }}>
@@ -116,7 +116,7 @@ export function Home() {
                   <SampleDataBadge />
                 </div>
                 <h1 className="ts-display mt-2.5" style={{ fontSize: 32, fontWeight: 700, letterSpacing: "-0.02em", color: C.ink }}>
-                  <span style={{ color: C.inkMuted, fontWeight: 600 }}>{greeting()} —</span> {companyInfo.name}
+                  <span style={{ color: C.inkMuted, fontWeight: 600 }}>{greeting()},</span> {companyInfo.name}
                 </h1>
                 <p className="mt-2 text-[14px] leading-relaxed max-w-2xl" style={{ color: C.inkMuted }}>{verdict}</p>
               </div>
@@ -139,7 +139,7 @@ export function Home() {
               <div data-tour="attention">
                 <SectionLabel>What needs attention</SectionLabel>
                 <div className="space-y-2">
-                  {alerts.length === 0 && <div className="ts-premium-card p-5 text-[13px]" style={{ color: C.inkMuted }}>Nothing needs attention — pay and benefits are at or above market.</div>}
+                  {alerts.length === 0 && <div className="ts-premium-card p-5 text-[13px]" style={{ color: C.inkMuted }}>Nothing needs attention. Pay and benefits are at or above market.</div>}
                   {alerts.map((a) => {
                     const s = SEV[a.sev];
                     return (
@@ -161,7 +161,7 @@ export function Home() {
                 <SectionLabel>Explore your dashboards</SectionLabel>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   <ExploreCard icon={LineChart} title="Pay" oneLiner="Where you sit on pay, role by role." stats={[`${roster.length} roles benchmarked`, `${m.belowMed.length} below market`]} onClick={goToPay} />
-                  <ExploreCard icon={Gift} title="Benefits" oneLiner="Your benefits offer vs the market." stats={[`${m.bs.total} benefits · ${BENEFITS_META.categories} categories`, `${m.bs.atOrAbove} of ${m.bs.total} at/above`]} onClick={goToBenefits} disabled={!clientConfig.benefitsEnabled} />
+                  <ExploreCard icon={Gift} title="Benefits" oneLiner="Your benefits offer vs the market." stats={[`${m.bs.total} benefits · ${BENEFIT_CATEGORIES.length} categories`, `${m.bs.atOrAbove} of ${m.bs.total} at/above`]} onClick={goToBenefits} disabled={!clientConfig.benefitsEnabled} />
                   <ExploreCard icon={Building2} title="Your Organisation" oneLiner="Manage roles, salaries & benefits." stats={[`${m.headcount} people · ${m.rolesTotal} roles`, m.awaiting ? `${m.awaiting} awaiting` : "all benchmarked"]} onClick={goToOrg} />
                 </div>
               </div>

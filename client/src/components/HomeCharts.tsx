@@ -80,7 +80,7 @@ export function PayTrend() {
   const mktLabelY = close ? (youTop ? Math.max(yYou, yMkt) + 11 : Math.min(yYou, yMkt) - 3) : yMkt + 3;
 
   return (
-    <CardShell title="Pay rises — you vs the market" className="flex-1">
+    <CardShell title="Pay rises: you vs the market" className="flex-1">
       {/* legend */}
       <div className="flex items-center gap-4 mb-1 text-[11.5px]" style={{ color: C.inkMuted }}>
         <span className="inline-flex items-center gap-1.5"><span className="inline-block w-3.5 h-[2px] rounded" style={{ background: clay }} /> You</span>
@@ -102,7 +102,7 @@ export function PayTrend() {
             <text x={xs(i)} y={H - 6} textAnchor="middle" fontSize={9.5} fill={C.inkSubtle}>{d.year}</text>
             {/* hover target + tooltip */}
             <rect x={xs(i) - 14} y={0} width={28} height={H - padB} fill="transparent">
-              <title>{`${d.year} — you ${d.you}% · market ${d.market}%`}</title>
+              <title>{`${d.year} · you ${d.you}% · market ${d.market}%`}</title>
             </rect>
           </g>
         ))}

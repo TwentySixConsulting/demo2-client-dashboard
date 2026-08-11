@@ -95,14 +95,14 @@ export function LoginPage() {
             className="text-4xl xl:text-[3.4rem] font-semibold tracking-tight leading-[1.04] mb-5"
             style={{ color: C.ink, letterSpacing: "-0.018em" }}
           >
-            The market, decoded — role by role, benefit by benefit.
+            The market, decoded. Role by role, benefit by benefit.
           </h2>
           <p
             className="text-[15px] xl:text-[16px] leading-relaxed"
             style={{ color: C.inkMuted }}
           >
-            A premium reward intelligence platform built by TwentySix Consulting
-            — ready when you are.
+            A premium reward intelligence platform built by TwentySix Consulting.
+            Ready when you are.
           </p>
         </div>
 
