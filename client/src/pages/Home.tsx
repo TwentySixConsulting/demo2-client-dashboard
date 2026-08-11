@@ -9,7 +9,7 @@ import { clientConfig, clientNameToEmail } from "@/config/clientConfig";
 import { Shell } from "@/components/Shell";
 import { C, REPORT_PERIOD, LAST_UPDATED, BENEFITS_LAST_UPDATED, SUBSCRIPTION } from "@/lib/theme";
 import { SampleDataBadge } from "@/components/SampleDataBadge";
-import { RoleDistribution, PayTrend, BenefitsDonut } from "@/components/HomeCharts";
+import { RoleDistribution, PayTrend, BenefitsMix } from "@/components/HomeCharts";
 import { companyInfo } from "@/lib/data";
 import { useRoster } from "@/lib/roster";
 import { useOrgRoles, useOrgBenefits, useBenefitOverrides } from "@/lib/orgStore";
@@ -199,7 +199,7 @@ export function Home() {
             <div className="flex flex-col lg:flex-row gap-3 items-stretch">
               <RoleDistribution bands={m.bands} total={roster.length} belowMarket={m.belowMed.length} onOpen={() => goToPayPath("role-details")} />
               <PayTrend />
-              <BenefitsDonut atOrAbove={m.bs.atOrAbove} watch={m.bs.watch} below={m.bs.below} total={m.bs.total} onOpen={goToBenefits} />
+              <BenefitsMix atOrAbove={m.bs.atOrAbove} watch={m.bs.watch} below={m.bs.below} total={m.bs.total} onOpen={goToBenefits} />
             </div>
           </div>
         </div>
