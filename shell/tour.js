@@ -512,7 +512,10 @@
         var launch = t.getAttribute("data-zigbert-tour-start");
         if (launch !== null) {
           e.preventDefault();
-          if (launch) startTour(launch); else start();
+          // Only treat the value as a tour name if it actually names one. React
+          // renders the valueless JSX attribute as "true", and the static shells
+          // use a bare attribute (""), so anything unrecognised means "this page".
+          if (TOURS[launch]) startTour(launch); else start();
           return;
         }
       }
