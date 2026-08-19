@@ -76,7 +76,7 @@
       steps: [
         { selector: "[data-tour='hero']", placement: "bottom",
           title: "Snapshot",
-          html: "Where your reward position stands this quarter. Your pay against the market median, your headcount, and anything still waiting to be benchmarked." },
+          html: "This is your snapshot. This shows where your reward position stands this quarter: your pay and benefits against the market range, your headcount, and anything still waiting to be benchmarked." },
         { selector: "[data-tour='explore']", placement: "top",
           title: "Pay, Benefits and Organisation",
           html: "The three areas of your dashboard, each showing a preview of what is inside. Every one has a short tour of its own the first time you open it." },
