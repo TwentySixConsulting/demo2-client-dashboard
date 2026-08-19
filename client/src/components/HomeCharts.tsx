@@ -52,10 +52,14 @@ const BENEFIT_STATUS = [
 // The old `CardShell` wrapper is gone for that reason.
 
 // A stat-tile style headline: the number leads, the qualifier follows in muted ink.
-function Headline({ value, children }: { value: React.ReactNode; children: React.ReactNode }) {
+// `compact` shrinks the type for the version that renders inside a 250x188
+// preview panel in the Home marquee, where the full-size headline would push the
+// legend out of the card.
+function Headline({ value, children, compact }: { value: React.ReactNode; children: React.ReactNode; compact?: boolean }) {
   return (
-    <div className="mb-3 font-display font-bold" style={{ fontSize: 19, color: C.ink, lineHeight: 1.15 }}>
-      {value} <span className="text-[12.5px] font-medium" style={{ color: C.inkMuted }}>{children}</span>
+    <div className={compact ? "mb-2 font-display font-bold" : "mb-3 font-display font-bold"}
+      style={{ fontSize: compact ? 16 : 19, color: C.ink, lineHeight: 1.15 }}>
+      {value} <span className={compact ? "text-[11px] font-medium" : "text-[12.5px] font-medium"} style={{ color: C.inkMuted }}>{children}</span>
     </div>
   );
 }
@@ -148,7 +152,7 @@ function StackBar({
 }
 
 // ── 1. Role distribution ─────────────────────────────────────────────────────
-export function RoleDistribution({ bands, total, belowMarket }: { bands: Record<string, number>; total: number; belowMarket: number }) {
+export function RoleDistribution({ bands, total, belowMarket, compact }: { bands: Record<string, number>; total: number; belowMarket: number; compact?: boolean }) {
   const [hovered, setHovered] = useState<string | null>(null);
   const segments = MARKET_BANDS.map((b) => ({ key: b.key, label: b.label, value: bands[b.key] ?? 0, color: b.color }));
   const below = (bands.below ?? 0) + (bands.lower ?? 0);
@@ -156,7 +160,7 @@ export function RoleDistribution({ bands, total, belowMarket }: { bands: Record<
 
   return (
     <div className="w-full">
-      <Headline value={belowMarket}>of {total} roles below market</Headline>
+      <Headline value={belowMarket} compact={compact}>of {total} roles below market</Headline>
 
       <StackBar
         segments={segments}
@@ -165,20 +169,23 @@ export function RoleDistribution({ bands, total, belowMarket }: { bands: Record<
         onHover={setHovered}
       />
 
-      {/* Which side of the median each arm sits on — the diverging axis, in words. */}
-      <div className="flex items-center justify-between mt-1.5 text-[10px] font-semibold uppercase tracking-[0.1em]" style={{ color: C.inkSubtle }}>
-        <span>{below} below median</span>
-        <span>{above} at or above</span>
-      </div>
+      {/* Which side of the median each arm sits on — the diverging axis, in words.
+          Dropped in compact: the legend below carries every count anyway. */}
+      {!compact && (
+        <div className="flex items-center justify-between mt-1.5 text-[10px] font-semibold uppercase tracking-[0.1em]" style={{ color: C.inkSubtle }}>
+          <span>{below} below median</span>
+          <span>{above} at or above</span>
+        </div>
+      )}
 
       {/* Legend: the dependable identity channel, and where every value is readable. */}
-      <div className="grid grid-cols-2 gap-x-3 gap-y-1.5 mt-3.5">
+      <div className={`grid grid-cols-2 gap-x-3 ${compact ? "gap-y-1 mt-2.5" : "gap-y-1.5 mt-3.5"}`}>
         {MARKET_BANDS.map((b) => (
           <div
             key={b.key}
             onMouseEnter={() => setHovered(b.key)}
             onMouseLeave={() => setHovered(null)}
-            className="flex items-center gap-1.5 text-[11px]"
+            className={`flex items-center gap-1.5 ${compact ? "text-[10px]" : "text-[11px]"}`}
             style={{ color: C.inkMuted, opacity: hovered && hovered !== b.key ? 0.55 : 1, transition: "opacity .15s ease" }}
           >
             <span className="inline-block w-2.5 h-2.5 rounded-[3px] shrink-0" style={{ background: b.color }} />
@@ -333,14 +340,14 @@ export function PayTrend() {
 }
 
 // ── 3. Benefits mix ──────────────────────────────────────────────────────────
-export function BenefitsMix({ atOrAbove, watch, below, total }: { atOrAbove: number; watch: number; below: number; total: number }) {
+export function BenefitsMix({ atOrAbove, watch, below, total, compact }: { atOrAbove: number; watch: number; below: number; total: number; compact?: boolean }) {
   const [hovered, setHovered] = useState<string | null>(null);
   const counts: Record<string, number> = { atOrAbove, watch, below };
   const segments = BENEFIT_STATUS.map((s) => ({ key: s.key, label: s.label, value: counts[s.key] ?? 0, color: s.color }));
 
   return (
     <div className="w-full">
-      <Headline value={atOrAbove}>of {total} at or above market</Headline>
+      <Headline value={atOrAbove} compact={compact}>of {total} at or above market</Headline>
 
       <StackBar
         segments={segments}
@@ -350,13 +357,13 @@ export function BenefitsMix({ atOrAbove, watch, below, total }: { atOrAbove: num
       />
 
       {/* Status never travels on colour alone: every row is icon + label + count. */}
-      <div className="space-y-1.5 mt-3.5">
+      <div className={compact ? "space-y-1 mt-2.5" : "space-y-1.5 mt-3.5"}>
         {BENEFIT_STATUS.map((s) => (
           <div
             key={s.key}
             onMouseEnter={() => setHovered(s.key)}
             onMouseLeave={() => setHovered(null)}
-            className="flex items-center gap-1.5 text-[11.5px]"
+            className={`flex items-center gap-1.5 ${compact ? "text-[10.5px]" : "text-[11.5px]"}`}
             style={{ color: C.inkMuted, opacity: hovered && hovered !== s.key ? 0.55 : 1, transition: "opacity .15s ease" }}
           >
             <s.Icon className="w-3 h-3 shrink-0" style={{ color: s.color }} aria-hidden />

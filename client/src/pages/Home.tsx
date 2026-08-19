@@ -20,7 +20,13 @@ import { clientConfig, clientNameToEmail } from "@/config/clientConfig";
 import { Shell } from "@/components/Shell";
 import { C, REPORT_PERIOD, LAST_UPDATED, SUBSCRIPTION } from "@/lib/theme";
 import { SampleDataBadge } from "@/components/SampleDataBadge";
-import { RoleDistribution, PayTrend, BenefitsMix } from "@/components/HomeCharts";
+import { RoleDistribution, BenefitsMix } from "@/components/HomeCharts";
+import { ScrollingShowcase } from "@/components/ScrollingShowcase";
+import {
+  PreviewCard, PayPositionPreview, PayGapsPreview, PayRisesPreview, PayShapePreview,
+  BenefitsCoveragePreview, BenefitsCategoryPreview, BenefitsActionPreview, BenefitsStrengthsPreview,
+  RewardPositionSummary, OrgFunctionBars,
+} from "@/components/HomePreviews";
 import { companyInfo } from "@/lib/data";
 import { useRoster } from "@/lib/roster";
 import { useOrgRoles, useOrgBenefits, useBenefitOverrides } from "@/lib/orgStore";
@@ -113,6 +119,29 @@ export function Home() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [m]);
 
+  // The strips each carry four previews. The existing Home charts lead (they are
+  // the most informative), then three more angles on the same area, so the
+  // marquee has something new to show rather than looping one card.
+  const payPreviews = useMemo(() => [
+    <PreviewCard key="dist" eyebrow="Distribution" title="How your roles sit vs market">
+      <RoleDistribution bands={m.bands} total={roster.length} belowMarket={m.belowMed.length} compact />
+    </PreviewCard>,
+    <PayPositionPreview key="pos" avgDiffPct={m.avgDiffPct} />,
+    <PayGapsPreview key="gaps" roster={roster} />,
+    <PayRisesPreview key="rises" />,
+    <PayShapePreview key="shape" roster={roster} />,
+  ], [m.bands, m.avgDiffPct, m.belowMed.length, roster]);
+
+  const benefitsPreviews = useMemo(() => [
+    <PreviewCard key="mix" eyebrow="Benefits mix" title="Your offer vs the market">
+      <BenefitsMix atOrAbove={m.bs.atOrAbove} watch={m.bs.watch} below={m.bs.below} total={m.bs.total} compact />
+    </PreviewCard>,
+    <BenefitsCoveragePreview key="cov" atOrAbove={m.bs.atOrAbove} total={m.bs.total} />,
+    <BenefitsCategoryPreview key="cat" />,
+    <BenefitsActionPreview key="act" />,
+    <BenefitsStrengthsPreview key="str" />,
+  ], [m.bs]);
+
   const payTone: Sev = m.avgDiffPct >= 0 ? "good" : m.belowLQ.length ? "action" : "watch";
   const verdict = `Pay sits ${Math.abs(m.avgDiffPct).toFixed(1)}% ${m.avgDiffPct >= 0 ? "above" : "below"} the market median` +
     (m.belowMed.length ? `, with ${m.belowMed.length} of ${roster.length} role${m.belowMed.length > 1 ? "s" : ""} to review` : "") +
@@ -154,11 +183,11 @@ export function Home() {
                     <HeroStat label="Awaiting" value={String(m.awaiting)} sub={m.awaiting ? "with consultant" : "all benchmarked"} tone={m.awaiting ? "watch" : "good"} />
                   </div>
                 </div>
-                {/* The trend line is the one chart that is about overall position
-                    over time rather than one area, so it belongs in Snapshot.
-                    Dropped below xl rather than allowed to cramp the stat row. */}
+                {/* Pay and benefits on one shared market range — the summary
+                    question a snapshot should answer. Dropped below xl rather
+                    than allowed to cramp the stat row. */}
                 <div className="hidden xl:block shrink-0 w-[320px] xl:pl-9 xl:border-l" style={{ borderColor: C.borderSubtle }}>
-                  <PayTrend />
+                  <RewardPositionSummary avgDiffPct={m.avgDiffPct} atOrAbove={m.bs.atOrAbove} benefitsTotal={m.bs.total} />
                 </div>
               </div>
             </div>
@@ -166,12 +195,18 @@ export function Home() {
 
           {/* ── 2. The three areas — front and centre ────────────────────── */}
           <div data-tour="explore" className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* Pay and Benefits each scroll a strip of live preview graphics, the
+                same marquee the marketing site uses on its pillar cards. The
+                strip bleeds to the card edges (-mx-6) so cards enter and leave
+                under the mask rather than inside a visible gutter. */}
             <AreaCard
               num="01" tag="Pay" icon={LineChart} accent={AREA_ACCENT.pay}
               oneLiner="Where you sit on pay, role by role."
               onClick={goToPay}
             >
-              <RoleDistribution bands={m.bands} total={roster.length} belowMarket={m.belowMed.length} />
+              <div className="-mx-6">
+                <ScrollingShowcase id="pay" durationSeconds={46} items={payPreviews} />
+              </div>
             </AreaCard>
 
             <AreaCard
@@ -179,7 +214,9 @@ export function Home() {
               oneLiner="Where your benefits stand, category by category."
               onClick={goToBenefits} disabled={!clientConfig.benefitsEnabled}
             >
-              <BenefitsMix atOrAbove={m.bs.atOrAbove} watch={m.bs.watch} below={m.bs.below} total={m.bs.total} />
+              <div className="-mx-6">
+                <ScrollingShowcase id="benefits" durationSeconds={46} reverse items={benefitsPreviews} />
+              </div>
             </AreaCard>
 
             <AreaCard
@@ -187,16 +224,17 @@ export function Home() {
               oneLiner="Your roles, people and benefits, kept up to date."
               onClick={goToOrg}
             >
-              {/* No chart for this one — it is a data-management area, not an
-                  insight product. Live counts styled like the other legends. */}
+              {/* No marquee for this one — it is a data-management area, not an
+                  insight product. A function breakdown keeps its height in step
+                  with the two boxes that now scroll. */}
               <div className="font-display font-bold mb-3" style={{ fontSize: 19, color: C.ink, lineHeight: 1.15 }}>
                 {m.headcount} <span className="text-[12.5px] font-medium" style={{ color: C.inkMuted }}>people across {m.rolesTotal} roles</span>
               </div>
-              <div className="space-y-1.5">
-                <OrgRow icon={Users} label="Roles benchmarked" value={String(m.rolesTotal)} />
+              <div className="space-y-1.5 mb-4">
                 <OrgRow icon={Layers} label={`Benefits · ${BENEFIT_CATEGORIES.length} categories`} value={String(m.bs.total)} />
                 <OrgRow icon={Clock} label={m.awaiting ? "Awaiting benchmark" : "All benchmarked"} value={m.awaiting ? String(m.awaiting) : "✓"} />
               </div>
+              <OrgFunctionBars roster={roster} />
             </AreaCard>
           </div>
 
