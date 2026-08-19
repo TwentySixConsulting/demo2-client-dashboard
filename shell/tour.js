@@ -67,24 +67,25 @@
   // ── the tours ────────────────────────────────────────────────
   // One entry per area. `app`/`path` locate the tour; every step lives on that page.
   var TOURS = {
+    // Home is 4 steps, following the page top to bottom: Snapshot, the three
+    // area boxes, then what needs attention. It was 5 until the Quick actions
+    // section was removed from Home; a step whose anchor no longer exists stalls
+    // on a blank overlay for ~4s (see findTarget), so the step went with it.
     home: {
-      label: "Your home", secs: 40, app: "react", path: "/",
+      label: "Home", secs: 30, app: "react", path: "/",
       steps: [
         { selector: "[data-tour='hero']", placement: "bottom",
-          title: "Your snapshot",
-          html: "Where your reward position stands this quarter, in a sentence. Alongside it: how your pay sits against the market median, your headcount, and anything still awaiting benchmarking." },
+          title: "Snapshot",
+          html: "Where your reward position stands this quarter. Your pay against the market median, your headcount, and anything still waiting to be benchmarked." },
+        { selector: "[data-tour='explore']", placement: "top",
+          title: "Pay, Benefits and Organisation",
+          html: "The three areas of your dashboard, each showing a preview of what is inside. Every one has a short tour of its own the first time you open it." },
         { selector: "[data-tour='attention']", placement: "top",
           title: "What needs attention",
-          html: "The things worth acting on, ranked from your own data. Click any one to jump straight to the detail behind it." },
-        { selector: "[data-tour='explore']", placement: "top",
-          title: "Your three areas",
-          html: "<b>Pay</b>, <b>Benefits</b> and <b>Your Organisation</b>. Each has its own short tour the first time you open it, so you don't have to remember all of this now." },
-        { selector: "[data-tour='quick-actions']", placement: "left",
-          title: "Quick actions",
-          html: "The common jobs, one click away: prep a pay review, see who's below market, or add a role." },
+          html: "The things worth acting on, ranked from your own data. Each row opens the detail behind it." },
         { selector: "[data-tour='nav']", placement: "bottom",
           title: "Getting around",
-          html: "Switch between your areas up here at any time. <b>Tour this page</b> brings back the guide for wherever you are." },
+          html: "Switch between areas up here at any time. <b>Tour this page</b> brings back the guide for wherever you are." },
       ],
     },
 
@@ -93,9 +94,9 @@
       steps: [
         { selector: "[data-testid='nav-home']", placement: "right",
           title: "How Pay is organised",
-          html: "Everything sits in this sidebar: your market position, role-by-role detail, trends, and the pay review tool." },
+          html: "The sidebar holds your market position, role-by-role detail, trends and the pay review tool." },
         { selector: "[data-testid='kpi-overall']", placement: "bottom",
-          title: "Your headline position",
+          title: "Headline position",
           html: "How your overall pay compares to the market, with the number of roles below market and your total pay bill alongside." },
         { selector: "[data-testid='today-search']", placement: "bottom",
           title: "Find any role",
@@ -113,22 +114,22 @@
       label: "Benefits", secs: 40, app: "benefits", path: "benefits",
       steps: [
         { selector: "#bx-verdict", placement: "bottom",
-          title: "Your benefits position",
-          html: "The headline: how competitive your overall benefits offer is against the market." },
+          title: "Benefits position",
+          html: "How competitive your overall benefits offer is against the market." },
         { selector: ".sidebar-nav", placement: "right",
           title: "The categories",
-          html: "Your benefits are grouped down the left: core, working time, wellbeing, financial support, ESG &amp; DEI, and learning." },
+          html: "Your benefits are grouped down the left. Core, working time, wellbeing, financial support, ESG &amp; DEI, and learning." },
         { selector: "#bx-search", placement: "bottom",
           title: "Find a benefit",
           html: "Search any benefit, such as pension, sick pay or leave, to see how yours compares." },
         { selector: ".navlink[data-page='action-plan']", placement: "right",
-          title: "Your action plan",
+          title: "The action plan",
           html: "A prioritised view of where to focus your benefits spend, ready to export." },
       ],
     },
 
     organisation: {
-      label: "Your organisation", secs: 35, app: "react", path: "/organisation",
+      label: "Organisation", secs: 35, app: "react", path: "/organisation",
       steps: [
         { selector: "[data-tour='summary']", placement: "bottom",
           title: "What's in here",
@@ -140,8 +141,8 @@
           title: "Add for benchmarking",
           html: "Add a role, a person or a benefit and send it to your TwentySix consultant to benchmark." },
         { selector: "[data-tour='roles-table']", placement: "top",
-          title: "Your data drives everything",
-          html: "Edit a salary or a detail here and it flows straight through to your Pay dashboard. Benefits work the same way, further down the page." },
+          title: "Edits flow through",
+          html: "Change a salary or a detail here and it feeds straight into your Pay dashboard. Benefits work the same way, further down the page." },
       ],
     },
 
@@ -149,10 +150,10 @@
       label: "Account", secs: 20, app: "react", path: "/account",
       steps: [
         { selector: "[data-tour='subscriptions']", placement: "bottom",
-          title: "Your subscriptions",
-          html: "What you're subscribed to and what each product covers. Billing, invoices and email preferences are just below." },
+          title: "Subscriptions",
+          html: "What you're subscribed to and what each product covers. Billing, invoices and email preferences are below." },
         { selector: "[data-tour='support']", placement: "top",
-          title: "Help is always here",
+          title: "Getting help",
           html: "Your TwentySix consultant's details, whenever you want a second opinion on the numbers." },
       ],
     },
@@ -423,7 +424,7 @@
     prompt.className = "ztour-welcome";
     prompt.innerHTML =
       '<div class="ztour-welcome-title">' +
-        (first ? "New here? \u{1F44B}" : "First time in " + t.label + "?") +
+        (first ? "Welcome to Zigbert" : t.label + ", in brief") +
       '</div>' +
       '<div class="ztour-welcome-body">' +
         (first
