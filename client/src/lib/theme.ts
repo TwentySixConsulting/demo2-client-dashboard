@@ -1,18 +1,23 @@
 // Zigbert design system — "trusted but fresh".
-//   ink/navy #121C2B · cream #F4F1EA · clay (the only accent) #C9785A · slate #7285A5
+//   ink/navy #121C2B · white canvas · clay (the only accent) #C9785A · slate #7285A5
 // NB: legacy keys (brass*, sage*, rose*, plum*, amber*) are retained as names but
 // remapped onto the clay/slate brand so existing inline styles rebrand in place.
+//
+// The canvas is pure white and the neutrals are COOL greys. The old warm/beige
+// neutrals (canvas #FAFAF8, surfaceSoft #FBF8F2, border #E7E0D4) read as dated
+// and, on a white page, tan borders look dirty. Clay and slate still carry all
+// the warmth — the neutrals stay out of the way.
 export const C = {
   // Canvas + surfaces
-  canvas: "#FAFAF8",        // near-white page background
+  canvas: "#FFFFFF",        // page background
   surface: "#FFFFFF",
-  surfaceSoft: "#FBF8F2",   // very light cream (card tint)
+  surfaceSoft: "#F6F7F9",   // neutral wash — card tint, hover, inset panels
   // Ink — navy
   ink: "#121C2B",
   inkMuted: "#4B5563",
   inkSubtle: "#8A93A2",
-  border: "#E7E0D4",        // warm hairline
-  borderSubtle: "#EFE9DD",
+  border: "#DEE1E6",        // neutral hairline (brand "steel tint")
+  borderSubtle: "#E7EAEF",
   // Primary brand accent — clay (the single accent)
   brass: "#C9785A",         // clay
   brassDeep: "#B0603F",     // clay deep
@@ -54,7 +59,7 @@ export const BENEFITS_TINTS = {
   sage: "#7285A5",         // remapped → slate
   sageWash: "#f3f6fa",
   slate: "#7285A5",
-  cream: "#FBF8F2",
+  cream: "#FFFFFF",   // mirror of the Benefits report --cream (text on navy)
   inkDeep: "#1f2c40",
   inkSoft: "#5a6478",
 } as const;

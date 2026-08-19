@@ -1,13 +1,24 @@
-// Platform Home — a dashboard control-centre. On login the client sees the state
-// of their reward across Pay + Benefits + Organisation with LIVE numbers (derived
-// from useRoster/orgStore, so edits in Your Organisation flow through here), what
-// needs attention, concise section navigation, quick actions and recent activity.
+// Platform Home — a dashboard control-centre, deliberately kept to three things:
+//
+//   1. SNAPSHOT   where the client's reward position stands this quarter
+//   2. THE THREE AREAS  Pay · Benefits · Organisation, front and centre, each
+//      carrying a live chart preview of what is inside it
+//   3. WHAT NEEDS ATTENTION  the ranked list of things worth acting on
+//
+// It used to carry six sections (adding Quick actions, Activity & status and a
+// separate chart band) and read as busy. Quick actions' four destinations are all
+// still one click away through the three area boxes and the attention rows, and
+// the charts moved INSIDE the boxes rather than sitting in a band of their own —
+// which is what the three areas being "front and centre" actually requires.
+//
+// All numbers are LIVE, derived from useRoster/orgStore, so edits made in Your
+// Organisation flow straight through to here.
 import { useMemo } from "react";
 import { useLocation } from "wouter";
 import { useAuth } from "@/contexts/AuthContext";
 import { clientConfig, clientNameToEmail } from "@/config/clientConfig";
 import { Shell } from "@/components/Shell";
-import { C, REPORT_PERIOD, LAST_UPDATED, BENEFITS_LAST_UPDATED, SUBSCRIPTION } from "@/lib/theme";
+import { C, REPORT_PERIOD, LAST_UPDATED, SUBSCRIPTION } from "@/lib/theme";
 import { SampleDataBadge } from "@/components/SampleDataBadge";
 import { RoleDistribution, PayTrend, BenefitsMix } from "@/components/HomeCharts";
 import { companyInfo } from "@/lib/data";
@@ -15,8 +26,8 @@ import { useRoster } from "@/lib/roster";
 import { useOrgRoles, useOrgBenefits, useBenefitOverrides } from "@/lib/orgStore";
 import { BENEFIT_CATEGORIES, ESTABLISHED_BENEFITS, benefitsSummary } from "@/lib/orgData";
 import {
-  LineChart, Gift, Building2, ArrowRight, ArrowUpRight, Check, AlertTriangle, AlertCircle,
-  ClipboardCheck, UserPlus, Search, Layers, Clock, RefreshCw, CalendarDays,
+  LineChart, Gift, Building2, ArrowRight, Check, AlertTriangle, AlertCircle,
+  Layers, Clock, Users, RefreshCw, CalendarDays,
   type LucideIcon,
 } from "lucide-react";
 
@@ -32,6 +43,24 @@ const SEV: Record<Sev, { fg: string; bg: string; Icon: LucideIcon }> = {
 };
 const gbpK = (n: number) => (Math.abs(n) >= 1000 ? `£${(n / 1000).toFixed(1)}k` : `£${Math.round(n)}`);
 
+// Time-aware greeting. Addresses the ORGANISATION, not the signed-in username —
+// the demo account's username is the lowercase string "brighton technologies",
+// which would render as-is and look like a bug.
+function greeting() {
+  const h = new Date().getHours();
+  return h < 12 ? "Good morning" : h < 18 ? "Good afternoon" : "Good evening";
+}
+
+// The three areas, in the order they are presented. Each gets its own accent so
+// the boxes are tellable apart at a glance: clay for Pay (the primary brand
+// accent, and the area clients open first), slate for Benefits, deep slate for
+// Organisation. Numbered 01/02/03 like the marketing site's pillar cards.
+const AREA_ACCENT = {
+  pay: { fg: "#B0603F", tint: "#F4E2D9" },
+  benefits: { fg: "#5C6D8A", tint: "#DEE4EC" },
+  org: { fg: "#44536B", tint: "#E2E6EC" },
+} as const;
+
 export function Home() {
   const { signOut, user, tempUser } = useAuth();
   const [, setLocation] = useLocation();
@@ -44,7 +73,6 @@ export function Home() {
   const benefitOverrides = useBenefitOverrides();
 
   const goToPay = () => { window.location.href = `${BASE}pay/`; };
-  const goToPayPath = (p: string) => { window.location.href = `${BASE}pay/${p}`; };
   const goToBenefits = () => { window.location.href = `${BASE}benefits/`; };
   const goToOrg = () => setLocation("/organisation");
 
@@ -53,7 +81,6 @@ export function Home() {
     const avgDiffPct = roster.reduce((s, r) => s + r.diffPct, 0) / n;
     const belowLQ = roster.filter((r) => r.positioning.position === "below");
     const belowMed = roster.filter((r) => r.positioning.position === "below" || r.positioning.position === "lower");
-    const edited = roster.filter((r) => r.edited);
     const headcount = roster.reduce((s, r) => s + r.headcount, 0) + orgRoles.reduce((s, r) => s + (r.headcount || 0), 0);
     const rolesTotal = roster.length + orgRoles.length;
     const bs = benefitsSummary();
@@ -62,7 +89,7 @@ export function Home() {
     // Distribution of roles across the four market bands (drives the hero chart).
     const bands = { below: 0, lower: 0, upper: 0, above: 0 } as Record<string, number>;
     roster.forEach((r) => { bands[r.positioning.position] = (bands[r.positioning.position] ?? 0) + 1; });
-    return { avgDiffPct, belowLQ, belowMed, edited, headcount, rolesTotal, bs, reviewCount, awaiting, bands };
+    return { avgDiffPct, belowLQ, belowMed, headcount, rolesTotal, bs, awaiting, bands };
   }, [roster, orgRoles, orgBenefits, benefitOverrides]);
 
   // Combined, ranked attention feed
@@ -102,104 +129,96 @@ export function Home() {
               Sits above the masthead so a new client meets it first. */}
           <div data-zigbert-tour-checklist />
 
-          {/* Masthead — hero panel */}
-          <div data-tour="hero" className="ts-hero rounded-[28px] px-6 py-6 lg:px-8 lg:py-7">
-            <div className="flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-10">
-              <div className="min-w-0 flex-1">
-                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[12px]" style={{ color: C.inkMuted }}>
-                  <span className="inline-flex items-center gap-1"><CalendarDays className="w-3 h-3" /> {REPORT_PERIOD}</span>
-                  <span style={{ color: C.inkSubtle }}>·</span>
-                  <span className="inline-flex items-center gap-1"><RefreshCw className="w-3 h-3" /> Updated {LAST_UPDATED}</span>
-                  <span style={{ color: C.inkSubtle }}>·</span>
-                  <span className="inline-flex items-center gap-1 rounded-full px-2 py-0.5" style={{ background: C.brassSoft, color: C.brassDeep, fontWeight: 600 }}>{SUBSCRIPTION.tier}</span>
-                  <SampleDataBadge />
-                </div>
-                <h1 className="ts-display mt-2.5" style={{ fontSize: 32, fontWeight: 700, letterSpacing: "-0.02em", color: C.ink }}>
-                  {companyInfo.name}
-                </h1>
-                <p className="mt-2 text-[14px] leading-relaxed max-w-2xl" style={{ color: C.inkMuted }}>{verdict}</p>
+          {/* ── 1. Snapshot ─────────────────────────────────────────────── */}
+          <div>
+            <SectionLabel>Snapshot</SectionLabel>
+            <div data-tour="hero" className="ts-hero rounded-[28px] px-6 py-6 lg:px-8 lg:py-7">
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[12px]" style={{ color: C.inkMuted }}>
+                <span className="inline-flex items-center gap-1"><CalendarDays className="w-3 h-3" /> {REPORT_PERIOD}</span>
+                <span style={{ color: C.inkSubtle }}>·</span>
+                <span className="inline-flex items-center gap-1"><RefreshCw className="w-3 h-3" /> Updated {LAST_UPDATED}</span>
+                <span style={{ color: C.inkSubtle }}>·</span>
+                <span className="inline-flex items-center gap-1 rounded-full px-2 py-0.5" style={{ background: C.brassSoft, color: C.brassDeep, fontWeight: 600 }}>{SUBSCRIPTION.tier}</span>
+                <SampleDataBadge />
               </div>
-              {/* quick figures */}
-              <div data-tour="quick-figures" className="flex flex-wrap gap-7 lg:gap-9 lg:pl-9 lg:border-l shrink-0" style={{ borderColor: C.borderSubtle }}>
-                <HeroStat label="Pay vs market" value={`${m.avgDiffPct >= 0 ? "+" : ""}${m.avgDiffPct.toFixed(1)}%`} tone={payTone} />
-                <HeroStat label="Headcount" value={String(m.headcount)} sub={`${m.rolesTotal} roles`} />
-                <HeroStat label="Awaiting" value={String(m.awaiting)} sub={m.awaiting ? "with consultant" : "all benchmarked"} tone={m.awaiting ? "watch" : "good"} />
+
+              <div className="mt-4 flex flex-col xl:flex-row xl:items-start gap-6 xl:gap-9">
+                <div className="min-w-0 flex-1">
+                  <h1 className="ts-display" style={{ fontSize: 32, fontWeight: 700, letterSpacing: "-0.02em", color: C.ink }}>
+                    <span style={{ color: C.inkMuted, fontWeight: 600 }}>{greeting()},</span> {companyInfo.name}
+                  </h1>
+                  <p className="mt-2 text-[14px] leading-relaxed max-w-xl" style={{ color: C.inkMuted }}>{verdict}</p>
+                  <div className="flex flex-wrap gap-7 lg:gap-9 mt-5">
+                    <HeroStat label="Pay vs market" value={`${m.avgDiffPct >= 0 ? "+" : ""}${m.avgDiffPct.toFixed(1)}%`} tone={payTone} />
+                    <HeroStat label="Headcount" value={String(m.headcount)} sub={`${m.rolesTotal} roles`} />
+                    <HeroStat label="Awaiting" value={String(m.awaiting)} sub={m.awaiting ? "with consultant" : "all benchmarked"} tone={m.awaiting ? "watch" : "good"} />
+                  </div>
+                </div>
+                {/* The trend line is the one chart that is about overall position
+                    over time rather than one area, so it belongs in Snapshot.
+                    Dropped below xl rather than allowed to cramp the stat row. */}
+                <div className="hidden xl:block shrink-0 w-[320px] xl:pl-9 xl:border-l" style={{ borderColor: C.borderSubtle }}>
+                  <PayTrend />
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Working area */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {/* Left: attention + explore */}
-            <div className="lg:col-span-2 space-y-6">
-              <div data-tour="attention">
-                <SectionLabel>What needs attention</SectionLabel>
-                <div className="space-y-2">
-                  {alerts.length === 0 && <div className="ts-premium-card p-5 text-[13px]" style={{ color: C.inkMuted }}>Nothing needs attention. Pay and benefits are at or above market.</div>}
-                  {alerts.map((a) => {
-                    const s = SEV[a.sev];
-                    return (
-                      <button key={a.id} onClick={a.go} className="ts-premium-card ts-glow-host ts-nudge relative overflow-hidden w-full text-left pl-5 pr-4 py-3.5 flex items-center gap-3">
-                        <span className="absolute top-0 bottom-0 left-0 w-[3px]" style={{ background: s.fg }} aria-hidden />
-                        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg" style={{ background: s.bg, color: s.fg, boxShadow: "inset 0 1px 0 rgba(255,255,255,0.5)" }}><s.Icon className="w-4 h-4" /></span>
-                        <span className="flex-1 min-w-0">
-                          <span className="block text-[13.5px] font-semibold" style={{ color: C.ink }}>{a.title}</span>
-                          <span className="block text-[12px] mt-0.5" style={{ color: C.inkMuted }}>{a.detail}</span>
-                        </span>
-                        <ArrowRight className="ts-arrow w-4 h-4 shrink-0" style={{ color: C.inkSubtle }} />
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
+          {/* ── 2. The three areas — front and centre ────────────────────── */}
+          <div data-tour="explore" className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <AreaCard
+              num="01" tag="Pay" icon={LineChart} accent={AREA_ACCENT.pay}
+              oneLiner="Where you sit on pay, role by role."
+              onClick={goToPay}
+            >
+              <RoleDistribution bands={m.bands} total={roster.length} belowMarket={m.belowMed.length} />
+            </AreaCard>
 
-              <div data-tour="explore">
-                <SectionLabel>Explore your dashboards</SectionLabel>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                  <ExploreCard icon={LineChart} title="Pay" oneLiner="Where you sit on pay, role by role." stats={[`${roster.length} roles benchmarked`, `${m.belowMed.length} below market`]} onClick={goToPay} />
-                  <ExploreCard icon={Gift} title="Benefits" oneLiner="Your benefits offer vs the market." stats={[`${m.bs.total} benefits · ${BENEFIT_CATEGORIES.length} categories`, `${m.bs.atOrAbove} of ${m.bs.total} at/above`]} onClick={goToBenefits} disabled={!clientConfig.benefitsEnabled} />
-                  <ExploreCard icon={Building2} title="Your Organisation" oneLiner="Manage roles, salaries & benefits." stats={[`${m.headcount} people · ${m.rolesTotal} roles`, m.awaiting ? `${m.awaiting} awaiting` : "all benchmarked"]} onClick={goToOrg} />
-                </div>
-              </div>
-            </div>
+            <AreaCard
+              num="02" tag="Benefits" icon={Gift} accent={AREA_ACCENT.benefits}
+              oneLiner="Where your benefits stand, category by category."
+              onClick={goToBenefits} disabled={!clientConfig.benefitsEnabled}
+            >
+              <BenefitsMix atOrAbove={m.bs.atOrAbove} watch={m.bs.watch} below={m.bs.below} total={m.bs.total} />
+            </AreaCard>
 
-            {/* Right: quick actions + activity */}
-            <div className="space-y-6">
-              <div data-tour="quick-actions">
-                <SectionLabel>Quick actions</SectionLabel>
-                <div className="space-y-2">
-                  <Action icon={ClipboardCheck} label="Prep a pay review" onClick={() => goToPayPath("pay-review")} />
-                  <Action icon={Search} label="See who's below market" onClick={() => goToPayPath("role-details?position=Below+LQ")} />
-                  <Action icon={UserPlus} label="Add a role or benefit" onClick={goToOrg} />
-                  <Action icon={Layers} label="Review benefit gaps" onClick={goToBenefits} />
-                </div>
+            <AreaCard
+              num="03" tag="Organisation" icon={Building2} accent={AREA_ACCENT.org}
+              oneLiner="Your roles, people and benefits, kept up to date."
+              onClick={goToOrg}
+            >
+              {/* No chart for this one — it is a data-management area, not an
+                  insight product. Live counts styled like the other legends. */}
+              <div className="font-display font-bold mb-3" style={{ fontSize: 19, color: C.ink, lineHeight: 1.15 }}>
+                {m.headcount} <span className="text-[12.5px] font-medium" style={{ color: C.inkMuted }}>people across {m.rolesTotal} roles</span>
               </div>
+              <div className="space-y-1.5">
+                <OrgRow icon={Users} label="Roles benchmarked" value={String(m.rolesTotal)} />
+                <OrgRow icon={Layers} label={`Benefits · ${BENEFIT_CATEGORIES.length} categories`} value={String(m.bs.total)} />
+                <OrgRow icon={Clock} label={m.awaiting ? "Awaiting benchmark" : "All benchmarked"} value={m.awaiting ? String(m.awaiting) : "✓"} />
+              </div>
+            </AreaCard>
+          </div>
 
-              <div data-tour="activity">
-                <SectionLabel>Activity & status</SectionLabel>
-                <div className="ts-premium-card p-4 space-y-3">
-                  {m.edited.length > 0 ? (
-                    <ActivityRow icon={RefreshCw} tone="watch" title={`${m.edited.length} role${m.edited.length > 1 ? "s" : ""} recently updated`} detail={m.edited.slice(0, 2).map((r) => r.role).join(", ") + (m.edited.length > 2 ? "…" : "")} />
-                  ) : (
-                    <ActivityRow icon={Check} tone="good" title="No recent changes" detail="Your roster is up to date" />
-                  )}
-                  <ActivityRow icon={Clock} tone={m.awaiting ? "watch" : "good"} title={m.awaiting ? `${m.awaiting} item${m.awaiting > 1 ? "s" : ""} awaiting benchmark` : "Everything benchmarked"} detail={m.awaiting ? `${orgRoles.length} roles · ${orgBenefits.length} benefits · ${m.reviewCount} under review` : "Nothing with your consultant"} />
-                  <ActivityRow icon={CalendarDays} tone="good" title="Data freshness" detail={`Pay ${LAST_UPDATED} · Benefits ${BENEFITS_LAST_UPDATED}`} />
-                  <button onClick={goToOrg} className="inline-flex items-center gap-1.5 text-[12.5px] font-semibold pt-1" style={{ color: C.brass }}>
-                    Manage your organisation <ArrowUpRight className="w-3.5 h-3.5" />
+          {/* ── 3. What needs attention ─────────────────────────────────── */}
+          <div data-tour="attention">
+            <SectionLabel>What needs attention</SectionLabel>
+            <div className="space-y-2">
+              {alerts.length === 0 && <div className="ts-premium-card p-5 text-[13px]" style={{ color: C.inkMuted }}>Nothing needs attention. Pay and benefits are at or above market.</div>}
+              {alerts.map((a) => {
+                const s = SEV[a.sev];
+                return (
+                  <button key={a.id} onClick={a.go} className="ts-premium-card ts-glow-host ts-nudge relative overflow-hidden w-full text-left pl-5 pr-4 py-3.5 flex items-center gap-3">
+                    <span className="absolute top-0 bottom-0 left-0 w-[3px]" style={{ background: s.fg }} aria-hidden />
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg" style={{ background: s.bg, color: s.fg, boxShadow: "inset 0 1px 0 rgba(255,255,255,0.5)" }}><s.Icon className="w-4 h-4" /></span>
+                    <span className="flex-1 min-w-0">
+                      <span className="block text-[13.5px] font-semibold" style={{ color: C.ink }}>{a.title}</span>
+                      <span className="block text-[12px] mt-0.5" style={{ color: C.inkMuted }}>{a.detail}</span>
+                    </span>
+                    <ArrowRight className="ts-arrow w-4 h-4 shrink-0" style={{ color: C.inkSubtle }} />
                   </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Your reward at a glance — visual summary */}
-          <div data-tour="chart-band">
-            <SectionLabel>Your reward at a glance</SectionLabel>
-            <div className="flex flex-col lg:flex-row gap-3 items-stretch">
-              <RoleDistribution bands={m.bands} total={roster.length} belowMarket={m.belowMed.length} onOpen={() => goToPayPath("role-details")} />
-              <PayTrend />
-              <BenefitsMix atOrAbove={m.bs.atOrAbove} watch={m.bs.watch} below={m.bs.below} total={m.bs.total} onOpen={goToBenefits} />
+                );
+              })}
             </div>
           </div>
         </div>
@@ -232,42 +251,54 @@ function HeroStat({ label, value, sub, tone }: { label: string; value: string; s
   );
 }
 
-function ExploreCard({ icon: Icon, title, oneLiner, stats, onClick, disabled }: { icon: LucideIcon; title: string; oneLiner: string; stats: string[]; onClick: () => void; disabled?: boolean }) {
+// One of the three area boxes. Modelled on the marketing site's pillar cards
+// (numbered eyebrow, icon tile, display heading, accent one-liner, a preview of
+// what's inside) but dialled down to dashboard scale: the heading is 30px rather
+// than the marketing site's 48-60px, there's no repeated period pill, and the
+// preview is a live chart rather than an auto-scrolling marquee. All three fit
+// on screen without scrolling, which is the point of the redesign.
+function AreaCard({
+  num, tag, icon: Icon, accent, oneLiner, onClick, disabled, children,
+}: {
+  num: string; tag: string; icon: LucideIcon;
+  accent: { fg: string; tint: string };
+  oneLiner: string; onClick: () => void; disabled?: boolean; children: React.ReactNode;
+}) {
   return (
-    <button onClick={disabled ? undefined : onClick} disabled={disabled} className="ts-premium-card ts-glow-host ts-nudge relative overflow-hidden p-5 text-left flex flex-col h-full disabled:opacity-55">
-      <Icon className="absolute -right-4 -bottom-4 w-28 h-28 pointer-events-none" style={{ color: C.brass, opacity: 0.05 }} aria-hidden />
-      <span className={`mb-3 flex h-11 w-11 items-center justify-center rounded-2xl ${disabled ? "" : "ts-chip"}`} style={disabled ? { background: C.brassSoft, color: C.inkSubtle } : undefined}><Icon className="w-5 h-5" /></span>
-      <div className="font-display text-[16px] font-semibold" style={{ color: C.ink }}>{title}</div>
-      <div className="text-[12.5px] mt-0.5 mb-3" style={{ color: C.inkMuted }}>{oneLiner}</div>
-      <div className="space-y-1 flex-1">
-        {stats.map((st, i) => <div key={i} className="text-[12px] tabular-nums" style={{ color: C.inkMuted }}>{st}</div>)}
+    <button
+      onClick={disabled ? undefined : onClick}
+      disabled={disabled}
+      className="ts-premium-card ts-glow-host ts-nudge relative overflow-hidden p-6 text-left flex flex-col h-full disabled:opacity-55"
+    >
+      <div className="flex items-center gap-2.5 mb-4">
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl" style={{ background: accent.tint, color: accent.fg }}>
+          <Icon className="w-[18px] h-[18px]" />
+        </span>
+        <span className="text-[10px] font-semibold uppercase tracking-[0.18em]" style={{ color: accent.fg }}>
+          {num} — {tag}
+        </span>
       </div>
-      <span className="mt-3 inline-flex items-center gap-1 text-[12.5px] font-semibold" style={{ color: disabled ? C.inkSubtle : C.brass }}>
+
+      <h3 className="ts-display" style={{ fontSize: 30, fontWeight: 700, color: C.ink, lineHeight: 1.08 }}>{tag}</h3>
+      <p className="mt-2 mb-5 text-[13px] font-medium leading-snug" style={{ color: accent.fg }}>{oneLiner}</p>
+
+      <div className="flex-1">{children}</div>
+
+      <span className="mt-5 inline-flex items-center gap-1 text-[12.5px] font-semibold" style={{ color: disabled ? C.inkSubtle : C.brass }}>
         {disabled ? "Not in this package" : "Open"} {!disabled && <ArrowRight className="ts-arrow w-3.5 h-3.5" />}
       </span>
     </button>
   );
 }
 
-function Action({ icon: Icon, label, onClick }: { icon: LucideIcon; label: string; onClick: () => void }) {
+// A legend-style row for the Organisation box, matched to the icon+label+count
+// rhythm the two chart legends use so all three boxes read as one family.
+function OrgRow({ icon: Icon, label, value }: { icon: LucideIcon; label: string; value: string }) {
   return (
-    <button onClick={onClick} className="ts-premium-card ts-nudge w-full px-4 py-3 flex items-center gap-3 text-left">
-      <span className="ts-chip flex h-8 w-8 shrink-0 items-center justify-center rounded-lg"><Icon className="w-4 h-4" /></span>
-      <span className="flex-1 text-[13.5px] font-medium" style={{ color: C.ink }}>{label}</span>
-      <ArrowRight className="ts-arrow w-4 h-4" style={{ color: C.inkSubtle }} />
-    </button>
-  );
-}
-
-function ActivityRow({ icon: Icon, tone, title, detail }: { icon: LucideIcon; tone: Sev; title: string; detail: string }) {
-  const s = SEV[tone];
-  return (
-    <div className="flex items-start gap-3">
-      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg" style={{ background: s.bg, color: s.fg }}><Icon className="w-3.5 h-3.5" /></span>
-      <div className="min-w-0">
-        <div className="text-[12.5px] font-semibold" style={{ color: C.ink }}>{title}</div>
-        <div className="text-[11.5px] mt-0.5" style={{ color: C.inkMuted }}>{detail}</div>
-      </div>
+    <div className="flex items-center gap-1.5 text-[11.5px]" style={{ color: C.inkMuted }}>
+      <Icon className="w-3 h-3 shrink-0" style={{ color: C.inkSubtle }} aria-hidden />
+      <span className="flex-1 truncate">{label}</span>
+      <span className="tabular-nums font-semibold" style={{ color: C.ink }}>{value}</span>
     </div>
   );
 }

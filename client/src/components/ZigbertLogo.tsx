@@ -12,6 +12,7 @@ const CLAY_BRIGHT = "#DDA288";
 
 // Aspect ratios of the source art (px).
 const MARK_RATIO = 113 / 152;
+const LOGO_RATIO = 646 / 194;
 
 export function ZigbertMark({
   size = 28,
@@ -49,15 +50,21 @@ export function ZigbertLogo({
 }: ZigbertLogoProps) {
   const eyebrow = variant === "light" ? CLAY_BRIGHT : CLAY_DEEP;
   return (
+    // alignItems matters: this is a COLUMN flex container, so the cross axis is
+    // the width. Left at the default `stretch`, the img gets widened to the
+    // container's width — which the much wider tagline text sets — and the
+    // wordmark renders ~40% horizontally stretched. Only the tagline call site
+    // showed it, because without the tagline the img is the only child.
     <span
       className={`inline-flex flex-col ${className ?? ""}`}
-      style={{ lineHeight: 1, gap: tagline ? 6 : 0 }}
+      style={{ lineHeight: 1, gap: tagline ? 6 : 0, alignItems: "flex-start" }}
     >
       <img
         src={variant === "light" ? logoLight : logoDark}
         alt="Zigbert"
+        width={Math.round(height * LOGO_RATIO)}
         height={height}
-        style={{ display: "block", width: "auto", height }}
+        style={{ display: "block", flexShrink: 0, width: "auto", height, aspectRatio: "646 / 194" }}
       />
       {tagline && (
         <span

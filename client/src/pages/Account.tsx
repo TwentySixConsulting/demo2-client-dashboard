@@ -446,7 +446,7 @@ export function Account() {
                   color: C.brass,
                   fontSize: 18,
                   fontWeight: 700,
-                  border: "1px solid #e8dcbb",
+                  border: "1px solid #E8D8CE",
                   letterSpacing: "0.04em",
                 }}
               >

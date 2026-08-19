@@ -22,7 +22,7 @@
 // labels only where they earn it, and text in ink tokens — never in the series
 // colour, so identity always comes from a mark beside the text.
 import { useMemo, useRef, useState } from "react";
-import { ArrowRight, Check, AlertTriangle, AlertCircle } from "lucide-react";
+import { Check, AlertTriangle, AlertCircle } from "lucide-react";
 import { C, PAY_TREND } from "@/lib/theme";
 
 const SURFACE = C.surface;        // the colour the 2px gaps and rings are painted in
@@ -45,19 +45,11 @@ const BENEFIT_STATUS = [
   { key: "below", label: "Below market", color: "#8F4D33", Icon: AlertCircle },
 ] as const;
 
-// ── shared shell ─────────────────────────────────────────────────────────────
-function CardShell({ title, action, onOpen, children, className = "" }: { title: string; action?: string; onOpen?: () => void; children: React.ReactNode; className?: string }) {
-  const Tag = onOpen ? "button" : "div";
-  return (
-    <Tag onClick={onOpen} className={`ts-premium-card ${onOpen ? "ts-nudge" : ""} relative p-5 text-left flex flex-col ${className}`}>
-      <div className="flex items-center justify-between mb-3.5">
-        <span className="text-[10.5px] font-semibold uppercase tracking-[0.12em]" style={{ color: C.inkMuted }}>{title}</span>
-        {action && <span className="inline-flex items-center gap-1 text-[12px] font-semibold" style={{ color: C.brass }}>{action} <ArrowRight className="ts-arrow w-3 h-3" /></span>}
-      </div>
-      {children}
-    </Tag>
-  );
-}
+// These three charts are EMBEDDED — they render bare, with no card, title or
+// action link of their own, because each now sits inside a Home "area" box that
+// already supplies the heading, the one-liner and the Open affordance. A card
+// inside a card reads as clutter, which is what this redesign is removing.
+// The old `CardShell` wrapper is gone for that reason.
 
 // A stat-tile style headline: the number leads, the qualifier follows in muted ink.
 function Headline({ value, children }: { value: React.ReactNode; children: React.ReactNode }) {
@@ -156,17 +148,14 @@ function StackBar({
 }
 
 // ── 1. Role distribution ─────────────────────────────────────────────────────
-export function RoleDistribution({ bands, total, belowMarket, onOpen }: { bands: Record<string, number>; total: number; belowMarket: number; onOpen: () => void }) {
+export function RoleDistribution({ bands, total, belowMarket }: { bands: Record<string, number>; total: number; belowMarket: number }) {
   const [hovered, setHovered] = useState<string | null>(null);
   const segments = MARKET_BANDS.map((b) => ({ key: b.key, label: b.label, value: bands[b.key] ?? 0, color: b.color }));
   const below = (bands.below ?? 0) + (bands.lower ?? 0);
   const above = (bands.upper ?? 0) + (bands.above ?? 0);
 
   return (
-    <CardShell title="Roles vs market" action="Explore" onOpen={onOpen} className="w-full lg:w-[340px] shrink-0">
-      {/* These cards sit in a row with the taller trend chart, so distribute the
-          three blocks down the card rather than leaving a slab of air beneath. */}
-      <div className="flex-1 flex flex-col justify-between">
+    <div className="w-full">
       <Headline value={belowMarket}>of {total} roles below market</Headline>
 
       <StackBar
@@ -198,8 +187,7 @@ export function RoleDistribution({ bands, total, belowMarket, onOpen }: { bands:
           </div>
         ))}
       </div>
-      </div>
-    </CardShell>
+    </div>
   );
 }
 
@@ -242,7 +230,10 @@ export function PayTrend() {
   const active = idx == null ? null : data[idx];
 
   return (
-    <CardShell title="Pay rises: you vs the market" className="flex-1">
+    <div className="w-full">
+      {/* This one keeps a small title: it sits in the Snapshot panel beside the
+          KPI row rather than in a box whose heading would name it. */}
+      <div className="text-[10px] font-semibold uppercase tracking-[0.14em] mb-1.5" style={{ color: C.inkSubtle }}>Pay rises vs market</div>
       {/* Two series, so a legend is always present. Lines keyed with a stroke. */}
       <div className="flex items-center gap-4 mb-1 text-[11.5px]" style={{ color: C.inkMuted }}>
         <span className="inline-flex items-center gap-1.5"><span className="inline-block w-3.5 h-[2px] rounded" style={{ background: YOU }} /> You</span>
@@ -337,19 +328,18 @@ export function PayTrend() {
           ))}
         </svg>
       </div>
-    </CardShell>
+    </div>
   );
 }
 
 // ── 3. Benefits mix ──────────────────────────────────────────────────────────
-export function BenefitsMix({ atOrAbove, watch, below, total, onOpen }: { atOrAbove: number; watch: number; below: number; total: number; onOpen: () => void }) {
+export function BenefitsMix({ atOrAbove, watch, below, total }: { atOrAbove: number; watch: number; below: number; total: number }) {
   const [hovered, setHovered] = useState<string | null>(null);
   const counts: Record<string, number> = { atOrAbove, watch, below };
   const segments = BENEFIT_STATUS.map((s) => ({ key: s.key, label: s.label, value: counts[s.key] ?? 0, color: s.color }));
 
   return (
-    <CardShell title="Benefits mix" action="Review" onOpen={onOpen} className="w-full lg:w-[300px] shrink-0">
-      <div className="flex-1 flex flex-col justify-between">
+    <div className="w-full">
       <Headline value={atOrAbove}>of {total} at or above market</Headline>
 
       <StackBar
@@ -375,7 +365,6 @@ export function BenefitsMix({ atOrAbove, watch, below, total, onOpen }: { atOrAb
           </div>
         ))}
       </div>
-      </div>
-    </CardShell>
+    </div>
   );
 }

@@ -17,7 +17,7 @@
       --navy-light: #24304a;
       --gold:       #C9785A;
       --gold-light: #DDA288;
-      --cream:      #F4F1EA;
+      --cream:      #FFFFFF;
       --white:      #ffffff;
       --text:       #121C2B;
       --text-mid:   #374151;
@@ -42,7 +42,7 @@
     html { scroll-behavior: smooth; }
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--cream);
+      background: #FFFFFF;
       color: var(--text);
       line-height: 1.65;
       font-size: 14px;
@@ -389,7 +389,7 @@
     }
     .main-topbar {
       position: sticky; top: 0; z-index: 30;
-      background: rgba(247,245,240,0.85); backdrop-filter: saturate(180%) blur(12px);
+      background: rgba(255,255,255,0.85); backdrop-filter: saturate(180%) blur(12px);
       -webkit-backdrop-filter: saturate(180%) blur(12px);
       border-bottom: 1px solid rgba(0,0,0,0.05);
       padding: 14px 40px;
@@ -511,15 +511,15 @@
       --text:       #121C2B;
       --text-mid:   #2a3349;
       --text-soft:  #5a6478;
-      --cream:      #FBF8F2;
-      --bg-app:     #F4F1EA;
+      --cream:      #FFFFFF;
+      --bg-app:     #EEF1F6;
       --line:       rgba(18,28,43,0.08);
       --line-soft:  rgba(18,28,43,0.04);
 
       --font-serif: 'Poppins', 'Inter', sans-serif;
       --font-body:  'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
-    body { background: #FAFAF8; color: var(--text); font-family: var(--font-body); }
+    body { background: #FFFFFF; color: var(--text); font-family: var(--font-body); }
 
     /* Display headings — Poppins */
     h1, h2, .sec-title, .hero h2, .header-title h1, .sidebar-client, .ovctx-h, .card-title, .prov-card h3, .prov-group-name {
@@ -551,7 +551,7 @@
     .sidebar-foot .conf-tag { background: var(--slate-soft); border: 1px solid rgba(107,122,153,0.25); color: var(--slate-deep); }
 
     /* Top bar */
-    .main-topbar { background: rgba(250,248,243,0.88); border-bottom: 1px solid var(--line); backdrop-filter: saturate(180%) blur(12px); }
+    .main-topbar { background: rgba(255,255,255,0.88); border-bottom: 1px solid var(--line); backdrop-filter: saturate(180%) blur(12px); }
     .crumb { color: var(--text-soft); }
     .crumb span { color: var(--text); font-family: var(--font-serif); font-weight: 700; }
     .pill { background: #ffffff; border: 1px solid var(--line); color: var(--text-mid); }
@@ -705,7 +705,7 @@
     /*  COMPARISON TABLES — keep dark column heads, refine the rest      */
     /* ════════════════════════════════════════════════════════════════ */
     .tbl-wrap { background: #ffffff; border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; }
-    .tbl-legend { padding: 11px 22px; background: #fbfaf6; border-bottom: 1px solid var(--line-soft); }
+    .tbl-legend { padding: 11px 22px; background: #F7F9FB; border-bottom: 1px solid var(--line-soft); }
     .tbl-legend span { color: var(--text-soft); font-size: 11px; }
     .tbl-legend .primary-label { color: var(--pink-deep); font-weight: 800; }
     .ld-ha { background: var(--navy); }
@@ -720,12 +720,12 @@
     thead th:nth-child(2) { background: var(--navy) !important; color: var(--cream) !important; }
     thead th:nth-child(2)::after { content: ' ★'; color: var(--pink); }
     thead th:nth-child(3) { background: var(--slate-deep) !important; color: var(--cream) !important; }
-    thead th:nth-child(4) { background: var(--gold-deep) !important; color: #fef7e0 !important; }
+    thead th:nth-child(4) { background: var(--gold-deep) !important; color: #FFFFFF !important; }
     .col-sub { color: rgba(255,255,255,0.6); }
 
     tbody td { color: var(--text); font-size: 13px; vertical-align: top; white-space: normal; overflow: visible; text-overflow: clip; }
     tbody tr:nth-child(odd)  { background: #ffffff; }
-    tbody tr:nth-child(even) { background: #fbfaf6; }
+    tbody tr:nth-child(even) { background: #F7F9FB; }
     tbody tr { border-bottom: 1px solid var(--line-soft); }
     tbody td:first-child { color: var(--text); font-weight: 700; border-right: 1px solid var(--line-soft); }
     tbody td:nth-child(2) { border-left: 3px solid rgba(18,28,43,0.1); }
@@ -892,7 +892,7 @@
     .qbox-card-body strong { color: var(--text); font-weight: 700; }
 
     /* Numeric comparison chart */
-    .qchart { margin-top: 16px; padding: 14px 16px; background: #fbfaf6; border: 1px solid var(--line-soft); border-radius: 10px; }
+    .qchart { margin-top: 16px; padding: 14px 16px; background: #F7F9FB; border: 1px solid var(--line-soft); border-radius: 10px; }
     .qchart-head { font-size: 10.5px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-mid); margin-bottom: 14px; }
     .qchart-axis-wrap { position: relative; height: 36px; margin: 6px 6px; }
     .qchart-axis { position: absolute; left: 0; right: 0; bottom: 11px; height: 2px; background: var(--line); border-radius: 2px; }
@@ -1168,7 +1168,7 @@
       to   { opacity: 1; transform: translateY(0); }
     }
     .prov-rich-panel {
-      background: linear-gradient(180deg, #ffffff 0%, #fbfaf6 100%);
+      background: linear-gradient(180deg, #ffffff 0%, #F7F9FB 100%);
       border: 1px solid var(--line); border-radius: var(--radius-lg);
       padding: 28px 32px; box-shadow: 0 6px 24px rgba(18,28,43,0.06);
       position: relative;
@@ -1371,7 +1371,7 @@
     .rb-stack { display: flex; flex-direction: column; gap: 14px; }
     .rb-hidden { display: none !important; }
     .rb-panel {
-      background: linear-gradient(180deg, #ffffff 0%, #fbfaf6 100%);
+      background: linear-gradient(180deg, #ffffff 0%, #F7F9FB 100%);
       border: 1px solid var(--line);
       border-radius: var(--radius-lg);
       padding: 24px 28px 26px;
@@ -1559,7 +1559,7 @@
 
     /* ── V12: HA QUARTILE TABLE ───────────────────────────────────── */
     .haq-tbl-wrap { background: #ffffff; border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; margin-top: 14px; box-shadow: 0 1px 3px rgba(18,28,43,0.04); }
-    .haq-legend { display: flex; align-items: center; gap: 14px; padding: 11px 22px; background: #fbfaf6; border-bottom: 1px solid var(--line-soft); flex-wrap: wrap; }
+    .haq-legend { display: flex; align-items: center; gap: 14px; padding: 11px 22px; background: #F7F9FB; border-bottom: 1px solid var(--line-soft); flex-wrap: wrap; }
     .haq-legend-eyebrow { font-size: 10.5px; font-weight: 800; color: var(--navy); letter-spacing: 0.12em; text-transform: uppercase; }
     .haq-legend-key { font-size: 11px; color: var(--text-mid); display: inline-flex; align-items: center; gap: 6px; }
     .haq-key-dot { width: 9px; height: 9px; border-radius: 50%; }
@@ -1576,7 +1576,7 @@
     .haq-tbl thead th { padding: 14px 18px; font-family: 'Inter', sans-serif; font-size: 10.5px; font-weight: 800; letter-spacing: 0.1em; text-align: left; }
     .haq-th-name { background: var(--navy); color: var(--cream); }
     .haq-th-lq { background: #6e6c66; color: #ffffff; }
-    .haq-th-med { background: var(--gold-deep); color: #fef7e0; }
+    .haq-th-med { background: var(--gold-deep); color: #FFFFFF; }
     .haq-th-uq { background: var(--navy); color: var(--cream); }
 
     .haq-row { cursor: pointer; transition: background 0.15s; }
@@ -1599,7 +1599,7 @@
     .haq-val { font-family: var(--font-serif); font-size: 13.5px; font-weight: 600; color: var(--text); line-height: 1.4; font-variation-settings: 'opsz' 24, 'SOFT' 20, 'WONK' 0; display: block; }
 
     /* Detail row */
-    .haq-row + .brow-detail td { background: #fbfaf6 !important; padding: 0 !important; border-top: none !important; }
+    .haq-row + .brow-detail td { background: #F7F9FB !important; padding: 0 !important; border-top: none !important; }
     .quartile-detail { padding: 22px 24px; animation: bdetailFade 0.25s ease; }
     .qd-panels { display: grid; grid-template-columns: 1fr 1.15fr 1fr; gap: 14px; align-items: stretch; }
     @media (max-width: 900px) { .qd-panels { grid-template-columns: 1fr; } }
@@ -1623,7 +1623,7 @@
     .qd-penge-head strong { color: var(--pink-deep); font-weight: 700; }
     .qd-penge-sub { font-size: 11.5px; color: var(--text-soft); margin-top: 2px; }
 
-    .qd-commentary { margin-top: 14px; padding: 14px 18px; background: linear-gradient(135deg, #fdfaf2 0%, #ffffff 100%); border-left: 3px solid var(--gold); border-radius: 10px; }
+    .qd-commentary { margin-top: 14px; padding: 14px 18px; background: linear-gradient(135deg, #FAFCFD 0%, #ffffff 100%); border-left: 3px solid var(--gold); border-radius: 10px; }
     .qd-commentary-head { display: inline-flex; align-items: center; gap: 7px; font-size: 10.5px; font-weight: 800; color: var(--gold-deep); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
     .qd-commentary-head svg { width: 13px; height: 13px; }
     .qd-commentary-body { font-size: 13px; line-height: 1.78; color: var(--text); }
@@ -1701,7 +1701,7 @@
     .mt-dot-sp { background: var(--slate); }
     .mt-dot-lp { background: var(--gold); }
     .mt-cat-col p { font-size: 12.5px; line-height: 1.72; color: var(--text); margin: 0; max-width: none; }
-    .mt-keydiff { margin-top: 16px; padding: 14px 18px; background: linear-gradient(135deg, #fdfaf2 0%, #ffffff 100%); border-left: 3px solid var(--gold); border-radius: 8px; }
+    .mt-keydiff { margin-top: 16px; padding: 14px 18px; background: linear-gradient(135deg, #FAFCFD 0%, #ffffff 100%); border-left: 3px solid var(--gold); border-radius: 8px; }
     .mt-keydiff-head { display: inline-flex; align-items: center; gap: 7px; font-size: 10.5px; font-weight: 800; color: var(--gold-deep); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
     .mt-keydiff-head svg { width: 13px; height: 13px; }
     .mt-keydiff p { font-size: 12.5px; line-height: 1.7; color: var(--text); margin: 0; max-width: none; }
@@ -1718,7 +1718,7 @@
     }
     .haq-legend {
       padding: 12px 24px;
-      background: linear-gradient(180deg, #fdfbf6 0%, #fbfaf6 100%);
+      background: linear-gradient(180deg, #FAFCFD 0%, #F7F9FB 100%);
       border-bottom: 1px solid var(--line-soft);
     }
     .haq-tbl thead th {
@@ -1729,7 +1729,7 @@
     }
     .haq-th-name { background: var(--navy); color: var(--cream); }
     .haq-th-lq   { background: #5d5b56; color: #ffffff; }
-    .haq-th-med  { background: var(--gold-deep); color: #fef7e0; position: relative; }
+    .haq-th-med  { background: var(--gold-deep); color: #FFFFFF; position: relative; }
     .haq-th-med::after {
       content: ''; position: absolute; left: 0; right: 0; bottom: 0;
       height: 3px; background: var(--gold);
@@ -1891,7 +1891,7 @@
     .qd-commentary {
       margin-top: 20px;
       padding: 18px 22px;
-      background: linear-gradient(135deg, #fdfaf2 0%, #ffffff 100%);
+      background: linear-gradient(135deg, #FAFCFD 0%, #ffffff 100%);
       border-left: 3px solid var(--gold);
       border-radius: 10px;
     }
@@ -1984,7 +1984,7 @@
     .yb-overview-card li strong { font-weight: 700; color: var(--text); }
     /* ── V17.2: PAGE OVERVIEW — single-column stacked ──────────────── */
     .page-overview {
-      background: linear-gradient(135deg, #fcf6ec 0%, #fffaf2 55%, #ffffff 100%);
+      background: linear-gradient(135deg, #F7F9FB 0%, #FCFDFE 55%, #ffffff 100%);
       border: 1px solid var(--line);
       border-left: 3px solid var(--gold);
       border-radius: var(--radius-lg);
@@ -2123,7 +2123,7 @@
     .howto-step-tips {
       margin-top: 12px;
       padding: 12px 16px;
-      background: #fbfaf6;
+      background: #F7F9FB;
       border-left: 3px solid var(--gold);
       border-radius: 0 8px 8px 0;
       font-size: 12.5px; line-height: 1.68; color: var(--text);
@@ -2237,7 +2237,7 @@
     position: fixed; inset: 0;
     background:
       radial-gradient(circle at 2px 2px, rgba(18,28,43,0.085) 1px, transparent 0),
-      linear-gradient(180deg, #faf8f3 0%, #f2efe7 100%);
+      linear-gradient(180deg, #FFFFFF 0%, #EEF1F6 100%);
     background-size: 14px 14px, 100% 100%;
     display: flex; align-items: center; justify-content: center;
     padding: 24px;
@@ -2318,12 +2318,12 @@
     outline: none;
     border-color: #C9785A;
     box-shadow: 0 0 0 3px rgba(201,120,90,0.18);
-    background: #fffdf8;
+    background: #F8FAFC;
   }
   #gate button {
     width: 100%;
     padding: 13px 16px; border-radius: 10px; border: none;
-    background: #121C2B; color: #faf8f3;
+    background: #121C2B; color: #FFFFFF;
     font-weight: 600; font-size: 14px;
     cursor: pointer; font-family: inherit;
     letter-spacing: 0.02em;
@@ -2389,7 +2389,7 @@
   --bx-good: #2F7D5B; --bx-good-bg: rgba(47,125,91,0.10); --bx-good-bd: rgba(47,125,91,0.28);
   --bx-watch: #B7791F; --bx-watch-bg: rgba(183,121,31,0.10); --bx-watch-bd: rgba(183,121,31,0.30);
   --bx-action: #C0392B; --bx-action-bg: rgba(192,57,43,0.10); --bx-action-bd: rgba(192,57,43,0.28);
-  --bx-clay: #C9785A; --bx-ink: #121C2B; --bx-line: #E7E0D4; --bx-slate: #7285A5;
+  --bx-clay: #C9785A; --bx-ink: #121C2B; --bx-line: #DEE1E6; --bx-slate: #7285A5;
 }
 .bx-wrap { display: flex; flex-direction: column; gap: 30px; }
 .bx-num { font-variant-numeric: tabular-nums; }
@@ -2440,13 +2440,13 @@
 .bx-score-name { font-family: var(--font-display); font-size: 13.5px; font-weight: 600; color: #0f1a29; }
 .bx-score-verdict { font-size: 12px; color: #64748b; margin: 8px 0 12px; line-height: 1.45; }
 .bx-posbar { position: relative; height: 30px; }
-.bx-posbar-track { position: absolute; left: 0; right: 0; top: 13px; height: 6px; border-radius: 999px; background: #EAE3D6; }
+.bx-posbar-track { position: absolute; left: 0; right: 0; top: 13px; height: 6px; border-radius: 999px; background: #DEE1E6; }
 .bx-posbar-band { position: absolute; top: 12px; height: 8px; border-radius: 999px; background: linear-gradient(90deg,#E8D8CE 0%, #DDA288 30%, #C9785A 50%, #94A2BC 74%, #7285A5 100%); box-shadow: inset 0 0 0 1px rgba(18,28,43,0.05); }
 .bx-posbar-tick { position: absolute; top: 9px; width: 2px; height: 14px; background: rgba(255,255,255,0.9); border-radius: 1px; transform: translateX(-50%); }
 
 /* colourful quartile value cards (matched to the Your Benefits page) */
 .bx-qcards { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-top: 10px; }
-.bx-qcell { background: #FBF9F4; border: 1px solid var(--bx-line); border-radius: 9px; padding: 9px 11px; position: relative; overflow: hidden; }
+.bx-qcell { background: #F6F7F9; border: 1px solid var(--bx-line); border-radius: 9px; padding: 9px 11px; position: relative; overflow: hidden; }
 .bx-qcell::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; }
 .bx-qcell-lq::before  { background:#B8B7B3; }
 .bx-qcell-med::before { background:#C9785A; }
@@ -2517,7 +2517,7 @@
 .bx-plan-summary-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; }
 @media (min-width: 900px) { .bx-plan-summary-grid { grid-template-columns: repeat(4,1fr); } }
 .bx-ptag { font-size: 9.5px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 8px; border-radius: 6px; white-space: nowrap; }
-.bx-eff { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--bx-line); color: #64748b; background: #FBF9F4; }
+.bx-eff { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--bx-line); color: #64748b; background: #F6F7F9; }
 .bx-plan-target { font-size: 12px; color: #475569; margin-top: 10px; }
 .bx-plan-target b { color: #1e293b; font-weight: 600; }
 .bx-plan-rec { font-size: 12.5px; color: #334155; margin-top: 8px; line-height: 1.5; }
@@ -2550,7 +2550,7 @@
 .bx-yp:first-of-type { border-top: 0; padding-top: 2px; }
 .bx-yp-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 4px; }
 .bx-yp-name { font-size: 12.5px; font-weight: 600; color: #334155; }
-.bx-seg { display: inline-flex; gap: 3px; background: #F1EDE6; border: 1px solid var(--bx-line); border-radius: 10px; padding: 3px; margin-bottom: 12px; flex-wrap: wrap; }
+.bx-seg { display: inline-flex; gap: 3px; background: #EBEEF3; border: 1px solid var(--bx-line); border-radius: 10px; padding: 3px; margin-bottom: 12px; flex-wrap: wrap; }
 .bx-seg button { border: 0; background: none; padding: 6px 11px; border-radius: 7px; font-size: 12px; font-weight: 600; color: #64748b; cursor: pointer; }
 .bx-seg button.on { background: #fff; color: var(--bx-clay); box-shadow: 0 1px 2px rgba(18,28,43,.08); }
 .bx-sec-row { display: grid; grid-template-columns: 150px 1fr; gap: 12px; padding: 9px 0; border-top: 1px solid var(--bx-line); font-size: 12.5px; }
@@ -2578,7 +2578,7 @@
     </nav>
 
     <div class="ts-shell__user">
-      <button type="button" class="ts-shell__tour" data-zigbert-tour-start aria-label="Tour this page">? Tour this page</button>
+      <button type="button" class="ts-shell__tour" data-zigbert-tour-start aria-label="Tour this page"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg> Tour this page</button>
       <button type="button" class="ts-shell__user-button" data-ts-shell-userbtn aria-haspopup="menu" aria-expanded="false">
         <span class="ts-shell__avatar" data-ts-shell-avatar>··</span>
         <span class="ts-shell__user-name" data-ts-shell-username>…</span>
@@ -2710,7 +2710,7 @@
                 </div>
                 <div id="bx-chip" class="bx-chip" style="margin:0;flex-shrink:0"></div>
               </div>
-              <div id="bx-kpis" class="bx-hero-figs" style="margin-top:20px;padding-top:20px;border-top:1px solid #EFE9DD"></div>
+              <div id="bx-kpis" class="bx-hero-figs" style="margin-top:20px;padding-top:20px;border-top:1px solid #E7EAEF"></div>
               <div class="bx-meta" style="margin-top:16px;font-size:11.5px;color:#94a3b8">
                 <span>3 markets analysed</span><span class="dot">·</span>
                 <span>14 benefits reviewed</span><span class="dot">·</span>
@@ -2734,7 +2734,7 @@
           <!-- Category scorecard -->
           <div>
             <h2 class="bx-h2">Category scorecard</h2>
-            <p class="bx-sub">Where you sit across the six benefit categories, click to explore.</p>
+            <p class="bx-sub">Where you sit across the six benefit categories.</p>
             <div id="bx-scorecard" class="bx-grid-3"></div>
           </div>
 
@@ -2745,9 +2745,9 @@
             <div id="bx-attention" style="display:flex;flex-direction:column;gap:8px"></div>
           </div>
 
-          <!-- Navigate to -->
+          <!-- Section links -->
           <div class="no-print">
-            <h2 class="bx-h2">Navigate to</h2>
+            <h2 class="bx-h2">Jump to a section</h2>
             <p class="bx-sub">Jump to any part of your benefits report.</p>
             <div id="bx-navto" class="bx-grid-3"></div>
           </div>
@@ -2777,10 +2777,10 @@
 
     <div class="yb-overview">
       <div class="yb-overview-head">
-        <div class="yb-overview-eyebrow">Your Benefits at a glance</div>
+        <div class="yb-overview-eyebrow">Your benefits in summary</div>
         <h3 class="yb-overview-title">Where Brighton Technologies stands today</h3>
       </div>
-      <p class="yb-overview-body">Brighton Technologies&apos;s benefits offer sits comfortably in the technology sector with four genuine upper-quartile strengths and one clear development area. The four strengths together build a strong recruitment narrative; the development area is where bespoke investment would have the most leverage.</p>
+      <p class="yb-overview-body">Brighton Technologies&apos;s benefits offer sits comfortably in the technology sector with four genuine upper-quartile strengths and one clear development area. The four strengths together build a strong recruitment narrative; the development area is where bespoke investment would count for most.</p>
       <div class="yb-overview-grid">
         <div class="yb-overview-card yb-overview-card-strength">
           <div class="yb-overview-card-head">Headline strengths</div>
@@ -3411,7 +3411,7 @@
             <div class="page-overview">
               <div class="page-overview-eyebrow">On this page</div>
               <h3 class="page-overview-title">Building Strong Foundations</h3>
-              <p class="page-overview-body">This page covers the foundational reward package across the technology sector: <strong>bonus, annual leave, additional days, buy &amp; sell leave, employer pension, sick pay, maternity and paternity pay, car allowance and out-of-hours call-out</strong>. Each row shows the lower quartile, median and upper quartile of typical market practice, click any row to open the full per-quartile narrative and our market commentary.</p>
+              <p class="page-overview-body">This page covers the foundational reward package across the technology sector: <strong>bonus, annual leave, additional days, buy &amp; sell leave, employer pension, sick pay, maternity and paternity pay, car allowance and out-of-hours call-out</strong>. Each row shows the lower quartile, median and upper quartile of typical market practice. Open a row for the full per-quartile narrative and our market commentary.</p>
             </div>
 
 <div class="exp-toolbar">
@@ -3835,7 +3835,7 @@
             <div class="page-overview">
               <div class="page-overview-eyebrow">On this page</div>
               <h3 class="page-overview-title">Working-time flexibility</h3>
-              <p class="page-overview-body">This page covers the working-time flexibility provision typical of technology companies: <strong>flexible-hours arrangements, hybrid / remote working, sabbaticals and compassionate leave</strong>. Each row shows the lower quartile, median and upper quartile of typical market practice, click any row to open the full per-quartile narrative and our market commentary.</p>
+              <p class="page-overview-body">This page covers the working-time flexibility provision typical of technology companies: <strong>flexible-hours arrangements, hybrid / remote working, sabbaticals and compassionate leave</strong>. Each row shows the lower quartile, median and upper quartile of typical market practice. Open a row for the full per-quartile narrative and our market commentary.</p>
             </div>
 
 <div class="exp-toolbar">
@@ -4050,7 +4050,7 @@
             <div class="page-overview">
               <div class="page-overview-eyebrow">On this page</div>
               <h3 class="page-overview-title">Health and wellbeing provision</h3>
-              <p class="page-overview-body">This page covers the health and wellbeing benefits offered across the technology sector: <strong>life assurance, employee assistance programmes, private medical insurance, health cash plans, permanent health insurance, digital GP, health screening, gym membership, flu jabs, eye-care vouchers and mental-health app access</strong>. Each row shows the lower quartile, median and upper quartile of typical market practice, click any row to open the full per-quartile narrative and our market commentary.</p>
+              <p class="page-overview-body">This page covers the health and wellbeing benefits offered across the technology sector: <strong>life assurance, employee assistance programmes, private medical insurance, health cash plans, permanent health insurance, digital GP, health screening, gym membership, flu jabs, eye-care vouchers and mental-health app access</strong>. Each row shows the lower quartile, median and upper quartile of typical market practice. Open a row for the full per-quartile narrative and our market commentary.</p>
             </div>
 
 <div class="exp-toolbar">
@@ -4506,7 +4506,7 @@
             <div class="page-overview">
               <div class="page-overview-eyebrow">On this page</div>
               <h3 class="page-overview-title">Financial-support benefits</h3>
-              <p class="page-overview-body">This page covers the financial-support benefits typical of the technology sector: <strong>financial education, low-cost loans and savings plans, retail discounts and homeworker financial allowances</strong>. Each row shows the lower quartile, median and upper quartile of typical market practice, click any row to open the full per-quartile narrative and our market commentary.</p>
+              <p class="page-overview-body">This page covers the financial-support benefits typical of the technology sector: <strong>financial education, low-cost loans and savings plans, retail discounts and homeworker financial allowances</strong>. Each row shows the lower quartile, median and upper quartile of typical market practice. Open a row for the full per-quartile narrative and our market commentary.</p>
             </div>
 
 <div class="exp-toolbar">
@@ -4723,7 +4723,7 @@
             <div class="page-overview">
               <div class="page-overview-eyebrow">On this page</div>
               <h3 class="page-overview-title">ESG and ethical-employer benefits</h3>
-              <p class="page-overview-body">This page covers the ESG and ethical-employer benefits common across technology companies: <strong>ethically-invested pension defaults and paid volunteering days</strong>. Each row shows the lower quartile, median and upper quartile of typical market practice, click any row to open the full per-quartile narrative and our market commentary.</p>
+              <p class="page-overview-body">This page covers the ESG and ethical-employer benefits common across technology companies: <strong>ethically-invested pension defaults and paid volunteering days</strong>. Each row shows the lower quartile, median and upper quartile of typical market practice. Open a row for the full per-quartile narrative and our market commentary.</p>
             </div>
 
 <div class="exp-toolbar">
@@ -4869,7 +4869,7 @@
             <div class="page-overview">
               <div class="page-overview-eyebrow">On this page</div>
               <h3 class="page-overview-title">Learning and development</h3>
-              <p class="page-overview-body">This page covers the learning and development provision typical of technology companies: <strong>personal development budgets, free access to learning courses and videos, paid professional subscriptions and structured career development</strong>. Each row shows the lower quartile, median and upper quartile of typical market practice, click any row to open the full per-quartile narrative and our market commentary.</p>
+              <p class="page-overview-body">This page covers the learning and development provision typical of technology companies: <strong>personal development budgets, free access to learning courses and videos, paid professional subscriptions and structured career development</strong>. Each row shows the lower quartile, median and upper quartile of typical market practice. Open a row for the full per-quartile narrative and our market commentary.</p>
             </div>
 
 <div class="exp-toolbar">
@@ -5457,7 +5457,7 @@
       if (!node || !window.htmlToImage) { console.error('PNG target not found or library missing'); return; }
       btn.disabled = true; btn.dataset.origText = btn.querySelector('span').textContent;
       btn.querySelector('span').textContent = 'Rendering…';
-      window.htmlToImage.toPng(node, { backgroundColor: '#faf8f3', pixelRatio: 2 })
+      window.htmlToImage.toPng(node, { backgroundColor: '#FFFFFF', pixelRatio: 2 })
         .then(function(dataUrl){
           var a = document.createElement('a');
           a.href = dataUrl;
@@ -5486,7 +5486,7 @@
       btn.style.visibility = 'hidden';
       var label = btn.querySelector('span'); var origText = label ? label.textContent : '';
       if (label) label.textContent = '...';
-      window.htmlToImage.toPng(node, { backgroundColor: '#faf8f3', pixelRatio: 2 })
+      window.htmlToImage.toPng(node, { backgroundColor: '#FFFFFF', pixelRatio: 2 })
         .then(function(dataUrl){
           var a = document.createElement('a');
           a.href = dataUrl;

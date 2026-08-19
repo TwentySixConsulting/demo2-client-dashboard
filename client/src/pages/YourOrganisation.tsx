@@ -28,6 +28,13 @@ import {
 
 const BASE = import.meta.env.BASE_URL;
 const GBP = (n: number) => `£${Math.round(n).toLocaleString()}`;
+
+// Table-row status tints. Three states have to stay tellable apart on a white
+// page: awaiting a benchmark, under review, and done (no tint). "Awaiting" was
+// a beige #fdfbf6, which now reads as a faint CLAY wash — brand accent rather
+// than beige, and clearly not the cool grey used for "review".
+const ROW_AWAITING = "#FCF1EC";
+const ROW_REVIEW = "#F4F6F9";
 const GOOD = "#2F7D5B"; const GOOD_BG = "rgba(47,125,91,0.10)";
 const WATCH = "#B7791F"; const WATCH_BG = "rgba(183,121,31,0.10)";
 const UPD = "#5C6D8A"; const UPD_BG = "rgba(92,109,138,0.12)";
@@ -495,7 +502,7 @@ export function YourOrganisation() {
                 <span>Role</span><span className="text-right">Current</span><span className="text-right">Status</span><span />
               </div>
               {rosterRows.map((r, i) => (
-                <div key={r.id} className="grid items-center px-5 py-3.5" style={{ gridTemplateColumns: "2.2fr 1fr 1.4fr 0.7fr", borderTop: i === 0 ? "none" : `1px solid ${C.borderSubtle}`, background: r.edited ? "#f7f8fb" : undefined }}>
+                <div key={r.id} className="grid items-center px-5 py-3.5" style={{ gridTemplateColumns: "2.2fr 1fr 1.4fr 0.7fr", borderTop: i === 0 ? "none" : `1px solid ${C.borderSubtle}`, background: r.edited ? ROW_REVIEW : undefined }}>
                   <div className="min-w-0">
                     <div className="text-[13.5px] font-semibold truncate" style={{ color: C.ink }}>{r.role}</div>
                     <div className="text-[11px] mt-0.5" style={{ color: C.inkMuted }}>{r.function} · {levelLabel(r.jobLevel)} · {r.location}</div>
@@ -512,7 +519,7 @@ export function YourOrganisation() {
                 </div>
               ))}
               {addedRows.map((r) => (
-                <div key={r.id} className="grid items-center px-5 py-3.5" style={{ gridTemplateColumns: "2.2fr 1fr 1.4fr 0.7fr", borderTop: `1px solid ${C.borderSubtle}`, background: "#fdfbf6" }}>
+                <div key={r.id} className="grid items-center px-5 py-3.5" style={{ gridTemplateColumns: "2.2fr 1fr 1.4fr 0.7fr", borderTop: `1px solid ${C.borderSubtle}`, background: ROW_AWAITING }}>
                   <div className="min-w-0">
                     <div className="text-[13.5px] font-semibold truncate" style={{ color: C.ink }}>{r.role}</div>
                     <div className="text-[11px] mt-0.5" style={{ color: C.inkMuted }}>{r.department} · {r.jobLevel} · {r.location}{r.headcount ? ` · ${r.headcount} in role` : ""}</div>
@@ -587,7 +594,7 @@ export function YourOrganisation() {
 
             <div className="rounded-2xl overflow-hidden" style={card}>
               {filteredBenefits.map((b, i) => (
-                <div key={b.key} className="grid items-center px-5 py-3.5" style={{ gridTemplateColumns: "2.2fr 1.4fr 0.8fr", borderTop: i === 0 ? "none" : `1px solid ${C.borderSubtle}`, background: b.status === "awaiting-data" ? "#fdfbf6" : b.status === "review" ? "#f7f8fb" : undefined }}>
+                <div key={b.key} className="grid items-center px-5 py-3.5" style={{ gridTemplateColumns: "2.2fr 1.4fr 0.8fr", borderTop: i === 0 ? "none" : `1px solid ${C.borderSubtle}`, background: b.status === "awaiting-data" ? ROW_AWAITING : b.status === "review" ? ROW_REVIEW : undefined }}>
                   <div className="min-w-0">
                     <div className="text-[13.5px] font-semibold truncate" style={{ color: C.ink }}>{b.name}</div>
                     <div className="text-[11px] mt-0.5" style={{ color: C.inkMuted }}>{b.category} · {b.provision}</div>

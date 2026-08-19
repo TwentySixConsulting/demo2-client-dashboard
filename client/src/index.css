@@ -60,7 +60,7 @@
 
 /* ============================================================
    ZIGBERT — Design System ("trusted but fresh")
-   Ink/navy #121C2B · Cream #F4F1EA · Clay #C9785A · Slate #7285A5
+   Ink/navy #121C2B · White canvas · Clay #C9785A · Slate #7285A5
    ============================================================ */
 
 :root {
@@ -70,13 +70,13 @@
   --elevate-1: rgba(0,0,0,.03);
   --elevate-2: rgba(0,0,0,.08);
 
-  /* Core palette — Zigbert */
-  --background: 42 33% 94%;          /* cream #F4F1EA */
+  /* Core palette — Zigbert. White canvas, cool neutral lines. */
+  --background: 0 0% 100%;           /* white */
   --foreground: 216 41% 12%;         /* ink/navy #121C2B */
-  --border: 38 28% 87%;              /* warm line #E7E0D4 */
+  --border: 217 14% 89%;             /* neutral line #DEE1E6 */
   --card: 0 0% 100%;
   --card-foreground: 216 41% 14%;
-  --card-border: 38 24% 89%;
+  --card-border: 218 20% 92%;        /* #E7EAEF */
 
   /* Sidebar — deep navy */
   --sidebar: 214 68% 7%;             /* #0c1829 */
@@ -93,7 +93,7 @@
   --popover-border: 214 15% 88%;
 
   --primary: 216 41% 12%;            /* navy */
-  --primary-foreground: 42 33% 94%;
+  --primary-foreground: 0 0% 100%;   /* white text on navy */
 
   --secondary: 214 15% 92%;
   --secondary-foreground: 214 40% 15%;
@@ -107,7 +107,7 @@
   --destructive: 0 72% 51%;
   --destructive-foreground: 0 0% 98%;
 
-  --input: 38 22% 86%;
+  --input: 217 14% 89%;              /* neutral input border #DEE1E6 */
   --ring: 16 51% 57%;                /* clay ring */
 
   /* Chart colours — on-brand ramp: navy · clay · slate · mid-navy · clay-deep */
@@ -157,12 +157,11 @@
 @layer utilities {
 
   /* ---- TwentySix · Zigbert home page utilities (used by Home.tsx) ---- */
-  /* Near-white canvas with two very faint radial glows for warmth. */
+  /* Clean white canvas. The old version was #FAFAF8 with two faint clay/navy
+     radial glows; both are gone so the page is genuinely white and the cards
+     carry all the structure. */
   .ts-canvas {
-    background-color: #FAFAF8;
-    background-image:
-      radial-gradient(circle at 0% 0%, hsl(16 51% 57% / 0.04) 0%, transparent 42%),
-      radial-gradient(circle at 100% 30%, hsl(214 64% 30% / 0.03) 0%, transparent 38%);
+    background-color: #FFFFFF;
   }
   .ts-sans {
     font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
@@ -190,7 +189,7 @@
      and `.modern-card` in the june project. */
   .ts-premium-card {
     background: #ffffff;
-    border: 1px solid hsl(214 20% 88%);
+    border: 1px solid hsl(217 14% 89%);   /* neutral #DEE1E6 — matches C.border */
     border-radius: 28px;
     box-shadow:
       0 1px 2px hsl(214 25% 15% / 0.04),
@@ -244,11 +243,14 @@
   .ts-hero {
     position: relative;
     overflow: hidden;
+    /* The clay glow was at 0.11 and the navy at 0.06, which on a white page read
+       as a beige cast across the whole panel. Both dialled right back so the
+       panel is essentially white and its border does the separating. */
     background:
-      radial-gradient(130% 150% at 90% -30%, hsl(16 51% 57% / 0.11) 0%, transparent 46%),
-      radial-gradient(120% 130% at -5% 120%, hsl(214 64% 28% / 0.06) 0%, transparent 42%),
-      linear-gradient(180deg, #ffffff 0%, #FCFAF5 100%);
-    border: 1px solid hsl(38 28% 87%);
+      radial-gradient(130% 150% at 90% -30%, hsl(16 51% 57% / 0.04) 0%, transparent 46%),
+      radial-gradient(120% 130% at -5% 120%, hsl(214 64% 28% / 0.03) 0%, transparent 42%),
+      linear-gradient(180deg, #ffffff 0%, #FBFCFD 100%);
+    border: 1px solid hsl(217 14% 89%);
     box-shadow:
       0 1px 2px hsl(214 25% 15% / 0.04),
       0 20px 48px -22px hsl(214 25% 15% / 0.16);
