@@ -109,13 +109,18 @@ export function RolePositionCounts({ bands, total }: { bands: Record<string, num
 export function PayByFunction({ roster, avgDiffPct }: { roster: RosterRoleView[]; avgDiffPct: number }) {
   const byFn: Record<string, number[]> = {};
   roster.forEach((r) => { (byFn[r.function || "Other"] ||= []).push(r.diffPct); });
-  const rows = Object.entries(byFn)
+  const all = Object.entries(byFn)
     .map(([fn, v]) => ({ fn, avg: v.reduce((a, b) => a + b, 0) / v.length, n: v.length }))
     .sort((a, b) => a.avg - b.avg);
+  // Five rows, not all seven. Seven fits, but only by crowding — and the point of
+  // this chart is the two ends, so the extremes are what must stay: the three
+  // furthest below and the two furthest above.
+  const rows = all.length <= 5 ? all : [...all.slice(0, 3), ...all.slice(-2)];
+  const hidden = all.length - rows.length;
 
   // Symmetric scale so left and right are directly comparable, rounded out to a
   // whole percent so the axis is a number a reader would choose themselves.
-  const scale = Math.max(2, Math.ceil(Math.max(...rows.map((r) => Math.abs(r.avg)))));
+  const scale = Math.max(2, Math.ceil(Math.max(...all.map((r) => Math.abs(r.avg)))));
 
   return (
     <div>
@@ -151,10 +156,12 @@ export function PayByFunction({ roster, avgDiffPct }: { roster: RosterRoleView[]
           );
         })}
       </div>
-      <div className="flex items-center gap-3 mt-3 text-[9.5px]" style={{ color: C.inkSubtle }}>
-        <span className="inline-flex items-center gap-1"><span className="inline-block w-2 h-2 rounded-[2px]" style={{ background: CLAY }} /> Below median</span>
-        <span className="inline-flex items-center gap-1"><span className="inline-block w-2 h-2 rounded-[2px]" style={{ background: SLATE }} /> Above median</span>
-        <span className="ml-auto tabular-nums">±{scale}%</span>
+      {/* No colour legend here, deliberately. Below-vs-above is encoded three
+          times over — the side of the median rule the bar sits on, the sign of
+          the label, and the hue — so a legend row would only add height to a
+          card whose whole problem was height. The scale note earns its line. */}
+      <div className="mt-2.5 text-[9.5px] text-right tabular-nums" style={{ color: C.inkSubtle }}>
+        {hidden > 0 ? `${rows.length} of ${all.length} functions · ` : ""}±{scale}% scale
       </div>
     </div>
   );

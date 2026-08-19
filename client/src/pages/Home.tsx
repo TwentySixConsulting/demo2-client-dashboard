@@ -20,7 +20,8 @@ import { clientConfig, clientNameToEmail } from "@/config/clientConfig";
 import { Shell } from "@/components/Shell";
 import { C, REPORT_PERIOD, LAST_UPDATED, SUBSCRIPTION } from "@/lib/theme";
 import { SampleDataBadge } from "@/components/SampleDataBadge";
-import { BenefitsMix } from "@/components/HomeCharts";
+import { BenefitsMix, PayTrend } from "@/components/HomeCharts";
+import { SlideDeck } from "@/components/SlideDeck";
 import { RolePositionCounts, PayByFunction, BenefitsByCategory, OrgFunctionBars } from "@/components/HomePreviews";
 import { companyInfo } from "@/lib/data";
 import { useRoster } from "@/lib/roster";
@@ -51,6 +52,11 @@ function greeting() {
   const h = new Date().getHours();
   return h < 12 ? "Good morning" : h < 18 ? "Good afternoon" : "Good evening";
 }
+
+// Shared slide-viewport height for all three cards, set from the tallest slide
+// (the pay-rise line chart). Fixed so switching slide never reflows a card, and
+// shared so the three cards stay the same height as each other.
+const DECK_H = 194;
 
 // The three areas, in the order they are presented. Each gets its own accent so
 // the boxes are tellable apart at a glance: clay for Pay (the primary brand
@@ -166,21 +172,20 @@ export function Home() {
 
           {/* ── 2. The three areas — front and centre ────────────────────── */}
           <div data-tour="explore" className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {/* One static graphic each. These scrolled in opposing directions for
-                a while, copying the marketing site, but that site has two
-                co-equal pillars side by side — here a third box means the two
-                moving ones are never centred against each other, so the motion
-                read as distracting rather than alive. Each box now shows the one
-                graphic that best answers its own one-liner, and the four
-                graphics on this page are four different questions: counts by
-                position (Snapshot), cash gaps by role (Pay), benefit status
-                (Benefits), headcount shape (Organisation). */}
+            {/* Each card was stacking a headline plus two graphics, which read as
+                crowded. The graphics now sit in a SlideDeck: one at a time, with
+                named tabs so the second is discoverable rather than buried, and
+                movement only when the reader asks for it. DECK_H is shared so all
+                three cards keep the same height whichever slide is showing. */}
             <AreaCard
               num="01" tag="Pay" icon={LineChart} accent={AREA_ACCENT.pay}
               oneLiner="Where you sit on pay, role by role."
               onClick={goToPay}
             >
-              <PayByFunction roster={roster} avgDiffPct={m.avgDiffPct} />
+              <SlideDeck idBase="pay" height={DECK_H} accent={AREA_ACCENT.pay.fg} slides={[
+                { label: "By function", node: <PayByFunction roster={roster} avgDiffPct={m.avgDiffPct} /> },
+                { label: "Pay rises", node: <PayTrend /> },
+              ]} />
             </AreaCard>
 
             <AreaCard
@@ -188,8 +193,10 @@ export function Home() {
               oneLiner="Where your benefits stand, category by category."
               onClick={goToBenefits} disabled={!clientConfig.benefitsEnabled}
             >
-              <BenefitsMix atOrAbove={m.bs.atOrAbove} watch={m.bs.watch} below={m.bs.below} total={m.bs.total} />
-              <div className="mt-5"><BenefitsByCategory /></div>
+              <SlideDeck idBase="ben" height={DECK_H} accent={AREA_ACCENT.benefits.fg} slides={[
+                { label: "Overall", node: <BenefitsMix atOrAbove={m.bs.atOrAbove} watch={m.bs.watch} below={m.bs.below} total={m.bs.total} /> },
+                { label: "By category", node: <BenefitsByCategory /> },
+              ]} />
             </AreaCard>
 
             <AreaCard
@@ -197,17 +204,21 @@ export function Home() {
               oneLiner="Your roles, people and benefits, kept up to date."
               onClick={goToOrg}
             >
-              {/* No marquee for this one — it is a data-management area, not an
-                  insight product. A function breakdown keeps its height in step
-                  with the two boxes that now scroll. */}
-              <div className="font-display font-bold mb-3" style={{ fontSize: 19, color: C.ink, lineHeight: 1.15 }}>
-                {m.headcount} <span className="text-[12.5px] font-medium" style={{ color: C.inkMuted }}>people across {m.rolesTotal} roles</span>
-              </div>
-              <div className="space-y-1.5 mb-4">
-                <OrgRow icon={Layers} label={`Benefits · ${BENEFIT_CATEGORIES.length} categories`} value={String(m.bs.total)} />
-                <OrgRow icon={Clock} label={m.awaiting ? "Awaiting benchmark" : "All benchmarked"} value={m.awaiting ? String(m.awaiting) : "✓"} />
-              </div>
-              <OrgFunctionBars roster={roster} />
+              <SlideDeck idBase="org" height={DECK_H} accent={AREA_ACCENT.org.fg} slides={[
+                { label: "People", node: <OrgFunctionBars roster={roster} /> },
+                { label: "What's in here", node: (
+                  <div>
+                    <div className="font-display font-bold mb-3.5" style={{ fontSize: 19, color: C.ink, lineHeight: 1.15 }}>
+                      {m.headcount} <span className="text-[12.5px] font-medium" style={{ color: C.inkMuted }}>people across {m.rolesTotal} roles</span>
+                    </div>
+                    <div className="space-y-2.5">
+                      <OrgRow icon={Users} label="Roles benchmarked" value={String(m.rolesTotal)} />
+                      <OrgRow icon={Layers} label={`Benefits · ${BENEFIT_CATEGORIES.length} categories`} value={String(m.bs.total)} />
+                      <OrgRow icon={Clock} label={m.awaiting ? "Awaiting benchmark" : "All benchmarked"} value={m.awaiting ? String(m.awaiting) : "✓"} />
+                    </div>
+                  </div>
+                ) },
+              ]} />
             </AreaCard>
           </div>
 
@@ -264,10 +275,13 @@ function HeroStat({ label, value, sub, tone }: { label: string; value: string; s
 
 // One of the three area boxes. Modelled on the marketing site's pillar cards
 // (numbered eyebrow, icon tile, display heading, accent one-liner, a preview of
-// what's inside) but dialled down to dashboard scale: the heading is 30px rather
-// than the marketing site's 48-60px, there's no repeated period pill, and the
-// preview is a live chart rather than an auto-scrolling marquee. All three fit
-// on screen without scrolling, which is the point of the redesign.
+// what's inside) but dialled down to dashboard scale: the heading is 26px rather
+// than the marketing site's 48-60px, and there's no repeated period pill.
+//
+// It's a DIV, not a button. The graphics now sit in a SlideDeck whose tabs are
+// themselves buttons, and a button cannot contain a button. The whole card stays
+// clickable for convenience, with the footer "Open" as the real control that
+// keyboard and screen-reader users get.
 function AreaCard({
   num, tag, icon: Icon, accent, oneLiner, onClick, disabled, children,
 }: {
@@ -276,12 +290,11 @@ function AreaCard({
   oneLiner: string; onClick: () => void; disabled?: boolean; children: React.ReactNode;
 }) {
   return (
-    <button
+    <div
       onClick={disabled ? undefined : onClick}
-      disabled={disabled}
-      className="ts-premium-card ts-glow-host ts-nudge relative overflow-hidden p-6 text-left flex flex-col h-full disabled:opacity-55"
+      className={`ts-premium-card ts-glow-host relative overflow-hidden p-6 text-left flex flex-col h-full ${disabled ? "opacity-55" : "ts-nudge cursor-pointer"}`}
     >
-      <div className="flex items-center gap-2.5 mb-4">
+      <div className="flex items-center gap-2.5 mb-3.5">
         <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl" style={{ background: accent.tint, color: accent.fg }}>
           <Icon className="w-[18px] h-[18px]" />
         </span>
@@ -290,15 +303,21 @@ function AreaCard({
         </span>
       </div>
 
-      <h3 className="ts-display" style={{ fontSize: 30, fontWeight: 700, color: C.ink, lineHeight: 1.08 }}>{tag}</h3>
-      <p className="mt-2 mb-5 text-[13px] font-medium leading-snug" style={{ color: accent.fg }}>{oneLiner}</p>
+      <h3 className="ts-display" style={{ fontSize: 26, fontWeight: 700, color: C.ink, lineHeight: 1.08 }}>{tag}</h3>
+      <p className="mt-1.5 mb-5 text-[12.5px] font-medium leading-snug" style={{ color: accent.fg }}>{oneLiner}</p>
 
-      <div className="flex-1">{children}</div>
+      <div className="flex-1 flex flex-col">{children}</div>
 
-      <span className="mt-5 inline-flex items-center gap-1 text-[12.5px] font-semibold" style={{ color: disabled ? C.inkSubtle : C.brass }}>
-        {disabled ? "Not in this package" : "Open"} {!disabled && <ArrowRight className="ts-arrow w-3.5 h-3.5" />}
-      </span>
-    </button>
+      <button
+        type="button"
+        onClick={disabled ? undefined : (e) => { e.stopPropagation(); onClick(); }}
+        disabled={disabled}
+        className="mt-5 self-start inline-flex items-center gap-1 text-[12.5px] font-semibold"
+        style={{ color: disabled ? C.inkSubtle : C.brass }}
+      >
+        {disabled ? "Not in this package" : `Open ${tag}`} {!disabled && <ArrowRight className="ts-arrow w-3.5 h-3.5" />}
+      </button>
+    </div>
   );
 }
 
