@@ -243,13 +243,10 @@
   .ts-hero {
     position: relative;
     overflow: hidden;
-    /* The clay glow was at 0.11 and the navy at 0.06, which on a white page read
-       as a beige cast across the whole panel. Both dialled right back so the
-       panel is essentially white and its border does the separating. */
-    background:
-      radial-gradient(130% 150% at 90% -30%, hsl(16 51% 57% / 0.04) 0%, transparent 46%),
-      radial-gradient(120% 130% at -5% 120%, hsl(214 64% 28% / 0.03) 0%, transparent 42%),
-      linear-gradient(180deg, #ffffff 0%, #FBFCFD 100%);
+    /* Flat white. This carried two radial glows and a vertical wash, which on a
+       white page read as a dirty cast rather than as depth. The border and
+       shadow do the separating; nothing here needs a gradient. */
+    background: #FFFFFF;
     border: 1px solid hsl(217 14% 89%);
     box-shadow:
       0 1px 2px hsl(214 25% 15% / 0.04),
@@ -262,7 +259,7 @@
     top: 0; left: 24px; right: 24px;
     height: 2px;
     border-radius: 0 0 3px 3px;
-    background: linear-gradient(90deg, transparent, hsl(16 51% 57% / 0.55), transparent);
+    background: hsl(16 51% 57% / 0.30);
   }
 
   /* Small clay accent tick before a section label — adds rhythm. */
@@ -273,14 +270,14 @@
     border-radius: 2px;
     margin-right: 9px;
     vertical-align: middle;
-    background: linear-gradient(90deg, #C9785A, #B0603F);
+    background: #C9785A;
   }
 
-  /* Gradient clay icon chip — richer than a flat tint. */
+  /* Flat clay icon chip. Was a gradient with an inner highlight, which at
+     40px reads as noise rather than richness. */
   .ts-chip {
-    background: linear-gradient(140deg, #F4E2D9 0%, #E7C6B6 100%);
+    background: #F4E2D9;
     color: #8F4D33;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.65);
   }
 
   /* Nudge an arrow on card/button hover (pair with .ts-arrow on the icon). */

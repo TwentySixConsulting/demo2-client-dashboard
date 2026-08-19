@@ -20,13 +20,8 @@ import { clientConfig, clientNameToEmail } from "@/config/clientConfig";
 import { Shell } from "@/components/Shell";
 import { C, REPORT_PERIOD, LAST_UPDATED, SUBSCRIPTION } from "@/lib/theme";
 import { SampleDataBadge } from "@/components/SampleDataBadge";
-import { RoleDistribution, BenefitsMix } from "@/components/HomeCharts";
-import { ScrollingShowcase } from "@/components/ScrollingShowcase";
-import {
-  PreviewCard, PayPositionPreview, PayGapsPreview, PayRisesPreview, PayShapePreview,
-  BenefitsCoveragePreview, BenefitsCategoryPreview, BenefitsActionPreview, BenefitsStrengthsPreview,
-  RewardPositionSummary, OrgFunctionBars,
-} from "@/components/HomePreviews";
+import { BenefitsMix } from "@/components/HomeCharts";
+import { RolePositionCounts, PayByFunction, BenefitsByCategory, OrgFunctionBars } from "@/components/HomePreviews";
 import { companyInfo } from "@/lib/data";
 import { useRoster } from "@/lib/roster";
 import { useOrgRoles, useOrgBenefits, useBenefitOverrides } from "@/lib/orgStore";
@@ -119,29 +114,6 @@ export function Home() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [m]);
 
-  // The strips each carry four previews. The existing Home charts lead (they are
-  // the most informative), then three more angles on the same area, so the
-  // marquee has something new to show rather than looping one card.
-  const payPreviews = useMemo(() => [
-    <PreviewCard key="dist" eyebrow="Distribution" title="How your roles sit vs market">
-      <RoleDistribution bands={m.bands} total={roster.length} belowMarket={m.belowMed.length} compact />
-    </PreviewCard>,
-    <PayPositionPreview key="pos" avgDiffPct={m.avgDiffPct} />,
-    <PayGapsPreview key="gaps" roster={roster} />,
-    <PayRisesPreview key="rises" />,
-    <PayShapePreview key="shape" roster={roster} />,
-  ], [m.bands, m.avgDiffPct, m.belowMed.length, roster]);
-
-  const benefitsPreviews = useMemo(() => [
-    <PreviewCard key="mix" eyebrow="Benefits mix" title="Your offer vs the market">
-      <BenefitsMix atOrAbove={m.bs.atOrAbove} watch={m.bs.watch} below={m.bs.below} total={m.bs.total} compact />
-    </PreviewCard>,
-    <BenefitsCoveragePreview key="cov" atOrAbove={m.bs.atOrAbove} total={m.bs.total} />,
-    <BenefitsCategoryPreview key="cat" />,
-    <BenefitsActionPreview key="act" />,
-    <BenefitsStrengthsPreview key="str" />,
-  ], [m.bs]);
-
   const payTone: Sev = m.avgDiffPct >= 0 ? "good" : m.belowLQ.length ? "action" : "watch";
   const verdict = `Pay sits ${Math.abs(m.avgDiffPct).toFixed(1)}% ${m.avgDiffPct >= 0 ? "above" : "below"} the market median` +
     (m.belowMed.length ? `, with ${m.belowMed.length} of ${roster.length} role${m.belowMed.length > 1 ? "s" : ""} to review` : "") +
@@ -183,11 +155,10 @@ export function Home() {
                     <HeroStat label="Awaiting" value={String(m.awaiting)} sub={m.awaiting ? "with consultant" : "all benchmarked"} tone={m.awaiting ? "watch" : "good"} />
                   </div>
                 </div>
-                {/* Pay and benefits on one shared market range — the summary
-                    question a snapshot should answer. Dropped below xl rather
-                    than allowed to cramp the stat row. */}
-                <div className="hidden xl:block shrink-0 w-[320px] xl:pl-9 xl:border-l" style={{ borderColor: C.borderSubtle }}>
-                  <RewardPositionSummary avgDiffPct={m.avgDiffPct} atOrAbove={m.bs.atOrAbove} benefitsTotal={m.bs.total} />
+                {/* How many roles sit below, at and above market. Dropped below
+                    xl rather than allowed to cramp the stat row. */}
+                <div className="hidden xl:block shrink-0 w-[352px] xl:pl-9 xl:border-l" style={{ borderColor: C.borderSubtle }}>
+                  <RolePositionCounts bands={m.bands} total={roster.length} />
                 </div>
               </div>
             </div>
@@ -195,18 +166,21 @@ export function Home() {
 
           {/* ── 2. The three areas — front and centre ────────────────────── */}
           <div data-tour="explore" className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {/* Pay and Benefits each scroll a strip of live preview graphics, the
-                same marquee the marketing site uses on its pillar cards. The
-                strip bleeds to the card edges (-mx-6) so cards enter and leave
-                under the mask rather than inside a visible gutter. */}
+            {/* One static graphic each. These scrolled in opposing directions for
+                a while, copying the marketing site, but that site has two
+                co-equal pillars side by side — here a third box means the two
+                moving ones are never centred against each other, so the motion
+                read as distracting rather than alive. Each box now shows the one
+                graphic that best answers its own one-liner, and the four
+                graphics on this page are four different questions: counts by
+                position (Snapshot), cash gaps by role (Pay), benefit status
+                (Benefits), headcount shape (Organisation). */}
             <AreaCard
               num="01" tag="Pay" icon={LineChart} accent={AREA_ACCENT.pay}
               oneLiner="Where you sit on pay, role by role."
               onClick={goToPay}
             >
-              <div className="-mx-6">
-                <ScrollingShowcase id="pay" durationSeconds={46} items={payPreviews} />
-              </div>
+              <PayByFunction roster={roster} avgDiffPct={m.avgDiffPct} />
             </AreaCard>
 
             <AreaCard
@@ -214,9 +188,8 @@ export function Home() {
               oneLiner="Where your benefits stand, category by category."
               onClick={goToBenefits} disabled={!clientConfig.benefitsEnabled}
             >
-              <div className="-mx-6">
-                <ScrollingShowcase id="benefits" durationSeconds={46} reverse items={benefitsPreviews} />
-              </div>
+              <BenefitsMix atOrAbove={m.bs.atOrAbove} watch={m.bs.watch} below={m.bs.below} total={m.bs.total} />
+              <div className="mt-5"><BenefitsByCategory /></div>
             </AreaCard>
 
             <AreaCard
