@@ -94,7 +94,7 @@
       steps: [
         { selector: "[data-testid='nav-home']", placement: "right",
           title: "How Pay is organised",
-          html: "The sidebar holds your market position, role-by-role detail, trends and the pay review tool." },
+          html: "The sidebar holds your market position, role-by-role detail, bonuses and the pay review tool." },
         { selector: "[data-testid='kpi-overall']", placement: "bottom",
           title: "Headline position",
           html: "How your overall pay compares to the market, with the number of roles below market and your total pay bill alongside." },
@@ -166,7 +166,12 @@
     var p = location.pathname;
     p = p.replace(/\/index\.html$/, "/");
     p = p.replace(/\/(pay|benefits)(\/.*)?$/, "/");
-    p = p.replace(/\/(organisation|account)\/?$/, "/");
+    // Every top-level React route has to be stripped here, tourless ones
+    // included. This file loads on React pages, so at /trends nothing matched
+    // and siteRoot() returned ".../trends/" — which then sent an active tour to
+    // ".../trends/pay/". Adding a section without adding it here breaks the tour
+    // silently, from that page only.
+    p = p.replace(/\/(organisation|account|trends|methodology|report)\/?$/, "/");
     if (p.charAt(p.length - 1) !== "/") p += "/";
     return p;
   }
@@ -176,6 +181,14 @@
     if (/\/benefits(\/|$)/.test(p)) return { app: "benefits", path: "benefits" };
     if (/\/organisation\/?$/.test(p)) return { app: "react", path: "/organisation" };
     if (/\/account\/?$/.test(p)) return { app: "react", path: "/account" };
+    // Pages with no tour of their own. They MUST be named here: the fallthrough
+    // below claims any unrecognised path is Home, so on /trends the Home tour
+    // would run against selectors that don't exist (findTarget polls ~4s per
+    // step, so it just sits there looking broken), clicking to the end would
+    // mark HOME as toured, and maybeOffer() would fire the welcome prompt on the
+    // wrong page. Returning an app no TOURS entry uses makes tourHere() null,
+    // and both start() and maybeOffer() already guard on that.
+    if (/\/(trends|methodology|report)(\/|$)/.test(p)) return { app: "none", path: p };
     return { app: "react", path: "/" };
   }
   function urlFor(key) {

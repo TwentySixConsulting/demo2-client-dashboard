@@ -2574,6 +2574,10 @@
       <a class="ts-shell__tab" data-ts-shell-tab="home" href="../">Home</a>
       <a class="ts-shell__tab" data-ts-shell-tab="pay" href="../pay/">Pay</a>
       <a class="ts-shell__tab" data-ts-shell-tab="benefits" href="./">Benefits</a>
+      <!-- React routes, so no trailing slash: "../trends" gives /trends, while
+           "../trends/" would not match the wouter route. As ../organisation. -->
+      <a class="ts-shell__tab" data-ts-shell-tab="trends" href="../trends">Trends</a>
+      <a class="ts-shell__tab" data-ts-shell-tab="methodology" href="../methodology">Methodology</a>
       <a class="ts-shell__tab" data-ts-shell-tab="organisation" href="../organisation">Organisation</a>
     </nav>
 

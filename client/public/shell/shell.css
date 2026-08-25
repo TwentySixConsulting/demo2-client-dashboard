@@ -124,6 +124,7 @@
 }
 
 .ts-shell__tab {
+    white-space: nowrap;   /* six tabs now: a wrapped label clips in a 30px pill */
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -221,7 +222,15 @@
   border: 1px solid #E0C3B3;
 }
 
-.ts-shell__user-name { letter-spacing: 0.01em; }
+/* nowrap + cap, mirroring Shell.tsx: with six tabs a long client name was
+   wrapping the pill to two lines around 820px. */
+.ts-shell__user-name {
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 .ts-shell__chev {
   width: 12px;
@@ -346,6 +355,15 @@
 
 /* ── Body offset (for static pages — React Home applies its own) ─ */
 body.has-ts-shell { padding-top: 60px; }
+
+/* Six tabs plus the brand block plus the user pill no longer fit on a 1280px
+   laptop, so the "Pay & Benefits Intelligence" strapline drops out first. This
+   mirrors Shell.tsx, where the same element is `hidden xl:inline`; the two
+   headers have to break at the same width or they stop looking like one product. */
+@media (max-width: 1279px) {
+  .ts-shell__brand-sub,
+  .ts-shell__divider { display: none; }
+}
 
 /* ── Mobile ───────────────────────────────────────────── */
 @media (max-width: 760px) {

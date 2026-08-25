@@ -76,7 +76,11 @@ function Headline({ value, children, compact }: { value: React.ReactNode; childr
 //      the crosshair. Floating it above the plot instead would land it on the
 //      legend, and the legend is what tells the reader which row is which — the
 //      tooltip must never obscure the key needed to read the tooltip.
-function Readout({ x, rows, place = "segment" }: { x: number; rows: { color: string; label: string; value: string }[]; place?: "segment" | "plot" }) {
+// Exported so components/TrendsCharts.tsx renders the same readout rather than a
+// second, subtly-different tooltip. The placement logic above is the whole reason:
+// it was arrived at by screenshotting clipped and occluded states, so a fresh
+// implementation would just rediscover those bugs.
+export function Readout({ x, rows, place = "segment" }: { x: number; rows: { color: string; label: string; value: string }[]; place?: "segment" | "plot" }) {
   const pos: React.CSSProperties =
     place === "plot"
       ? { top: 0, ...(x < 50 ? { right: 0 } : { left: 0 }) }
@@ -202,7 +206,7 @@ export function RoleDistribution({ bands, total, belowMarket, compact }: { bands
 const YOU = "#C9785A";      // clay accent — the subject of the chart
 const MARKET = "#5C6D8A";   // calm slate — the benchmark it's read against
 
-function niceTicks(lo: number, hi: number) {
+export function niceTicks(lo: number, hi: number) {
   const from = Math.floor(lo), to = Math.ceil(hi);
   const out: number[] = [];
   for (let v = from; v <= to; v += 1) out.push(v);

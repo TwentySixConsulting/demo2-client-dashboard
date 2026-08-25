@@ -284,6 +284,17 @@
   .ts-nudge:hover .ts-arrow { transform: translateX(3px); }
   .ts-arrow { transition: transform 240ms cubic-bezier(0.2,0.7,0.2,1); }
 
+  /* Panel-level heading, a step below .ts-tick section labels. Used inside
+     .ts-premium-card on Trends, where a second tick mark would be noise. */
+  .ts-h3 {
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: #121C2B;
+    margin-bottom: 8px;
+  }
+
   /* ---- Premium display heading (Inter, tight tracking) ---- */
   .font-display-serif {
     font-family: var(--font-display);
@@ -418,4 +429,82 @@
   .stagger-4 { animation-delay: 0.2s; }
   .stagger-5 { animation-delay: 0.25s; }
   .stagger-6 { animation-delay: 0.3s; }
+}
+
+/* ══ Print ══════════════════════════════════════════════════════════════════
+   Trends & Hotspots is the page most likely to end up in a board pack, so it
+   goes to PDF as one document rather than carrying per-section PNG export
+   buttons. Chrome and navigation are dropped; a card becomes a hairline rule
+   instead of a shadowed panel, because a printed shadow is a grey smear.
+
+   Anything that must not survive printing gets .ts-print-hide; anything that
+   should start a fresh page gets .ts-print-break. */
+@media print {
+  .ts-print-hide,
+  header[role="banner"],
+  [data-zigbert-tour-checklist],
+  [class^="ztour-"],
+  [class*=" ztour-"] {
+    display: none !important;
+  }
+
+  /* The Shell is gone, so its 60px clearance would print as a blank strip. */
+  main {
+    padding-top: 0 !important;
+  }
+
+  .ts-canvas,
+  body {
+    background: #fff !important;
+  }
+
+  .ts-hero,
+  .ts-premium-card {
+    background: #fff !important;
+    border: 1px solid #DEE1E6 !important;
+    box-shadow: none !important;
+    border-radius: 6px !important;
+  }
+
+  /* The hero's clay hairline and any glow are decoration that costs ink. */
+  .ts-hero::after,
+  .ts-hero::before,
+  .ts-glow-host::before {
+    display: none !important;
+  }
+
+  /* Never split a panel, a chart or a table across a page break. Deliberately
+     NOT `section > div`: that keeps whole two-column grids together and wastes
+     most of a page whenever the next one won't fit. */
+  .ts-premium-card,
+  .ts-hero,
+  svg,
+  table {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Each of the three groups starts its own page. */
+  .ts-print-break {
+    break-before: page;
+    page-break-before: always;
+  }
+  .ts-print-break:first-of-type {
+    break-before: auto;
+    page-break-before: auto;
+  }
+
+  /* Entrance animations leave elements at opacity 0 in some print pipelines. */
+  .ts-anim-fade-up,
+  .animate-fade-in,
+  .animate-slide-up,
+  .animate-scale-in {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  a {
+    text-decoration: none !important;
+  }
 }

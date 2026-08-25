@@ -18,6 +18,7 @@ import { useLocation } from "wouter";
 import { useAuth } from "@/contexts/AuthContext";
 import { clientConfig, clientNameToEmail } from "@/config/clientConfig";
 import { Shell } from "@/components/Shell";
+import { SectionLabel } from "@/components/SectionLabel";
 import { C, REPORT_PERIOD, LAST_UPDATED, SUBSCRIPTION } from "@/lib/theme";
 import { SampleDataBadge } from "@/components/SampleDataBadge";
 import { BenefitsMix, PayTrend } from "@/components/HomeCharts";
@@ -258,9 +259,8 @@ export function Home() {
 }
 
 // ── small building blocks ─────────────────────────────────
-function SectionLabel({ children }: { children: React.ReactNode }) {
-  return <h2 className="ts-tick font-display text-[15px] font-semibold mb-3 flex items-center" style={{ color: C.ink }}>{children}</h2>;
-}
+// SectionLabel moved to components/SectionLabel once Trends and Methodology
+// needed it too, so there is one definition rather than three.
 
 function HeroStat({ label, value, sub, tone }: { label: string; value: string; sub?: string; tone?: Sev }) {
   const color = tone ? SEV[tone].fg : C.ink;

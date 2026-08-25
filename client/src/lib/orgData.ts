@@ -21,6 +21,9 @@ export function levelLabel(jobLevel: number): string {
 
 export const LOCATIONS = ["Brighton", "London", "South East England", "Remote (UK)", "Manchester", "Other"];
 
+// `as const` so the labels become a union type, not just string[]. lib/trendsData
+// keys its per-category market themes off that union, which makes TypeScript fail
+// the build if a category is added here without a theme written for it.
 export const BENEFIT_CATEGORIES = [
   "Core Benefits",
   "Working Time",
@@ -28,7 +31,8 @@ export const BENEFIT_CATEGORIES = [
   "Financial Support",
   "ESG & DEI",
   "Learning & Development",
-];
+] as const;
+export type BenefitCategory = (typeof BENEFIT_CATEGORIES)[number];
 
 // The established (already-benchmarked) benefits. This list MUST stay in step with
 // the Benefits report's own BENEFITS array in client/public/benefits/index.html:

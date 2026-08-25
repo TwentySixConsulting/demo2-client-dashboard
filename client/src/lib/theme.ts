@@ -83,7 +83,12 @@ export const PAY_META = {
   // NB: no rolesAnalysed here. The roster IS the benchmarked set, so anything that
   // needs a role count reads BASE_ROSTER.length rather than a constant that can
   // drift out of step with the data (it used to say 40 while the roster held 25).
-  employersInDataset: 47,
+  // Renamed from `employersInDataset`. 47 is not the size of the dataset, it is
+  // the size of YOUR comparator group within it, and calling it the dataset is
+  // exactly what makes 47 look like it contradicts the 1.5M records the
+  // Methodology page quotes. The two numbers describe different things.
+  comparatorEmployers: 47,
+  comparatorBasis: "London and the South East",
   medianPay: "£52,400",
   medianPayChange: "+3.1%",
   upperQuartile: "£71,200",

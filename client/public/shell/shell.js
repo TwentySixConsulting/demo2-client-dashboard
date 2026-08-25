@@ -103,7 +103,14 @@
     var menuEmail = root.querySelector("[data-ts-shell-menu-email]");
     if (menuEmail) menuEmail.textContent = email;
 
-    // Tab highlight from current pathname (base-path aware)
+    // Tab highlight from current pathname (base-path aware).
+    //
+    // Only pay and benefits are tested, and that is deliberate: this script is
+    // loaded ONLY from those two static surfaces, so the path always matches one
+    // of them. Home, Trends, Methodology and Organisation are React pages where
+    // Shell.tsx sets its own active tab. Their tabs are rendered here but never
+    // matched, which is correct — adding branches for them would be dead code
+    // that could only ever fight Shell.tsx.
     var path = window.location.pathname || "/";
     var section = "home";
     if (/\/pay(\/|$)/.test(path)) section = "pay";

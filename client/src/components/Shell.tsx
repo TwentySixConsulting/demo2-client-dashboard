@@ -11,21 +11,38 @@ import { C } from "@/lib/theme";
 import { ZigbertLogo } from "@/components/ZigbertLogo";
 
 interface SectionTab {
-  key: "home" | "pay" | "benefits" | "organisation";
+  key: "home" | "pay" | "benefits" | "trends" | "methodology" | "organisation";
   label: string;
   href: string;
   spa?: boolean; // in-shell wouter route (no full-page nav)
 }
 
 // Base-path aware so links resolve under a GitHub Pages sub-path too
-// (BASE_URL is "/" in dev, "/Dashboard/" in the Pages build).
+// (BASE_URL is "/" in dev, "/demo2-client-dashboard/" in the Pages build).
+//
+// Tab labels are SHORT, and the pages they open carry the fuller title: the tab
+// reads "Trends" while the page is headed "Trends & Hotspots". Six pills plus the
+// brand block plus the user pill is already tight at 1280px, and this is the
+// convention the Pay app's own nav uses (topNavLabel vs title).
+//
+// NB for the spa tabs: `key` must equal the wouter route path, because the click
+// handler below navigates to `/${tab.key}`. A key that differs from its route
+// 404s silently.
 const BASE = import.meta.env.BASE_URL;
 const TABS: SectionTab[] = [
   { key: "home", label: "Home", href: BASE, spa: true },
   { key: "pay", label: "Pay", href: `${BASE}pay/` },
   { key: "benefits", label: "Benefits", href: `${BASE}benefits/` },
+  { key: "trends", label: "Trends", href: `${BASE}trends`, spa: true },
+  { key: "methodology", label: "Methodology", href: `${BASE}methodology`, spa: true },
   { key: "organisation", label: "Organisation", href: `${BASE}organisation`, spa: true },
 ];
+
+// Sections with no entry in shell/tour.js TOURS. The button would otherwise fall
+// through to the Home tour and run it against selectors that don't exist on the
+// page, which just looks broken. Keyed on `active`, NOT on active === "none":
+// Account passes "none" but does have a tour.
+const TOURLESS: ReadonlySet<string> = new Set(["trends", "methodology"]);
 
 interface ShellProps {
   username: string;
@@ -90,7 +107,7 @@ export function Shell({ username, email, active, onSignOut }: ShellProps) {
         >
           <ZigbertLogo height={22} variant="dark" />
           <span
-            className="text-[12.5px] font-medium hidden md:inline pl-3 ml-0.5"
+            className="text-[12.5px] font-medium hidden xl:inline pl-3 ml-0.5"
             style={{ color: C.inkMuted, borderLeft: `1px solid ${C.border}`, paddingLeft: 12 }}
           >
             Pay &amp; Benefits Intelligence
@@ -120,7 +137,7 @@ export function Shell({ username, email, active, onSignOut }: ShellProps) {
                 key={tab.key}
                 href={tab.href}
                 onClick={tab.spa ? handleClick : undefined}
-                className="relative inline-flex items-center h-[30px] rounded-full text-[12.5px] font-medium transition-colors"
+                className="relative inline-flex items-center h-[30px] rounded-full text-[12.5px] font-medium transition-colors whitespace-nowrap"
                 style={{
                   paddingLeft: isActive ? 24 : 14,
                   paddingRight: 14,
@@ -162,17 +179,19 @@ export function Shell({ username, email, active, onSignOut }: ShellProps) {
         </nav>
 
         <div className="flex items-center gap-2">
-          <button
-            type="button"
-            data-zigbert-tour-start
-            aria-label="Tour this page"
-            className="hidden sm:inline-flex items-center gap-1.5 h-9 px-3 rounded-full text-[12px] font-medium transition-colors"
-            style={{ background: C.surface, color: C.inkMuted, border: `1px solid ${C.border}` }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = C.surfaceSoft; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = C.surface; }}
-          >
-            <HelpCircle className="w-3.5 h-3.5" /> Tour this page
-          </button>
+          {!TOURLESS.has(active) && (
+            <button
+              type="button"
+              data-zigbert-tour-start
+              aria-label="Tour this page"
+              className="hidden sm:inline-flex items-center gap-1.5 h-9 px-3 rounded-full text-[12px] font-medium transition-colors"
+              style={{ background: C.surface, color: C.inkMuted, border: `1px solid ${C.border}` }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = C.surfaceSoft; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = C.surface; }}
+            >
+              <HelpCircle className="w-3.5 h-3.5" /> Tour this page
+            </button>
+          )}
 
         {/* User pill */}
         <div ref={ref} className="relative">
@@ -205,7 +224,12 @@ export function Shell({ username, email, active, onSignOut }: ShellProps) {
             >
               {initials}
             </span>
-            <span className="hidden sm:inline" style={{ letterSpacing: "0.01em" }}>
+            {/* nowrap + a cap: six tabs leave less room than four did, and a long
+                client name was wrapping the pill to two lines around 820px. */}
+            <span
+              className="hidden sm:inline truncate"
+              style={{ letterSpacing: "0.01em", maxWidth: 150, whiteSpace: "nowrap" }}
+            >
               {username}
             </span>
             <ChevronDown

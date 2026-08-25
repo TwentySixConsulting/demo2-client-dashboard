@@ -11,6 +11,8 @@ import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { ScrollToTop } from "@/components/landing/ScrollToTop";
 
 import { Home } from "@/pages/Home";
+import { Trends } from "@/pages/Trends";
+import { Methodology } from "@/pages/Methodology";
 import { Account } from "@/pages/Account";
 import { YourOrganisation } from "@/pages/YourOrganisation";
 
@@ -22,7 +24,11 @@ import NotFound from "@/pages/not-found";
 function Router() {
   return (
     <Switch>
+      {/* Listed in tab order, so this reads as the nav it backs. The paths must
+          match the Shell's tab keys: it navigates to `/${tab.key}`. */}
       <Route path="/" component={Home} />
+      <Route path="/trends" component={Trends} />
+      <Route path="/methodology" component={Methodology} />
       <Route path="/organisation" component={YourOrganisation} />
       <Route path="/account" component={Account} />
       {/* /pay/* is served as a static SPA from client/public/pay/ */}
