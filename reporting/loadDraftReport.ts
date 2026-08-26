@@ -83,10 +83,22 @@ export function loadDraftReportModel() {
     []
   );
 
-  // Static narrative blocks (markdown)
+  // Static narrative blocks (markdown).
+  //
+  // These same files are the source for the client PDF pack built by
+  // reporting/pdf/build.sh, so a key added here must exist there and vice versa.
+  // The content is plain markdown with no front-matter, deliberately: readText
+  // below is a bare readFileSync and this object is serialised straight out of
+  // GET /api/report/draft, so a YAML block would be echoed to the caller.
+  //
+  // Two conventions the PDF build adds, both invisible to a markdown renderer:
+  //   <!-- page -->            an authored page break
+  //   [[TO CONFIRM: ...]]      a fact awaiting sign-off; the PDF build REFUSES
+  //                            to produce a client copy while one is present
   const content = {
     how_to_use: safeRead(() => readText(path.join(contentDir, "how_to_use.md")), ""),
     pay_ranges_explainer: safeRead(() => readText(path.join(contentDir, "pay_ranges_explainer.md")), ""),
+    confidentiality: safeRead(() => readText(path.join(contentDir, "confidentiality.md")), ""),
     market_context: safeRead(() => readText(path.join(contentDir, "market_context.md")), ""),
     benefits_trends: safeRead(() => readText(path.join(contentDir, "benefits_trends.md")), ""),
     data_sources: safeRead(() => readText(path.join(contentDir, "data_sources.md")), ""),

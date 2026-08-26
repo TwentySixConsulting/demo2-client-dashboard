@@ -1,0 +1,460 @@
+/* Zigbert client documents — print stylesheet.
+ *
+ * THE MODEL: fixed pages, not reflowing content. Each .page is exactly A4 with
+ * its margins as internal padding, so what you author is what prints and the
+ * page count is knowable in advance. Adapted from the proven approach in
+ * millhstudios-cv/source/cv.html.
+ *
+ * THE TRADE-OFF, and why verify.py exists: `overflow: hidden` is what makes the
+ * layout deterministic, and it is also what makes an over-long section vanish
+ * with no error at all. Chrome exits 0 and the PDF looks fine. verify.py checks
+ * every page for overflow precisely because this failure is silent.
+ *
+ * Tokens are from zigbert-waitlist/zigbertdesign.md, which is explicit that
+ * src/index.css wins if the two disagree. Colour roles, verbatim from the guide:
+ * logo blue owns anything clickable, clay is a RARE highlight, steel/slate are
+ * calm secondaries for data. No gold anywhere.
+ */
+
+@page {
+  size: A4;
+  margin: 0;
+}
+
+:root {
+  --ink: #121c2b;
+  --muted: #4b5563;
+  --subtle: #8a93a2;
+  --line: #e9e3d8;
+  --line-cool: #dee1e6;
+  --cream: #fbfbf8;
+  --wash: #f6f7f9;
+  --clay: #c9785a;
+  --clay-deep: #b0603f;
+  --clay-tint: #e8d8ce;
+  --slate: #7285a5;
+  --slate-tint: #d9e0ea;
+  --steel: #4b5563;
+  --blue: #5e7191;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  /* Without this Chrome drops every background fill and border tint. */
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  font-size: 9.6pt;
+  line-height: 1.56;
+  color: var(--muted);
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── The page ─────────────────────────────────────────────────────────────
+   296.9mm, a tenth of a millimetre under A4. At exactly 297mm Chrome
+   intermittently rounds up and emits a trailing blank page. */
+.page {
+  position: relative;
+  width: 210mm;
+  height: 296.9mm;
+  padding: 18mm 20mm 14mm;
+  background: #fff;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  page-break-after: always;
+  break-after: page;
+}
+.page:last-child {
+  page-break-after: auto;
+  break-after: auto;
+}
+
+/* ── Running header and footer ────────────────────────────────────────────
+   Repeated inside every .page rather than declared as @page margin boxes,
+   because Chrome does not implement CSS margin boxes at all: the rules are
+   parsed and silently ignored. */
+.phead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10mm;
+  padding-bottom: 4.5mm;
+  margin-bottom: 8mm;
+  border-bottom: 0.8pt solid var(--line);
+  flex: none;
+}
+.phead img {
+  /* 30mm from a 646px source is 547dpi. The 300dpi ceiling is 54.7mm.
+     Width only, never both: zigbertdesign.md forbids distorting the logo. */
+  width: 30mm;
+  height: auto;
+  align-self: flex-start;
+}
+.phead .doc {
+  font-family: "Poppins", ui-sans-serif, sans-serif;
+  font-size: 7.2pt;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: right;
+  padding-top: 1mm;
+}
+
+.pfoot {
+  margin-top: auto; /* pins to the bottom of the fixed page */
+  padding-top: 4mm;
+  border-top: 0.5pt solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 6mm;
+  font-size: 7pt;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--subtle);
+  flex: none;
+}
+.pfoot .pno {
+  font-weight: 600;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.pbody {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+/* ── Type ─────────────────────────────────────────────────────────────────
+   break-after: avoid on headings so a heading never strands at a page foot.
+   With fixed pages that cannot technically happen, but it costs nothing and
+   protects the layout if a page is ever allowed to reflow. */
+h1,
+h2,
+h3 {
+  font-family: "Poppins", ui-sans-serif, sans-serif;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  break-after: avoid-page;
+  page-break-after: avoid;
+  margin: 0;
+}
+h1 {
+  font-size: 26pt;
+  line-height: 1.04;
+  font-weight: 700;
+}
+h2 {
+  font-size: 13pt;
+  line-height: 1.2;
+  font-weight: 600;
+  margin-top: 7mm;
+  margin-bottom: 2.5mm;
+}
+h3 {
+  font-size: 10pt;
+  line-height: 1.25;
+  font-weight: 600;
+  margin-top: 5mm;
+  margin-bottom: 1.5mm;
+}
+h2:first-child,
+h3:first-child {
+  margin-top: 0;
+}
+
+p {
+  margin: 0 0 3mm;
+  orphans: 3;
+  widows: 3;
+}
+p:last-child {
+  margin-bottom: 0;
+}
+
+.eyebrow {
+  font-family: "Poppins", ui-sans-serif, sans-serif;
+  font-size: 7.4pt;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--clay-deep);
+  margin: 0 0 3mm;
+}
+
+.lede {
+  font-size: 11pt;
+  line-height: 1.5;
+  color: var(--muted);
+  margin: 4mm 0 0;
+}
+
+strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+a {
+  color: var(--clay-deep);
+  text-decoration: none;
+}
+
+ul,
+ol {
+  margin: 0 0 3mm;
+  padding-left: 5mm;
+}
+li {
+  margin-bottom: 1.4mm;
+  orphans: 3;
+  widows: 3;
+}
+li::marker {
+  color: var(--slate);
+}
+
+/* ── Blocks that must never split ─────────────────────────────────────── */
+.card,
+.callout,
+table,
+figure,
+blockquote,
+.kv,
+.deftable {
+  break-inside: avoid-page;
+  page-break-inside: avoid;
+}
+
+.card {
+  background: #fff;
+  border: 0.7pt solid var(--line-cool);
+  border-radius: 3mm;
+  padding: 5mm 5.5mm;
+  margin: 0 0 4mm;
+}
+.card.wash {
+  background: var(--wash);
+  border-color: var(--line-cool);
+}
+
+/* Clay is the rare highlight, so it earns a left rule and nothing else. */
+.callout {
+  background: var(--cream);
+  border-left: 1mm solid var(--clay);
+  border-radius: 0 2mm 2mm 0;
+  padding: 4.5mm 5.5mm;
+  margin: 0 0 4mm;
+}
+.callout h3 {
+  margin-top: 0;
+}
+
+/* ── Tables ───────────────────────────────────────────────────────────── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 4mm;
+  font-size: 8.6pt;
+}
+thead {
+  /* Repeat headers if a table is ever allowed to span pages. */
+  display: table-header-group;
+}
+th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--muted);
+  font-size: 7.4pt;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0 3mm 1.8mm 0;
+  border-bottom: 0.7pt solid var(--line-cool);
+  vertical-align: bottom;
+}
+td {
+  padding: 2mm 3mm 2mm 0;
+  border-bottom: 0.4pt solid var(--line);
+  vertical-align: top;
+  color: var(--muted);
+}
+tr:last-child td {
+  border-bottom: none;
+}
+td:first-child {
+  color: var(--ink);
+  font-weight: 500;
+}
+td.num,
+th.num {
+  text-align: right;
+  padding-right: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Definition table: term in the left column, meaning in the right. */
+.deftable td:first-child {
+  width: 38mm;
+  font-family: "Poppins", ui-sans-serif, sans-serif;
+  font-weight: 600;
+  font-size: 8.8pt;
+  color: var(--ink);
+}
+
+/* ── Small parts ──────────────────────────────────────────────────────── */
+.chip {
+  display: inline-block;
+  font-size: 7.2pt;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 0.6mm 2mm;
+  border-radius: 6mm;
+  background: var(--slate-tint);
+  color: #3d4c66;
+  white-space: nowrap;
+}
+.chip.clay {
+  background: var(--clay-tint);
+  color: var(--clay-deep);
+}
+
+.rule {
+  height: 0;
+  border-top: 0.5pt solid var(--line);
+  margin: 5mm 0;
+}
+
+.cols2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5mm 7mm;
+}
+
+.note {
+  font-size: 8pt;
+  line-height: 1.5;
+  color: var(--subtle);
+}
+
+/* ── Quartile range diagram ───────────────────────────────────────────────
+   Drawn DELIBERATELY WITHOUT COLOUR. The three surfaces colour these bands
+   three different ways and the document's job is to reconcile that in words,
+   not to invent a fourth palette that matches none of them. */
+.range {
+  margin: 6mm 0 5mm;
+  break-inside: avoid-page;
+}
+.range-track {
+  position: relative;
+  height: 10mm;
+  display: flex;
+  border-radius: 1.2mm;
+  overflow: hidden;
+  border: 0.5pt solid var(--line-cool);
+}
+/* Band names sit INSIDE the band they name. Placed underneath, they read as
+   labels for the tick marks below them instead. */
+.range-track span {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 7pt;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.range-track div {
+  flex: 1 1 0;
+  border-right: 0.5pt solid var(--line-cool);
+}
+.range-track div:last-child {
+  border-right: none;
+}
+.range-track .b1 { background: #fff; }
+.range-track .b2 { background: var(--wash); }
+.range-track .b3 { background: #eceff4; }
+.range-track .b4 { background: #fff; }
+
+/* Tick labels sit under the three boundaries, at 25/50/75% of the track. */
+.range-ticks {
+  position: relative;
+  height: 11mm;
+  margin-top: 1mm;
+}
+.range-ticks span {
+  position: absolute;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 7.4pt;
+  line-height: 1.3;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.range-ticks span b {
+  display: block;
+  font-family: "Poppins", sans-serif;
+  font-size: 8.4pt;
+  font-weight: 600;
+  color: var(--ink);
+}
+.range-ticks span::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -3.5mm;
+  width: 0;
+  height: 3mm;
+  border-left: 0.7pt solid var(--slate);
+}
+
+/* ── Cover page ───────────────────────────────────────────────────────── */
+.page.cover {
+  padding: 24mm 20mm 14mm;
+}
+.cover .spacer {
+  flex: 1 1 auto;
+}
+.cover h1 {
+  font-size: 34pt;
+  letter-spacing: -0.025em;
+  max-width: 150mm;
+}
+.cover .meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2mm 5mm;
+  margin-top: 8mm;
+  font-size: 8.4pt;
+  color: var(--muted);
+}
+.cover .meta span {
+  white-space: nowrap;
+}
+.cover .logo-lg {
+  /* 46mm is 357dpi from the 646px source: comfortably inside the 300dpi
+     ceiling of 54.7mm. Do not enlarge past that without rebuilding the
+     lockup in CSS. */
+  width: 46mm;
+  height: auto;
+}
+
+/* An unresolved [[TO CONFIRM]] in a --draft build. Deliberately loud: this must
+   be impossible to miss on a page someone is proofreading. */
+.todo {
+  background: #fff3cd;
+  border-bottom: 1.2pt solid #b7791f;
+  color: #7a5210;
+  font-weight: 600;
+  padding: 0 0.8mm;
+}

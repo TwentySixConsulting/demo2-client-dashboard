@@ -8,3 +8,12 @@ server/public
 vite.config.ts.*
 *.tar.gz
 .vercel
+
+# Client-document and video build outputs. fonts.css is deliberately NOT here:
+# it is a build INPUT (regenerating it needs the network, the PDF build must not).
+reporting/pdf/build/
+reporting/pdf/out/
+reporting/pdf/assets/
+reporting/video/out/
+reporting/video/fontcache/
+__pycache__/
