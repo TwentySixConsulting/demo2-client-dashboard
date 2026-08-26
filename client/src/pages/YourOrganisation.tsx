@@ -340,7 +340,11 @@ export function YourOrganisation() {
                       reviewCount ? `${reviewCount} benefit${reviewCount > 1 ? "s" : ""} under review` : "",
                     ].filter(Boolean).join(" · ")}
                   </p>
-                  <p className="text-[12px] mt-0.5" style={{ color: "#8a6414" }}>With your TwentySix consultant. Typical turnaround is 3 to 5 working days.</p>
+                  {/* 48 hours, matching zigbert.co.uk ("your dashboard ready within
+                      48 hours of uploading your roles") and the onboarding pack. This
+                      said 3 to 5 working days, which was the only turnaround figure
+                      anywhere in the product and it contradicted the public promise. */}
+                  <p className="text-[12px] mt-0.5" style={{ color: "#8a6414" }}>With your TwentySix consultant. Typical turnaround is 48 hours.</p>
                 </div>
               </div>
               <Button type="button" variant="outline" className="gap-1.5 shrink-0" style={{ borderColor: `${WATCH}55`, color: "#7c5410" }} onClick={() => toast({ title: "Update requested", description: "Your TwentySix consultant has been notified. We'll be in touch shortly." })}>
