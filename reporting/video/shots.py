@@ -78,9 +78,11 @@ CLIPS = [
                 # One shot, two facts. A separate shot for the roles split showed
                 # an identical frame, so the caption promised a move the camera
                 # never made.
-                "caption": "Every time you sign in, one sentence tells you where you stand, "
-                           "with your roles split against the market beside it. "
-                           "Both are generated from your own data.",
+                "captions": [
+                    "Every time you sign in, one sentence tells you where you stand.",
+                    "With your roles split against the market beside it.",
+                    "Both are generated from your own data.",
+                ],
                 "actions": [{"do": "hold", "ms": 4200}],
             },
             {
@@ -97,8 +99,10 @@ CLIPS = [
                 "id": "attention",
                 "url": "/",
                 "storage": QUIET,
-                "caption": "Then the part most people start with: what needs attention, "
-                           "ranked from your data rather than chosen by us.",
+                "captions": [
+                    "Then the part most people start with.",
+                    "What needs attention, ranked from your data rather than ours.",
+                ],
                 "actions": [
                     {"do": "scroll", "to": "[data-tour='attention']", "ms": 1000},
                     {"do": "hold", "ms": 3200},
@@ -141,16 +145,20 @@ CLIPS = [
                 "id": "today",
                 "url": "/pay/",
                 "storage": QUIET,
-                "caption": "Your overall position, the roles below market, "
-                           "and what your pay bill comes to.",
+                "captions": [
+                    "Your overall position and the roles below market.",
+                    "Plus what your pay bill comes to.",
+                ],
                 "actions": [{"do": "hold", "ms": 3000}],
             },
             {
                 "id": "search",
                 "url": "/pay/",
                 "storage": QUIET,
-                "caption": "Search any job title to see exactly where its pay "
-                           "sits inside the market range.",
+                "captions": [
+                    "Search any job title.",
+                    "See exactly where its pay sits inside the market range.",
+                ],
                 "actions": [
                     {"do": "cursor", "sel": "[data-testid='today-search']"},
                     {"do": "hold", "ms": 2400},
@@ -160,8 +168,10 @@ CLIPS = [
                 "id": "role-by-role",
                 "url": "/pay/role-details",
                 "storage": QUIET,
-                "caption": "Every role on its own range, with a marker showing "
-                           "where you sit. Lower quartile, median, upper quartile.",
+                "captions": [
+                    "Every role sits on its own market range.",
+                    "Lower quartile, median, upper quartile, and where you actually pay.",
+                ],
                 "actions": [{"do": "hold", "ms": 3400}],
             },
             {
@@ -171,8 +181,10 @@ CLIPS = [
                 # Top: Step 2's lower quartile / median / upper quartile buttons
                 # are bottom-centre and they are what the caption is describing.
                 "caption_pos": "top",
-                "caption": "And the part worth the subscription: model what it "
-                           "would cost to move roles to market, before you commit to a budget.",
+                "captions": [
+                    "Model what it would cost to move roles to market.",
+                    "Before you commit to a budget.",
+                ],
                 "actions": [{"do": "hold", "ms": 3800}],
             },
         ],
@@ -206,8 +218,10 @@ CLIPS = [
                 "id": "scorecard",
                 "url": "/benefits/",
                 "storage": QUIET,
-                "caption": "A scorecard across all six categories, then the detail "
-                           "behind each one down the left.",
+                "captions": [
+                    "A scorecard across all six categories.",
+                    "Then the detail behind each one, down the left.",
+                ],
                 "actions": [
                     {"do": "scroll", "to": "#bx-scorecard", "ms": 1000},
                     {"do": "hold", "ms": 2800},
@@ -217,8 +231,10 @@ CLIPS = [
                 "id": "category",
                 "url": "/benefits/",
                 "storage": QUIET,
-                "caption": "Each benefit against the market quartiles, "
-                           "with the reasoning rather than just a score.",
+                "captions": [
+                    "Each benefit against the market quartiles.",
+                    "With the reasoning, not just a score.",
+                ],
                 "actions": [
                     {"do": "click", "sel": ".navlink[data-page='health']"},
                     {"do": "hold", "ms": 3000},
@@ -228,8 +244,10 @@ CLIPS = [
                 "id": "action-plan",
                 "url": "/benefits/",
                 "storage": QUIET,
-                "caption": "The action plan re-ranks itself depending on whether "
-                           "you want to match the market or lead it.",
+                "captions": [
+                    "The action plan re-ranks itself.",
+                    "Match the market, or lead it.",
+                ],
                 "actions": [
                     {"do": "click", "sel": ".navlink[data-page='action-plan']"},
                     {"do": "hold", "ms": 1800},
@@ -272,8 +290,10 @@ CLIPS = [
                 "id": "by-person",
                 "url": "/organisation",
                 "storage": "keep",
-                "caption": "Switch to people when several share a job title, or "
-                           "when anyone works part time. Their FTE salary is what gets compared.",
+                "captions": [
+                    "Switch to people when several share a job title.",
+                    "Their FTE salary is what gets compared to the market.",
+                ],
                 "actions": [
                     {"do": "scroll", "to": "[aria-label='View by role or by person']", "ms": 900},
                     # Actually press it. A caption that says "switch" over a shot
@@ -349,8 +369,10 @@ CLIPS = [
                 "url": "/trends",
                 "storage": QUIET,
                 "offset": 132,   # /trends has its own sticky rail; matches its LINE
-                "caption": "Inflation, unemployment and the wage floors, so your own "
-                           "figures can be read against what is moving them.",
+                "captions": [
+                    "Inflation, unemployment and the wage floors.",
+                    "So your own figures can be read against what moves them.",
+                ],
                 "actions": [{"do": "hold", "ms": 3200}],
             },
             {
@@ -358,8 +380,10 @@ CLIPS = [
                 "url": "/trends",
                 "storage": QUIET,
                 "offset": 132,
-                "caption": "Including the one that is specific to you: whether the "
-                           "incoming statutory floor overtakes your lowest-paid role.",
+                "captions": [
+                    "And one figure that is specific to you.",
+                    "Whether the incoming statutory floor overtakes your lowest-paid role.",
+                ],
                 "actions": [
                     # By heading text, not by section id: #pay is the START of the
                     # pay group, and this callout is the END of the economy one.
@@ -373,8 +397,10 @@ CLIPS = [
                 "url": "/trends",
                 "storage": QUIET,
                 "offset": 132,
-                "caption": "Then where pay pressure is building by role, "
-                           "so you know which gaps get more expensive if you wait.",
+                "captions": [
+                    "Then where pay pressure is building, role by role.",
+                    "So you know which gaps get more expensive if you wait.",
+                ],
                 "actions": [
                     {"do": "scroll", "to": "text=Pay pressure by role",
                      "ms": 1800, "offset": 150},
@@ -385,9 +411,11 @@ CLIPS = [
                 "id": "methodology",
                 "url": "/methodology",
                 "storage": QUIET,
-                "caption": "And no black box. Where every number comes from, "
-                           "why your comparator group is 47 employers and not 1.5 million, "
-                           "and who reviewed it before you saw it.",
+                "captions": [
+                    "And no black box.",
+                    "Where every number comes from, and who reviewed it.",
+                    "Why your comparator is 47 employers, not 1.5 million.",
+                ],
                 "actions": [
                     {"do": "hold", "ms": 3000},
                     # On /methodology, #benefits is section 5, which is where the

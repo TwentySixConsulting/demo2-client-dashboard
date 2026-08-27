@@ -92,26 +92,78 @@
           font-size: 12px; font-weight: 600; letter-spacing: .2em;
           text-transform: uppercase; color: ${CLAY};
         }
-        /* Headless captures no pointer, so the cursor is drawn. */
+        /* Headless Chrome renders no OS cursor, so it is drawn. An arrow reads as
+           somebody using software; the ring it replaces read as a laser pointer.
+           The hotspot is the SVG's top-left tip, so the pointer indicates the
+           target rather than covering it: hence no centring translate. */
         .cur {
-          position: fixed; left: 0; top: 0; width: 22px; height: 22px;
-          margin: -11px 0 0 -11px; border-radius: 50%;
-          border: 2px solid rgba(18,28,43,.55);
-          background: rgba(255,255,255,.35);
+          position: fixed; left: 0; top: 0;
+          width: 22px; height: 30px;
           opacity: 0;
+          transition: none;
+          will-change: transform;
         }
-        .cur::after {
-          content: ""; position: absolute; left: 50%; top: 50%;
-          width: 6px; height: 6px; margin: -3px 0 0 -3px;
-          border-radius: 50%; background: ${INK};
-        }
-        .cur.press {
-          transform: scale(.82);
-          border-color: ${CLAY};
+        .cur svg { display: block; overflow: visible; }
+        .cur .arrow, .cur .hand, .cur .beam { display: none; }
+        .cur[data-kind="default"] .arrow,
+        .cur[data-kind="pointer"] .hand,
+        .cur[data-kind="text"] .beam { display: block; }
+        /* A press dips the pointer very slightly. The old version scaled the
+           whole ring, which looked like the cursor was being squeezed. */
+        .cur.press { transform: translate(1px, 1px); }
+
+        /* Click feedback at the point of CONTACT, not on the pointer. Driven
+           frame by frame from Python so it cannot drift out of sync. */
+        .ripple {
+          position: fixed; left: 0; top: 0;
+          width: 28px; height: 28px;
+          margin: -14px 0 0 -14px;
+          border-radius: 50%;
+          border: 2px solid ${CLAY};
+          opacity: 0;
+          pointer-events: none;
         }
       </style>
       <div class="cap"></div>
-      <div class="cur"></div>
+      <div class="ripple"></div>
+      <div class="cur" data-kind="default">
+        <svg width="22" height="30" viewBox="0 0 22 30" fill="none">
+          <!-- macOS-shaped arrow. White outline first so it reads on both the
+               white canvas and the dark caption bar; ink fill over it. -->
+          <g class="arrow">
+            <path d="M1.2 1.1 L1.2 22.6 L6.9 17.2 L10.4 25.7 L14.1 24.1 L10.6 15.8 L18.3 15.4 Z"
+                  fill="#fff" stroke="#fff" stroke-width="3.2"
+                  stroke-linejoin="round" stroke-linecap="round"/>
+            <path d="M1.2 1.1 L1.2 22.6 L6.9 17.2 L10.4 25.7 L14.1 24.1 L10.6 15.8 L18.3 15.4 Z"
+                  fill="#121C2B"/>
+          </g>
+          <g class="hand" transform="translate(-4 -1)">
+            <path d="M9.5 13.2 V5.6 a1.85 1.85 0 0 1 3.7 0 v7.2
+                     m0-1.2 a1.7 1.7 0 0 1 3.4 0 v1.6
+                     m0-1.1 a1.7 1.7 0 0 1 3.4 0 v2.1
+                     m0-1.4 a1.6 1.6 0 0 1 3.2 0 v5.6
+                     c0 4.3-2.6 6.9-6.9 6.9 h-2.2
+                     c-3.6 0-4.9-1.6-6.6-4.4 l-2.6-4.4
+                     a1.85 1.85 0 0 1 3.1-2 l1.5 2.1 Z"
+                  fill="#fff" stroke="#fff" stroke-width="3.2"
+                  stroke-linejoin="round" stroke-linecap="round"/>
+            <path d="M9.5 13.2 V5.6 a1.85 1.85 0 0 1 3.7 0 v7.2
+                     m0-1.2 a1.7 1.7 0 0 1 3.4 0 v1.6
+                     m0-1.1 a1.7 1.7 0 0 1 3.4 0 v2.1
+                     m0-1.4 a1.6 1.6 0 0 1 3.2 0 v5.6
+                     c0 4.3-2.6 6.9-6.9 6.9 h-2.2
+                     c-3.6 0-4.9-1.6-6.6-4.4 l-2.6-4.4
+                     a1.85 1.85 0 0 1 3.1-2 l1.5 2.1 Z"
+                  fill="#121C2B"/>
+          </g>
+          <g class="beam" transform="translate(-3 -13)">
+            <path d="M5 2 h6 M8 2 v24 M5 26 h6"
+                  stroke="#fff" stroke-width="4.4" stroke-linecap="round"/>
+            <path d="M5 2 h6 M8 2 v24 M5 26 h6"
+                  stroke="#121C2B" stroke-width="1.8" stroke-linecap="round"/>
+          </g>
+        </svg>
+      </div>
       <div class="chapter"><u></u><b></b><i></i></div>
       <div class="wipe"></div>`;
 
@@ -127,6 +179,8 @@
 
     const cap = root.querySelector(".cap");
     const cur = root.querySelector(".cur");
+    const ripple = root.querySelector(".ripple");
+    cur.style.filter = "drop-shadow(0 2px 6px rgba(18,28,43,.35))";
     const wipe = root.querySelector(".wipe");
     const chap = root.querySelector(".chapter");
 
@@ -139,13 +193,35 @@
       if (pos !== undefined && pos !== null) cap.classList.toggle("top", pos === "top");
       if (opacity !== undefined) cap.style.opacity = String(opacity);
     };
-    window.__cur = (x, y, opacity, pressing) => {
+    window.__cur = (x, y, opacity, pressing, kind) => {
       if (x !== undefined && x !== null) {
         cur.style.left = x + "px";
         cur.style.top = y + "px";
       }
       if (opacity !== undefined) cur.style.opacity = String(opacity);
       if (pressing !== undefined) cur.classList.toggle("press", !!pressing);
+      if (kind) cur.setAttribute("data-kind", kind);
+    };
+
+    /* What the app itself would show at this point, so the drawn pointer cannot
+       disagree with the real one. Falls back to the arrow. */
+    window.__curKindAt = (x, y) => {
+      const el = document.elementFromPoint(x, y);
+      if (!el) return "default";
+      const c = getComputedStyle(el).cursor;
+      if (c === "pointer") return "pointer";
+      if (c === "text" || c === "vertical-text") return "text";
+      return "default";
+    };
+
+    /* t goes 0 -> 1 across the ripple. Scale and fade are computed here rather
+       than in a CSS transition so every frame is exact. */
+    window.__ripple = (x, y, t) => {
+      if (t === null || t === undefined) { ripple.style.opacity = "0"; return; }
+      ripple.style.left = x + "px";
+      ripple.style.top = y + "px";
+      ripple.style.transform = "scale(" + (0.4 + t * 1.5) + ")";
+      ripple.style.opacity = String(Math.max(0, 1 - t) * 0.9);
     };
     window.__wipe = (opacity) => {
       wipe.style.opacity = String(opacity);

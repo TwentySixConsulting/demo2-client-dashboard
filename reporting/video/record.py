@@ -49,12 +49,37 @@ import numpy as np  # noqa: E402
 from playwright.sync_api import sync_playwright  # noqa: E402
 
 sys.path.insert(0, str(Path(__file__).parent))
-from shots import CLIPS, FPS, ORIGIN, OUTPUT, PORT, RESET_KEYS, SCALE, VIEWPORT  # noqa: E402
+
+# Which shot list to film. shots.py is the five onboarding clips; trailer.py is
+# the single promotional film. They share every primitive in this file.
+if "--trailer" in sys.argv:
+    from trailer import CLIPS, FPS, ORIGIN, OUTPUT, PORT, RESET_KEYS, SCALE, VIEWPORT  # noqa
+else:
+    from shots import CLIPS, FPS, ORIGIN, OUTPUT, PORT, RESET_KEYS, SCALE, VIEWPORT  # noqa
 
 HERE = Path(__file__).parent
 OUT = HERE / "out"
 FONTCACHE = HERE / "fontcache"
 FONTS_CSS = HERE.parent / "pdf" / "fonts.css"
+
+# ── Pacing ────────────────────────────────────────────────────────────────
+# Comfortable subtitle speed is about 140 wpm and broadcast guidance caps around
+# 160 to 180. The first cut of the onboarding clips ran 19 of 20 captions over
+# 170, several at 280 to 400, and it read as rushed. So hold time is DERIVED from
+# the caption rather than typed by hand, and 130 sits deliberately under the band
+# because the viewer is also reading the UI, not only the words.
+READ_WPM = 130
+MAX_CAPTION_WORDS = 13   # a hard cap, asserted at load: see check_captions()
+
+
+def read_ms(text: str) -> int:
+    """How long this caption needs on screen, with a beat after the last word."""
+    return max(2200, round(len(text.split()) / READ_WPM * 60_000) + 1000)
+
+
+def wpm(text: str, ms: int) -> float:
+    return len(text.split()) / (ms / 60_000) if ms else 0.0
+
 
 # Cubic in-out. Motion that starts and stops softly reads as deliberate; linear
 # motion reads as a machine driving the page, which is what this is.
@@ -182,7 +207,7 @@ def ensure_visible(page, cam, selector: str, offset: int = 84) -> None:
     scroll_to(page, cam, selector, 620, offset=max(offset, int(vh * 0.38)))
 
 
-def cursor_to(page, cam, selector: str, ms: int = 420) -> tuple[float, float]:
+def cursor_to(page, cam, selector: str, ms: int = 520) -> tuple[float, float]:
     ensure_visible(page, cam, selector)
     box = rect_of(page, selector)
     x, y = box["x"] + box["width"] / 2, box["y"] + min(box["height"] / 2, 26)
@@ -194,8 +219,13 @@ def cursor_to(page, cam, selector: str, ms: int = 420) -> tuple[float, float]:
         t = ease(i / n)
         cx, cy = x0 + (x - x0) * t, y0 + (y - y0) * t
         page.mouse.move(cx, cy)  # so real :hover transitions fire
-        page.evaluate("([x, y]) => { window.__cur(x, y, 1, false); window.__zbCur = [x, y]; }",
-                      [cx, cy])
+        # Ask the page what cursor IT would show here, so the drawn pointer and
+        # the app can never disagree: arrow, pointing hand, or text I-beam.
+        page.evaluate(
+            "([x, y]) => { window.__cur(x, y, 1, false, window.__curKindAt(x, y));"
+            " window.__zbCur = [x, y]; }",
+            [cx, cy],
+        )
         cam.grab(page)
     return x, y
 
@@ -210,14 +240,21 @@ def click(page, cam, selector: str) -> None:
             f"A mouse click there would hit nothing."
         )
     page.evaluate("([x, y]) => window.__cur(x, y, 1, true)", [x, y])
-    cam.grab(page, 3)
-    page.mouse.click(x, y)
     cam.grab(page, 2)
-    page.evaluate("([x, y]) => window.__cur(x, y, 1, false)", [x, y])
+    page.mouse.click(x, y)
+    # The ripple expands from the point of contact over ~320ms, stepped here so
+    # every frame is exact rather than left to a CSS transition.
+    rn = frames_for(320)
+    for i in range(1, rn + 1):
+        page.evaluate("a => window.__ripple(a[0], a[1], a[2])", [x, y, i / rn])
+        if i == 2:
+            page.evaluate("([x, y]) => window.__cur(x, y, 1, false)", [x, y])
+        cam.grab(page)
+    page.evaluate("window.__ripple(null, null, null)")
     cam.grab(page, 3)
 
 
-def caption(page, cam, text: str, fade_ms: int = 220, pos: str = "bottom") -> None:
+def caption(page, cam, text: str, fade_ms: int = 360, pos: str = "bottom") -> None:
     n = frames_for(fade_ms)
     page.evaluate("a => window.__cap(a[0], 0, a[1])", [text, pos])
     for i in range(1, n + 1):
@@ -225,7 +262,7 @@ def caption(page, cam, text: str, fade_ms: int = 220, pos: str = "bottom") -> No
         cam.grab(page)
 
 
-def caption_out(page, cam, fade_ms: int = 180) -> None:
+def caption_out(page, cam, fade_ms: int = 300) -> None:
     n = frames_for(fade_ms)
     for i in range(1, n + 1):
         page.evaluate("o => window.__cap(null, o)", 1 - ease(i / n))
@@ -302,6 +339,11 @@ def run_action(page, cam, a: dict, offset: int) -> None:
         page.click(a["sel"])
         page.evaluate("([x, y]) => window.__cur(x, y, 1, true)", [x, y])
         cam.grab(page, 2)
+        rn = frames_for(280)
+        for i in range(1, rn + 1):
+            page.evaluate("v => window.__ripple(v[0], v[1], v[2])", [x, y, i / rn])
+            cam.grab(page)
+        page.evaluate("window.__ripple(null, null, null)")
         page.evaluate("([x, y]) => window.__cur(x, y, 1, false)", [x, y])
         page.fill(a["sel"], "")
         cam.grab(page, 3)
@@ -312,11 +354,66 @@ def run_action(page, cam, a: dict, offset: int) -> None:
             page.fill(a["sel"], a["text"][:i])
             cam.grab(page, per)
         cam.hold(page, a.get("ms_hold", 500))
+    elif do == "reveal":
+        # Slates stage their own content: each .r element starts hidden and is
+        # revealed in order. Stepped from here rather than by a CSS animation so
+        # the timing is exact and a frame is never caught mid-transition.
+        idx = a["n"]
+        fade = frames_for(a.get("ms", 380))
+        for i in range(1, fade + 1):
+            page.evaluate("v => window.__slate(v[0], v[1])", [idx, ease(i / fade)])
+            cam.grab(page)
+        cam.hold(page, a.get("hold", 1400))
+    elif do == "clear":
+        fade = frames_for(a.get("ms", 320))
+        for i in range(1, fade + 1):
+            page.evaluate("o => window.__slateClear(o)", 1 - ease(i / fade))
+            cam.grab(page)
     elif do == "caption":
         caption_out(page, cam)
         caption(page, cam, a["text"], pos=a.get("pos", "bottom"))
     else:
         raise SystemExit(f"Unknown action: {do}")
+
+
+def check_captions(clips) -> int:
+    """Refuse to film a caption nobody can read in the time it is on screen.
+
+    This is the guard the whole rewrite exists for. A soft convention would have
+    drifted back within a month; an assertion makes the 28-word caption
+    impossible to write rather than merely discouraged.
+    """
+    bad = []
+    for clip in clips:
+        for shot in clip["shots"]:
+            for text in shot.get("captions", []) or ([shot["caption"]] if shot.get("caption") else []):
+                n = len(text.split())
+                if n > MAX_CAPTION_WORDS:
+                    bad.append((clip["id"], shot["id"], n, text))
+    for cid, sid, n, text in bad:
+        print(f"  TOO LONG ({n}w > {MAX_CAPTION_WORDS}) {cid}/{sid}: {text}",
+              file=sys.stderr)
+    return len(bad)
+
+
+def pace_report(clips) -> int:
+    """Words, derived hold and effective wpm for every caption. Fails over 140."""
+    print(f"  {'clip':<12} {'shot':<18} {'w':>2}  {'onscreen':>8}  {'wpm':>4}")
+    worst, rows = 0.0, 0
+    for clip in clips:
+        for shot in clip["shots"]:
+            caps = shot.get("captions") or ([shot["caption"]] if shot.get("caption") else [])
+            for text in caps:
+                ms = read_ms(text)
+                r = wpm(text, ms)
+                worst = max(worst, r)
+                rows += 1
+                flag = "  <-- TOO FAST" if r > 140 else ""
+                print(f"  {clip['id']:<12} {shot['id']:<18} {len(text.split()):>2}  "
+                      f"{ms/1000:>7.1f}s  {r:>4.0f}{flag}")
+    print(f"\n  {rows} captions, worst {worst:.0f} wpm "
+          f"({'PASS' if worst <= 140 else 'FAIL'}, target <= 140)")
+    return 0 if worst <= 140 else 1
 
 
 def audit(page, clips) -> int:
@@ -351,10 +448,19 @@ def audit(page, clips) -> int:
 def main() -> int:
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
     do_audit = "--audit" in sys.argv
+    do_pace = "--pace" in sys.argv
     clips = [c for c in CLIPS if not args or c["id"] in args]
     if not clips:
         print(f"No clip matches {args}. Have: {[c['id'] for c in CLIPS]}", file=sys.stderr)
         return 1
+
+    # Captions are validated before anything else, always. A run that would
+    # produce an unreadable caption should not get as far as opening a browser.
+    if check_captions(clips):
+        print("\nRefusing to film. Split the caption, or say less.", file=sys.stderr)
+        return 1
+    if do_pace:
+        return pace_report(clips)
 
     OUT.mkdir(exist_ok=True)
     if not FONTS_CSS.exists():
@@ -420,6 +526,12 @@ def main() -> int:
                         seed(page, st)
                         page.reload(wait_until="domcontentloaded")
                     page.wait_for_function("window.__zbReady === true")
+                    if shot.get("slate"):
+                        # Slates supply their own reveal stepper, and they must
+                        # not carry the caption bar or the pointer: the words are
+                        # the page's own typography in this register.
+                        page.wait_for_function("window.__slateReady === true")
+                        page.evaluate("window.__cap('', 0)")
                     if shot.get("pre_delay_ms"):
                         page.wait_for_timeout(shot["pre_delay_ms"])
                     if shot.get("settle", True):
@@ -434,13 +546,31 @@ def main() -> int:
                     else:
                         fade_wipe(page, cam, 0.0, shot.get("wipe_ms", 260))
 
-                    if shot.get("caption"):
-                        caption(page, cam, shot["caption"],
-                                pos=shot.get("caption_pos", "bottom"))
                     offset = shot.get("offset", 84)
-                    for a in shot.get("actions", []):
-                        run_action(page, cam, a, offset)
-                    if shot.get("caption"):
+                    pos = shot.get("caption_pos", "bottom")
+
+                    # A shot may carry one caption for its whole run, or a list
+                    # of captions each of which gets its own read beat and its
+                    # own slice of the actions. Hold time is always derived.
+                    caps = shot.get("captions") or (
+                        [shot["caption"]] if shot.get("caption") else [])
+                    acts = shot.get("actions", [])
+
+                    if not caps:
+                        for a in acts:
+                            run_action(page, cam, a, offset)
+                    else:
+                        # Actions are split across captions by an optional
+                        # "after" key naming the caption index they follow.
+                        for ci, text in enumerate(caps):
+                            caption(page, cam, text, pos=pos)
+                            cam.hold(page, read_ms(text))   # read beat: nothing moves
+                            for a in acts:
+                                if a.get("after", 0) == ci:
+                                    run_action(page, cam, a, offset)
+                            cam.hold(page, 700)             # settle beat
+                            if ci < len(caps) - 1:
+                                caption_out(page, cam)
                         caption_out(page, cam)
                     fade_wipe(page, cam, 1.0, 200)
                     print(f"  ({cam.n} frames)")

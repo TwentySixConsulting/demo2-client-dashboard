@@ -1,0 +1,186 @@
+/* Zigbert trailer slates.
+ *
+ * Full-frame branded pages for the beats with no user interface: what it is used
+ * for, how the numbers are made, how to start, pricing, the close. Filmed by the
+ * same recorder as the real dashboard, so the film alternates two registers and
+ * the viewer always knows whether they are being told something or shown it.
+ *
+ * Tokens from zigbert-waitlist/zigbertdesign.md. Note this uses the true brand
+ * clay #C9785A; the June deck's accent is the darker #B0603F, so the film and the
+ * deck will not quite match. The brand doc wins.
+ */
+:root {
+  --ink: #121c2b;
+  --muted: #4b5563;
+  --subtle: #8a93a2;
+  --clay: #c9785a;
+  --clay-deep: #b0603f;
+  --line: #e9e3d8;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: #fff;
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  color: var(--muted);
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;           /* a slate never scrolls */
+}
+
+.stage {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 clamp(64px, 8vw, 150px);
+  max-width: 1240px;
+}
+
+/* Every revealable element starts hidden. The recorder steps them in order via
+   window.__slate(i, t), so timing is exact rather than left to a CSS animation
+   that a screenshot could catch halfway. */
+.r {
+  opacity: 0;
+  transform: translateY(14px);
+  will-change: opacity, transform;
+}
+
+.eyebrow {
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--clay-deep);
+  margin: 0 0 26px;
+}
+.eyebrow::before {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--clay);
+  margin-bottom: 18px;
+}
+
+h1 {
+  font-family: "Poppins", sans-serif;
+  font-size: 66px;
+  line-height: 1.06;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 0;
+  max-width: 17em;
+}
+
+.lede {
+  font-size: 29px;
+  line-height: 1.45;
+  margin: 22px 0 0;
+  max-width: 24em;
+}
+
+/* Big figure. The deck's own hierarchy: its 2,000,000 is 62pt against 14pt body. */
+.figure {
+  font-family: "Poppins", sans-serif;
+  font-size: 132px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--clay);
+  margin: 0;
+}
+.figure .unit {
+  font-family: "Inter", sans-serif;
+  font-size: 29px;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--muted);
+  margin-left: 14px;
+}
+.figcap {
+  font-size: 26px;
+  line-height: 1.4;
+  margin: 18px 0 0;
+  max-width: 22em;
+}
+
+/* Numbered blocks, each with a heading and a sentence. */
+.blocks { margin: 40px 0 0; display: flex; flex-direction: column; gap: 30px; }
+.block { display: grid; grid-template-columns: 54px 1fr; gap: 22px; align-items: start; }
+.block .n {
+  font-family: "Poppins", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--clay);
+  line-height: 1.25;
+  font-variant-numeric: tabular-nums;
+}
+.block h2 {
+  font-family: "Poppins", sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin: 0 0 7px;
+}
+.block p { font-size: 24px; line-height: 1.45; margin: 0; max-width: 30em; }
+
+/* Stacked statements, no numbers. */
+.lines { margin: 38px 0 0; display: flex; flex-direction: column; gap: 24px; }
+.lines p {
+  font-size: 31px;
+  line-height: 1.4;
+  margin: 0;
+  max-width: 27em;
+  color: var(--ink);
+  font-weight: 500;
+}
+.lines p .q { color: var(--muted); font-weight: 400; }
+
+/* A single statement alone in the frame. */
+.stage.solo { justify-content: center; align-items: flex-start; }
+.solo .statement {
+  font-family: "Poppins", sans-serif;
+  font-size: 58px;
+  line-height: 1.12;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 0;
+  max-width: 20em;
+}
+
+/* Close slate is the only centred one. */
+.stage.centre { align-items: center; text-align: center; max-width: none; }
+.centre .logo { width: 320px; height: auto; }
+.centre .tagline {
+  font-family: "Poppins", sans-serif;
+  font-size: 46px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 40px 0 0;
+}
+.centre .meta { font-size: 24px; margin: 26px 0 0; color: var(--muted); }
+.centre .url {
+  font-family: "Poppins", sans-serif;
+  font-size: 23px;
+  font-weight: 600;
+  color: var(--clay-deep);
+  margin: 10px 0 0;
+}
+
+.mark {
+  position: fixed;
+  left: 64px;
+  bottom: 52px;
+  width: 26px;
+  height: auto;
+  opacity: 0.5;
+}

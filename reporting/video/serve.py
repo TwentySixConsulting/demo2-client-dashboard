@@ -18,6 +18,10 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2] / "dist" / "public"
+# Branded full-frame pages for the beats that have no user interface (pricing,
+# how to start, the close). They live in the repo rather than in dist/public,
+# which is gitignored and wiped by every build, so they get their own mount.
+SLATES = Path(__file__).parent / "slates"
 HAS_EXT = re.compile(r"/[^/]+\.[A-Za-z0-9]+$")
 SURFACES = ("pay", "benefits")
 
@@ -25,6 +29,12 @@ SURFACES = ("pay", "benefits")
 class Handler(http.server.SimpleHTTPRequestHandler):
     def translate_path(self, path: str) -> str:
         p = path.split("?", 1)[0].split("#", 1)[0].lstrip("/")
+
+        if p.startswith("__slate/"):
+            name = p[len("__slate/"):]
+            cand = SLATES / (name if name.endswith((".html", ".css", ".js", ".png")) else name + ".html")
+            return str(cand)
+
         full = ROOT / p
         if full.is_dir() and (full / "index.html").exists():
             return str(full / "index.html")
@@ -41,6 +51,14 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 
     def log_message(self, *args) -> None:  # quiet
         pass
+
+    def handle_one_request(self):
+        # The browser drops connections mid-response routinely; the resulting
+        # BrokenPipeError traceback is noise, not a failure.
+        try:
+            super().handle_one_request()
+        except (BrokenPipeError, ConnectionResetError):
+            self.close_connection = True
 
 
 def main() -> int:
