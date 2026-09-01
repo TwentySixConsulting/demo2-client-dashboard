@@ -36,6 +36,11 @@ DOC = Template("""<!doctype html>
 <link rel="stylesheet" href="../brand.css">
 </head>
 <body>
+{%- if doc.bare %}
+<section class="page onepager">
+{{ pages[0].html }}
+</section>
+{%- else %}
 {%- for page in pages %}
 <section class="page{{ ' cover' if loop.first and page.cover else '' }}">
   {%- if loop.first and page.cover %}
@@ -69,6 +74,7 @@ DOC = Template("""<!doctype html>
   {%- endif %}
 </section>
 {%- endfor %}
+{%- endif %}
 <script>
   /* Page numbers, authored rather than delegated. Chrome's CLI has no
      --print-to-pdf-header-template, and CSS @page margin boxes are parsed and
@@ -78,8 +84,9 @@ DOC = Template("""<!doctype html>
      runs before print. */
   const P = document.querySelectorAll('.page');
   P.forEach((p, i) => {
-    p.querySelector('.pno').textContent = i + 1;
-    p.querySelector('.ptot').textContent = P.length;
+    const no = p.querySelector('.pno'), tot = p.querySelector('.ptot');
+    if (no) no.textContent = i + 1;
+    if (tot) tot.textContent = P.length;
   });
 </script>
 </body>
@@ -98,8 +105,13 @@ def fill(text: str) -> str:
     return TOKEN.sub(lambda m: FIGURES[m.group(1)], text)
 
 
-def main(draft: bool = False) -> int:
-    """draft=True renders unconfirmed placeholders instead of refusing to build."""
+def main(draft: bool = False, only: list[str] | None = None) -> int:
+    """draft=True renders unconfirmed placeholders instead of refusing to build.
+
+    only=[slug,...] builds just those documents. Without it, one document holding
+    an unresolved placeholder blocks every other document in the manifest, which
+    is unhelpful when the blocked one is waiting on someone else.
+    """
     if BUILD.exists():
         shutil.rmtree(BUILD)
     BUILD.mkdir(parents=True)
@@ -108,6 +120,8 @@ def main(draft: bool = False) -> int:
     md = markdown.Markdown(extensions=["tables", "attr_list", "md_in_html", "sane_lists"])
 
     for doc in DOCS:
+        if only and doc["slug"] not in only:
+            continue
         raw = []
         for name in doc["sources"]:
             p = CONTENT / name
@@ -169,4 +183,5 @@ def main(draft: bool = False) -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(main(draft="--draft" in sys.argv))
+    _slugs = [a for a in sys.argv[1:] if not a.startswith("--")]
+    raise SystemExit(main(draft="--draft" in sys.argv, only=_slugs or None))

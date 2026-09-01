@@ -50,7 +50,9 @@ export const METHODOLOGY_SECTIONS: MethodSection[] = [
     paras: [
       "Zigbert is built on real job adverts, collected every day from dozens of UK job boards, both the big generalist platforms and specialist boards.",
       "Each posting we capture records the job title, employer, location, full description, advertised salary where it is disclosed, employment type and date. That adds up to a current database of over 1.5 million UK salary records, growing every day. Where the same role is advertised in several locations we keep each one, so genuine regional pay differences are captured rather than averaged away.",
-      "Because it is built from live adverts rather than an annual survey, the picture moves with the market in real time. Traditional salary surveys rely on a smaller pool of employers volunteering figures once a year, so they are often months out of date by the time they are published. Zigbert reflects what employers are actually offering now, across far more roles and organisations, so you can see pay shifting before it costs you a hire.",
+      "Because it is built from live adverts rather than an annual survey, the picture moves with the market in real time. Zigbert reflects what employers are actually offering now, across far more roles and organisations, so you can see pay shifting before it costs you a hire.",
+      "It is worth being direct about how that compares with a salary survey, because it is the first question most people ask. Surveys are collected once or twice a year and are often out of date before they reach you. They are self-reported, frequently by whoever in an overstretched reward team has least on that week. And they tell you only what the participating organisations pay, which skews large and established: run two surveys side by side for the same role and you will get two different answers.",
+      "Advert data is current, far higher in volume, and it is what your candidates and your own employees can already see. Its real weakness is classification rather than honesty, and classification is the part we do for you, checked by a person.",
       "Long before any of this was automated our team built the dataset by hand, so it reaches back over the past decade rather than only today's market. That history is what lets us show how pay has moved over time instead of only a snapshot.",
     ],
     sources: {
@@ -182,6 +184,7 @@ export const METHODOLOGY_SECTIONS: MethodSection[] = [
           "You need a full pay structure review rather than role-by-role rates",
           "Recruitment is failing in a way the market rate does not explain",
           "You want costed recommendations and support implementing them",
+          "You need a pay structure built, not just benchmarked",
           "You are going through an organisational restructure",
         ],
       },

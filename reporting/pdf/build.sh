@@ -28,10 +28,16 @@ cp -f "$HERE/../../client/public/shell/zigbert-logo.png" "$HERE/assets/" 2>/dev/
 # client one sitting in the same folder.
 DRAFT=""
 SUFFIX=""
-if [ "${1:-}" = "--draft" ]; then DRAFT="--draft"; SUFFIX="-DRAFT"; fi
+SLUGS=""
+for a in "$@"; do
+  case "$a" in
+    --draft) DRAFT="--draft"; SUFFIX="-DRAFT" ;;
+    *) SLUGS="$SLUGS $a" ;;
+  esac
+done
 
 echo "Rendering HTML..."
-python3 "$HERE/render.py" $DRAFT
+python3 "$HERE/render.py" $DRAFT $SLUGS
 
 echo "Checking for silent overflow..."
 python3 "$HERE/verify.py" overflow
@@ -52,11 +58,13 @@ render() {  # render <slug> <output.pdf>
 }
 
 echo "Printing PDFs..."
-python3 - "$HERE" <<'PY' | while IFS='|' read -r slug out; do
+python3 - "$HERE" $SLUGS <<'PY' | while IFS='|' read -r slug out; do
 import sys; sys.path.insert(0, sys.argv[1])
 from manifest import DOCS
+want = sys.argv[2:]
 for d in DOCS:
-    print(f"{d['slug']}|{d['out']}")
+    if not want or d["slug"] in want:
+        print(f"{d['slug']}|{d['out']}")
 PY
   out="${out%.pdf}${SUFFIX}.pdf"
   render "$slug" "$out"

@@ -20,6 +20,9 @@ We also need four things about the organisation once, at the start: its name, it
 
 **The dashboard, for ones and twos.** Once you are set up, **Add a role** on Your Organisation does the same job for a single role, and is the quicker route when you are hiring into something new.
 
+Benefits benchmarking is included in every package. Gender pay gap analysis follows as an
+add-on by the end of 2026.
+
 Headcount per role is optional but worth giving us. It lets us show your total pay bill and model what a pay review would actually cost, rather than only where each role sits.
 
 <!-- page -->

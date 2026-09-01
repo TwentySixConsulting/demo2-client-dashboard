@@ -43,6 +43,19 @@ CLIENT = "Brighton Technologies"
 
 DOCS = [
     {
+        # A single designed side of A4. "bare" means render_py emits one page with
+        # no cover, no running header and no page number: a one-pager that says
+        # "Page 1 of 1" is telling the reader something they can see.
+        "slug": "one-pager",
+        "out": "Zigbert-One-Pager.pdf",
+        "bare": True,
+        "doc_label": "One pager",
+        "eyebrow": "",
+        "title": "Zigbert one-pager",
+        "lede": "",
+        "sources": ["one_pager.md"],
+    },
+    {
         "slug": "confidentiality",
         "out": "Zigbert-Your-Data.pdf",
         "doc_label": "Your data",
