@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 """Record the Zigbert walkthrough clips. Holds no content: see shots.py.
 
-    python3 record.py                 # all clips
-    python3 record.py 02-pay          # one clip
-    python3 record.py --audit         # check every selector resolves, film nothing
+    python3 record.py                      # the five onboarding clips
+    python3 record.py --film showcase      # the 1-minute trailer
+    python3 record.py --film trailer       # the 3-minute explainer
+    python3 record.py 02-pay               # one clip
+    python3 record.py --film showcase --audit   # selectors only, film nothing
+    python3 record.py --film showcase --pace    # reading speed of every caption
 
 HOW IT WORKS, and why not the obvious way.
 
@@ -50,12 +53,36 @@ from playwright.sync_api import sync_playwright  # noqa: E402
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-# Which shot list to film. shots.py is the five onboarding clips; trailer.py is
-# the single promotional film. They share every primitive in this file.
-if "--trailer" in sys.argv:
-    from trailer import CLIPS, FPS, ORIGIN, OUTPUT, PORT, RESET_KEYS, SCALE, VIEWPORT  # noqa
-else:
-    from shots import CLIPS, FPS, ORIGIN, OUTPUT, PORT, RESET_KEYS, SCALE, VIEWPORT  # noqa
+# Which shot list to film, chosen by `--film <name>` which imports <name>.py:
+#   shots     the five per-area onboarding clips
+#   trailer   the long explainer, ~3 minutes
+#   showcase  the short trailer, ~1 minute
+# Every film shares every primitive in this file. `--trailer` is kept as an alias
+# because it is in the README and in muscle memory.
+def _film_name(argv: list[str]) -> str:
+    if "--trailer" in argv:
+        return "trailer"
+    if "--film" in argv:
+        i = argv.index("--film")
+        if i + 1 < len(argv):
+            return argv[i + 1]
+        raise SystemExit("--film needs a name, e.g. --film showcase")
+    return "shots"
+
+
+_FILM = _film_name(sys.argv)
+try:
+    _mod = __import__(_FILM)
+except ModuleNotFoundError:
+    raise SystemExit(
+        f"No film called '{_FILM}'. Available: "
+        + ", ".join(sorted(p.stem for p in Path(__file__).parent.glob("*.py")
+                           if p.stem not in {"record", "serve"}))
+    )
+CLIPS = _mod.CLIPS
+FPS, ORIGIN, OUTPUT = _mod.FPS, _mod.ORIGIN, _mod.OUTPUT
+PORT, RESET_KEYS = _mod.PORT, _mod.RESET_KEYS
+SCALE, VIEWPORT = _mod.SCALE, _mod.VIEWPORT
 
 HERE = Path(__file__).parent
 OUT = HERE / "out"
@@ -447,6 +474,8 @@ def audit(page, clips) -> int:
 
 def main() -> int:
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    if _FILM in args:          # the value of --film is not a clip id
+        args.remove(_FILM)
     do_audit = "--audit" in sys.argv
     do_pace = "--pace" in sys.argv
     clips = [c for c in CLIPS if not args or c["id"] in args]

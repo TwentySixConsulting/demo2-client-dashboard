@@ -184,3 +184,15 @@ h1 {
   height: auto;
   opacity: 0.5;
 }
+
+/* The showcase's closing card carries the price, since that film has no pricing
+   slate of its own. Clay, but smaller than a .figure: it is a fact on a card,
+   not the point of the frame. */
+.centre .price {
+  font-family: "Poppins", sans-serif;
+  font-size: 27px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--clay);
+  margin: 24px 0 0;
+}

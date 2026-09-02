@@ -1,22 +1,44 @@
 # Video
 
-Two films, one pipeline.
+Three films, one pipeline.
 
-| Film | Source | Output | Length |
-|---|---|---|---|
-| **Trailer** — one film for prospects | `trailer.py` | `out/Zigbert-Trailer.mp4` | ~2m57s |
-| **Onboarding clips** — five, one per area | `shots.py` | `out/Zigbert-0N-*.mp4` | ~20-26s each |
+| Film | Source | Output | Length | For |
+|---|---|---|---|---|
+| **Showcase** | `showcase.py` | `out/Zigbert-Showcase.mp4` | ~67s | A website hero or LinkedIn. What the thing *is*. |
+| **Trailer** | `trailer.py` | `out/Zigbert-Trailer.mp4` | ~2m57s | Someone who has asked how it works. |
+| **Onboarding clips** — five, one per area | `shots.py` | `out/Zigbert-0N-*.mp4` | ~60-81s each | New clients at handover. |
+
+The film is chosen by `--film <name>`, which imports `<name>.py` from this directory
+and reads its `CLIPS`. `--trailer` is kept as an alias, and no flag means `shots`.
 
 ```
-python3 ../pdf/build_fonts.py          # once; the PDFs need it too
-cd ../.. && npx vite build             # films dist/public, never the dev server
+python3 ../pdf/build_fonts.py             # once; the PDFs need it too
+cd ../.. && npx vite build                # films dist/public, never the dev server
 cd reporting/video
-python3 record.py --trailer --pace     # reading speed of every caption
-python3 record.py --trailer --audit    # every selector resolves, ~1 min
-python3 record.py --trailer            # the trailer, ~5 min
-python3 record.py                      # the five onboarding clips
-python3 record.py 04-organisation      # just one
+python3 record.py --film showcase --pace  # reading speed of every caption
+python3 record.py --film showcase --audit # every selector resolves, ~1 min
+python3 record.py --film showcase         # ~3 min
+python3 record.py --film trailer          # ~5 min
+python3 record.py                         # the five onboarding clips
+python3 record.py 04-organisation         # just one
 ```
+
+## Showcase vs trailer
+
+They are different films for different jobs, not two lengths of one film. The trailer
+answers *how does it work, what does it cost, how do I start*, which makes it an
+explainer; watched back, it reads as an onboarding tutorial. The showcase shows what
+the product is and stops: Pay, Benefits, your own organisation, built round the two
+interactions that landed best, searching and adding a role.
+
+**Short does not mean fast.** The 130 wpm formula and the 13-word cap below are
+identical in both. Length comes out of the **word count**: the showcase runs 5
+captions of 5 to 7 words against the trailer's 9 of 9 to 11, so read beats cost 18s
+instead of 48s and over half its runtime is the product moving. Its first cut came in
+at 77s and got to 67 by cutting discretionary holds and deleting the one caption the
+footage already said ("Search any role." over a box whose placeholder reads *Search a
+role, e.g. Software Engineer*). Trimming a hold is safe; raising the reading rate is
+the thing that produced the complaint in the first place.
 
 ## Pacing is enforced, not advised
 
@@ -37,7 +59,7 @@ its own read beat, and actions attach to a caption by index with `"after": n`.
 
 ## Two registers
 
-The trailer alternates **slates** (`slates/*.html`, full-frame branded pages where
+Both films alternate **slates** (`slates/*.html`, full-frame branded pages where
 the words are the page's own typography) with **product footage** (words in the dark
 caption bar). The viewer always knows whether they are being told something or shown
 something, and it gives pricing, the data method and the close a place to live, none
@@ -83,17 +105,38 @@ indicates the target rather than covering it.
   print dialog hangs the recorder), or the PNG/CSV exports (no viewport feedback).
 - **`Add a role` only renders in role mode**, so that shot must not inherit a
   `zigbert:pay-view-mode` of `person` from an earlier one.
+- **The Home "Getting started" checklist fails silently.** Its mount is a bare
+  `<div data-zigbert-tour-checklist>` that `tour.js` fills in, and
+  `[data-zigbert-tour-checklist]:empty { display: none }` collapses it without a
+  gap. So a wrong seed loses the beat with no error and no visible hole. It needs
+  `zigbert:tour-checklist-off` **absent** and fewer than five truthy keys in
+  `zigbert:tour-done` — the showcase's usual `QUIET` seed satisfies neither, which
+  is why that one shot has its own `PARTIAL`. Give it ~1200ms of `pre_delay_ms`
+  too; it renders after load.
+- **Radix scroll-locks the body while a drawer is open** (`data-scroll-locked`), so
+  `scroll` and `scroll_top` silently do nothing in a shot that has one open.
 - **`clientConfig.sampleData` is build-time** and baked into the vendored Pay bundle
   and the Benefits HTML. The "Illustrative sample data" chip is left visible on
   purpose: Brighton Technologies is a demo org and the chip is honest.
 
 ## Claims on screen
 
-The trailer states pricing (**from £250 per month**, charity discount) which exists
-in **no repo**: zigbert.co.uk's FAQ currently says the price is not public, the June
-deck marks pricing "Beta / Draft / For Discussion", and `theme.ts` deliberately shows
-no amounts. That was a client decision. The site FAQ and the Zigbot answer need
-updating in the same week the video ships.
+Both films state pricing (**from £250 a month**; the trailer also names the charity
+discount) which exists in **no repo**: zigbert.co.uk's FAQ currently says the price
+is not public, the June deck marks pricing "Beta / Draft / For Discussion", and
+`theme.ts` deliberately shows no amounts. That was a client decision. The site FAQ
+and the Zigbot answer need updating in the same week either video ships.
+
+Both close cards say **Live 24 September 2026**, matching the one-pager.
+`zigbert-launch-plan` says Saturday the 26th. Still unresolved.
+
+The showcase's support slate claims **"A short video for every area too."** Nothing
+in the product or the marketing site says this; it is backed only by the five
+onboarding clips in this directory, so those have to ship with it. What *is* already
+true and already on screen is the tour system: the first-run card says verbatim
+"Each area has its own short tour when you get there", and the Home checklist names
+all five areas with their durations, which is why the caption over that frame says
+**tutorial** rather than video.
 
 Deliberately careful elsewhere: **"over 1.5 million records"** is framed as our
 curation input, never as a database the client browses; **monthly refresh** is stated
