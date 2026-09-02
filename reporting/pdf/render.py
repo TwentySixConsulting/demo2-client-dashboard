@@ -26,6 +26,10 @@ ASSETS = HERE / "assets"
 PAGE_BREAK = re.compile(r"^\s*<!--\s*page\s*-->\s*$", re.M)
 TOCONFIRM = re.compile(r"\[\[TO CONFIRM:([^\]]*)\]\]")
 TOKEN = re.compile(r"\{([a-z_]+)\}")
+# A run of blockquote lines plus the blank line after it. Guidance notes in a
+# template document ("replace this with your own figure"), which the editable
+# .docx keeps and the worked-example PDF drops. See manifest's board-paper entry.
+GUIDANCE = re.compile(r"^[ \t]*>.*(?:\n[ \t]*>.*)*\n?", re.M)
 
 DOC = Template("""<!doctype html>
 <html lang="en-GB">
@@ -132,6 +136,18 @@ def main(draft: bool = False, only: list[str] | None = None) -> int:
                 raise SystemExit(f"Empty content file: {p}")
             raw.append(body)
         text = fill("\n\n<!-- page -->\n\n".join(raw))
+
+        if doc.get("drop_guidance"):
+            if not GUIDANCE.search(text):
+                raise SystemExit(
+                    f"{doc['slug']}: drop_guidance is set but the source has no "
+                    f"blockquote guidance. Either the notes were removed from the "
+                    f"markdown, in which case drop the flag, or they stopped being "
+                    f"blockquotes, in which case the .docx build is wrong too."
+                )
+            # Collapse the blank runs the removal leaves behind, or markdown
+            # renders spurious empty paragraphs between the sections.
+            text = re.sub(r"\n{3,}", "\n\n", GUIDANCE.sub("", text)).strip()
 
         # A [[TO CONFIRM: ...]] marker is a fact only the client-facing side of
         # the business can supply (hosting region, retention period, what

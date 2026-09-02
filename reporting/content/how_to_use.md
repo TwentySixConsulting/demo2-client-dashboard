@@ -1,5 +1,3 @@
-<!-- page -->
-
 ## What you have
 
 Your Zigbert dashboard is a live view of where your pay and benefits sit against the market. It is not a report that goes out of date on the shelf: the market data behind it refreshes every month, and your own figures update the moment you change them.

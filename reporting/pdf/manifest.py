@@ -35,7 +35,32 @@ FIGURES = {
     "salary_records": "1.5 million",
     "turnaround": "48 hours",
     "support_email": "hello@twentysixconsulting.co.uk",
+
+    # The board paper's worked example. These are NOT invented: they replicate
+    # payReview.ts computeReview() + targetSalary() over data.ts marketData at
+    # PrepPayReview's own default scope, which is "roles below the median,
+    # targeting median". Recompute if BASE_ROSTER or marketData changes.
+    #
+    # Cross-checks that all pass: salary_bill matches the £1.37M "Total salary
+    # bill" KPI, below_median matches "9 of 25 roles sit below market", and
+    # uplift_uq matches the £59.9k the long trailer films. uplift_lq is £0
+    # because no role sits below its lower quartile, which is also why
+    # video/README.md warns against filming the LQ target.
+    "salary_bill": "£1,365,100",
+    "below_median": "9",
+    "uplift_lq": "£0",
+    "uplift_median": "£15,400",
+    "uplift_median_pct": "1.1",
+    "uplift_uq": "£59,900",
+    "uplift_uq_pct": "4.4",
 }
+
+# NOT tokenised, deliberately: the overall market position. Pay shows +0.7% and
+# Home shows +0.4% for the same claim, because insights.ts getVerdict() takes a
+# ratio of means while Home takes a mean of ratios. Both are defensible, they
+# disagree, and until the product picks one the board paper makes the structural
+# point ("at about the median overall, with nine roles below it") rather than
+# quoting a figure a client could contradict from their own screen.
 
 # The one place the client's own name appears. reporting/draft/client.json holds
 # the same thing for the app's draft-report path; this is the document side.
@@ -75,13 +100,40 @@ DOCS = [
         "sources": ["pay_ranges_explainer.md"],
     },
     {
+        # A two-page board paper, no cover: a cover on a two-page paper is a
+        # third of the document spent on its own title. board_paper.md therefore
+        # does NOT open with <!-- page -->, so render.py gives page one a running
+        # header instead of the cover treatment.
+        #
+        # drop_guidance strips the markdown blockquotes, which carry the "replace
+        # this with your own figure" instructions. The PDF is the worked example
+        # and reads clean without them; docx/build_board_paper.py keeps them,
+        # because that is the file the client types into. One source, two
+        # audiences, no second copy of the prose to drift.
+        "slug": "board-paper",
+        "out": "Zigbert-Board-Paper-Example.pdf",
+        "drop_guidance": True,
+        "doc_label": "Board paper",
+        "eyebrow": "Template",
+        "title": "A pay review board paper",
+        "lede": "",
+        "sources": ["board_paper.md"],
+    },
+    {
+        # Source ORDER is the page order, because render.py joins sources with a
+        # page break. pack_contents.md is first and carries the leading
+        # <!-- page --> that produces the cover; how_to_use.md used to own that
+        # marker and no longer does. Do not give a second source a leading
+        # marker: two in a row make an empty chunk, which renders as a silent
+        # blank page.
         "slug": "welcome-pack",
         "out": "Zigbert-Welcome-Pack.pdf",
         "doc_label": "Getting started",
         "eyebrow": "Welcome",
         "title": "Getting started with Zigbert",
-        "lede": "What you have, what to look at first, what we need from you, "
-                "and what happens next.",
-        "sources": ["how_to_use.md", "next_steps_template.md"],
+        "lede": "What is in this pack, how the process works, what to look at "
+                "first, and what we need from you.",
+        "sources": ["pack_contents.md", "how_this_works.md",
+                    "how_to_use.md", "next_steps_template.md"],
     },
 ]

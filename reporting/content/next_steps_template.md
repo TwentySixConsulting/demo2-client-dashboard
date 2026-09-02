@@ -29,11 +29,11 @@ Headcount per role is optional but worth giving us. It lets us show your total p
 
 ## What happens next
 
-**Within {turnaround} of us receiving your roles**, your dashboard is built and ready. That is the whole of the initial setup: there is nothing to install, configure or integrate.
+Steps 4 and 5 on the process page are the ones worth understanding, because they are the part that makes the numbers defensible.
 
-What happens in between is worth knowing, because it is the part that makes the numbers defensible. Each role is matched against our database of more than {salary_records} UK salary records, narrowed to a comparator group that genuinely resembles you: **{pay_employers} technology employers** advertising comparable roles in {pay_basis}. Then a reward specialist reviews the result and confirms it makes sense before it reaches you.
+Each role is matched against our database of more than {salary_records} UK salary records, then narrowed to a comparator group that genuinely resembles you: **{pay_employers} technology employers** advertising comparable roles in {pay_basis}. A narrow comparator group is the point. A wider one would be a bigger number and a worse benchmark.
 
-That review is the point. Self-service pay tools can return results that simply do not look right, and without reward expertise it is hard to know which numbers to trust. Nobody sees a Zigbert dashboard that a specialist has not signed off.
+Then a reward specialist reviews the result and confirms it makes sense. That review is why this is not a search result. Self-service pay tools can return figures that simply do not look right, and without reward expertise it is hard to know which to trust. Nobody sees a Zigbert dashboard that a specialist has not signed off.
 
 ### Then, over the first month
 

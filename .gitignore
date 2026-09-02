@@ -14,6 +14,7 @@ vite.config.ts.*
 reporting/pdf/build/
 reporting/pdf/out/
 reporting/pdf/assets/
+reporting/docx/out/
 reporting/video/out/
 reporting/video/fontcache/
 __pycache__/

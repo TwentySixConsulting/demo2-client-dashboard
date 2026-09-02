@@ -76,3 +76,12 @@ done
 echo
 echo "Done. PDFs in $OUT"
 ls -lh "$OUT"/*.pdf | awk '{printf "  %-42s %s\n", $NF, $5}'
+
+# The board paper ships twice: this worked-example PDF, and an editable .docx
+# from the same markdown. Easy to forget the second one and send a client a
+# template they cannot type into, so say so here rather than in a README.
+if [ -z "$SLUGS" ] || printf '%s\n' $SLUGS | grep -qx "board-paper"; then
+  echo
+  echo "Reminder: the board paper also has a Word output the client edits."
+  echo "  python3 ../docx/build_board_paper.py"
+fi

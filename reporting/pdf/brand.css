@@ -643,3 +643,114 @@ th.num {
   color: var(--subtle);
 }
 .op-foot a { color: var(--clay-deep); }
+
+/* ── Template guidance notes ──────────────────────────────────────────────
+   Blockquotes in a template document carry the "replace this with your own
+   figure" instructions. The worked-example PDF drops them entirely (see
+   render.py's GUIDANCE), so these rules only bite on a --draft build and on
+   docx/build_board_paper.py's Word equivalent. Styled anyway, because an
+   unstyled blockquote in a draft is indistinguishable from body copy and that
+   is exactly the review copy somebody proofreads. */
+blockquote {
+  margin: 0 0 4mm;
+  padding: 3mm 4mm;
+  background: var(--wash);
+  border-left: 0.7pt solid var(--slate-tint);
+  border-radius: 0 1.5mm 1.5mm 0;
+  font-size: 8pt;
+  line-height: 1.5;
+  color: var(--steel);
+}
+blockquote p {
+  margin: 0 0 1.5mm;
+}
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* ── Process stage list (how_this_works.md) ───────────────────────────────
+   A four-column grid rather than a table: the owner needs to read as a chip
+   and a <td> cannot be one without fighting the table styles above. Rows are
+   deliberately tight, because the whole point of this page is that the ten
+   steps are visible at once. */
+.hw-intro {
+  font-size: 9.6pt;
+  color: var(--muted);
+  margin: 0 0 5mm;
+}
+
+.hw-phase {
+  font-family: Poppins, sans-serif;
+  font-weight: 600;
+  font-size: 7.4pt;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--clay-deep);
+  margin: 0 0 2mm;
+}
+.hw-phase + .hw-list {
+  margin-bottom: 5mm;
+}
+
+.hw-list {
+  display: grid;
+  gap: 0;
+  border-top: 0.5pt solid var(--line);
+}
+
+.hw-row {
+  display: grid;
+  grid-template-columns: 7mm 1fr 20mm 22mm;
+  align-items: baseline;
+  gap: 0 3mm;
+  padding: 2.4mm 0;
+  border-bottom: 0.5pt solid var(--line);
+  break-inside: avoid-page;
+  page-break-inside: avoid;
+}
+
+.hw-n {
+  font-family: Poppins, sans-serif;
+  font-weight: 600;
+  font-size: 8.4pt;
+  color: var(--clay);
+  text-align: right;
+}
+
+.hw-what {
+  font-size: 8.6pt;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.hw-what b {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* Who owns the step. The client's own steps are the ones worth counting, so
+   they get the clay tint and ours get the quiet grey. */
+.hw-who {
+  font-family: Poppins, sans-serif;
+  font-weight: 600;
+  font-size: 6.8pt;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 0.8mm 0;
+  border-radius: 999px;
+}
+.hw-who.you {
+  background: var(--clay-tint);
+  color: var(--clay-deep);
+}
+.hw-who.us,
+.hw-who.both {
+  background: var(--wash);
+  color: var(--subtle);
+}
+
+.hw-when {
+  font-size: 7.6pt;
+  color: var(--subtle);
+  text-align: right;
+}
