@@ -1136,10 +1136,10 @@ blockquote p:last-child {
 .invitation.signed .inv-card { padding: 4.5mm 5mm 4mm; }
 .invitation.signed .inv-card li { margin-bottom: 2.3mm; }
 .invitation.signed .inv-h2 { margin: 5mm 0 2.6mm; }
-.invitation.signed .inv-aside { margin-top: 4.5mm; }
-.invitation.signed .inv-end { margin-top: 4.5mm; padding-top: 3.5mm; }
-.invitation.signed .inv-close { margin-top: 4.5mm; padding-top: 3.5mm; }
-.invitation.signed .inv-close > p { margin-bottom: 4mm; }
+.invitation.signed .inv-aside { margin-top: 3.5mm; }
+.invitation.signed .inv-end { margin-top: 3.5mm; padding-top: 3mm; }
+.invitation.signed .inv-close { margin-top: 3.5mm; padding-top: 3mm; }
+.invitation.signed .inv-close > p { margin-bottom: 3.2mm; }
 .invitation.signed .inv-sig img { height: 9.5mm; }
 
 /* Two-tier headline for v3. The h1 ends on a colon and the sub completes the
@@ -1161,4 +1161,14 @@ blockquote p:last-child {
   letter-spacing: -0.01em;
   color: var(--clay-deep);
   margin: 2mm 0 0;
+}
+
+/* The lede and the closing note were held to 38em and 46em, which on this
+   page's 176mm of content is 75% and 82% of the width. Both stopped short of
+   the right margin while every other paragraph ran full width, so they read as
+   misaligned rather than as a deliberate measure. Full width here, matching the
+   rest of the page. Scoped so v2 keeps its narrower measure. */
+.invitation.signed .inv-note,
+.invitation.signed .inv-close > p {
+  max-width: none;
 }

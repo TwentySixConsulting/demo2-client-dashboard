@@ -5,7 +5,7 @@
 
 <h1>An invitation to test Zigbert with us:</h1>
 
-<p class="inv-sub">your organisation’s benchmarking, done for free.</p>
+<p class="inv-sub">Your organisation’s benchmarking, done for free.</p>
 
 <p class="inv-note">We are opening Zigbert to a small group of organisations before it goes
 out more widely. You get every role benchmarked and three months of the full dashboard, at
@@ -19,6 +19,7 @@ no cost. We get to see how it holds up in a real organisation rather than a demo
       <li><b>The complete dashboard for three months.</b> Pay, benefits, market trends and the pay review tools, with nothing held back.</li>
       <li><b>The benchmarks are yours to keep</b>, whatever you decide at the end.</li>
       <li><b>A direct line to us</b> the whole way through.</li>
+      <li><b>A say in what gets built next.</b></li>
     </ul>
   </div>
   <div class="inv-card inv-ask">
@@ -28,6 +29,7 @@ no cost. We get to see how it holds up in a real organisation rather than a demo
       <li><b>Your roles on a spreadsheet</b> we send you, to get us started.</li>
       <li><b>Your honest reaction</b> to what works and what does not.</li>
       <li><b>Half an hour where we watch you use it</b> for the first time.</li>
+      <li><b>A conversation about a testimonial</b> or short case study, if it feels right by the end.</li>
     </ul>
   </div>
 </div>
@@ -67,9 +69,10 @@ no cost. We get to see how it holds up in a real organisation rather than a demo
   </div>
 </div>
 
-<p class="inv-aside">To be clear about one thing: what you tell us is for us. It shapes
-what we build, fix and drop next, not a case study. If something you say would make a good
-quote we will ask you first, and you are free to say no.</p>
+<p class="inv-aside">Everything you tell us goes straight into what we build, fix and drop
+next. And if a quote or a short case study feels right by the end of the six weeks, we will
+talk it through with you then. Nothing goes out without your approval, and no is a perfectly
+good answer.</p>
 
 <div class="inv-end">
   <p><b>Then it is entirely your call.</b> Nothing happens automatically and there is
