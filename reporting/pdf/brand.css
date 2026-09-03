@@ -842,11 +842,14 @@ blockquote p:last-child {
    screenshot block. Instead: a warm ground, the offer as two facing cards, and
    a horizontal track for the six weeks.
 
-   The ground is the dashboard's own canvas colour rather than the documents'
-   near-white cream, so the invitation looks like the product it is inviting you
-   to try. html already carries print-color-adjust: exact, so it prints. */
+   White ground, like the rest of the pack. The distinctness comes from the
+   structure, not from a tinted page: two facing cards, a horizontal track and a
+   signature, none of which the one-pager has.
+
+   The cards ARE tinted, and have to be. On a white page white cards read as
+   nothing but a hairline rectangle, which loses the warmth the layout is for. */
 .onepager.invitation {
-  background: #f7f5f0;
+  background: #fff;
   padding: 15mm 17mm 12mm;
 }
 
@@ -906,8 +909,8 @@ blockquote p:last-child {
   margin: 7mm 0 0;
 }
 .inv-card {
-  background: #fff;
-  border: 0.7pt solid #e4ded1;
+  background: #faf8f3;
+  border: 0.7pt solid #eae3d8;
   border-radius: 3mm;
   padding: 5mm 5.5mm 4.5mm;
 }
@@ -995,7 +998,7 @@ blockquote p:last-child {
   height: 3mm;
   border-radius: 50%;
   background: var(--clay);
-  border: 0.7pt solid #f7f5f0;
+  border: 0.7pt solid #fff;
 }
 .inv-step-w {
   font-family: "Poppins", sans-serif;

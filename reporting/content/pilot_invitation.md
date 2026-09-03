@@ -3,22 +3,14 @@
   <span>An invitation</span>
 </div>
 
-<h1>Would you help us<br>get this right?</h1>
+<h1>An exclusive preview of Zigbert,<br>and your benchmarking on us.</h1>
 
-<p class="inv-note">Zigbert is built and working. What it needs now is for real
-organisations to use it properly and tell us honestly what we have got wrong. If that
-sounds like something you would be up for, here is the trade we are offering.</p>
+<p class="inv-note">We are opening Zigbert to a small group of organisations before it goes
+out more widely. You get every role benchmarked and three months of the full dashboard, at
+no cost. We get to see how it holds up in a real organisation rather than a demo. It is a good
+deal both ways.</p>
 
 <div class="inv-swap">
-  <div class="inv-card inv-ask">
-    <p class="inv-card-h">What we would ask of you</p>
-    <ul>
-      <li><b>Three or four hours in total</b>, spread across six weeks. Never more than half an hour at a time.</li>
-      <li><b>Your roles on a spreadsheet</b> we send you, to get us started.</li>
-      <li><b>Your honest reaction</b>, including the unflattering parts. Especially those.</li>
-      <li><b>Half an hour where we watch you use it</b> and say nothing at all.</li>
-    </ul>
-  </div>
   <div class="inv-card inv-give">
     <p class="inv-card-h">What you would get</p>
     <ul>
@@ -26,6 +18,15 @@ sounds like something you would be up for, here is the trade we are offering.</p
       <li><b>The complete dashboard for three months.</b> Pay, benefits, market trends and the pay review tools, with nothing held back.</li>
       <li><b>The benchmarks are yours to keep</b>, whatever you decide at the end.</li>
       <li><b>A direct line to us</b> the whole way through.</li>
+    </ul>
+  </div>
+  <div class="inv-card inv-ask">
+    <p class="inv-card-h">What we would ask in return</p>
+    <ul>
+      <li><b>Three or four hours in total</b>, spread across six weeks. Never more than half an hour at a time.</li>
+      <li><b>Your roles on a spreadsheet</b> we send you, to get us started.</li>
+      <li><b>Your honest reaction</b>, including the unflattering parts. Especially those.</li>
+      <li><b>Half an hour where we watch you use it</b> and say nothing at all.</li>
     </ul>
   </div>
 </div>
@@ -70,7 +71,7 @@ conversation is yours to approve word by word, and you can be anonymous if you w
 rather. And the half hour where we stay quiet is the one we learn the most from, because
 it is the only way to see what genuinely trips people up rather than what people kindly
 tell us afterwards. It takes some discipline on our part, and we would be grateful to
-anyone happy to sit through it.</p>
+anyone happy to do it.</p>
 
 <div class="inv-end">
   <p><b>Then it is entirely your call.</b> Nothing happens automatically and there is
