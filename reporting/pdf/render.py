@@ -41,7 +41,10 @@ DOC = Template("""<!doctype html>
 </head>
 <body>
 {%- if doc.bare %}
-<section class="page onepager">
+{#- page_class lets one bare document carry a different look without a second
+    template. The product testing invitation uses it: it ships alongside the
+    sales one-pager, so the two must not read as the same document. #}
+<section class="page onepager{{ ' ' ~ doc.page_class if doc.page_class else '' }}">
 {{ pages[0].html }}
 </section>
 {%- else %}

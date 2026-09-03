@@ -105,6 +105,25 @@ DOCS = [
         "sources": ["pilot_one_pager.md"],
     },
     {
+        # VERSION 2 of the invitation, kept alongside v1 rather than replacing
+        # it. It is sent WITH the sales one-pager, and v1 shared that document's
+        # whole visual vocabulary (the three-figure band, the 2x2 benefit grid,
+        # the screenshot block), so the two arrived looking like one thing said
+        # twice. This one deliberately shares none of it: cream ground, the offer
+        # as two facing cards instead of a stat band, a horizontal timeline
+        # instead of a table, no screenshot at all because the one-pager next to
+        # it already shows the product, and a signature.
+        "slug": "pilot-invitation",
+        "out": "Zigbert-Product-Testing-Invitation.pdf",
+        "bare": True,
+        "page_class": "invitation",
+        "doc_label": "An invitation",
+        "eyebrow": "",
+        "title": "An invitation to test Zigbert",
+        "lede": "",
+        "sources": ["pilot_invitation.md"],
+    },
+    {
         "slug": "confidentiality",
         "out": "Zigbert-Your-Data.pdf",
         "doc_label": "Your data",

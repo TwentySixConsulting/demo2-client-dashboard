@@ -835,3 +835,219 @@ blockquote p:last-child {
 .pl-note b {
   color: var(--ink);
 }
+
+/* ── Product testing INVITATION, v2 (pilot_invitation.md) ─────────────────
+   Sent in the same envelope as the sales one-pager, so it deliberately shares
+   none of that document's vocabulary. No op-figs stat band, no 2x2 op-grid, no
+   screenshot block. Instead: a warm ground, the offer as two facing cards, and
+   a horizontal track for the six weeks.
+
+   The ground is the dashboard's own canvas colour rather than the documents'
+   near-white cream, so the invitation looks like the product it is inviting you
+   to try. html already carries print-color-adjust: exact, so it prints. */
+.onepager.invitation {
+  background: #f7f5f0;
+  padding: 15mm 17mm 12mm;
+}
+
+.inv-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 4mm;
+  border-bottom: 0.8pt solid #e4ded1;
+}
+.inv-head img {
+  width: 32mm;
+  height: auto;
+}
+.inv-head span {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 8pt;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--clay-deep);
+}
+
+/* A question, so it wants to sit a little smaller and warmer than the
+   one-pager's statement headline. */
+.invitation h1 {
+  font-size: 25pt;
+  line-height: 1.1;
+  margin: 7mm 0 0;
+  max-width: none;
+}
+
+.inv-note {
+  font-size: 10.2pt;
+  line-height: 1.5;
+  margin: 4mm 0 0;
+  max-width: 38em;
+  color: var(--muted);
+}
+
+.inv-h2 {
+  font-family: "Poppins", sans-serif;
+  font-size: 11pt;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 7mm 0 3.5mm;
+}
+
+/* ── The trade, as two facing cards ──────────────────────────────────────
+   The whole argument of the document is that this is a fair swap, so the two
+   halves are the same size and sit at the same height. White on the warm
+   ground rather than tinted, so neither side looks like the better deal. */
+.inv-swap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5.5mm;
+  margin: 7mm 0 0;
+}
+.inv-card {
+  background: #fff;
+  border: 0.7pt solid #e4ded1;
+  border-radius: 3mm;
+  padding: 5mm 5.5mm 4.5mm;
+}
+.inv-card-h {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 9.6pt;
+  color: var(--ink);
+  margin: 0 0 2.5mm;
+  padding-bottom: 2.2mm;
+  border-bottom: 0.6pt solid var(--line);
+}
+.inv-card.inv-give .inv-card-h {
+  color: var(--clay-deep);
+  border-bottom-color: var(--clay-tint);
+}
+.inv-card ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.inv-card li {
+  position: relative;
+  font-size: 8.4pt;
+  line-height: 1.43;
+  margin: 0 0 2.6mm;
+  padding-left: 3.4mm;
+}
+.inv-card li:last-child {
+  margin-bottom: 0;
+}
+/* A dash rather than a bullet: softer, and it keeps the two cards from reading
+   as a features checklist, which is the register this document is avoiding. */
+.inv-card li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.7mm;
+  width: 1.8mm;
+  height: 0.6pt;
+  background: var(--clay);
+}
+.inv-card li b {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ── The six weeks, as a horizontal track ────────────────────────────────
+   Left to right rather than the table v1 used and the stage list the welcome
+   pack uses, so a client holding all three documents sees three different
+   things. The rule sits behind the dots and is drawn on the row, not on each
+   step, so it cannot break between columns. */
+.inv-track {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0 3.5mm;
+  align-items: stretch;
+}
+/* Each step draws the segment to its right and the last one draws none, so the
+   rule ends exactly on the final dot however many steps there are. Drawn on the
+   row instead, it overshot. */
+.inv-step:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  left: 3mm;
+  right: -3.5mm;
+  top: 1.35mm;
+  height: 0.6pt;
+  background: var(--clay-tint);
+}
+/* Flex column so the durations sit on one baseline. Step one's description runs
+   to four lines and the rest to three, which left its "30 min" hanging below the
+   others. */
+.inv-step {
+  position: relative;
+  padding-top: 5.5mm;
+  display: flex;
+  flex-direction: column;
+}
+.inv-dot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3mm;
+  height: 3mm;
+  border-radius: 50%;
+  background: var(--clay);
+  border: 0.7pt solid #f7f5f0;
+}
+.inv-step-w {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 8.2pt;
+  color: var(--ink);
+  margin: 0 0 1mm;
+}
+.inv-step-d {
+  font-size: 7.8pt;
+  line-height: 1.38;
+  margin: 0 0 1.6mm;
+  color: var(--muted);
+}
+.inv-step-t {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 7.6pt;
+  color: var(--clay-deep);
+  margin: auto 0 0;   /* auto pushes it to the bottom: see .inv-step */
+}
+
+/* Plain italic rather than v1's bordered callout: the same honesty, without a
+   second boxed element on a page that already has two cards. */
+.inv-aside {
+  font-size: 8.4pt;
+  line-height: 1.52;
+  font-style: italic;
+  color: var(--steel);
+  margin: 7mm 0 0;
+  padding-left: 4mm;
+  border-left: 0.6pt solid var(--clay-tint);
+}
+
+.inv-end {
+  margin: 7mm 0 0;
+  padding-top: 5mm;
+  border-top: 0.8pt solid #e4ded1;
+}
+.inv-end p {
+  font-size: 8.9pt;
+  line-height: 1.49;
+  margin: 0 0 2.8mm;
+}
+.inv-end b {
+  color: var(--ink);
+}
+/* The friendliest element on the page and the one the one-pager has no
+   equivalent of: a document that signs off reads as being from people. */
+.inv-sign {
+  margin: 3.5mm 0 0 !important;
+  padding-top: 3.5mm;
+  border-top: 0.6pt solid var(--line);
+  color: var(--muted);
+}
