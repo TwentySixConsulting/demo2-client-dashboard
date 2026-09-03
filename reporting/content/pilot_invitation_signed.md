@@ -19,13 +19,12 @@ no cost. We get to see how it holds up in a real organisation rather than a demo
       <li><b>The complete dashboard for three months.</b> Pay, benefits, market trends and the pay review tools, with nothing held back.</li>
       <li><b>The benchmarks are yours to keep</b>, whatever you decide at the end.</li>
       <li><b>A direct line to us</b> the whole way through.</li>
-      <li><b>A say in what gets built next.</b></li>
     </ul>
   </div>
   <div class="inv-card inv-ask">
     <p class="inv-card-h">What we would ask in return</p>
     <ul>
-      <li><b>Three or four hours in total</b>, spread across six weeks. Never more than half an hour at a time.</li>
+      <li><b>Three or four hours in total</b>, spread across six weeks.</li>
       <li><b>Your roles on a spreadsheet</b> we send you, to get us started.</li>
       <li><b>Your honest reaction</b> to what works and what does not.</li>
       <li><b>Half an hour where we watch you use it</b> for the first time.</li>
@@ -40,7 +39,7 @@ no cost. We get to see how it holds up in a real organisation rather than a demo
   <div class="inv-step">
     <span class="inv-dot"></span>
     <p class="inv-step-w">To start</p>
-    <p class="inv-step-d">You send us your roles and we benchmark them in {turnaround}.</p>
+    <p class="inv-step-d">You send your roles, we benchmark them.</p>
     <p class="inv-step-t">30 min</p>
   </div>
   <div class="inv-step">
@@ -69,16 +68,15 @@ no cost. We get to see how it holds up in a real organisation rather than a demo
   </div>
 </div>
 
-<p class="inv-aside">Everything you tell us goes straight into what we build, fix and drop
-next. And if a quote or a short case study feels right by the end of the six weeks, we will
-talk it through with you then. Nothing goes out without your approval, and no is a perfectly
-good answer.</p>
+<p class="inv-aside">If a quote or a short case study feels right by the end of the six
+weeks, we will talk it through with you then. Nothing goes out without your approval, and no
+is a perfectly good answer.</p>
 
 <div class="inv-end">
-  <p><b>Then it is entirely your call.</b> Nothing happens automatically and there is
-  nothing to cancel. Carry on from {price_from}, depending on how many roles you benchmark
-  and with a lower rate for charities, or stop and keep the benchmarks either way. Your six
-  weeks begin whenever your dashboard is ready.</p>
+  <p><b>Then it is entirely your call.</b> If you want to keep using Zigbert, carry on from
+  {price_from}, depending on how many roles you benchmark and with a lower rate for
+  charities. If not, you stop and keep the benchmarks either way. Your six weeks begin
+  whenever your dashboard is ready.</p>
 </div>
 
 <div class="inv-close">

@@ -1136,10 +1136,10 @@ blockquote p:last-child {
 .invitation.signed .inv-card { padding: 4.5mm 5mm 4mm; }
 .invitation.signed .inv-card li { margin-bottom: 2.3mm; }
 .invitation.signed .inv-h2 { margin: 5mm 0 2.6mm; }
-.invitation.signed .inv-aside { margin-top: 3.5mm; }
-.invitation.signed .inv-end { margin-top: 3.5mm; padding-top: 3mm; }
-.invitation.signed .inv-close { margin-top: 3.5mm; padding-top: 3mm; }
-.invitation.signed .inv-close > p { margin-bottom: 3.2mm; }
+.invitation.signed .inv-aside { margin-top: 5mm; }
+.invitation.signed .inv-end { margin-top: 5mm; padding-top: 4mm; }
+.invitation.signed .inv-close { margin-top: 5mm; padding-top: 4mm; }
+.invitation.signed .inv-close > p { margin-bottom: 4mm; }
 .invitation.signed .inv-sig img { height: 9.5mm; }
 
 /* Two-tier headline for v3. The h1 ends on a colon and the sub completes the
@@ -1171,4 +1171,27 @@ blockquote p:last-child {
 .invitation.signed .inv-note,
 .invitation.signed .inv-close > p {
   max-width: none;
+}
+
+/* v3's two cards hold four bullets and five. The grid already makes the boxes
+   the same height, but the shorter list stopped well above the taller one's
+   last item, so the pair read as misaligned.
+
+   The list now fills the card and distributes its slack: `gap` is the MINIMUM
+   spacing and space-between shares out whatever height is left over, so both
+   lists start and finish on the same lines whatever the bullet count. Scoped to
+   v3 because v2 has four bullets each side and needs none of this. */
+.invitation.signed .inv-card {
+  display: flex;
+  flex-direction: column;
+}
+.invitation.signed .inv-card ul {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2.3mm;
+}
+.invitation.signed .inv-card li {
+  margin-bottom: 0;
 }
