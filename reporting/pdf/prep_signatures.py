@@ -40,18 +40,23 @@ JOBS = [
         "out": "sig-rachel.png",
         "stems": ("rachel", "crafts", "sig1", "signature1"),
         "ink": (43, 57, 144),        # a clean blue, close to the scan
-        "paper": 205,
-        "ink_at": 90,
+        # Measured: 92% of this scan sits above 230 and the corners are pure
+        # white, so the cut can sit high and keep the light edge of the stroke.
+        "paper": 225,
+        "ink_at": 100,
     },
     {
         "out": "sig-millie.png",
         "stems": ("millie", "harrison", "sig2", "signature2"),
-        # Textured stock, so the paper cut has to sit well below its luminance
-        # or the grain survives as speckle.
-        "out_note": "textured paper",
         "ink": (18, 28, 43),         # brand.css --ink
-        "paper": 175,
-        "ink_at": 70,
+        # Measured on this scan rather than guessed, which is the only way to
+        # get a textured stock clean. Sampling the outer margins, where there is
+        # no ink, the paper runs 175-205 at the 1st-99th percentile and never
+        # goes below 166. The ink core sits at 43-90. So a cut at 166 puts ALL
+        # of the grain in the transparent band with nothing left to speckle,
+        # and everything darker is stroke.
+        "paper": 166,
+        "ink_at": 95,
     },
 ]
 
@@ -68,7 +73,14 @@ def find(stems) -> Path | None:
 
 
 def cut(src: Path, ink: tuple[int, int, int], paper: int, ink_at: int) -> Image.Image:
-    im = Image.open(src).convert("RGB")
+    raw = Image.open(src)
+    if raw.mode in ("RGBA", "LA", "P"):
+        raw = raw.convert("RGBA")
+        flat_bg = Image.new("RGB", raw.size, (255, 255, 255))
+        flat_bg.paste(raw, (0, 0), raw)
+        im = flat_bg
+    else:
+        im = raw.convert("RGB")
     lum = im.convert("L")
 
     # Trim the scan to the ink before anything else, so the output has no dead

@@ -1103,7 +1103,7 @@ blockquote p:last-child {
   width: auto;
   max-width: 46mm;
   display: block;
-  margin: 0 0 1.5mm -1mm;   /* -1mm: ink rarely starts at the crop edge */
+  margin: 0 0 2.4mm -1mm;   /* -1mm: ink rarely starts at the crop edge */
 }
 
 .inv-sig-n {

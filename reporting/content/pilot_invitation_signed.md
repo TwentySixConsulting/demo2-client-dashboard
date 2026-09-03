@@ -91,7 +91,7 @@ quote we will ask you first, and you are free to say no.</p>
       <img src="../assets/sig-millie.png" alt="">
       <p class="inv-sig-n">Millie Harrison</p>
       <p class="inv-sig-r">Reward Specialist and Product Lead</p>
-      <p class="inv-sig-e">milliekharrison@gmail.com</p>
+      <p class="inv-sig-e">millieharrison@twentysixconsulting.co.uk</p>
     </div>
   </div>
 </div>
