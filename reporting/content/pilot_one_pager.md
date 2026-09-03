@@ -1,37 +1,38 @@
 <div class="op-head">
   <img src="../assets/zigbert-logo.png" alt="Zigbert">
-  <span class="live"><b>Product testing</b>An invitation, not a sales pitch</span>
+  <span class="live"><b>An invitation</b>Product testing</span>
 </div>
 
-<h1>We will benchmark your whole organisation for nothing.</h1>
+<h1>An invitation to test<br>Zigbert with us.</h1>
 
-<p class="lede">Three months of the full dashboard with it. What we want in return is about
-three or four hours of your time over six weeks, and your permission to watch you use it.</p>
+<p class="lede">We are looking for organisations willing to use the dashboard properly and
+tell us honestly what needs work. In return, all of your roles benchmarked and three months
+of the full product, at no cost.</p>
 
 <div class="op-figs">
-  <div><div class="n">Every role</div><p>benchmarked and specialist-reviewed, with no cap on how many</p></div>
-  <div><div class="n">3 months</div><p>of the full dashboard, then it is your decision</p></div>
-  <div><div class="n">3&ndash;4 hours</div><p>of your time in total, spread across six weeks</p></div>
+  <div><div class="n">Every role</div><p>benchmarked, whatever the number</p></div>
+  <div><div class="n">3 months</div><p>of the full dashboard, then your call</p></div>
+  <div><div class="n">3&ndash;4 hours</div><p>of your time, over six weeks</p></div>
 </div>
 
 <p class="op-h2">What you get</p>
 
 <div class="op-grid">
   <div>
-    <h3>Matched properly, not by job title</h3>
-    <p>Against {salary_records} UK salary records, on function, level, industry and location. Two roles sharing a title are frequently not the same job.</p>
+    <h3>All of your roles benchmarked</h3>
+    <p>Against {salary_records} UK salary records, matched on function, level, industry and location, then checked by one of our reward specialists.</p>
   </div>
   <div>
-    <h3>A reward specialist's review</h3>
-    <p>The same sign-off every paying client gets. Nobody receives a dashboard we have not checked by hand.</p>
+    <h3>The complete dashboard</h3>
+    <p>Pay, benefits, market trends and the pay review tools, with nothing held back.</p>
   </div>
   <div>
     <h3>The benchmarks are yours to keep</h3>
-    <p>Whatever you decide at the end of the three months, the benchmarking work we did stays with you.</p>
+    <p>However you decide at the end, the benchmarking work stays with you.</p>
   </div>
   <div>
-    <h3>A direct line while you test</h3>
-    <p>You are talking to the consultants building it, not to a support queue.</p>
+    <h3>A direct line to us</h3>
+    <p>You would be talking directly to the people building it.</p>
   </div>
 </div>
 
@@ -43,17 +44,17 @@ three or four hours of your time over six weeks, and your permission to watch yo
   </div>
   <div class="pl-row">
     <span class="pl-when">Before we start</span>
-    <span>You send us your roles on a spreadsheet we provide. We benchmark every one and review it, which takes us {turnaround}.</span>
+    <span>You send us your roles on a spreadsheet we provide. We benchmark every one and check it over, which takes us {turnaround}.</span>
     <span class="pl-time">30 min</span>
   </div>
   <div class="pl-row">
     <span class="pl-when">Week 1</span>
-    <span>A short call to get you set up. Then, separately, we watch you use it for the first time.</span>
+    <span>A short call to get you set up. Then, separately, we sit in while you use it for the first time.</span>
     <span class="pl-time">30 + 30 min</span>
   </div>
   <div class="pl-row">
     <span class="pl-when">Weeks 2 to 4</span>
-    <span>You use it on something real. One or two short check-ins so we can hear what is working.</span>
+    <span>You use it on something real. One or two short check-ins so we can hear how you are getting on.</span>
     <span class="pl-time">30&ndash;60 min</span>
   </div>
   <div class="pl-row">
@@ -63,29 +64,28 @@ three or four hours of your time over six weeks, and your permission to watch yo
   </div>
   <div class="pl-row">
     <span class="pl-when">Week 6</span>
-    <span>A conversation about how it went, which we would like to write up. You approve every word, and you can be anonymous if you would rather.</span>
+    <span>A chat about how it went, which we would love to write up. You approve every word, and you can be anonymous if you would rather.</span>
     <span class="pl-time">30 min</span>
   </div>
 </div>
 
 <div class="pl-note">
-  <p><b>The uncomfortable half hour.</b> One of those sessions is thirty minutes where you
-  use the dashboard for the first time and we say nothing at all. No guiding, no
-  explaining, no rescuing you. It is awkward for everyone involved and it is the most
-  useful thing you can give us, because it is the only way to find out what genuinely
-  confuses people rather than what they politely tell us afterwards.</p>
+  <p><b>The half hour we learn the most from.</b> One of those first-week sessions is
+  thirty minutes where you use the dashboard and we simply watch. No guiding, no
+  explaining. It is the only way to see what genuinely trips people up rather than what
+  people kindly tell us afterwards, and we would be grateful to anyone happy to do it.</p>
 </div>
 
-<div class="op-trust">
+<div class="op-trust" style="margin-top:2mm">
   <div>
     <p class="op-h2" style="margin-top:0">At the end of the six weeks</p>
-    <p>Nothing happens automatically. You can carry on with a subscription from
-    <b>{price_from}</b>, tiered by the number of roles you benchmark, with a discounted
-    rate for charities. Or you can stop, and keep the benchmarks we produced.</p>
-    <p>Your six weeks start when your dashboard is ready, so this can begin whenever
-    suits you.</p>
+    <p>Nothing happens automatically and there is nothing to cancel. If it has earned its
+    place you can carry on from <b>{price_from}</b>, depending on how many roles you
+    benchmark, with a lower rate for charities. If not, you stop and the benchmarks stay
+    with you. Your six weeks begin whenever your dashboard is ready.</p>
+    <p><b>To take part, or just to ask what is involved, email {support_email}.</b></p>
   </div>
-  <img src="../assets/hero-home.png" alt="The Zigbert home screen">
+  <img src="../assets/hero-today.png" alt="The Zigbert pay dashboard">
 </div>
 
 <div class="op-foot">

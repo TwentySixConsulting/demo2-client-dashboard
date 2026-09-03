@@ -779,7 +779,7 @@ blockquote p:last-child {
   grid-template-columns: 26mm 1fr 20mm;
   gap: 0 5mm;
   align-items: baseline;
-  padding: 1.9mm 0;
+  padding: 1.6mm 0;
   border-bottom: 0.5pt solid var(--line);
   font-size: 8.4pt;
   line-height: 1.4;
@@ -796,7 +796,7 @@ blockquote p:last-child {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--subtle);
-  padding: 0 0 1.6mm;
+  padding: 0 0 1mm;
   border-bottom: 0;
 }
 .pl-row.pl-head :last-child {
@@ -823,8 +823,8 @@ blockquote p:last-child {
   background: var(--cream);
   border-left: 1mm solid var(--clay);
   border-radius: 0 2mm 2mm 0;
-  padding: 2.9mm 4.5mm;
-  margin: 3.5mm 0 0;
+  padding: 2.5mm 4.5mm;
+  margin: 3mm 0 0;
 }
 .pl-note p {
   margin: 0;

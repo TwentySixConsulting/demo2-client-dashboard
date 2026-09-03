@@ -23,6 +23,22 @@ mkdir -p "$OUT" "$HERE/assets"
 cp -f "$HERE/../../client/public/shell/zigbert-logo.png" "$HERE/assets/" 2>/dev/null \
   || cp -f "$HERE/../../../zigbert-waitlist/public/zigbert-logo.png" "$HERE/assets/"
 
+# Screenshots are build INPUTS but assets/ is gitignored, so a fresh clone has
+# the logo (copied above) and none of the dashboard captures. Chrome renders a
+# missing <img> as an empty box and still exits 0, so without this check the
+# first build after a clone produces a one-pager with holes in it and says
+# nothing. capture_assets.py regenerates them from the built app.
+missing=""
+for img in $(grep -ho 'assets/[a-z-]*\.png' "$HERE/../content"/*.md | sed 's|assets/||' | sort -u); do
+  [ "$img" = "zigbert-logo.png" ] && continue
+  [ -f "$HERE/assets/$img" ] || missing="$missing $img"
+done
+if [ -n "$missing" ]; then
+  echo "Missing screenshot asset(s):$missing" >&2
+  echo "Run: npx vite build && python3 $HERE/capture_assets.py" >&2
+  exit 1
+fi
+
 # --draft renders unconfirmed [[TO CONFIRM]] placeholders instead of refusing.
 # Draft PDFs are named accordingly so an internal copy cannot be mistaken for a
 # client one sitting in the same folder.
