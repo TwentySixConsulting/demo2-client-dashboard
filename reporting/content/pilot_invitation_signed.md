@@ -75,8 +75,7 @@ is a perfectly good answer.</p>
 <div class="inv-end">
   <p><b>Then it is entirely your call.</b> If you want to keep using Zigbert, carry on from
   {price_from}, depending on how many roles you benchmark and with a lower rate for
-  charities. If not, you stop and keep the benchmarks either way. Your six weeks begin
-  whenever your dashboard is ready.</p>
+  charities. If not, you stop and keep the benchmarks either way.</p>
 </div>
 
 <div class="inv-close">
