@@ -36,6 +36,12 @@ FIGURES = {
     "turnaround": "48 hours",
     "support_email": "hello@twentysixconsulting.co.uk",
 
+    # A client decision with no source anywhere in the repo, and it contradicts
+    # the live zigbert.co.uk FAQ, which says the price is not public. Tokenised
+    # anyway so the two one-pagers cannot quote different prices at the same
+    # prospect, which is a worse failure than either price being wrong.
+    "price_from": "£250 a month",
+
     # The board paper's worked example. These are NOT invented: they replicate
     # payReview.ts computeReview() + targetSalary() over data.ts marketData at
     # PrepPayReview's own default scope, which is "roles below the median,
@@ -79,6 +85,24 @@ DOCS = [
         "title": "Zigbert one-pager",
         "lede": "",
         "sources": ["one_pager.md"],
+    },
+    {
+        # The pre-client offer document, not part of the welcome pack: it goes to
+        # organisations deciding whether to test the product at all, so it is
+        # deliberately absent from pack_contents.md.
+        #
+        # No dates and no number of places, per the brief: the pilot runs rolling
+        # from whenever a given client's dashboard is ready. That also keeps the
+        # PDF evergreen, and keeps it out of the 24-September-vs-26 argument the
+        # other assets are having.
+        "slug": "pilot-one-pager",
+        "out": "Zigbert-Product-Testing-Offer.pdf",
+        "bare": True,
+        "doc_label": "Product testing",
+        "eyebrow": "",
+        "title": "Zigbert product testing offer",
+        "lede": "",
+        "sources": ["pilot_one_pager.md"],
     },
     {
         "slug": "confidentiality",

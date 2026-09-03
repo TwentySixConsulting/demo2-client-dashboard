@@ -602,6 +602,11 @@ th.num {
   line-height: 1.45;
   margin: 0;
 }
+/* margin:0 above is right for one_pager.md, which has a single paragraph here.
+   pilot_one_pager.md has two and they collided. */
+.op-trust p + p {
+  margin-top: 2.6mm;
+}
 .op-trust img {
   width: 100%;
   height: auto;
@@ -753,4 +758,80 @@ blockquote p:last-child {
   font-size: 7.6pt;
   color: var(--subtle);
   text-align: right;
+}
+
+/* ── Product testing offer (pilot_one_pager.md) ───────────────────────────
+   Reuses the one-pager's op-* vocabulary for everything it can. The two things
+   it needs of its own are the six-week commitment list and the callout that
+   owns up to the silent observation session.
+
+   The list is a grid rather than a <table> because table styles above centre on
+   a document context: a running header, 8.6pt type, generous cell padding. On a
+   single flyer that reads as an appendix. This is tighter and carries a right
+   aligned time column that has to stay narrow. */
+.pl-list {
+  margin: 0;
+  border-top: 0.8pt solid var(--line);
+}
+
+.pl-row {
+  display: grid;
+  grid-template-columns: 26mm 1fr 20mm;
+  gap: 0 5mm;
+  align-items: baseline;
+  padding: 1.9mm 0;
+  border-bottom: 0.5pt solid var(--line);
+  font-size: 8.4pt;
+  line-height: 1.4;
+  color: var(--muted);
+  break-inside: avoid-page;
+}
+
+/* The header row earns no rule of its own: the list's top border is already
+   there and a second line 4mm below it makes a box nobody asked for. */
+.pl-row.pl-head {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 6.8pt;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--subtle);
+  padding: 0 0 1.6mm;
+  border-bottom: 0;
+}
+.pl-row.pl-head :last-child {
+  text-align: right;
+}
+
+.pl-when {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 8.2pt;
+  color: var(--ink);
+}
+
+.pl-time {
+  text-align: right;
+  font-weight: 600;
+  color: var(--clay-deep);
+  white-space: nowrap;
+}
+
+/* Clay left rule, same as .callout in the document styles, because this is the
+   same kind of interruption: one paragraph the reader is meant to stop on. */
+.pl-note {
+  background: var(--cream);
+  border-left: 1mm solid var(--clay);
+  border-radius: 0 2mm 2mm 0;
+  padding: 2.9mm 4.5mm;
+  margin: 3.5mm 0 0;
+}
+.pl-note p {
+  margin: 0;
+  font-size: 8.4pt;
+  line-height: 1.46;
+  color: var(--muted);
+}
+.pl-note b {
+  color: var(--ink);
 }

@@ -58,7 +58,7 @@ against it, and has a reward specialist check the result before you see it.</p>
   <p>Send us your roles with their job title, seniority level and current full-time-equivalent
   salary, plus your industry and location. Your dashboard is built and reviewed within 48
   hours. Add a role any time afterwards and your consultant picks it up.</p>
-  <p><strong>From £250 a month</strong>, tiered by the number of roles you benchmark. Benefits
+  <p><strong>From {price_from}</strong>, tiered by the number of roles you benchmark. Benefits
   benchmarking is included in every package and charities pay a discounted rate. Gender pay
   gap analysis follows by the end of 2026.</p>
 </div>
