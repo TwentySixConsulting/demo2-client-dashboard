@@ -28,16 +28,26 @@ cp -f "$HERE/../../client/public/shell/zigbert-logo.png" "$HERE/assets/" 2>/dev/
 # missing <img> as an empty box and still exits 0, so without this check the
 # first build after a clone produces a one-pager with holes in it and says
 # nothing. capture_assets.py regenerates them from the built app.
-missing=""
+missing_shot=""
+missing_sig=""
 for img in $(grep -ho 'assets/[a-z-]*\.png' "$HERE/../content"/*.md | sed 's|assets/||' | sort -u); do
   [ "$img" = "zigbert-logo.png" ] && continue
-  [ -f "$HERE/assets/$img" ] || missing="$missing $img"
+  [ -f "$HERE/assets/$img" ] && continue
+  case "$img" in
+    sig-*) missing_sig="$missing_sig $img" ;;
+    *)     missing_shot="$missing_shot $img" ;;
+  esac
 done
-if [ -n "$missing" ]; then
-  echo "Missing screenshot asset(s):$missing" >&2
+if [ -n "$missing_shot" ]; then
+  echo "Missing screenshot asset(s):$missing_shot" >&2
   echo "Run: npx vite build && python3 $HERE/capture_assets.py" >&2
-  exit 1
 fi
+if [ -n "$missing_sig" ]; then
+  echo "Missing signature asset(s):$missing_sig" >&2
+  echo "Drop the scans in $HERE/signatures, then run:" >&2
+  echo "  python3 $HERE/prep_signatures.py" >&2
+fi
+[ -n "$missing_shot$missing_sig" ] && exit 1
 
 # --draft renders unconfirmed [[TO CONFIRM]] placeholders instead of refusing.
 # Draft PDFs are named accordingly so an internal copy cannot be mistaken for a

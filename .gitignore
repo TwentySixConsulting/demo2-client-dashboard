@@ -18,3 +18,4 @@ reporting/docx/out/
 reporting/video/out/
 reporting/video/fontcache/
 __pycache__/
+reporting/pdf/signatures/

@@ -124,6 +124,25 @@ DOCS = [
         "sources": ["pilot_invitation.md"],
     },
     {
+        # VERSION 3, kept alongside v1 and v2. What makes it different is that it
+        # is signed: it closes as a letter from two named people rather than
+        # trailing off into a footer. The cards are plain white here, so the only
+        # colour on the page is the clay in the headings and the timeline.
+        #
+        # Its signature images come from prep_signatures.py, which turns scans
+        # into transparent PNGs. build.sh refuses to build when a referenced
+        # asset is missing, so a forgotten signature cannot ship as a hole.
+        "slug": "pilot-invitation-signed",
+        "out": "Zigbert-Product-Testing-Invitation-Signed.pdf",
+        "bare": True,
+        "page_class": "invitation signed",
+        "doc_label": "An invitation",
+        "eyebrow": "",
+        "title": "An invitation to test Zigbert",
+        "lede": "",
+        "sources": ["pilot_invitation_signed.md"],
+    },
+    {
         "slug": "confidentiality",
         "out": "Zigbert-Your-Data.pdf",
         "doc_label": "Your data",

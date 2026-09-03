@@ -1054,3 +1054,90 @@ blockquote p:last-child {
   border-top: 0.6pt solid var(--line);
   color: var(--muted);
 }
+
+/* ── Invitation v3: white cards and a signed close ────────────────────────
+   v2 tinted the cards because they sat on a warm ground. This version is white
+   throughout, so the cards go white too and the only colour left on the page is
+   the clay in the two card headings and the timeline. Cleaner, and it reads as
+   the more formal of the two. */
+.invitation.signed .inv-card {
+  background: #fff;
+  border-color: var(--line-cool);
+}
+
+/* ── The signed close ────────────────────────────────────────────────────
+   A letter that signs off is doing something no other document in the pack
+   does, which is most of why this version exists. */
+.inv-close {
+  margin: 6mm 0 0;
+  padding-top: 5mm;
+  border-top: 0.8pt solid var(--line);
+}
+.inv-close > p {
+  font-size: 8.9pt;
+  line-height: 1.5;
+  margin: 0 0 5mm;
+  max-width: 46em;
+}
+
+.inv-sigs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9mm;
+  align-items: end;
+}
+.inv-sig {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Sized by HEIGHT, width auto. Two scans will never share an aspect ratio and
+   prep_signatures.py crops each to its own ink, so constraining the width would
+   set them at two different visual sizes. A cap on width stops a very wide
+   signature from colliding with the next column.
+
+   image-rendering is left alone deliberately: these are ~800px wide placed at
+   ~30mm, so they land near 700dpi and need no help. */
+.inv-sig img {
+  height: 11mm;
+  width: auto;
+  max-width: 46mm;
+  display: block;
+  margin: 0 0 1.5mm -1mm;   /* -1mm: ink rarely starts at the crop edge */
+}
+
+.inv-sig-n {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 9.4pt;
+  color: var(--ink);
+  margin: 0;
+  padding-top: 1.6mm;
+  border-top: 0.6pt solid var(--line);
+}
+.inv-sig-r {
+  font-size: 8.2pt;
+  line-height: 1.35;
+  color: var(--muted);
+  margin: 0.6mm 0 0;
+}
+.inv-sig-e {
+  font-size: 8pt;
+  color: var(--clay-deep);
+  margin: 1mm 0 0;
+  word-break: break-all;   /* long addresses must not push the column wide */
+}
+
+/* v3 carries a signed close that v2 does not, so its block rhythm is tighter to
+   pay for it. Scoped to .signed so v2's spacing is untouched. */
+.invitation.signed .inv-note { font-size: 9.9pt; margin-top: 3.5mm; }
+.invitation.signed h1 { font-size: 22.5pt; margin-top: 6mm; }
+.invitation.signed .inv-swap { margin-top: 5.5mm; gap: 5mm; }
+.invitation.signed .inv-card { padding: 4.5mm 5mm 4mm; }
+.invitation.signed .inv-card li { margin-bottom: 2.3mm; }
+.invitation.signed .inv-h2 { margin: 5mm 0 2.6mm; }
+.invitation.signed .inv-aside { margin-top: 4.5mm; }
+.invitation.signed .inv-end { margin-top: 4.5mm; padding-top: 3.5mm; }
+.invitation.signed .inv-close { margin-top: 4.5mm; padding-top: 3.5mm; }
+.invitation.signed .inv-close > p { margin-bottom: 4mm; }
+.invitation.signed .inv-sig img { height: 9.5mm; }
