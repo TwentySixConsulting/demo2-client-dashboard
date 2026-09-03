@@ -3,7 +3,9 @@
   <span>An invitation</span>
 </div>
 
-<h1>An exclusive preview of Zigbert,<br>and your benchmarking on us.</h1>
+<h1>An invitation to test Zigbert with us:</h1>
+
+<p class="inv-sub">your organisation’s benchmarking, done for free.</p>
 
 <p class="inv-note">We are opening Zigbert to a small group of organisations before it goes
 out more widely. You get every role benchmarked and three months of the full dashboard, at

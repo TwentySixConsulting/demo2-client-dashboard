@@ -1141,3 +1141,24 @@ blockquote p:last-child {
 .invitation.signed .inv-close { margin-top: 4.5mm; padding-top: 3.5mm; }
 .invitation.signed .inv-close > p { margin-bottom: 4mm; }
 .invitation.signed .inv-sig img { height: 9.5mm; }
+
+/* Two-tier headline for v3. The h1 ends on a colon and the sub completes the
+   sentence, so it starts lowercase on purpose: it is one thought set in two
+   sizes, not a heading followed by a caption.
+
+   Kept at 20pt so the h1 holds ONE line. Broken across two it rags badly,
+   because "with us:" is too short to carry a line of its own. */
+.invitation.signed h1 {
+  font-size: 20pt;
+  line-height: 1.12;
+  margin: 6mm 0 0;
+}
+.invitation.signed .inv-sub {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 13pt;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--clay-deep);
+  margin: 2mm 0 0;
+}
