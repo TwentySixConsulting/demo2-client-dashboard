@@ -19,3 +19,5 @@ reporting/video/out/
 reporting/video/fontcache/
 __pycache__/
 reporting/pdf/signatures/
+reporting/slides/assets/
+reporting/slides/*.pdf
