@@ -40,6 +40,13 @@ REFERRER = "you"              # the deck is addressed to the person who referred
 WHEN = "September 2026"
 OUT = HERE / f"Zigbert-Kickoff-{CLIENT.replace(' ', '-')}.pptx"
 
+# Read off the LIVE build, not the source defaults: AuthContext falls back to
+# demo/Demo26 only when VITE_DEMO_USERNAME and VITE_DEMO_PASSWORD are unset at
+# build time, and the deployed bundle is the one that decides. Checked by
+# pulling assets/index-*.js from the Pages URL and grepping for the pair.
+DEMO_URL = "twentysixconsulting.github.io/demo2-client-dashboard"
+DEMO_USER, DEMO_PASS = "demo", "Demo26"
+
 DISPLAY, BODY = "Poppins", "Inter"
 
 
@@ -203,6 +210,32 @@ def numbered(s, x, y, w, items, size=12.5, gap=Inches(0.62)):
     return y
 
 
+def track(s, x, y, w, stops, dot=Inches(0.22), title_size=15):
+    """Horizontal timeline. Each stop draws the rule to its right, and the last
+    draws none, so the line finishes exactly on the final dot however many
+    stops there are. Same trick as the invitation flyer's CSS track."""
+    n = len(stops)
+    gap = Inches(0.34)
+    colw = (w - gap * (n - 1)) / n
+    for i, (when, title, dur, body, acc) in enumerate(stops):
+        cx = x + i * (colw + gap)
+        if i < n - 1:
+            rect(s, cx + dot, y + dot / 2 - Emu(6350), colw + gap - dot,
+                 Pt(1.5), fill=CLAY_TINT)
+        rect(s, cx, y, dot, dot, fill=acc, shape=MSO_SHAPE.OVAL)
+        text(s, cx, y + Inches(0.42), colw, Inches(0.24),
+             [(when.upper(), 9.5, True, acc, DISPLAY, 0)])
+        text(s, cx, y + Inches(0.70), colw, Inches(0.34),
+             [(title, title_size + 1, True, INK, DISPLAY, 0)])
+        # No placeholder dash when a stop has no duration: an em dash is
+        # against house style and it read as a missing value.
+        if dur:
+            text(s, cx, y + Inches(1.06), colw, Inches(0.26),
+                 [(dur, 10.5, True, CLAY_DEEP, DISPLAY, 0)])
+        text(s, cx, y + Inches(1.44), colw, Inches(2.1),
+             [(body, 10.5, False, GREY, BODY, 0)], line_spacing=1.32)
+
+
 def footer(s):
     global N
     N += 1
@@ -217,192 +250,135 @@ s = slide(INK)
 rect(s, 0, 0, Inches(0.34), H, fill=CLAY)
 s.shapes.add_picture(str(LOGO_LIGHT), M + Inches(0.2), Inches(0.85),
                      width=Inches(2.35))
-text(s, M + Inches(0.2), Inches(2.45), CW, Inches(0.3),
-     [("PILOT ONBOARDING", 12, True, CLAY, DISPLAY, 0)])
-text(s, M + Inches(0.2), Inches(2.90), Inches(10.4), Inches(1.5),
+text(s, M + Inches(0.2), Inches(2.75), CW, Inches(0.3),
+     [("WHERE WE'RE UP TO", 12, True, CLAY, DISPLAY, 0)])
+text(s, M + Inches(0.2), Inches(3.20), Inches(10.4), Inches(1.5),
      [(f"{CLIENT} on Zigbert", 42, True, WHITE, DISPLAY, 0)])
-text(s, M + Inches(0.2), Inches(4.25), Inches(9.6), Inches(1.0),
-     [("Where we have got to, what happens next, and the three things we need "
-       "from you.", 14.5, False, rgb("B9C1CC"), BODY, 0)], line_spacing=1.35)
+text(s, M + Inches(0.2), Inches(4.55), Inches(9.6), Inches(1.0),
+     [("What happens between now and you having the dashboard.",
+       14.5, False, rgb("B9C1CC"), BODY, 0)], line_spacing=1.35)
 text(s, M + Inches(0.2), Inches(6.30), Inches(8), Inches(0.3),
      [(f"TwentySix Consulting  ·  {WHEN}", 11, False, rgb("6E7A8A"), BODY, 0)])
 
-# ═══════════════════════════════════════════════════ 2. Where we are
+# ═══════════════════════════════════════════════════ 2. The timeline
 s = slide()
-y = head(s, "Where we are", "You have given us everything we need",
-         f"{REFERRER.capitalize()} sent over every {CLIENT} role with its full-time-equivalent "
-         "salary and job level, which is the whole of what we need to build the dashboard. "
-         "One thing to clarify on the levels, coming up in a moment.")
-cw = (CW - Inches(0.5)) / 3
-for i, (kick, title, lines, acc) in enumerate([
-    ("Done", "Roles received",
-     [f"Every {CLIENT} role, with FTE salary and job level.",
-      "Nothing further needed to start."], GREEN),
-    ("This week", "Benchmarking",
-     ["Every role matched and benchmarked against the database.",
-      "Then reviewed by hand, role by role."], CLAY),
-    ("Next week", "Your dashboard",
-     ["Built, reviewed and live.",
-      "Pay for every role against its market range."], SLATE),
-]):
-    card(s, M + i * (cw + Inches(0.25)), y, cw, Inches(3.3),
-         kick, title, lines, accent=acc)
+y = head(s, "The plan", "Roles in, dashboard out, six weeks",
+         "You've sent us everything we need, so the next bit is on us. "
+         "Three short calls across the six weeks and that's it.")
+track(s, M, y + Inches(0.34), CW, [
+    ("Done", "Roles received", "",
+     "FTE salary and level for every one.", GREEN),
+    ("This week", "We benchmark", "",
+     "Matched on function, level, industry and location, then checked by "
+     "one of our specialists.", CLAY),
+    ("Week 2 · 14 Sept", "First look", "30-45 min",
+     "Your data's in by then. We watch how you use it without chipping in, "
+     "then talk through anything that needs it.", SLATE),
+    ("Week 3 or 4", "Check-in", "30 min",
+     "How you've got on, any questions, and anything we can change to fit "
+     "how you're using it.", SLATE),
+    ("Week 5 or 6", "Final call", "30 min",
+     "How it went, and what we should do differently.", INK),
+])
+
+# The timeline left the bottom third empty, and the one thing a client wants to
+# know off a schedule is how much of their time it costs. Deliberately "on
+# calls" rather than a total: the invitation flyer's three to four hours also
+# counts the spreadsheet and a survey, and two different totals would clash.
+bb = y + Inches(3.30)
+rect(s, M, bb, CW, Inches(0.92), fill=WHITE, line=BORDER)
+rect(s, M, bb, Pt(4), Inches(0.92), fill=CLAY)
+text(s, M + Inches(0.32), bb + Inches(0.29), Inches(11.6), Inches(0.32),
+     [("About an hour and a half on calls across the whole six weeks. "
+       "Everything else is us.", 12.5, False, GREY, BODY, 0)])
 footer(s)
 
-# ═══════════════════════════════════════════════════ 3. The process
+# ═══════════════════════════════════════════════════ 3. The levels
 s = slide()
-y = head(s, "What happens next", "What we do with your roles",
-         "Three steps, all on our side. The output is a market range for every role you "
-         "have sent us, and a clear read on where each one sits against it.")
-cw = (CW - Inches(0.5)) / 3
-for i, (kick, title, lines) in enumerate([
-    ("Step one", "Match each role",
-     ["On function, job level, industry and location.",
-      "Job title on its own is not enough to go on."]),
-    ("Step two", "Benchmark it",
-     [f"Against over {FIGURES['salary_records']} UK salary records taken from live job adverts.",
-      "The database is refreshed every month."]),
-    ("Step three", "A specialist reviews it",
-     ["One of our reward specialists checks the result by hand.",
-      "Nothing reaches you that a person has not signed off."]),
-]):
-    card(s, M + i * (cw + Inches(0.25)), y, cw, Inches(2.6), kick, title, lines)
+y = head(s, "One thing we need", "Quick one on the levels",
+         f"The {CLIENT} file has 1, 2, 3 and 4 with nothing attached to them. "
+         "Level is one of the four things we match on, so it's worth pinning down.")
 
-band = y + Inches(2.85)
-rect(s, M, band, CW, Inches(1.28), fill=CLAY_TINT)
-rect(s, M, band, Pt(4), Inches(1.28), fill=CLAY_DEEP)
-text(s, M + Inches(0.32), band + Inches(0.20), Inches(11.6), Inches(0.3),
-     [("What you end up with, for every single role", 14.5, True, INK, DISPLAY, 0)])
-text(s, M + Inches(0.32), band + Inches(0.60), Inches(11.6), Inches(0.5),
-     [("A lower quartile, a median and an upper quartile for the market, and where the "
-       f"current {CLIENT} salary sits against them. All of it uploaded into the dashboard.",
-       12, False, rgb("6B4436"), BODY, 0)], line_spacing=1.3)
-footer(s)
-
-# ═══════════════════════════════════════════════════ 4. The levels question
-s = slide()
-y = head(s, "One thing to pin down", "What do your levels 1 to 4 mean?",
-         f"The {CLIENT} file has job levels 1, 2, 3 and 4 with no definitions attached. "
-         "Job level is one of the four things we match on, and it moves the comparator group "
-         "more than any of the others, so it is worth thirty seconds now.")
-
-rect(s, M, y, Inches(6.05), Inches(3.45), fill=WHITE, line=BORDER)
-rect(s, M, y, Inches(6.05), Pt(4), fill=SLATE)
-text(s, M + Inches(0.28), y + Inches(0.26), Inches(5.5), Inches(0.3),
-     [("HOW OUR NUMBERING RUNS", 9.5, True, SLATE, DISPLAY, 0)])
-ly = y + Inches(0.66)
-for lvl, label, example in [
-    ("1", "Director", "most senior"),
-    ("2", "Senior", ""),
-    ("3", "Practitioner", ""),
-    ("4", "Junior", "most junior"),
-]:
+rect(s, M, y, Inches(5.3), Inches(3.0), fill=WHITE, line=BORDER)
+rect(s, M, y, Inches(5.3), Pt(4), fill=SLATE)
+text(s, M + Inches(0.28), y + Inches(0.26), Inches(4.7), Inches(0.3),
+     [("OURS RUNS 1 AT THE TOP", 9.5, True, SLATE, DISPLAY, 0)])
+ly = y + Inches(0.70)
+for lvl, label, note in [("1", "Director", "most senior"), ("2", "Senior", ""),
+                         ("3", "Practitioner", ""), ("4", "Junior", "most junior")]:
     text(s, M + Inches(0.28), ly, Inches(0.4), Inches(0.28),
          [(lvl, 14, True, CLAY, DISPLAY, 0)])
     text(s, M + Inches(0.72), ly + Inches(0.02), Inches(2.2), Inches(0.28),
          [(label, 13, True, INK, BODY, 0)])
-    if example:
-        text(s, M + Inches(2.95), ly + Inches(0.04), Inches(2.8), Inches(0.28),
-             [(example, 11.5, False, MUTED, BODY, 0)])
+    if note:
+        text(s, M + Inches(2.9), ly + Inches(0.04), Inches(2.2), Inches(0.28),
+             [(note, 11.5, False, MUTED, BODY, 0)])
     ly += Inches(0.52)
-text(s, M + Inches(0.28), ly + Inches(0.04), Inches(5.5), Inches(0.4),
-     [("Ours counts down from the top. Many organisations count up from the bottom.",
-       11, False, GREY, BODY, 0)], line_spacing=1.25)
 
-x2 = M + Inches(6.45)
-rect(s, x2, y, Inches(5.44), Inches(3.45), fill=WHITE, line=BORDER)
-rect(s, x2, y, Inches(5.44), Pt(4), fill=CLAY_DEEP)
-text(s, x2 + Inches(0.28), y + Inches(0.26), Inches(4.9), Inches(0.3),
-     [("WHY IT MATTERS", 9.5, True, CLAY_DEEP, DISPLAY, 0)])
-text(s, x2 + Inches(0.28), y + Inches(0.62), Inches(4.9), Inches(2.2),
-     [("Read the wrong way round, a level 4 role would be compared against "
-       "director pay and a level 1 against junior pay.", 12.5, True, INK, BODY, 8),
-      ("On our own data that is the difference between a market median of about "
-       "£27,000 and about £91,000 for the same person.", 12, False, GREY, BODY, 8),
-      ("A one-line description of each level is plenty, or just tell us whether "
-       "1 is the top or the bottom.", 12, False, GREY, BODY, 0)],
+x2 = M + Inches(5.7)
+rect(s, x2, y, Inches(6.19), Inches(3.0), fill=WHITE, line=BORDER)
+rect(s, x2, y, Inches(6.19), Pt(4), fill=CLAY_DEEP)
+text(s, x2 + Inches(0.28), y + Inches(0.26), Inches(5.6), Inches(0.3),
+     [("WHY WE'RE ASKING", 9.5, True, CLAY_DEEP, DISPLAY, 0)])
+text(s, x2 + Inches(0.28), y + Inches(0.66), Inches(5.6), Inches(2.1),
+     [("Plenty of places number the other way up. If yours does, a level 4 "
+       "would get benchmarked against director pay.", 13, True, INK, BODY, 9),
+      ("On our own data that's about £27,000 against about £91,000 for the "
+       "same person.", 12, False, GREY, BODY, 9),
+      ("Just tell us whether 1 is the top or the bottom. Or send the job titles "
+       "at each level and we'll sort it from those.", 12, False, GREY, BODY, 0)],
      line_spacing=1.3)
-text(s, M, y + Inches(3.72), CW, Inches(0.4),
-     [("If it is easier, send us the job titles that sit at each level and we will work it "
-       "out from those.", 12, False, GREY, BODY, 0)], line_spacing=1.3)
 footer(s)
 
-# ═══════════════════════════════════════════════════ 5. How you want it
+# ═══════════════════════════════════════════════════ 4. The demo
 s = slide()
-y = head(s, "Next week", "How would you like to go through it?",
-         "The dashboard will be ready next week. Either way works for us, so it is "
-         "whichever suits you better.")
-cw = (CW - Inches(0.5)) / 2
-card(s, M, y, cw, Inches(2.75), "Option A", "We send it over first",
-     ["You get the link and have a look in your own time.",
-      "Then we meet to go through whatever stood out, with your questions already formed."],
-     accent=CLAY)
-card(s, M + cw + Inches(0.5), y, cw, Inches(2.75), "Option B", "We walk through it together",
-     ["We meet first and go through it live, so nothing needs decoding on your own.",
-      "You explore it properly afterwards."],
-     accent=SLATE)
+y = head(s, "In the meantime", "Have a poke around the demo",
+         "Same dashboard, different company. Everything works, so click anything.")
 
-nb = y + Inches(3.05)
-rect(s, M, nb, CW, Inches(1.15), fill=WHITE, line=BORDER)
-rect(s, M, nb, Pt(4), Inches(1.15), fill=INK)
-text(s, M + Inches(0.32), nb + Inches(0.20), Inches(11.5), Inches(0.28),
-     [("Want a look before then?", 13.5, True, INK, DISPLAY, 0)])
-text(s, M + Inches(0.32), nb + Inches(0.55), Inches(11.5), Inches(0.34),
-     [("We can open the demo dashboard now and click through it, or I can send you the "
-       "link afterwards so you can get familiar before yours lands.",
-       11.5, False, GREY, BODY, 0)], line_spacing=1.28)
+rect(s, M, y + Inches(0.10), CW, Inches(1.5), fill=INK)
+rect(s, M, y + Inches(0.10), Pt(5), Inches(1.5), fill=CLAY)
+text(s, M + Inches(0.4), y + Inches(0.40), Inches(11.5), Inches(0.24),
+     [("THE LINK", 9.5, True, CLAY, DISPLAY, 0)])
+text(s, M + Inches(0.4), y + Inches(0.74), Inches(11.8), Inches(0.5),
+     [(DEMO_URL, 19, True, WHITE, DISPLAY, 0)])
+
+cw = (CW - Inches(0.4)) / 2
+by = y + Inches(1.90)
+for i, (k, v) in enumerate([("Username", DEMO_USER), ("Password", DEMO_PASS)]):
+    x = M + i * (cw + Inches(0.4))
+    rect(s, x, by, cw, Inches(1.05), fill=WHITE, line=BORDER)
+    text(s, x + Inches(0.28), by + Inches(0.22), cw - Inches(0.5), Inches(0.24),
+         [(k.upper(), 9.5, True, MUTED, DISPLAY, 0)])
+    text(s, x + Inches(0.28), by + Inches(0.52), cw - Inches(0.5), Inches(0.34),
+         [(v, 18, True, INK, DISPLAY, 0)])
+
+text(s, M, by + Inches(1.35), CW, Inches(0.5),
+     [("The numbers belong to a made-up company, so nothing in there is real pay "
+       "data. It'll look the same with your roles in it.", 12, False, GREY, BODY, 0)],
+     line_spacing=1.3)
 footer(s)
 
-# ═══════════════════════════════════════════════════ 6. Benefits
+# ═══════════════════════════════════════════════════ 5. Over to you
 s = slide()
-y = head(s, "Also available", "Benefits, if you want them included",
-         f"We were asked to do pay. Benefits can go in alongside it at no extra cost, and "
-         f"it is entirely up to {CLIENT} whether they bother.")
+y = head(s, "Over to you", "Three things and we're away",
+         "Only the levels hold anything up.")
 cw = (CW - Inches(0.5)) / 3
 for i, (kick, title, lines, acc) in enumerate([
-    ("No cost", "Included either way",
-     ["Benefits benchmarking is part of the package, not an add-on we charge for."], CLAY),
-    ("What we need", "A list of what they offer",
-     ["Pension, leave, sick pay, and whatever else they provide.",
-      "No particular format needed."], SLATE),
-    ("Worth knowing", "A different method",
-     ["Benefits come from survey and audit evidence rather than job adverts.",
-      "So they run a cycle behind pay."], INK),
+    ("One", "The levels",
+     ["Whether 1 is the top or the bottom, or the job titles at each level."], CLAY),
+    ("Two", "Do the dates work",
+     ["The 14th for the first session, then two shorter calls after."], SLATE),
+    ("Three", "Benefits or not",
+     [f"We can benchmark what {CLIENT} offer and put it in alongside pay, "
+      "no extra cost. Yes or no is enough for now."], INK),
 ]):
-    card(s, M + i * (cw + Inches(0.25)), y, cw, Inches(3.1), kick, title, lines, accent=acc)
-text(s, M, y + Inches(3.38), CW, Inches(0.4),
-     [("There is no deadline on this. Benefits can be added after the dashboard is live "
-       "without rebuilding anything.", 12, False, GREY, BODY, 0)], line_spacing=1.3)
-footer(s)
+    card(s, M + i * (cw + Inches(0.25)), y, cw, Inches(2.6), kick, title, lines, accent=acc)
 
-# ═══════════════════════════════════════════════════ 7. The asks
-# Cards rather than the numbered list this started as. The list left the bottom
-# third of the slide empty, and three cards match every other slide in the deck.
-s = slide()
-y = head(s, "To take away", "Three things from you",
-         "Everything else is on our side. None of it is urgent enough to hold up the "
-         "build except the first one.")
-cw = (CW - Inches(0.5)) / 3
-for i, (kick, title, lines, acc) in enumerate([
-    ("One", "What levels 1 to 4 mean",
-     ["A line each, or just whether 1 is the most senior or the most junior.",
-      "This is the only one that holds up the build."], CLAY),
-    ("Two", "Sent over, or walked through",
-     ["Whether you would rather have the dashboard first and meet after, or meet and "
-      "go through it together."], SLATE),
-    ("Three", f"Whether {CLIENT} want benefits",
-     ["A yes or no is enough for now.",
-      "We can chase the detail once the pay side is live."], INK),
-]):
-    card(s, M + i * (cw + Inches(0.25)), y, cw, Inches(3.1), kick, title, lines, accent=acc)
-
-fy = y + Inches(3.42)
-rect(s, M, fy, CW, Inches(0.92), fill=CLAY_TINT)
-rect(s, M, fy, Pt(4), Inches(0.92), fill=CLAY_DEEP)
-text(s, M + Inches(0.32), fy + Inches(0.30), Inches(11.6), Inches(0.32),
-     [("Anything else, just email ", 12.5, False, rgb("6B4436"), BODY, 0)])
-text(s, M + Inches(2.42), fy + Inches(0.30), Inches(6), Inches(0.32),
-     [(FIGURES["support_email"], 12.5, True, CLAY_DEEP, BODY, 0)])
+fy = y + Inches(2.92)
+rect(s, M, fy, CW, Inches(0.9), fill=CLAY_TINT)
+rect(s, M, fy, Pt(4), Inches(0.9), fill=CLAY_DEEP)
+text(s, M + Inches(0.32), fy + Inches(0.29), Inches(11.6), Inches(0.32),
+     [("Anything else, just give me a shout.", 12.5, False, rgb("6B4436"), BODY, 0)])
 footer(s)
 
 prs.save(OUT)
