@@ -55,7 +55,7 @@
     <link rel="stylesheet" href="../shell/tour.css" />
     <style>body { padding-top: 60px; }</style>
 
-    <script type="module" crossorigin src="./assets/index-CdIXOBrV.js"></script>
+    <script type="module" crossorigin src="./assets/index-Bf09PYPa.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-ZTC3MO1h.css">
   </head>
   <body>
@@ -72,6 +72,12 @@
           <a class="ts-shell__tab" data-ts-shell-tab="home" href="../">Home</a>
           <a class="ts-shell__tab" data-ts-shell-tab="pay" href="./">Pay</a>
           <a class="ts-shell__tab" data-ts-shell-tab="benefits" href="../benefits/">Benefits</a>
+          <!-- Trends and Methodology are React routes, so NO trailing slash:
+               "../trends" resolves to /trends (and /<base>/trends under Pages),
+               while "../trends/" would resolve to /trends/, which the wouter
+               route does not match. Same as ../organisation below. -->
+          <a class="ts-shell__tab" data-ts-shell-tab="trends" href="../trends">Trends</a>
+          <a class="ts-shell__tab" data-ts-shell-tab="methodology" href="../methodology">Methodology</a>
           <a class="ts-shell__tab" data-ts-shell-tab="organisation" href="../organisation">Organisation</a>
         </nav>
 

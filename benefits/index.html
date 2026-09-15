@@ -2574,6 +2574,10 @@
       <a class="ts-shell__tab" data-ts-shell-tab="home" href="../">Home</a>
       <a class="ts-shell__tab" data-ts-shell-tab="pay" href="../pay/">Pay</a>
       <a class="ts-shell__tab" data-ts-shell-tab="benefits" href="./">Benefits</a>
+      <!-- React routes, so no trailing slash: "../trends" gives /trends, while
+           "../trends/" would not match the wouter route. As ../organisation. -->
+      <a class="ts-shell__tab" data-ts-shell-tab="trends" href="../trends">Trends</a>
+      <a class="ts-shell__tab" data-ts-shell-tab="methodology" href="../methodology">Methodology</a>
       <a class="ts-shell__tab" data-ts-shell-tab="organisation" href="../organisation">Organisation</a>
     </nav>
 
@@ -2752,12 +2756,19 @@
             <div id="bx-navto" class="bx-grid-3"></div>
           </div>
 
-          <!-- How to read (quiet) -->
-          <details class="bx-card no-print">
+          <!-- How to read.
+               NOT class="no-print" any more. It was, which meant the only
+               explanation of a quartile anywhere in this report was stripped
+               from the PDF a client downloads: exactly the reader who has no
+               dashboard to hover and most needs the definition. -->
+          <details class="bx-card" open>
             <summary style="cursor:pointer;list-style:none;font-size:13.5px;font-weight:600;color:#334155">How to read this report</summary>
             <div style="font-size:13px;color:#64748b;line-height:1.6;margin-top:10px">
               <p style="margin:0 0 6px">Each benefit is placed on the market range: Lower Quartile (25th percentile), Median (50th) and Upper Quartile (75th). A marker at or above the median means you're competitive; below the lower quartile is usually a gap to review.</p>
-              <p style="margin:0">On any comparison page, click a row to expand the full quartile detail, switch the market you compare against, and export tables as Excel/PDF or a benefit as a PNG.</p>
+              <!-- Was: "...expand the full quartile detail, switch the market you
+                   compare against, and export...". There is no market switch:
+                   every comparison table has one fixed comparator column. -->
+              <p style="margin:0">On any comparison page, click a row to expand the full quartile detail, and export tables as Excel or PDF, or a single benefit as an image.</p>
             </div>
           </details>
         </div>
