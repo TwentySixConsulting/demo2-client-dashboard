@@ -21,3 +21,6 @@ __pycache__/
 reporting/pdf/signatures/
 reporting/slides/assets/
 reporting/slides/*.pdf
+
+# Real client pay data. Never commit: this repo is public.
+client/Sussex Emmaus/
